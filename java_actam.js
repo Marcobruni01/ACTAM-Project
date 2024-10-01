@@ -1,22 +1,28 @@
 // Definire il mapping dei tasti della tastiera
 const keyMap = {
-    '1': 'C',
-    '2': 'C#',
-    '3': 'D',
-    '4': 'D#',
-    '5': 'E',
-    '6': 'F',
-    '7': 'F#',
-    '8': 'G',
-    '9': 'G#',
-    '0': 'A',
-    '-': 'A#',
-    '=': 'B'
+    'A': 'C',
+    'W': 'C#',
+    'S': 'D',
+    'E': 'D#',
+    'D': 'E',
+    'F': 'F',
+    'T': 'F#',
+    'G': 'G',
+    'Y': 'G#',
+    'H': 'A',
+    'U': 'A#',
+    'J': 'B',
+    'K': 'C2',
+    'O': 'C#2',
+    'L': 'D2',
+    'P': 'D#2',
+    'Ò': 'E2',
+    'À': 'F2'
 };
 
 // Aggiungi un ascoltatore per la pressione dei tasti
 document.addEventListener('keydown', function(event) {
-    const note = keyMap[event.key];
+    const note = keyMap[event.key.toUpperCase()];
     if (note) {
         playNote(note);
         highlightKey(note);
@@ -49,3 +55,4 @@ function highlightKey(note) {
         }, 200);
     }
 }
+

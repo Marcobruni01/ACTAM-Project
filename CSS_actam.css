@@ -16,35 +16,49 @@ body {
     padding: 10px;
     border-radius: 15px;
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+    margin-top: 350px; /*position in the page */
+}
+
+.tasto-container {
+    position: relative;
+    display: inline-block;
 }
 
 .tasto {
-    width: 60px;
-    height: 200px;
+    width: 70px;  /* Aumenta la larghezza dei tasti */
+    height: 170px; /* Riduci l'altezza dei tasti */
     margin: 0 2px;
     background-color: white;
     border: 1px solid #000;
     border-radius: 0 0 5px 5px;
     text-align: center;
-    line-height: 200px;
+    line-height: 170px;  /* Modifica la linea per adattarla alla nuova altezza */
     font-size: 20px;
     cursor: pointer;
     transition: background-color 0.2s, box-shadow 0.2s;
     position: relative;
     z-index: 1;
+     
 }
 
-.tasto:active {
-    background-color: #ddd;
-    box-shadow: inset 0px 5px 15px rgba(0, 0, 0, 0.2);
+.tasto::before {
+    content: attr(data-key);  /* Usa l'attributo data-key per mostrare la lettera */
+    position: absolute;
+    bottom: -60px;  /* Sposta la lettera in basso */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    color: black;
 }
 
 .tasto-nero {
     position: absolute;
-    width: 45px;
-    height: 130px;
+    width: 50px;  /* Aumenta la larghezza dei tasti neri */
+    height: 100px; /* Riduci l'altezza dei tasti neri */
     background-color: black;
     border-radius: 0 0 3px 3px;
+    left: 0%; /* Posiziona il tasto nero al centro del tasto bianco */
+    transform: translateX(30%); /* Centra il tasto nero tra due tasti bianchi */
     z-index: 2;
     left: 35px;
     top: -2px;
@@ -57,24 +71,19 @@ body {
     box-shadow: inset 0px 3px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Nascondere i tasti neri per E e B */
-.tasto[data-note="E"] .tasto-nero,
-.tasto[data-note="B"] .tasto-nero {
-    display: none;
-}
-
 .tasto.active {
     background-color: lightgray;
     transition: background-color 0.2s;
 }
 
+.tasto-nero.active {
+    background-color: lightgray;
+    box-shadow: inset 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
 
-/* Aggiustamenti nei margini tra i tasti neri */
-.tasto[data-note="C"] .tasto-nero,
-.tasto[data-note="D"] .tasto-nero,
-.tasto[data-note="F"] .tasto-nero,
-.tasto[data-note="G"] .tasto-nero,
-.tasto[data-note="A"] .tasto-nero {
-    left: 30px;
-    top: 0;
+
+/* Hide black keys for notes E and B, as they don't have sharps */
+.tasto-container:nth-child(3) .tasto-nero, /* E key */
+.tasto-container:nth-child(7) .tasto-nero { /* B key */
+    display: none;
 }
