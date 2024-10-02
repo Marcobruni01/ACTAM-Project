@@ -56,4 +56,49 @@ function highlightKey(note) {
     }
 }
 
-//comment
+
+
+
+//PAD
+//PAD
+// Seleziona tutti i tasti del pad
+// Seleziona tutti i tasti del pad
+const pads = document.querySelectorAll('.pad');
+
+// Aggiungi evento click ai tasti del pad
+pads.forEach(pad => {
+    pad.addEventListener('click', () => {
+        console.log(pad); // Log per il debug
+        playSound(pad);
+        pad.classList.add('key-active');  // Aggiunge l'effetto visivo
+        setTimeout(() => pad.classList.remove('key-active'), 200);  // Rimuove l'effetto dopo 200ms
+    });
+});
+
+// Ascolta per la pressione dei tasti numerici
+document.addEventListener('keydown', (e) => {
+    const key = e.keyCode;
+    const pad = document.querySelector(`.pad[data-key="${key}"]`);
+    if (pad) {
+        console.log(pad); // Log per il debug
+        playSound(pad);
+        pad.classList.add('key-active');  // Aggiunge l'effetto visivo
+        setTimeout(() => pad.classList.remove('key-active'), 200);  // Rimuove l'effetto dopo 200ms
+    }
+});
+
+// Rimuovi l'effetto visivo quando il tasto viene rilasciato
+document.addEventListener('keyup', (e) => {
+    const key = e.keyCode;
+    const pad = document.querySelector(`.pad[data-key="${key}"]`);
+    if (pad) {
+        pad.classList.remove('key-active');  // Rimuove l'effetto visivo
+    }
+});
+
+// Funzione per riprodurre i suoni
+function playSound(pad) {
+    const sound = pad.getAttribute('data-sound');
+    const audio = new Audio(`sounds/pad/${sound}.mp3`);
+    audio.play().catch(error => console.error("Errore nel caricamento dell'audio: ", error));
+}
