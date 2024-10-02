@@ -51,6 +51,16 @@ body {
     color: black;
 }
 
+.tasto-nero::before {
+    content: attr(data-key);  /* Mostra la lettera per i tasti neri */
+    position: absolute;
+    bottom: 5px;  /* Sposta la lettera in basso */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 18px;
+    color: white;  /* Colore bianco per il testo */
+}
+
 .tasto-nero {
     position: absolute;
     width: 50px;  /* Aumenta la larghezza dei tasti neri */
