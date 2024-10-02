@@ -62,7 +62,6 @@ function highlightKey(note) {
 //PAD
 //PAD
 // Seleziona tutti i tasti del pad
-// Seleziona tutti i tasti del pad
 const pads = document.querySelectorAll('.pad');
 
 // Aggiungi evento click ai tasti del pad

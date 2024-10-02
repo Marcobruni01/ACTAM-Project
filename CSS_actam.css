@@ -98,7 +98,10 @@ body {
     display: none;
 }
 
-/* Contenitore del pad musicale */
+
+
+/*PAD
+Contenitore del pad musicale */
 .pad-container {
     display: grid;
     grid-template-columns: repeat(3, 90px);
