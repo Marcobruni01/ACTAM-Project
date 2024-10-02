@@ -41,7 +41,7 @@ keys.forEach(key => {
 
 // Funzione per riprodurre il suono della nota
 function playNote(note) {
-    const audio = new Audio(`sounds/${note}.mp3`);
+    const audio = new Audio(`sounds/keyboard/${note}.mp3`);
     audio.play();
 }
 
