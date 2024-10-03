@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambia Pitch Audio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        .control-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .control-container input, 
+        .control-container select, 
+        .control-container button {
+            margin: 10px;
+            padding: 10px;
+            width: 80%;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cambia Pitch Audio</h1>
+    <div class="control-container">
+        <input type="file" id="fileInput" accept="audio/mp3">
+        
+        <label for="noteSelect">Scegli una nota:</label>
+        <select id="noteSelect">
+            <option value="C">Do (C)</option>
+            <option value="C#">Do diesis (C#)</option>
+            <option value="D">Re (D)</option>
+            <option value="D#">Re diesis (D#)</option>
+            <option value="E">Mi (E)</option>
+            <option value="F">Fa (F)</option>
+            <option value="F#">Fa diesis (F#)</option>
+            <option value="G">Sol (G)</option>
+            <option value="G#">Sol diesis (G#)</option>
+            <option value="A">La (A)</option>
+            <option value="A#">La diesis (A#)</option>
+            <option value="B">Si (B)</option>
+        </select>
+
+        <button id="playButton">Play</button>
+    </div>
+
+    <script src="campionatore.js"></script>
+</body>
+</html>
