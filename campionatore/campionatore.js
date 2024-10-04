@@ -1,6 +1,7 @@
 // Crea un contesto audio
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 let audioBuffer;
+let currentSource = null; // Variabile per tracciare la sorgente audio corrente
 
 // Funzione per caricare e decodificare il file MP3
 async function loadAudio(file) {
@@ -24,10 +25,13 @@ function getPitchFromNote(note) {
         "A#": 466.16, // La diesis
         "B": 493.88  // Si
     };
-    
-    // Calcola il pitch in base alla nota e al Do centrale (C4)
-    const baseNote = notes["C"]; // Do centrale
-    return baseNote / notes[note]; // Calcola il valore di playbackRate
+
+    // Usa il La (A) come nota di riferimento (440 Hz)
+    const baseFrequency = 440.00; 
+    const targetFrequency = notes[note];
+
+    // Calcola il rapporto tra la frequenza della nota selezionata e quella del La
+    return targetFrequency / baseFrequency;
 }
 
 // Funzione per riprodurre l'audio con un pitch modificato
@@ -37,16 +41,32 @@ function playAudio(note) {
         return;
     }
 
+    // Ferma l'audio corrente se è in riproduzione
+    if (currentSource) {
+        currentSource.stop();
+    }
+
     const source = audioContext.createBufferSource();
     source.buffer = audioBuffer;
-    
+
     const playbackRate = getPitchFromNote(note);
     source.playbackRate.value = playbackRate; // Cambia il pitch
     source.connect(audioContext.destination);
     source.start();
+
+    // Salva la sorgente corrente per permettere lo stop
+    currentSource = source;
 }
 
-// Esempio di utilizzo
+// Funzione per fermare l'audio corrente
+function stopAudio() {
+    if (currentSource) {
+        currentSource.stop(); // Ferma la riproduzione
+        currentSource = null; // Reset della sorgente
+    }
+}
+
+// Gestione del caricamento file
 document.getElementById('fileInput').addEventListener('change', (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -54,8 +74,14 @@ document.getElementById('fileInput').addEventListener('change', (event) => {
     }
 });
 
+// Gestione del bottone play
 document.getElementById('playButton').addEventListener('click', () => {
     const noteSelect = document.getElementById('noteSelect');
     const selectedNote = noteSelect.value;
     playAudio(selectedNote);
+});
+
+// Gestione del bottone stop
+document.getElementById('stopButton').addEventListener('click', () => {
+    stopAudio(); // Ferma l'audio corrente
 });
