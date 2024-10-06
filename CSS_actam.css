@@ -16,6 +16,7 @@ body {
     padding: 10px;
     border-radius: 15px;
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+    right: -180px;
     margin-top: 350px; /*position in the page */
 }
 
@@ -142,3 +143,34 @@ Contenitore del pad musicale */
 
 
 
+/* Contenitore degli effetti */
+.effect-container {
+    position: absolute;
+    left: 30px;
+    top: 71.5%;
+    transform: translateY(-50%);
+    background-color: #836ecf;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    width: 150px; 
+    font-family: 'Verdana', sans-serif;
+}
+
+.effect-container label {
+    font-size: 16px;
+    color: #fff;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.effect-container select {
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+    background-color: #e0a9a9;
+    font-family: 'Courier New', monospace;
+
+}

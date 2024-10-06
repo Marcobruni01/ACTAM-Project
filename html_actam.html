@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="CSS_actam.css">
 </head>
 <body>
+    <!--keyboard-->
     <div class="pianola">
         <div class="tasto-container">
             <div data-note="C" class="tasto" data-key=A></div>
@@ -52,7 +53,7 @@
     </div>
 
     
-    
+    <!--PAD-->
     <div class="pad-container">
         <div class="pad" data-sound="1" data-key="49">1</div>
         <div class="pad" data-sound="2" data-key="50">2</div>
@@ -65,6 +66,18 @@
         <div class="pad" data-sound="9" data-key="57">9</div>
     </div>
     
+
+
+<!--EFFECTS-->
+    <div class="effect-container">
+        <label for="effect-select">Effect:</label>
+        <select id="effect-select">
+            <option value="none">None</option>
+            <option value="flanger">Flanger</option>
+            <option value="delay">Delay</option>
+            <option value="distortion">Distortion</option>
+        </select>
+    </div>
     
 
     <script src="java_actam.js"></script>
