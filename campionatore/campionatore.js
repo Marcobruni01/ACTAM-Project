@@ -1,3 +1,4 @@
+/*VELOCITà non costante ma no distorsione
 // Crea un contesto audio
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 let audioBuffer;
@@ -85,11 +86,11 @@ document.getElementById('playButton').addEventListener('click', () => {
 document.getElementById('stopButton').addEventListener('click', () => {
     stopAudio(); // Ferma l'audio corrente
 });
-
+*/
 
 /*
 VELOCITà COSTANTE PERò CON UN PO' DI DISTORSIONE
-
+*/
 // Variabile globale per la sorgente audio 
 let currentSource = null;
 
@@ -206,4 +207,3 @@ document.getElementById('playButton').addEventListener('click', () => {
 document.getElementById('stopButton').addEventListener('click', () => {
     stopAudio(); // Ferma l'audio corrente
 });
-*/
