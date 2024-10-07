@@ -17,7 +17,7 @@ body {
     border-radius: 15px;
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
     right: -180px;
-    margin-top: 350px; /*position in the page */
+    margin-top: 280px; /*position in the page */
 }
 
 .tasto-container {
@@ -105,8 +105,8 @@ body {
 Contenitore del pad musicale */
 .pad-container {
     display: grid;
-    grid-template-columns: repeat(3, 90px);
-    grid-template-rows: repeat(3, 90px);
+    grid-template-columns: repeat(3, 80px);
+    grid-template-rows: repeat(3, 80px);
     gap: 15px;
     padding: 20px;
     background-color: #333;  /* Colore di sfondo del contenitore */
@@ -114,7 +114,7 @@ Contenitore del pad musicale */
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Ombra intorno al pad */
     position: absolute;
     right: 30px;
-    top: 30px;
+    top: 25px;
     border: 3px solid #444;
 }
 
@@ -147,7 +147,7 @@ Contenitore del pad musicale */
 .effect-container {
     position: absolute;
     left: 30px;
-    top: 71.5%;
+    top: 66%;
     transform: translateY(-50%);
     background-color: #836ecf;
     padding: 20px;
