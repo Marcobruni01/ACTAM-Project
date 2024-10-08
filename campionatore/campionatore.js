@@ -93,6 +93,10 @@ VELOCITà COSTANTE PERò CON UN PO' DI DISTORSIONE
 */
 // Variabile globale per la sorgente audio 
 let currentSource = null;
+let mediaRecorder;
+let recordedChunks = [];
+let isRecording = false;
+let streamDestination;
 
 // Funzione per avviare il contesto audio
 async function startAudioContext() {
@@ -106,7 +110,7 @@ async function startAudioContext() {
 async function loadAudio(file) {
     const arrayBuffer = await file.arrayBuffer();
     const audioBuffer = await Tone.context.decodeAudioData(arrayBuffer);
-    return audioBuffer; // Restituisci il buffer audio
+    return audioBuffer;
 }
 
 // Funzione per ottenere il valore di pitch dalla nota
@@ -125,7 +129,6 @@ function getPitchFromNote(note) {
         "A#": 10, // La diesis (A#)
         "B": 11   // Si (B)
     };
-
     return notes[note] - notes["A"]; // Calcola la differenza rispetto a La (A)
 }
 
@@ -136,41 +139,35 @@ async function playAudio(note) {
         console.error("Nessun file audio caricato.");
         return;
     }
-    
+
     try {
-        await startAudioContext(); // Avvia il contesto audio se sospeso
+        await startAudioContext();
         const audioBuffer = await loadAudio(fileInput.files[0]);
 
-        // Ferma l'audio corrente se è in riproduzione
         if (currentSource) {
             currentSource.stop();
         }
 
-        // Crea un nuovo buffer source
         const source = new Tone.BufferSource(audioBuffer, () => {
-            // Callback quando il buffer è pronto
             console.log("Buffer audio pronto.");
         });
 
-        // Crea un oggetto PitchShift per cambiare il pitch
         const pitchShift = new Tone.PitchShift({
-            pitch: getPitchFromNote(note), // Modifica il pitch (in semitoni)
-            windowSize: 0.2, // Dimensione della finestra (più alta riduce la distorsione)
-            feedback: 0.0,   // Disattiva il feedback per evitare distorsioni
-            wet: 1           // Segnale completamente modificato
+            pitch: getPitchFromNote(note),
+            windowSize: 0.2,
+            feedback: 0.0,
+            wet: 1
         });
 
-        // Crea un GainNode per controllare il volume
-        const gainNode = new Tone.Gain(0.8); // Volume controllato
+        const gainNode = new Tone.Gain(0.8);
+        streamDestination = Tone.context.createMediaStreamDestination();
 
-        // Collega i nodi
         source.connect(pitchShift);
-        pitchShift.connect(gainNode); // Collega il pitch shift al gain node
-        gainNode.toDestination(); // Collega il gain node all'output audio
+        pitchShift.connect(gainNode);
+        gainNode.connect(streamDestination);
+        gainNode.toDestination();
 
-        source.start(); // Inizia la riproduzione
-
-        // Salva la sorgente corrente per permettere lo stop
+        source.start();
         currentSource = source;
 
     } catch (error) {
@@ -181,8 +178,55 @@ async function playAudio(note) {
 // Funzione per fermare l'audio corrente
 function stopAudio() {
     if (currentSource) {
-        currentSource.stop(); // Ferma la riproduzione
-        currentSource = null; // Reset della sorgente
+        currentSource.stop();
+        currentSource = null;
+    }
+}
+
+// Funzione per gestire la registrazione audio
+function startRecording() {
+    try {
+        if (!streamDestination) {
+            console.error("streamDestination non è stato inizializzato.");
+            return;
+        }
+
+        mediaRecorder = new MediaRecorder(streamDestination.stream);
+        mediaRecorder.ondataavailable = (event) => {
+            console.log("Data available:", event.data.size);
+            if (event.data.size > 0) {
+                recordedChunks.push(event.data);
+            }
+        };
+
+        mediaRecorder.onstop = () => {
+            const blob = new Blob(recordedChunks, { type: 'audio/webm' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'registrazione_effettuata.webm';
+            a.click();
+            recordedChunks = [];
+        };
+
+        mediaRecorder.onerror = (event) => {
+            console.error("Errore nella registrazione:", event.error);
+        };
+
+        mediaRecorder.start();
+        isRecording = true;
+        updateRecordingIndicator(true);
+    } catch (error) {
+        console.error("Errore nella registrazione: ", error);
+    }
+}
+
+// Funzione per fermare la registrazione audio
+function stopRecording() {
+    if (mediaRecorder && isRecording) {
+        mediaRecorder.stop();
+        isRecording = false;
+        updateRecordingIndicator(false);
     }
 }
 
@@ -207,3 +251,21 @@ document.getElementById('playButton').addEventListener('click', () => {
 document.getElementById('stopButton').addEventListener('click', () => {
     stopAudio(); // Ferma l'audio corrente
 });
+
+// Gestione del bottone registra
+document.getElementById('recordButton').addEventListener('click', () => {
+    if (!isRecording) {
+        startRecording();
+    } else {
+        stopRecording();
+    }
+});
+
+// Funzione per aggiornare l'indicatore di registrazione
+function updateRecordingIndicator(isRecording) {
+    const indicator = document.getElementById('recording-indicator');
+    if (indicator) {
+        indicator.style.backgroundColor = isRecording ? 'red' : 'green';
+        indicator.textContent = isRecording ? 'Registrazione in corso...' : 'Registrazione ferma';
+    }
+}
