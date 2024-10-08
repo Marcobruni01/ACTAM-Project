@@ -147,30 +147,69 @@ Contenitore del pad musicale */
 .effect-container {
     position: absolute;
     left: 30px;
-    top: 66%;
+    top: 70%;
     transform: translateY(-50%);
     background-color: #836ecf;
-    padding: 20px;
+    padding: 15px;
     border-radius: 10px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
     z-index: 1;
-    width: 150px; 
+    width: 300px; /* Larghezza del contenitore */
     font-family: 'Verdana', sans-serif;
 }
 
-.effect-container label {
-    font-size: 16px;
-    color: #fff;
-    display: block;
-    margin-bottom: 10px;
+/* Sezione per i pulsanti degli effetti */
+.effect-buttons {
+    display: flex; /* Disposizione in riga */
+    justify-content: space-between; /* Spaziatura tra i pulsanti */
+    margin-bottom: 20px; /* Spazio sotto i pulsanti */
 }
 
-.effect-container select {
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 16px;
-    width: 100%;
-    background-color: #e0a9a9;
-    font-family: 'Courier New', monospace;
+/* Bottone effetto */
+.effect-btn {
+    display: flex; /* Permette di allineare testo e LED */
+    flex-direction: column; /* Disposizione verticale per il testo e il LED */
+    align-items: center; /* Allinea orizzontalmente */
+    background-color: #f9d4d4;
+    color: rgb(137, 27, 184);
+    border: none;
+    padding: 10px; /* Ridotto il padding per bilanciare il layout */
+    cursor: pointer;
+    border-radius: 10px; /* Bordo arrotondato */
+    font-size: 14px;
+    width: 80px; /* Larghezza fissa per i pulsanti */
+    height: 80px; /* Altezza fissa per i pulsanti, per renderli più quadrati */
+    position: relative; /* Necessario per il posizionamento del LED */
+}
 
+/* LED per indicare l'effetto selezionato */
+.led {
+    display: inline-block;
+    width: 15px; /* Dimensioni del LED */
+    height: 15px; /* Dimensioni del LED */
+    background-color: #c8ecf1;
+    border-radius: 50%; /* Rende il LED rotondo */
+    margin-top: 5px; /* Margine per il LED sotto il testo */
+    border: 2px solid rgb(71, 69, 69); /* Contornino per il LED */
+}
+
+.led.active {
+    background-color: #ff0000; /* Colore LED attivo */
+}
+
+/* Stile dei knobs */
+.knobs {
+    margin-top: 20px;
+}
+
+.knobs label {
+    color: rgb(100, 246, 100);
+    font-size: 14px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.knobs input[type="range"] {
+    width: 100%;
+    margin-bottom: 20px;
 }
