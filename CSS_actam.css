@@ -164,8 +164,6 @@ Contenitore del pad musicale */
     justify-content: space-between; /* Spaziatura tra i pulsanti */
     margin-bottom: 20px; /* Spazio sotto i pulsanti */
 }
-
-/* Bottone effetto */
 .effect-btn {
     display: flex; /* Permette di allineare testo e LED */
     flex-direction: column; /* Disposizione verticale per il testo e il LED */
@@ -173,24 +171,27 @@ Contenitore del pad musicale */
     background-color: #f9d4d4;
     color: rgb(137, 27, 184);
     border: none;
-    padding: 10px; /* Ridotto il padding per bilanciare il layout */
+    padding: 5px; /* Ridotto il padding per bilanciare il layout */
     cursor: pointer;
     border-radius: 10px; /* Bordo arrotondato */
     font-size: 14px;
     width: 80px; /* Larghezza fissa per i pulsanti */
     height: 80px; /* Altezza fissa per i pulsanti, per renderli più quadrati */
     position: relative; /* Necessario per il posizionamento del LED */
+    box-sizing: border-box; /* Assicura che padding e border siano inclusi nelle dimensioni */
 }
 
 /* LED per indicare l'effetto selezionato */
 .led {
-    display: inline-block;
+    display: block; /* Cambiato a block per occupare l'intera larghezza */
     width: 15px; /* Dimensioni del LED */
     height: 15px; /* Dimensioni del LED */
     background-color: #c8ecf1;
     border-radius: 50%; /* Rende il LED rotondo */
-    margin-top: 5px; /* Margine per il LED sotto il testo */
+    margin-top: 20px; /* Margine per il LED sotto il testo */
+    margin-bottom: 0; /* Rimuovi margine inferiore per evitare problemi di posizionamento */
     border: 2px solid rgb(71, 69, 69); /* Contornino per il LED */
+    align-self: center; /* Centra il LED orizzontalmente */
 }
 
 .led.active {
