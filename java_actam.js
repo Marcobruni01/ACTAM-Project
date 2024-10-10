@@ -47,6 +47,29 @@ const flangerKnob = document.getElementById('knob-flanger');
 const delayKnob = document.getElementById('knob-delay');
 const distortionKnob = document.getElementById('knob-distortion');
 
+// Event listeners per i knobs
+flangerKnob.addEventListener('input', () => {
+    if (activeEffects.flanger) {
+        effectNodes.flanger = createFlanger(flangerKnob.value);
+        updateEffectChain();
+    }
+});
+
+delayKnob.addEventListener('input', () => {
+    if (activeEffects.delay) {
+        effectNodes.delay = createDelay(delayKnob.value);
+        updateEffectChain();
+    }
+});
+
+distortionKnob.addEventListener('input', () => {
+    if (activeEffects.distortion) {
+        effectNodes.distortion = createDistortion(distortionKnob.value);
+        updateEffectChain();
+    }
+});
+
+
 // Funzione per riprodurre il suono della nota con effetti
 function playNote(note) {
     const audio = new Audio(`sounds/keyboard/${note}.mp3`);
@@ -160,10 +183,12 @@ function makeDistortionCurve(amount) {
     const deg = Math.PI / 180;
     for (let i = 0; i < n_samples; ++i) {
         const x = i * 2 / n_samples - 1;
-        curve[i] = ((3 + amount) * x * 20 * deg) / (Math.PI + amount * Math.abs(x));
+        // Diminuisce il fattore di moltiplicazione per un effetto di distorsione meno aggressivo
+        curve[i] = ((3 + (amount * 0.5)) * x * 20 * deg) / (Math.PI + (amount * 0.5) * Math.abs(x));
     }
     return curve;
 }
+
 
 // ----------------------- Pianola: Ascolto eventi -----------------------------
 
