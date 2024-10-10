@@ -27,25 +27,30 @@ const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 let effectNodes = {
     flanger: null,
     delay: null,
-    distortion: null
+    distortion: null,
+    chorus: null 
+    
 };
 
 // Variabili per tenere traccia degli effetti attivi
 let activeEffects = {
     flanger: false,
     delay: false,
-    distortion: false
+    distortion: false,
+    chorus: false
 };
 
 // LED Elements
 const flangerLed = document.getElementById('flanger-led');
 const delayLed = document.getElementById('delay-led');
 const distortionLed = document.getElementById('distortion-led');
+const chorusLed = document.getElementById('chorus-led');
 
 // Knobs Elements
 const flangerKnob = document.getElementById('knob-flanger');
 const delayKnob = document.getElementById('knob-delay');
 const distortionKnob = document.getElementById('knob-distortion');
+const chorusKnob = document.getElementById('knob-chorus');
 
 // Event listeners per i knobs
 flangerKnob.addEventListener('input', () => {
@@ -69,6 +74,13 @@ distortionKnob.addEventListener('input', () => {
     }
 });
 
+chorusKnob.addEventListener('input', () => {
+    if (activeEffects.chorus) {
+        effectNodes.chorus = createChorus(chorusKnob.value);
+        updateEffectChain();
+    }
+});
+
 
 // Funzione per riprodurre il suono della nota con effetti
 function playNote(note) {
@@ -85,7 +97,7 @@ function playNote(note) {
 function applyActiveEffects(track) {
     let lastNode = track;
 
-    // Collega ogni effetto attivo in catena
+    // Flanger
     if (activeEffects.flanger) {
         if (!effectNodes.flanger) {
             effectNodes.flanger = createFlanger(flangerKnob.value);
@@ -94,6 +106,7 @@ function applyActiveEffects(track) {
         lastNode = effectNodes.flanger;
     }
 
+    // Delay
     if (activeEffects.delay) {
         if (!effectNodes.delay) {
             effectNodes.delay = createDelay(delayKnob.value);
@@ -102,6 +115,7 @@ function applyActiveEffects(track) {
         lastNode = effectNodes.delay;
     }
 
+    // Distortion
     if (activeEffects.distortion) {
         if (!effectNodes.distortion) {
             effectNodes.distortion = createDistortion(distortionKnob.value);
@@ -110,8 +124,18 @@ function applyActiveEffects(track) {
         lastNode = effectNodes.distortion;
     }
 
-    lastNode.connect(audioContext.destination);  // Assicurati che l'ultimo nodo sia connesso all'audioContext.destination
+    // Chorus
+    if (activeEffects.chorus) {
+        if (!effectNodes.chorus) {
+            effectNodes.chorus = createChorus(chorusKnob.value);
+        }
+        lastNode.connect(effectNodes.chorus);
+        lastNode = effectNodes.chorus;
+    }
+
+    lastNode.connect(audioContext.destination);
 }
+
 
 // Gestione dei pulsanti effetto e LED
 document.getElementById('flanger-btn').addEventListener('click', () => {
@@ -126,6 +150,10 @@ document.getElementById('distortion-btn').addEventListener('click', () => {
     toggleEffect('distortion');
 });
 
+document.getElementById('chorus-btn').addEventListener('click', () => {
+    toggleEffect('chorus');
+});
+
 // Funzione per attivare o disattivare un effetto
 function toggleEffect(effect) {
     activeEffects[effect] = !activeEffects[effect];  // Attiva/disattiva l'effetto
@@ -137,6 +165,7 @@ function updateLEDs() {
     flangerLed.classList.toggle('active', activeEffects.flanger);
     delayLed.classList.toggle('active', activeEffects.delay);
     distortionLed.classList.toggle('active', activeEffects.distortion);
+    chorusLed.classList.toggle('active', activeEffects.chorus); 
 }
 
 // Funzioni per creare gli effetti con i knobs
@@ -187,6 +216,23 @@ function makeDistortionCurve(amount) {
         curve[i] = ((3 + (amount * 0.5)) * x * 20 * deg) / (Math.PI + (amount * 0.5) * Math.abs(x));
     }
     return curve;
+}
+
+// Funzione per creare il Chorus
+function createChorus(depth) {
+    const delay = audioContext.createDelay();
+    const osc = audioContext.createOscillator();
+    const gain = audioContext.createGain();
+
+    delay.delayTime.value = 0.03;
+    osc.frequency.value = 1.5; // Frequenza del chorus
+    gain.gain.value = depth * 0.005; // Profondità del chorus
+
+    osc.connect(gain);
+    gain.connect(delay.delayTime);
+    osc.start();
+
+    return delay;
 }
 
 

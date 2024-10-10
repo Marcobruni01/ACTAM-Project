@@ -142,75 +142,75 @@ Contenitore del pad musicale */
 }
 
 
-
+/*EFFECTS
 /* Contenitore degli effetti */
 .effect-container {
     position: absolute;
     left: 30px;
-    top: 70%;
+    top: 71%;
     transform: translateY(-50%);
     background-color: #836ecf;
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
     z-index: 1;
-    width: 300px; /* Larghezza del contenitore */
+    width: 300px; /* Riduci la larghezza per adattare meglio i pulsanti e slider */
+    height: 150px;
     font-family: 'Verdana', sans-serif;
 }
 
-/* Sezione per i pulsanti degli effetti */
+/* Griglia per pulsanti ed effetti */
 .effect-buttons {
-    display: flex; /* Disposizione in riga */
-    justify-content: space-between; /* Spaziatura tra i pulsanti */
-    margin-bottom: 20px; /* Spazio sotto i pulsanti */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colonne: una per ogni effetto */
+    gap: 10px; /* Spazio tra le colonne */
+    margin-bottom: 20px; /* Spazio sotto la griglia */
 }
+
+/* Stile dei pulsanti */
 .effect-btn {
-    display: flex; /* Permette di allineare testo e LED */
-    flex-direction: column; /* Disposizione verticale per il testo e il LED */
-    align-items: center; /* Allinea orizzontalmente */
+    display: flex;
+    flex-direction: column; /* Mantieni disposizione verticale per il testo e LED */
+    align-items: center; 
     background-color: #f9d4d4;
     color: rgb(137, 27, 184);
     border: none;
-    padding: 5px; /* Ridotto il padding per bilanciare il layout */
+    padding: 5px;
     cursor: pointer;
-    border-radius: 10px; /* Bordo arrotondato */
-    font-size: 14px;
-    width: 80px; /* Larghezza fissa per i pulsanti */
-    height: 80px; /* Altezza fissa per i pulsanti, per renderli più quadrati */
-    position: relative; /* Necessario per il posizionamento del LED */
-    box-sizing: border-box; /* Assicura che padding e border siano inclusi nelle dimensioni */
+    border-radius: 10px;
+    font-size: 12px;
+    width: 60px;
+    height: 60px;
+    position: relative;
+    box-sizing: border-box;
 }
 
 /* LED per indicare l'effetto selezionato */
 .led {
-    display: block; /* Cambiato a block per occupare l'intera larghezza */
-    width: 15px; /* Dimensioni del LED */
-    height: 15px; /* Dimensioni del LED */
+    width: 15px;
+    height: 15px;
     background-color: #c8ecf1;
-    border-radius: 50%; /* Rende il LED rotondo */
-    margin-top: 20px; /* Margine per il LED sotto il testo */
-    margin-bottom: 0; /* Rimuovi margine inferiore per evitare problemi di posizionamento */
-    border: 2px solid rgb(71, 69, 69); /* Contornino per il LED */
-    align-self: center; /* Centra il LED orizzontalmente */
+    border-radius: 50%;
+    margin-top: 10px;
+    border: 2px solid rgb(71, 69, 69);
 }
 
 .led.active {
-    background-color: #ff0000; /* Colore LED attivo */
+    background-color: #ff0000;
 }
 
-/* Stile dei knobs */
+/* Layout per ogni controllo (pulsante + slider) */
 .knobs {
-    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colonne corrispondenti ai pulsanti */
+    gap: 5px; /* Spazio tra le colonne */
+    
 }
 
-.knobs label {
-    color: rgb(100, 246, 100);
-    font-size: 14px;
-    display: block;
-    margin-bottom: 5px;
-}
 
+/* Slider stile */
 .knobs input[type="range"] {
-    width: 100%;
-    margin-bottom: 20px;
+    width: 50px; /* Larghezza dello slider corrispondente al pulsante */
+    transform: rotate(270deg); /* Mantieni gli slider verticali */
+    margin: 10px auto; /* Centra lo slider orizzontalmente */
 }
