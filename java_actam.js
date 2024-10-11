@@ -221,39 +221,73 @@ function makeDistortionCurve(amount) {
 // Funzione per creare il Chorus
 function createChorus(depth) {
     const delay = audioContext.createDelay();
-    const osc = audioContext.createOscillator();
-    const gain = audioContext.createGain();
+    const lfo = audioContext.createOscillator();
+    const lfoGain = audioContext.createGain();
 
-    delay.delayTime.value = 0.03;
-    osc.frequency.value = 1.5; // Frequenza del chorus
-    gain.gain.value = depth * 0.005; // Profondità del chorus
+    // Imposta un leggero ritardo per simulare il chorus
+    delay.delayTime.value = 0.04;  // Tempo di ritardo fisso
 
-    osc.connect(gain);
-    gain.connect(delay.delayTime);
-    osc.start();
+    // Oscillatore a bassa frequenza (LFO) per modulare il delay time
+    lfo.frequency.value = 0.6;  // Frequenza del chorus
+    lfoGain.gain.value = depth * 0.003;  // Profondità della modulazione (usando il valore del knob)
 
-    return delay;
+    // Collegamento del LFO al delay per modulare il tempo di ritardo
+    lfo.connect(lfoGain);
+    lfoGain.connect(delay.delayTime);  // Modula il delay time
+
+    // Inizia l'oscillatore
+    lfo.start();
+
+    return delay;  // Restituisce il nodo di delay
 }
 
 
 // ----------------------- Pianola: Ascolto eventi -----------------------------
 
+// Mappa per tenere traccia dello stato dei tasti premuti
+let pressedKeys = {};
+
 // Aggiungi un ascoltatore per la pressione dei tasti della tastiera
 document.addEventListener('keydown', function(event) {
     const note = keyMap[event.key.toUpperCase()];
-    if (note) {
+    if (note && !pressedKeys[event.key.toUpperCase()]) {
+        // Suona la nota solo se il tasto non è già stato premuto
         playNote(note);
         highlightKey(note);
+        pressedKeys[event.key.toUpperCase()] = true; // Segna il tasto come premuto
+    }
+});
+
+document.addEventListener('keyup', function(event) {
+    const note = keyMap[event.key.toUpperCase()];
+    if (note) {
+        unhighlightKey(note);
+        pressedKeys[event.key.toUpperCase()] = false; // Segna il tasto come rilasciato
     }
 });
 
 // Aggiungi un ascoltatore per il clic sui tasti della pianola
 const keys = document.querySelectorAll('.tasto');
 keys.forEach(key => {
-    key.addEventListener('click', function() {
+    key.addEventListener('mousedown', function() {
         const note = this.getAttribute('data-note');
-        playNote(note);
-        highlightKey(note);
+        if (!pressedKeys[note]) {
+            playNote(note);
+            highlightKey(note);
+            pressedKeys[note] = true; // Segna il tasto come premuto
+        }
+    });
+
+    key.addEventListener('mouseup', function() {
+        const note = this.getAttribute('data-note');
+        unhighlightKey(note);
+        pressedKeys[note] = false; // Segna il tasto come rilasciato
+    });
+
+    key.addEventListener('mouseleave', function() {
+        const note = this.getAttribute('data-note');
+        unhighlightKey(note);
+        pressedKeys[note] = false; // Segna il tasto come rilasciato
     });
 });
 
@@ -262,11 +296,17 @@ function highlightKey(note) {
     const tasto = document.querySelector(`[data-note="${note}"]`);
     if (tasto) {
         tasto.classList.add('active');
-        setTimeout(() => {
-            tasto.classList.remove('active');
-        }, 200);
     }
 }
+
+// Funzione per rimuovere l'evidenziazione del tasto
+function unhighlightKey(note) {
+    const tasto = document.querySelector(`[data-note="${note}"]`);
+    if (tasto) {
+        tasto.classList.remove('active');
+    }
+}
+
 
 // ----------------------- Pad -----------------------------
 
