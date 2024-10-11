@@ -310,15 +310,33 @@ function unhighlightKey(note) {
 
 // ----------------------- Pad -----------------------------
 
+// Mappa per tenere traccia dello stato dei tasti del pad premuti
+let pressedPads = {};
+
 // Seleziona tutti i tasti del pad
 const pads = document.querySelectorAll('.pad');
 
 // Aggiungi evento click ai tasti del pad
 pads.forEach(pad => {
-    pad.addEventListener('click', () => {
-        playPadSound(pad);
-        pad.classList.add('key-active');  // Aggiunge l'effetto visivo
-        setTimeout(() => pad.classList.remove('key-active'), 200);  // Rimuove l'effetto dopo 200ms
+    pad.addEventListener('mousedown', () => {
+        const key = pad.getAttribute('data-key');
+        if (!pressedPads[key]) {
+            playPadSound(pad);
+            pad.classList.add('key-active');  // Aggiunge l'effetto visivo
+            pressedPads[key] = true; // Segna il tasto del pad come premuto
+        }
+    });
+
+    pad.addEventListener('mouseup', () => {
+        const key = pad.getAttribute('data-key');
+        pad.classList.remove('key-active');  // Rimuove l'effetto visivo
+        pressedPads[key] = false; // Segna il tasto del pad come rilasciato
+    });
+
+    pad.addEventListener('mouseleave', () => {
+        const key = pad.getAttribute('data-key');
+        pad.classList.remove('key-active');  // Rimuove l'effetto visivo
+        pressedPads[key] = false; // Segna il tasto del pad come rilasciato
     });
 });
 
@@ -326,10 +344,19 @@ pads.forEach(pad => {
 document.addEventListener('keydown', (e) => {
     const key = e.keyCode;
     const pad = document.querySelector(`.pad[data-key="${key}"]`);
-    if (pad) {
+    if (pad && !pressedPads[key]) {
         playPadSound(pad);
         pad.classList.add('key-active');  // Aggiunge l'effetto visivo
-        setTimeout(() => pad.classList.remove('key-active'), 200);  // Rimuove l'effetto dopo 200ms
+        pressedPads[key] = true; // Segna il tasto del pad come premuto
+    }
+});
+
+document.addEventListener('keyup', (e) => {
+    const key = e.keyCode;
+    const pad = document.querySelector(`.pad[data-key="${key}"]`);
+    if (pad) {
+        pad.classList.remove('key-active');  // Rimuove l'effetto visivo
+        pressedPads[key] = false; // Segna il tasto del pad come rilasciato
     }
 });
 
