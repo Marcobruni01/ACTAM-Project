@@ -412,13 +412,21 @@ barsInput.addEventListener('input', function() {
 
 // Funzione per disegnare la barra del tempo
 function drawTimeBar() {
-    ctx.strokeStyle = "red";
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 2;  // Imposta la larghezza della linea
     ctx.beginPath();
-    ctx.moveTo(timeBarX, 0);
-    ctx.lineTo(timeBarX, canvas.height);
-    ctx.stroke();
+    ctx.moveTo(timeBarX, 0);  // Inizia la linea in alto
+
+    // Imposta il colore della barra
+    if ((beatCount-1) % beatsPerBar === 0) {  // Se è un battito accentuato
+        ctx.strokeStyle = "green";  // Barra verde per il primo battito
+    } else {
+        ctx.strokeStyle = "red";  // Barra rossa per i battiti normali
+    }
+
+    ctx.lineTo(timeBarX, canvas.height);  // Disegna la linea fino in basso
+    ctx.stroke();  // Esegui il disegno
 }
+
 
 // Funzione per disegnare la nota sul pentagramma
 function drawNoteOnStaff(note) {
@@ -499,11 +507,7 @@ function animateTimeBar() {
     drawTimeBar();  // Ridisegna la barra del tempo
     
     // Muove la barra per ogni battito
-    timeBarX = (beatCount / (beatsPerBar * numberOfBars)) * staffLength;
-    
-    if (beatCount >= beatsPerBar * numberOfBars) {
-        timeBarX = 0;  // Reset della barra dopo aver raggiunto la fine
-    }
+    timeBarX = ((beatCount-1) / (beatsPerBar * numberOfBars)) * staffLength;
 
     requestAnimationFrame(animateTimeBar);  // Continua l'animazione
 }
@@ -553,8 +557,8 @@ function startMetronome() {
             beatCount++;
 
             // Se raggiunge il numero totale di battiti (numero di battute * battiti per battuta)
-            if (beatCount >= beatsPerBar * numberOfBars) {
-                beatCount = 0;  // Resetta il contatore dei battiti
+            if (beatCount > beatsPerBar * numberOfBars) {
+                beatCount = 1;  // Resetta il contatore dei battiti
                 timeBarX = 0;  // Torna alla posizione iniziale della barra
             }
 
@@ -610,3 +614,4 @@ function playMetronomeAccent() {
     oscillator.start();
     oscillator.stop(audioContext.currentTime + 0.1);  // Suono breve
 }
+
