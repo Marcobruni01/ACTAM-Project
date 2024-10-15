@@ -1,6 +1,3 @@
-// ----------------------- Pianola -----------------------------
-
-// Mappatura dei tasti della tastiera per la pianola
 const keyMap = {
     'A': 'C',
     'W': 'C#',
@@ -365,4 +362,252 @@ function playPadSound(pad) {
     const sound = pad.getAttribute('data-sound');
     const audio = new Audio(`sounds/pad/${sound}.mp3`);
     audio.play().catch(error => console.error("Errore nel caricamento dell'audio: ", error));
+}
+
+
+// ----------------------- Pentagramma e Barra del Tempo -----------------------------
+
+const canvas = document.getElementById('staffCanvas');
+const ctx = canvas.getContext('2d');
+let currentXPosition = 0;
+let timeBarX = 0;
+let isPlaying = false;
+let timeBarIntervalId;  // Identificatore per la barra del tempo
+let metronomeIntervalId;  // Identificatore per il metronomo
+let bpm = 120;  // Default BPM
+let beatDuration = 60000 / bpm;  // Durata di un battito in millisecondi
+let numberOfBars = 4;  // Default battute
+const beatsPerBar = 4;  // Numero di battiti per battuta
+let barWidth = 200;  // Larghezza per ogni battuta
+let staffLength = numberOfBars * barWidth;  // Lunghezza totale del pentagramma
+let beatCount = 0;  // Contatore per i battiti
+let isTimeBarActive = false;  // Variabile per tracciare lo stato della barra del tempo
+const metronomeAccentFrequency = 800;  // Frequenza per l'accento del metronomo
+const metronomeClickFrequency = 500;  // Frequenza per il click normale
+
+// Imposta la larghezza del canvas basata sul numero di battute
+canvas.width = staffLength;
+
+// Input per il BPM
+const bpmInput = document.getElementById('bpm');
+bpmInput.addEventListener('input', function() {
+    bpm = parseInt(this.value);
+    beatDuration = 60000 / bpm;
+    if (isPlaying) {
+        stopTimeBar();
+        startTimeBar();
+    }
+});
+
+// Input per il numero di battute
+const barsInput = document.getElementById('bars');  // Presuppone un input HTML con id 'bars'
+barsInput.addEventListener('input', function() {
+    numberOfBars = parseInt(this.value);
+    staffLength = numberOfBars * barWidth;  // Ricalcola la lunghezza totale del pentagramma
+    canvas.width = staffLength;  // Aggiorna la larghezza del canvas
+    currentXPosition = 0;  // Reset posizione corrente delle note
+    clearStaff();  // Pulisce il pentagramma
+    drawStaffLines();  // Ridisegna le linee del pentagramma
+});
+
+// Funzione per disegnare la barra del tempo
+function drawTimeBar() {
+    ctx.strokeStyle = "red";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(timeBarX, 0);
+    ctx.lineTo(timeBarX, canvas.height);
+    ctx.stroke();
+}
+
+// Funzione per disegnare la nota sul pentagramma
+function drawNoteOnStaff(note) {
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    let yPosition = getYPositionForNote(note);
+    ctx.arc(currentXPosition, yPosition, 5, 0, Math.PI * 2);
+    ctx.fill();
+    currentXPosition += 40;  // Sposta la posizione per la prossima nota
+    if (currentXPosition > staffLength) {
+        clearStaff();  // Se superiamo la lunghezza del pentagramma, lo puliamo
+        currentXPosition = 0;
+    }
+}
+
+// Funzione per ottenere la posizione verticale della nota sul pentagramma
+function getYPositionForNote(note) {
+    const positions = {
+        "C": 160, "C#": 150, "D": 140, "D#": 130, "E": 120,
+        "F": 110, "F#": 100, "G": 90, "G#": 80, "A": 70,
+        "A#": 60, "B": 50, "C2": 40, "C#2": 30, "D2": 20,
+        "D#2": 10, "E2": 0, "F2": -10
+    };
+    return positions[note];
+}
+
+// Funzione per pulire il pentagramma
+function clearStaff() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+// Funzione per disegnare le linee del pentagramma
+function drawStaffLines() {
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 1.5;
+    for (let i = 0; i < 5; i++) {
+        ctx.beginPath();
+        ctx.moveTo(0, 40 + i * 30);
+        ctx.lineTo(canvas.width, 40 + i * 30);
+        ctx.stroke();
+    }
+}
+
+drawStaffLines();  // Disegniamo inizialmente le linee del pentagramma
+
+// -------------------- Controllo Barra del Tempo --------------------
+const startButton = document.getElementById('startButton');
+const stopButton = document.getElementById('stopButton');
+
+startButton.addEventListener('click', startTimeBar);
+stopButton.addEventListener('click', stopTimeBar);
+
+function startTimeBar() {
+    if (!isPlaying) {
+        isPlaying = true;
+        isTimeBarActive = true;  // Attiva la barra del tempo
+        timeBarX = 0;
+        beatCount = 0;  // Resetta il conteggio dei battiti
+        animateTimeBar();  // Avvia l'animazione
+    }
+}
+
+function stopTimeBar() {
+    isPlaying = false;
+    isTimeBarActive = false;  // Disattiva la barra del tempo
+    timeBarX = 0;  // Reset della posizione della barra del tempo quando viene fermata
+    clearStaff();  // Pulisce il pentagramma
+    drawStaffLines();  // Ridisegna il pentagramma
+    drawTimeBar();  // Ridisegna la barra del tempo in posizione 0
+}
+
+// Funzione per animare la barra del tempo
+function animateTimeBar() {
+    if (!isTimeBarActive) return;  // Esci se la barra del tempo non è attiva
+    
+    clearStaff();  // Pulisce il pentagramma
+    drawStaffLines();  // Ridisegna le linee del pentagramma
+    drawTimeBar();  // Ridisegna la barra del tempo
+    
+    // Muove la barra per ogni battito
+    timeBarX = (beatCount / (beatsPerBar * numberOfBars)) * staffLength;
+    
+    if (beatCount >= beatsPerBar * numberOfBars) {
+        timeBarX = 0;  // Reset della barra dopo aver raggiunto la fine
+    }
+
+    requestAnimationFrame(animateTimeBar);  // Continua l'animazione
+}
+
+// -------------------- Controllo Barra del Tempo e Metronomo Sincronizzati --------------------
+
+let metronomePlaying = false;
+const startMetronomeButton = document.getElementById('startMetronomeButton');
+const stopMetronomeButton = document.getElementById('stopMetronomeButton');
+
+startMetronomeButton.addEventListener('click', startMetronome);
+stopMetronomeButton.addEventListener('click', stopMetronome);
+
+function startMetronome() {
+    if (!metronomePlaying) {
+        metronomePlaying = true;
+        beatCount = 0;  // Resetta il conteggio dei battiti all'inizio
+        timeBarX = 0;   // Reset della posizione della barra del tempo
+
+        // Disegna la barra al punto zero immediatamente
+        clearStaff();
+        drawStaffLines();
+        drawTimeBar();  // Barra iniziale a 0
+
+        // Avvia il metronomo e la barra sincronizzati
+        metronomeIntervalId = setInterval(() => {
+            
+            // Suona il click del metronomo
+            if (beatCount % beatsPerBar === 0) {
+                playMetronomeAccent();  // Primo battito accentato
+                timeBarX = 0;  // Reset della barra esattamente sul primo colpo
+            } else {
+                playMetronomeClick();  // Battiti normali
+            }
+
+            // Movimento della barra del tempo sincronizzato al battito
+            if (isTimeBarActive) {
+                timeBarX = (beatCount / beatsPerBar) * (staffLength / numberOfBars);  // Sposta la barra
+            }
+
+            // Disegna la barra del tempo
+            clearStaff();
+            drawStaffLines();
+            drawTimeBar();
+
+            // Incrementa il contatore dei battiti
+            beatCount++;
+
+            // Se raggiunge il numero totale di battiti (numero di battute * battiti per battuta)
+            if (beatCount >= beatsPerBar * numberOfBars) {
+                beatCount = 0;  // Resetta il contatore dei battiti
+                timeBarX = 0;  // Torna alla posizione iniziale della barra
+            }
+
+        }, beatDuration);  // Imposta l'intervallo basato sulla durata di un battito
+    }
+}
+
+
+
+function stopMetronome() {
+    clearInterval(metronomeIntervalId);
+    metronomePlaying = false;
+    timeBarX = 0;  // Reset della posizione della barra del tempo quando il metronomo si ferma
+    beatCount = 0;  // Reset del contatore dei battiti
+    clearStaff();  // Pulisce il pentagramma
+    drawStaffLines();  // Ridisegna il pentagramma
+    if (isTimeBarActive) {
+        drawTimeBar();  // Ridisegna la barra del tempo in posizione 0
+    }
+}
+
+// Funzione per il click normale del metronomo
+function playMetronomeClick() {
+    const oscillator = audioContext.createOscillator();  // Crea un oscillatore
+    const gainNode = audioContext.createGain();  // Crea un nodo per controllare il volume
+
+    oscillator.type = 'square';  // Tipo di onda
+    oscillator.frequency.setValueAtTime(metronomeClickFrequency, audioContext.currentTime);  // Frequenza del click (500 Hz)
+
+    gainNode.gain.setValueAtTime(1, audioContext.currentTime);  // Volume iniziale
+    gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);  // Calo rapido del volume
+
+    oscillator.connect(gainNode);  // Collega l'oscillatore al gain
+    gainNode.connect(audioContext.destination);  // Collega il gain al contesto audio (output)
+
+    oscillator.start();  // Avvia l'oscillatore
+    oscillator.stop(audioContext.currentTime + 0.1);  // Ferma l'oscillatore dopo 100ms (breve click)
+}
+
+// Funzione per il click accentato (primo battito)
+function playMetronomeAccent() {
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+
+    oscillator.type = 'square';  // Tipo di onda
+    oscillator.frequency.setValueAtTime(metronomeAccentFrequency, audioContext.currentTime);  // Frequenza più alta per l'accento
+
+    gainNode.gain.setValueAtTime(1, audioContext.currentTime);  // Volume iniziale
+    gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);  // Rapido calo del volume
+
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+
+    oscillator.start();
+    oscillator.stop(audioContext.currentTime + 0.1);  // Suono breve
 }
