@@ -563,7 +563,6 @@ function startMetronome() {
 }
 
 
-
 function stopMetronome() {
     clearInterval(metronomeIntervalId);
     metronomePlaying = false;
