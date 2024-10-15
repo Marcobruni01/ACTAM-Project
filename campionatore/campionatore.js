@@ -92,12 +92,13 @@ document.getElementById('stopButton').addEventListener('click', () => {
 VELOCITà COSTANTE PERò CON UN PO' DI DISTORSIONE
 */
 // Variabile globale per la sorgente audio 
+// Variabile globale per la sorgente audio 
 let currentSource = null;
 
 let mediaRecorder;
 let recordedChunks = [];
 let isRecording = false;
-let streamDestination;
+let streamDestination;  // Aggiunto qui
 
 // Funzione per avviare il contesto audio
 async function startAudioContext() {
@@ -153,25 +154,31 @@ async function playAudio(note) {
 
         // Crea un nuovo buffer source
         const source = new Tone.BufferSource(audioBuffer, () => {
-            // Callback quando il buffer è pronto
             console.log("Buffer audio pronto.");
         });
 
         // Crea un oggetto PitchShift per cambiare il pitch
         const pitchShift = new Tone.PitchShift({
-            pitch: getPitchFromNote(note), // Modifica il pitch (in semitoni)
-            windowSize: 0.2, // Dimensione della finestra (più alta riduce la distorsione)
-            feedback: 0.0,   // Disattiva il feedback per evitare distorsioni
-            wet: 1           // Segnale completamente modificato
+            pitch: getPitchFromNote(note),
+            windowSize: 0.2,
+            feedback: 0.0,
+            wet: 1
         });
 
         // Crea un GainNode per controllare il volume
-        const gainNode = new Tone.Gain(0.8); // Volume controllato
+        const gainNode = new Tone.Gain(0.8); 
 
         // Collega i nodi
         source.connect(pitchShift);
-        pitchShift.connect(gainNode); // Collega il pitch shift al gain node
-        gainNode.toDestination(); // Collega il gain node all'output audio
+        pitchShift.connect(gainNode); 
+
+        // Inizializza lo stream destination
+        if (!streamDestination) {
+            streamDestination = Tone.context.createMediaStreamDestination();
+        }
+
+        gainNode.connect(streamDestination);  // Collega l'output al MediaStreamDestination
+        gainNode.toDestination();             // Collega l'audio all'output
 
         source.start(); // Inizia la riproduzione
 
@@ -204,7 +211,6 @@ function startRecording() {
         mediaRecorder = new MediaRecorder(streamDestination.stream);
 
         mediaRecorder.ondataavailable = (event) => {
-            console.log("Data available:", event.data.size);
             if (event.data.size > 0) {
                 recordedChunks.push(event.data);
             }
@@ -215,9 +221,9 @@ function startRecording() {
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'registrazione_effettuata.webm'; // Nome del file di download
+            a.download = 'registrazione_effettuata.webm';
             a.click();
-            recordedChunks = []; // Resetta i frammenti registrati
+            recordedChunks = [];
         };
 
         mediaRecorder.onerror = (event) => {
@@ -231,6 +237,7 @@ function startRecording() {
         console.error("Errore nella registrazione: ", error);
     }
 }
+
 // Funzione per fermare la registrazione audio
 function stopRecording() {
     if (mediaRecorder && isRecording) {
@@ -248,7 +255,6 @@ function updateRecordingIndicator(isRecording) {
         indicator.textContent = isRecording ? 'Registrazione in corso...' : 'Registrazione ferma';
     }
 }
-
 
 // Gestione del caricamento file
 document.getElementById('fileInput').addEventListener('change', (event) => {
@@ -269,7 +275,7 @@ document.getElementById('playButton').addEventListener('click', () => {
 
 // Gestione del bottone stop
 document.getElementById('stopButton').addEventListener('click', () => {
-    stopAudio(); // Ferma l'audio corrente
+    stopAudio(); 
 });
 
 // Gestione del bottone registra
