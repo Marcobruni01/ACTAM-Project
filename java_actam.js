@@ -1,22 +1,45 @@
-const keyMap = {
-    'A': 'C',
-    'W': 'C#',
-    'S': 'D',
-    'E': 'D#',
-    'D': 'E',
-    'F': 'F',
-    'T': 'F#',
-    'G': 'G',
-    'Y': 'G#',
-    'H': 'A',
-    'U': 'A#',
-    'J': 'B',
-    'K': 'C2',
-    'O': 'C#2',
-    'L': 'D2',
-    'P': 'D#2',
-    'Ò': 'E2',
-    'À': 'F2'
+let currentOctave = 3; // Ottava corrente, parte da C3-F4
+
+const keyMapOctave1 = {
+    'A': 'C3',
+    'W': 'C#3',
+    'S': 'D3',
+    'E': 'D#3',
+    'D': 'E3',
+    'F': 'F3',
+    'T': 'F#3',
+    'G': 'G3',
+    'Y': 'G#3',
+    'H': 'A3',
+    'U': 'A#3',
+    'J': 'B3',
+    'K': 'C4',
+    'O': 'C#4',
+    'L': 'D4',
+    'P': 'D#4',
+    'Ò': 'E4',
+    'À': 'F4'
+};
+
+const keyMapOctave2 = {
+    'A': 'C4',
+    'W': 'C#4',
+    'S': 'D4',
+    'E': 'D#4',
+    'D': 'E4',
+    'F': 'F4',
+    'T': 'F#4',
+    'G': 'G4',
+    'Y': 'G#4',
+    'H': 'A4',
+    'U': 'A#4',
+    'J': 'B4',
+    'K': 'C5',
+    'O': 'C#5',
+    'L': 'D5',
+    'P': 'D#5',
+    'Ò': 'E5',
+    'À': 'F5'
 };
 
 // Inizializzazione Web Audio API
@@ -241,17 +264,39 @@ function createChorus(depth) {
 
 // ----------------------- Pianola: Ascolto eventi -----------------------------
 
-// Mappa per tenere traccia dello stato dei tasti premuti
+// Inizialmente settiamo la keyMap alla prima ottava
+let keyMap = keyMapOctave1;
 let pressedKeys = {};
+
+updateKeyLabels();
+
+// Funzione per cambiare ottava
+document.getElementById('switch-octave').addEventListener('click', () => {
+    if (currentOctave === 3) {
+        keyMap = keyMapOctave2; // Passa alla seconda ottava
+        currentOctave = 4;
+    } else {
+        keyMap = keyMapOctave1; // Torna alla prima ottava
+        currentOctave = 3;
+    }
+    updateKeyLabels(); // Aggiorna le etichette delle note sulla tastiera
+});
+
+function updateKeyLabels() {
+    document.querySelectorAll('.tasto').forEach((key) => {
+        const note = keyMap[key.getAttribute('data-key').toUpperCase()];
+        key.setAttribute('data-note', note);
+        key.textContent = note; // Mostra il nome della nota sul tasto
+    });
+}
 
 // Aggiungi un ascoltatore per la pressione dei tasti della tastiera
 document.addEventListener('keydown', function(event) {
     const note = keyMap[event.key.toUpperCase()];
     if (note && !pressedKeys[event.key.toUpperCase()]) {
-        // Suona la nota solo se il tasto non è già stato premuto
         playNote(note);
         highlightKey(note);
-        pressedKeys[event.key.toUpperCase()] = true; // Segna il tasto come premuto
+        pressedKeys[event.key.toUpperCase()] = true;
     }
 });
 
@@ -259,7 +304,7 @@ document.addEventListener('keyup', function(event) {
     const note = keyMap[event.key.toUpperCase()];
     if (note) {
         unhighlightKey(note);
-        pressedKeys[event.key.toUpperCase()] = false; // Segna il tasto come rilasciato
+        pressedKeys[event.key.toUpperCase()] = false;
     }
 });
 
@@ -271,20 +316,20 @@ keys.forEach(key => {
         if (!pressedKeys[note]) {
             playNote(note);
             highlightKey(note);
-            pressedKeys[note] = true; // Segna il tasto come premuto
+            pressedKeys[note] = true;
         }
     });
 
     key.addEventListener('mouseup', function() {
         const note = this.getAttribute('data-note');
         unhighlightKey(note);
-        pressedKeys[note] = false; // Segna il tasto come rilasciato
+        pressedKeys[note] = false;
     });
 
     key.addEventListener('mouseleave', function() {
         const note = this.getAttribute('data-note');
         unhighlightKey(note);
-        pressedKeys[note] = false; // Segna il tasto come rilasciato
+        pressedKeys[note] = false;
     });
 });
 

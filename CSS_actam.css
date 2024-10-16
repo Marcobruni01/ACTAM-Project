@@ -42,6 +42,7 @@ body {
      
 }
 
+
 .tasto::before {
     content: attr(data-key);  /* Usa l'attributo data-key per mostrare la lettera */
     position: absolute;
@@ -49,7 +50,7 @@ body {
     left: 50%;
     transform: translateX(-50%);
     font-size: 20px;
-    color: black;
+    color: rgb(0, 0, 0);
 }
 
 .tasto-nero::before {
@@ -97,6 +98,32 @@ body {
 .tasto-container:nth-child(3) .tasto-nero, /* E key */
 .tasto-container:nth-child(7) .tasto-nero { /* B key */
     display: none;
+}
+
+#switch-octave {
+    background-color: hsl(237, 91%, 42%); /* Colore di sfondo */
+    color: #c9cbee; /* Colore del testo */
+    border: none; /* Nessun bordo */
+    border-radius: 30px; /* Bordo arrotondato */
+    padding: 10px 15px; /* Padding interno */
+    font-size: 16px; /* Dimensione del font */
+    cursor: pointer; /* Cambia il cursore quando sopra il pulsante */
+    transition: background-color 0.3s, transform 0.1s, left 0.3s; /* Transizione per l'effetto hover e movimento */
+    top: 370px;
+    position: absolute; /* Posizionamento relativo per muoverlo */
+    left: 1150px; /* Posizione iniziale */
+
+}
+
+
+#switch-octave:hover {
+    background-color: #6f5fbf; /* Colore di sfondo quando hover */
+}
+
+#switch-octave:active {
+    background-color: #5c4a9f; /* Colore di sfondo quando attivo */
+    transform: translateY(2px); /* Effetto di spostamento verso il basso */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Ombra per dare profondità */
 }
 
 
