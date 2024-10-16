@@ -113,31 +113,42 @@ body {
     display: none;
 }
 
+/* Bottone Octave */
 #switch-octave {
     background-color: hsl(237, 91%, 42%); /* Colore di sfondo */
-    color: #c9cbee; /* Colore del testo */
-    border: none; /* Nessun bordo */
-    border-radius: 30px; /* Bordo arrotondato */
-    padding: 10px 15px; /* Padding interno */
-    font-size: 16px; /* Dimensione del font */
+    color: hwb(187 69% 0%); /* Colore del testo */
+    border: 2px solid transparent; /* Bordi inizialmente trasparenti */
+    border-radius: 30px; /* Bordi arrotondati */
+    padding: 10px 20px; /* Padding per un bottone più grande */
+    font-size: 16px; /* Dimensione del testo */
     cursor: pointer; /* Cambia il cursore quando sopra il pulsante */
-    transition: background-color 0.3s, transform 0.1s, left 0.3s; /* Transizione per l'effetto hover e movimento */
+    transition: background-color 0.3s, transform 0.1s, box-shadow 0.3s, border 0.3s; /* Transizioni */
     top: 370px;
-    position: absolute; /* Posizionamento relativo per muoverlo */
+    position: absolute; /* Posizionamento */
     left: 1150px; /* Posizione iniziale */
-
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Ombra elegante */
+    background-image: linear-gradient(145deg, hsl(237, 91%, 42%), hsl(237, 91%, 52%)); /* Sfondo sfumato */
 }
 
-
 #switch-octave:hover {
-    background-color: #6f5fbf; /* Colore di sfondo quando hover */
+    background-color: hsl(237, 91%, 45%);
+    background-image: linear-gradient(145deg, hsl(237, 91%, 45%), hsl(237, 91%, 55%)); /* Modifica sfumatura al passaggio del mouse */
+    border: 2px solid rgb(153, 234, 250); /* Aggiungi un bordo bianco quando hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Ombra più profonda quando hover */
 }
 
 #switch-octave:active {
-    background-color: #5c4a9f; /* Colore di sfondo quando attivo */
-    transform: translateY(2px); /* Effetto di spostamento verso il basso */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Ombra per dare profondità */
+    background-color: hsl(237, 91%, 38%);
+    transform: translateY(2px); /* Spostamento verso il basso quando attivo */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Ombra ridotta quando cliccato */
 }
+
+/* Effetto Glow */
+#switch-octave:focus {
+    outline: none;
+    box-shadow: 0 0 10px hsl(237, 91%, 72%), 0 0 20px hsl(237, 91%, 72%); /* Effetto glow attorno al bottone */
+}
+
 
 
 
