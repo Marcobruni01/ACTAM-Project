@@ -365,6 +365,7 @@ pads.forEach(pad => {
         if (!pressedPads[key]) {
             playPadSound(pad);
             pad.classList.add('key-active');  // Aggiunge l'effetto visivo
+            pad.classList.add('active-text');  // Aggiunge classe per cambiare il colore del testo
             pressedPads[key] = true; // Segna il tasto del pad come premuto
         }
     });
@@ -372,12 +373,14 @@ pads.forEach(pad => {
     pad.addEventListener('mouseup', () => {
         const key = pad.getAttribute('data-key');
         pad.classList.remove('key-active');  // Rimuove l'effetto visivo
+        pad.classList.remove('active-text');  // Rimuove classe per il colore del testo
         pressedPads[key] = false; // Segna il tasto del pad come rilasciato
     });
 
     pad.addEventListener('mouseleave', () => {
         const key = pad.getAttribute('data-key');
         pad.classList.remove('key-active');  // Rimuove l'effetto visivo
+        pad.classList.remove('active-text');  // Rimuove classe per il colore del testo
         pressedPads[key] = false; // Segna il tasto del pad come rilasciato
     });
 });
@@ -389,6 +392,7 @@ document.addEventListener('keydown', (e) => {
     if (pad && !pressedPads[key]) {
         playPadSound(pad);
         pad.classList.add('key-active');  // Aggiunge l'effetto visivo
+        pad.classList.add('active-text');  // Aggiunge classe per cambiare il colore del testo
         pressedPads[key] = true; // Segna il tasto del pad come premuto
     }
 });
@@ -398,6 +402,7 @@ document.addEventListener('keyup', (e) => {
     const pad = document.querySelector(`.pad[data-key="${key}"]`);
     if (pad) {
         pad.classList.remove('key-active');  // Rimuove l'effetto visivo
+        pad.classList.remove('active-text');  // Rimuove classe per il colore del testo
         pressedPads[key] = false; // Segna il tasto del pad come rilasciato
     }
 });
@@ -408,6 +413,7 @@ function playPadSound(pad) {
     const audio = new Audio(`sounds/pad/${sound}.mp3`);
     audio.play().catch(error => console.error("Errore nel caricamento dell'audio: ", error));
 }
+
 
 
 // ----------------------- Pentagramma e Barra del Tempo -----------------------------
