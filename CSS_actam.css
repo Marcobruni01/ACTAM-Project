@@ -26,21 +26,34 @@ body {
 }
 
 .tasto {
-    width: 70px;  /* Aumenta la larghezza dei tasti */
-    height: 170px; /* Riduci l'altezza dei tasti */
+    width: 70px;
+    height: 120px;
     margin: 0 2px;
     background-color: white;
     border: 1px solid #000;
     border-radius: 0 0 5px 5px;
-    text-align: center;
-    line-height: 170px;  /* Modifica la linea per adattarla alla nuova altezza */
-    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;  /* Testo esistente in fondo */
+    font-size: 14px;
     cursor: pointer;
     transition: background-color 0.2s, box-shadow 0.2s;
     position: relative;
     z-index: 1;
-     
+    color: hsl(0, 1%, 32%);
+    padding-bottom: 50px; /* Testo in basso */
 }
+
+.tasto::before {
+    content: attr(data-note); /* Prende il valore dell'attributo data-note */
+    position: absolute;
+    top: 140px; /* Posiziona il testo in alto */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px; /* Dimensione del testo delle note */
+    color: hsl(0, 1%, 32%); /* Colore delle note */
+}
+
 
 
 .tasto::before {
