@@ -26,21 +26,35 @@ body {
 }
 
 .tasto {
-    width: 70px;  /* Aumenta la larghezza dei tasti */
-    height: 170px; /* Riduci l'altezza dei tasti */
+    width: 70px;
+    height: 120px;
     margin: 0 2px;
     background-color: white;
     border: 1px solid #000;
     border-radius: 0 0 5px 5px;
-    text-align: center;
-    line-height: 170px;  /* Modifica la linea per adattarla alla nuova altezza */
-    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;  /* Testo esistente in fondo */
+    font-size: 14px;
     cursor: pointer;
     transition: background-color 0.2s, box-shadow 0.2s;
     position: relative;
     z-index: 1;
-     
+    color: hsl(0, 1%, 32%);
+    padding-bottom: 50px; /* Testo in basso */
 }
+
+.tasto::before {
+    content: attr(data-note); /* Prende il valore dell'attributo data-note */
+    position: absolute;
+    top: 140px; /* Posiziona il testo in alto */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px; /* Dimensione del testo delle note */
+    color: hsl(0, 1%, 32%); /* Colore delle note */
+}
+
+
 
 .tasto::before {
     content: attr(data-key);  /* Usa l'attributo data-key per mostrare la lettera */
@@ -49,7 +63,7 @@ body {
     left: 50%;
     transform: translateX(-50%);
     font-size: 20px;
-    color: black;
+    color: rgb(0, 0, 0);
 }
 
 .tasto-nero::before {
@@ -99,9 +113,46 @@ body {
     display: none;
 }
 
+/* Bottone Octave */
+#switch-octave {
+    background-color: hsl(237, 91%, 42%); /* Colore di sfondo */
+    color: hwb(187 69% 0%); /* Colore del testo */
+    border: 2px solid transparent; /* Bordi inizialmente trasparenti */
+    border-radius: 30px; /* Bordi arrotondati */
+    padding: 10px 20px; /* Padding per un bottone più grande */
+    font-size: 16px; /* Dimensione del testo */
+    cursor: pointer; /* Cambia il cursore quando sopra il pulsante */
+    transition: background-color 0.3s, transform 0.1s, box-shadow 0.3s, border 0.3s; /* Transizioni */
+    top: 370px;
+    position: absolute; /* Posizionamento */
+    left: 1150px; /* Posizione iniziale */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Ombra elegante */
+    background-image: linear-gradient(145deg, hsl(237, 91%, 42%), hsl(237, 91%, 52%)); /* Sfondo sfumato */
+}
+
+#switch-octave:hover {
+    background-color: hsl(237, 91%, 45%);
+    background-image: linear-gradient(145deg, hsl(237, 91%, 45%), hsl(237, 91%, 55%)); /* Modifica sfumatura al passaggio del mouse */
+    border: 2px solid rgb(153, 234, 250); /* Aggiungi un bordo bianco quando hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Ombra più profonda quando hover */
+}
+
+#switch-octave:active {
+    background-color: hsl(237, 91%, 38%);
+    transform: translateY(2px); /* Spostamento verso il basso quando attivo */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Ombra ridotta quando cliccato */
+}
+
+/* Effetto Glow */
+#switch-octave:focus {
+    outline: none;
+    box-shadow: 0 0 10px hsl(237, 91%, 72%), 0 0 20px hsl(237, 91%, 72%); /* Effetto glow attorno al bottone */
+}
 
 
-/*PAD
+
+
+/* PAD
 Contenitore del pad musicale */
 .pad-container {
     display: grid;
@@ -128,9 +179,9 @@ Contenitore del pad musicale */
     align-items: center;
     font-size: 20px;
     font-weight: bold;
-    color: #575656;
+    color: #575656; /* Colore del testo iniziale */
     cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.1s;
+    transition: background-color 0.2s ease, transform 0.1s, color 0.2s; /* Aggiunto color */
 }
 
 /* Effetto al click o alla pressione del tasto */
@@ -139,6 +190,11 @@ Contenitore del pad musicale */
     background-color: #ff4d4d !important;  /* Colore rosso */
     transform: translateY(4px);  /* Effetto di "pressione" 3D */
     box-shadow: inset 0 0 20px rgba(255, 66, 66, 0.5); /* Ombra interna per evidenziare */
+}
+
+/* Colore del testo attivo */
+.active-text {
+    color: hsl(0, 60%, 53%); /* Cambia il colore del testo quando il pad è attivo */
 }
 
 
