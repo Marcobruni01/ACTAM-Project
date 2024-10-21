@@ -367,11 +367,16 @@ function unhighlightKey(note) {
 }
 
 
+
+
+
 //SELECTOR//
 // Selettore di timbri
 document.getElementById('timbre-select').addEventListener('change', function() {
     currentSet = parseInt(this.value);  // Aggiorna il set corrente
 });
+
+
 
 // ----------------------- Pad -----------------------------
 

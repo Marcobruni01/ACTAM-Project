@@ -460,7 +460,7 @@ select:focus {
 
 #timbre-select {
     position: absolute;
-    top: 60px;
+    top: 67px;
     left: 0px;
     padding: 5px;
     font-size: 16px;
@@ -476,22 +476,35 @@ select:focus {
     z-index: 10; /* Ensure it appears above other elements */
 }
 
+
 #timbre-select:hover {
-    background-color: #dddddd; /* Colore di sfondo al passaggio del mouse */
-    border-color: hsl(0, 2%, 12%); /* Colore del bordo al passaggio del mouse */
-    transform: translate(-5%, -2px); /* Leggero spostamento verso l'alto */
+    background-color: #bbb; /* Colore di sfondo al passaggio del mouse */
+    border-color: #333; /* Colore del bordo al passaggio del mouse */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Ombra più intensa */
+    transform: translate(-5%, -3px);
 }
 
-/* Attenuazione solo per gli altri elementi */
+/* Effetto per i riquadri del menu */
+#timbre-select option {
+    padding: 5px; /* Padding per le opzioni */
+}
+
+#timbre-select option:hover {
+    background-color: hsl(0, 26%, 95%); /* Colore di sfondo per le opzioni al passaggio del mouse */
+    color: #fff; /* Colore del testo per maggiore contrasto */
+}
+
+/* Riquadri degli altri elementi */
 .other-elements {
     transition: opacity 0.3s ease; /* Transizione per un effetto fluido */
 }
 
+/* Fai attenuare gli altri elementi quando si passa il mouse sul selettore */
 #timbre-select:hover ~ .other-elements {
-    opacity: 0.5; /* Fai attenuare gli altri elementi */
+    opacity: 0.3; /* Fai attenuare gli altri elementi */
 }
 
+/* Assicurati che l'elemento selezionato rimanga visibile */
 #timbre-select:hover {
     opacity: 1; /* Mantiene la visibilità dell'elemento attivo */
 }
-
