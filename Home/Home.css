@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+
+h1 {
+    font-family: 'Lobster', cursive;
+    font-size: 3.8em;
+    color: #4169e1;
+    text-align: center;
+    color: #1ea0e1; /* Colore del testo */
+}
+
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto auto; /* Aggiunge una riga per il pulsante */
+    row-gap: 10px;
+    column-gap: 10px;
+    padding: 20px;
+    margin-top: 0px;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-bottom: 30px;
+    align-items: center;
+    justify-items: center; /* Centra gli elementi nella griglia */
+    position: relative; /* Necessario per il posizionamento assoluto del pulsante */
+}
+
+.image-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.play-button-container {
+    grid-column: 1 / -1; /* Fa occupare al pulsante l'intera larghezza della griglia */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centra esattamente il pulsante */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.play-button {
+    background-color: #fcd13a;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-size: 2.5em;
+    font-family: 'Lobster', cursive;
+    font-weight: bold;
+    color: #000;
+    cursor: pointer;
+}
+
+.play-button:hover {
+    background-color: #ffcc00;
+}
+
+
+/* 
+
+<div class="text-container">
+                <h2 class="ambient-text">Ambient Machine</h2>
+            </div>
+*/
+
+.text-container {
+    position: absolute;
+    top: 3%; /* Posiziona la scritta sopra il pulsante Play */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.ambient-text {
+    font-family: 'Lobster', cursive;
+    font-size: 4.5em;
+    font-weight: bold;
+    color: #1ea0e1; /* Colore del testo */
+    /* background-color: rgba(255, 255, 255, 0.7); /* Sfondo semi-trasparente per la leggibilità */
+    padding: 10px 20px;
+    border-radius: 10px; /* Arrotonda i bordi della scritta */
+}
+
+
