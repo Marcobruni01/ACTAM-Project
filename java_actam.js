@@ -1,4 +1,13 @@
 let currentOctave = 3; // Ottava corrente, parte da C3-F4
+let currentSet = 1; // Set di timbri corrente
+
+// Definisci i nomi dei timbri per i 4 set
+const soundSets = {
+    1: 'keyboard/timbro1',
+    2: 'keyboard/timbro2',
+    3: 'keyboard/timbro3',
+    4: 'keyboard/timbro4'
+};
 
 const keyMapOctave1 = {
     'A': 'C3',
@@ -102,16 +111,24 @@ chorusKnob.addEventListener('input', () => {
 });
 
 
-// Funzione per riprodurre il suono della nota con effetti
+// Funzione per riprodurre il suono della nota con effetti e selezione del timbro
 function playNote(note) {
-    const audio = new Audio(`sounds/keyboard/${note}.mp3`);
+    // Costruisce il percorso del file audio in base al set di timbri attuale
+    const sound = `${soundSets[currentSet]}/${note}`;  // Prende il timbro selezionato
+
+    // Carica il file audio della nota con il timbro corretto
+    const audio = new Audio(`sounds/${sound}.mp3`);
+    
+    // Crea una sorgente audio nel contesto audio
     const track = audioContext.createMediaElementSource(audio);
 
     // Applica gli effetti attivi in catena
     applyActiveEffects(track);
 
-    audio.play();
+    // Avvia la riproduzione
+    audio.play().catch(error => console.error("Errore nel caricamento dell'audio: ", error));
 }
+
 
 // Funzione per applicare gli effetti attivi in catena
 function applyActiveEffects(track) {
@@ -349,6 +366,12 @@ function unhighlightKey(note) {
     }
 }
 
+
+//SELECTOR//
+// Selettore di timbri
+document.getElementById('timbre-select').addEventListener('change', function() {
+    currentSet = parseInt(this.value);  // Aggiorna il set corrente
+});
 
 // ----------------------- Pad -----------------------------
 
