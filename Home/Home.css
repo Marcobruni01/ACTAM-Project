@@ -87,24 +87,28 @@ h1 {
 <div class="text-container">
                 <h2 class="ambient-text">Ambient Machine</h2>
             </div>
-*/
+
 
 .text-container {
     position: absolute;
-    top: 3%; /* Posiziona la scritta sopra il pulsante Play */
+    top: 3%; /* Posiziona la scritta sopra il pulsante Play 
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
 }
+
+
 
 .ambient-text {
     font-family: 'Lobster', cursive;
     font-size: 4.5em;
     font-weight: bold;
     color: #1ea0e1; /* Colore del testo */
-    /* background-color: rgba(255, 255, 255, 0.7); /* Sfondo semi-trasparente per la leggibilità */
+    /* background-color: rgba(255, 255, 255, 0.7); /* Sfondo semi-trasparente per la leggibilità 
     padding: 10px 20px;
-    border-radius: 10px; /* Arrotonda i bordi della scritta */
+    border-radius: 10px; /* Arrotonda i bordi della scritta 
 }
+
+*/
 
 
