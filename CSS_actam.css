@@ -257,17 +257,53 @@ Contenitore del pad musicale */
 
 /* Layout per ogni controllo (pulsante + slider) */
 .knobs {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 colonne corrispondenti ai pulsanti */
-    gap: 5px; /* Spazio tra le colonne */
-    
+    display: flex; /* Usa flexbox per la disposizione orizzontale */
+    justify-content: flex-start; /* Allinea gli slider a sinistra */
+    align-items: flex-start; /* Allinea gli elementi dall'alto */
+    gap: 88px; /* Spazio tra gli slider */
+    padding: 20px; /* Padding intorno */
+    margin-left: 15px; /* Sposta tutto leggermente a sinistra, regolabile */
+}
+
+/* Contenitore per ogni gruppo LED + Slider */
+.knobs .control-group {
+    display: flex;
+    flex-direction: column; /* Disposizione verticale per ogni LED + slider */
+    align-items: center; /* Centra il LED e lo slider */
+   
 }
 
 /* Slider stile */
 .knobs input[type="range"] {
-    width: 50px; /* Larghezza dello slider corrispondente al pulsante */
+    position: relative; /* Rendi l'elemento posizionabile */
+    top: 55px; /* Regola questo valore per abbassare gli slider */
+    width: 90px; /* Aumentata la lunghezza dello slider */
+    height: 10px; /* Altezza per uno slider più visibile */
     transform: rotate(270deg); /* Mantieni gli slider verticali */
-    margin: 10px auto; /* Centra lo slider orizzontalmente */
+    appearance: none; /* Rimuove lo stile predefinito per personalizzazione */
+    background-color: #ddd; /* Colore del background dello slider */
+    border-radius: 5px; /* Angoli arrotondati */
+    margin: -50px; /* Rimuove il margine extra */
+}
+
+/* Stile del pollice dello slider */
+.knobs input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background-color: rgb(137, 27, 184);
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #fff; /* Bordo bianco per renderlo più visibile */
+}
+
+.knobs input[type="range"]::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    background-color: rgb(137, 27, 184);
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #fff;
 }
 
 
