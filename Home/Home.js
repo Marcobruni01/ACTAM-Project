@@ -31,7 +31,7 @@ function goToPage() {
             window.location.href = 'Country.html'; // Cambia con il link della pagina della campagna
             break;
         case 'home':
-            window.location.href = 'Home.html'; // Cambia con il link della pagina della casa
+            window.location.href = 'House.html'; // Cambia con il link della pagina della casa
             break;
         default:
             alert('In order to proced, select an enviroment!');
