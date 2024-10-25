@@ -3,34 +3,31 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100px;
-    background: linear-gradient(red, orange, yellow);
+    min-height: 100vh;  /* Altezza totale della pagina */
     margin: 0;
+    background: linear-gradient(red, orange, yellow);
 }
 
+/* Contenitore centrale principale */
 .grid-container {
-
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto;
-    align-items: center;
     gap: 10px;
-    padding: 5px;
-    width: 40px;
-
+    padding: 10px;
+    max-width: 1200px;
+    margin-top: 20px;
 }
 
 .pianola {
-    position: relative;
-    grid-column: span 2;
+    position: absolute;
     display: flex;
     justify-content: center;
     background-color: #333;
     padding: 10px;
     border-radius: 15px;
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
-    right: -250px;
-    top: 615px; /*position in the page */
+    top: 70vh;  /* Ancoraggio centrale */
+    left: 31vw;
 }
 
 .tasto-container {
@@ -136,9 +133,9 @@ body {
     font-size: 16px; /* Dimensione del testo */
     cursor: pointer; /* Cambia il cursore quando sopra il pulsante */
     transition: background-color 0.3s, transform 0.1s, box-shadow 0.3s, border 0.3s; /* Transizioni */
-    top: 400px;
-    position: relative; /* Posizionamento */
-    left: 1080px; /* Posizione iniziale */
+    top: 60vh;
+    position: absolute; /* Posizionamento */
+    left: 89vw; /* Posizione iniziale */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Ombra elegante */
     background-image: linear-gradient(145deg, hsl(237, 91%, 42%), hsl(237, 91%, 52%)); /* Sfondo sfumato */
 }
@@ -178,8 +175,8 @@ Contenitore del pad musicale */
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Ombra intorno al pad */
     position: absolute;
     grid-column: span 1;
-    right: 50px;
-    top: 25px;
+    right: 1vw;
+    top: 2vh;
     border: 3px solid #444;
 }
 
@@ -217,8 +214,8 @@ Contenitore del pad musicale */
 .effect-container {
     position: absolute;
     grid-column: span 1;
-    right: 1060px;
-    top: 660px;
+    right: 72vw;
+    top: 84vh;
     transform: translateY(-50%);
     background-color: #836ecf;
     padding: 15px;
@@ -327,9 +324,8 @@ Contenitore del pad musicale */
 /* SPARTITO*/
 .staff-container {
     position: absolute;
-    grid-column: span 1;
-    left: 0px; /* Distanza dal bordo sinistro */
-    top: -540px; 
+    left: 0.5vw; /* Distanza dal bordo sinistro */
+    top: -68vh; 
     background-color: white;
     padding: 10px;
     border-radius: 10px;
@@ -466,7 +462,7 @@ select {
     border-radius: 5px;
     background-color: #f0f0f0;
     outline: none;
-    transition: border-color 0.3s ease;
+    
 }
 
 select:focus {
@@ -475,9 +471,9 @@ select:focus {
 }
 
 #timbre-select {
-    position: relative;
-    top: 400px;
-    left: -55px;
+    position: absolute;
+    top: 58vh;
+    left: 75vw;
     padding: 5px;
     font-size: 16px;
     border-radius: 5px;
@@ -485,10 +481,8 @@ select:focus {
     background-color: #f0f0f0;
     color: #333;
     margin: 20px auto; /* Center horizontally */
-    display: block; /* Makes the element a block element */
     cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative; /* Add relative positioning */
+    transition: all 0.2s ease;
     z-index: 10; /* Ensure it appears above other elements */
 }
 
