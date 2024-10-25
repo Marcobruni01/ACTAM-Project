@@ -10,49 +10,52 @@ const soundSets = {
 };
 
 const keyMapOctave1 = {
-    'A': 'C3',
-    'W': 'C#3',
-    'S': 'D3',
-    'E': 'D#3',
-    'D': 'E3',
-    'F': 'F3',
-    'T': 'F#3',
-    'G': 'G3',
-    'Y': 'G#3',
-    'H': 'A3',
-    'U': 'A#3',
-    'J': 'B3',
-    'K': 'C4',
-    'O': 'C#4',
-    'L': 'D4',
-    'P': 'D#4',
-    'Ò': 'E4',
-    'À': 'F4'
+    'A': 'C3',      // Do
+    'W': 'Csharp3', // Do diesis
+    'S': 'D3',      // Re
+    'E': 'Dsharp3', // Re diesis
+    'D': 'E3',      // Mi
+    'F': 'F3',      // Fa
+    'T': 'Fsharp3', // Fa diesis
+    'G': 'G3',      // Sol
+    'Y': 'Gsharp3', // Sol diesis
+    'H': 'A3',      // La
+    'U': 'Asharp3', // La diesis
+    'J': 'B3',      // Si
+    'K': 'C4',      // Do (ottava superiore)
+    'O': 'Csharp4', // Do diesis (ottava superiore)
+    'L': 'D4',      // Re (ottava superiore)
+    'P': 'Dsharp4', // Re diesis (ottava superiore)
+    'Ò': 'E4',      // Mi (ottava superiore)
+    'À': 'F4'       // Fa (ottava superiore)
 };
 
 const keyMapOctave2 = {
-    'A': 'C4',
-    'W': 'C#4',
-    'S': 'D4',
-    'E': 'D#4',
-    'D': 'E4',
-    'F': 'F4',
-    'T': 'F#4',
-    'G': 'G4',
-    'Y': 'G#4',
-    'H': 'A4',
-    'U': 'A#4',
-    'J': 'B4',
-    'K': 'C5',
-    'O': 'C#5',
-    'L': 'D5',
-    'P': 'D#5',
-    'Ò': 'E5',
-    'À': 'F5'
+    'A': 'C4',      // Do
+    'W': 'Csharp4', // Do diesis
+    'S': 'D4',      // Re
+    'E': 'Dsharp4', // Re diesis
+    'D': 'E4',      // Mi
+    'F': 'F4',      // Fa
+    'T': 'Fsharp4', // Fa diesis
+    'G': 'G4',      // Sol
+    'Y': 'Gsharp4', // Sol diesis
+    'H': 'A4',      // La
+    'U': 'Asharp4', // La diesis
+    'J': 'B4',      // Si
+    'K': 'C5',      // Do (ottava superiore)
+    'O': 'Csharp5', // Do diesis (ottava superiore)
+    'L': 'D5',      // Re (ottava superiore)
+    'P': 'Dsharp5', // Re diesis (ottava superiore)
+    'Ò': 'E5',      // Mi (ottava superiore)
+    'À': 'F5'       // Fa (ottava superiore)
 };
+
+
 
 // Inizializzazione Web Audio API
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
 let effectNodes = {
     flanger: null,
     delay: null,
@@ -294,6 +297,7 @@ updateKeyLabels();
 
 // Funzione per cambiare ottava
 document.getElementById('switch-octave').addEventListener('click', () => {
+    pressedKeys = {}; // Reimposta stato tasti
     if (currentOctave === 3) {
         keyMap = keyMapOctave2; // Passa alla seconda ottava
         currentOctave = 4;
@@ -304,13 +308,31 @@ document.getElementById('switch-octave').addEventListener('click', () => {
     updateKeyLabels(); // Aggiorna le etichette delle note sulla tastiera
 });
 
+
 function updateKeyLabels() {
-    document.querySelectorAll('.tasto').forEach((key) => {
-        const note = keyMap[key.getAttribute('data-key').toUpperCase()];
-        key.setAttribute('data-note', note);
-        key.textContent = note; // Mostra il nome della nota sul tasto
+    document.querySelectorAll('.tasto, .tasto-nero').forEach((key) => {
+        const dataKey = key.getAttribute('data-key').toUpperCase();
+        const note = keyMap[dataKey];
+        
+        if (note) {
+            key.setAttribute('data-note', note);
+
+            // Mostra la nota solo sui tasti bianchi
+            if (key.classList.contains('tasto')) {
+                key.textContent = note;
+            } else {
+                key.textContent = ''; // Lascia vuoti i tasti neri
+            }
+        } else {
+            // Rimuove il contenuto se il tasto non è mappato per questa ottava
+            key.removeAttribute('data-note');
+            key.textContent = '';
+        }
     });
 }
+
+
+
 
 // Funzione per fermare il suono della nota
 function stopNote(note) {
@@ -323,13 +345,17 @@ function stopNote(note) {
 
 // Aggiungi ascoltatori per la pressione e rilascio dei tasti
 document.addEventListener('keydown', function(event) {
-    const note = keyMap[event.key.toUpperCase()];
-    if (note && !pressedKeys[event.key.toUpperCase()]) {
+    console.log(`Tasto premuto: ${event.key}, Codice: ${event.code}`);
+    const dataKey = event.key.toUpperCase();
+    const note = keyMap[dataKey];
+    
+    if (note && !pressedKeys[dataKey]) {
         playNote(note);
         highlightKey(note);
-        pressedKeys[event.key.toUpperCase()] = true;
+        pressedKeys[dataKey] = true;
     }
 });
+
 
 document.addEventListener('keyup', function(event) {
     const note = keyMap[event.key.toUpperCase()];
@@ -341,14 +367,14 @@ document.addEventListener('keyup', function(event) {
 });
 
 // Aggiungi ascoltatori per il clic sui tasti della pianola
-const keys = document.querySelectorAll('.tasto');
+const keys = document.querySelectorAll('.tasto, .tasto-nero'); // Seleziona sia i tasti bianchi che quelli neri
 keys.forEach(key => {
     key.addEventListener('mousedown', function() {
         const note = this.getAttribute('data-note');
         if (!pressedKeys[note]) {
             playNote(note);
             highlightKey(note);
-            pressedKeys[note] = true;
+            pressedKeys[note] = true; // Segna il tasto come premuto
         }
     });
 
@@ -356,33 +382,43 @@ keys.forEach(key => {
         const note = this.getAttribute('data-note');
         unhighlightKey(note);
         stopNote(note);  // Ferma il suono della nota al rilascio del clic
-        pressedKeys[note] = false;
+        pressedKeys[note] = false; // Segna il tasto come non premuto
     });
 
     key.addEventListener('mouseleave', function() {
         const note = this.getAttribute('data-note');
         unhighlightKey(note);
         stopNote(note);  // Ferma il suono della nota se il mouse esce dal tasto
-        pressedKeys[note] = false;
+        pressedKeys[note] = false; // Segna il tasto come non premuto
     });
 });
 
-// Funzione per evidenziare il tasto
+
 function highlightKey(note) {
     const tasto = document.querySelector(`[data-note="${note}"]`);
     if (tasto) {
         tasto.classList.add('active');
+        
+        // Visualizza "#" invece di "sharp" sui tasti neri durante la pressione
+        if (tasto.classList.contains('tasto-nero')) {
+            const noteLabel = note.replace("sharp", "#"); // Sostituisce "sharp" con "#"
+            tasto.textContent = noteLabel;
+        }
     }
 }
 
-// Funzione per rimuovere l'evidenziazione del tasto
+
 function unhighlightKey(note) {
     const tasto = document.querySelector(`[data-note="${note}"]`);
     if (tasto) {
         tasto.classList.remove('active');
+        
+        // Rimuove il testo dai tasti neri al rilascio
+        if (tasto.classList.contains('tasto-nero')) {
+            tasto.textContent = '';
+        }
     }
 }
-
 
 
 
@@ -395,7 +431,7 @@ document.getElementById('timbre-select').addEventListener('change', function() {
 
 
 
-// ----------------------- Pad -----------------------------
+// ----------------------- PAD -----------------------------
 
 // Mappa per tenere traccia dello stato dei tasti del pad premuti
 let pressedPads = {};
