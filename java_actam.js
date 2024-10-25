@@ -110,6 +110,8 @@ chorusKnob.addEventListener('input', () => {
     }
 });
 
+// Oggetto per tracciare i suoni attivi per ogni nota
+const activeNotes = {};
 
 // Funzione per riprodurre il suono della nota con effetti e selezione del timbro
 function playNote(note) {
@@ -124,6 +126,9 @@ function playNote(note) {
 
     // Applica gli effetti attivi in catena
     applyActiveEffects(track);
+
+    // Memorizza l'oggetto audio attivo per questa nota
+    activeNotes[note] = audio;
 
     // Avvia la riproduzione
     audio.play().catch(error => console.error("Errore nel caricamento dell'audio: ", error));
@@ -307,7 +312,16 @@ function updateKeyLabels() {
     });
 }
 
-// Aggiungi un ascoltatore per la pressione dei tasti della tastiera
+// Funzione per fermare il suono della nota
+function stopNote(note) {
+    if (activeNotes[note]) {
+        activeNotes[note].pause();  // Pausa immediata
+        activeNotes[note].currentTime = 0;  // Riporta l'audio all'inizio
+        delete activeNotes[note];  // Rimuove il riferimento alla nota attiva
+    }
+}
+
+// Aggiungi ascoltatori per la pressione e rilascio dei tasti
 document.addEventListener('keydown', function(event) {
     const note = keyMap[event.key.toUpperCase()];
     if (note && !pressedKeys[event.key.toUpperCase()]) {
@@ -321,11 +335,12 @@ document.addEventListener('keyup', function(event) {
     const note = keyMap[event.key.toUpperCase()];
     if (note) {
         unhighlightKey(note);
+        stopNote(note);  // Ferma il suono della nota al rilascio del tasto
         pressedKeys[event.key.toUpperCase()] = false;
     }
 });
 
-// Aggiungi un ascoltatore per il clic sui tasti della pianola
+// Aggiungi ascoltatori per il clic sui tasti della pianola
 const keys = document.querySelectorAll('.tasto');
 keys.forEach(key => {
     key.addEventListener('mousedown', function() {
@@ -340,12 +355,14 @@ keys.forEach(key => {
     key.addEventListener('mouseup', function() {
         const note = this.getAttribute('data-note');
         unhighlightKey(note);
+        stopNote(note);  // Ferma il suono della nota al rilascio del clic
         pressedKeys[note] = false;
     });
 
     key.addEventListener('mouseleave', function() {
         const note = this.getAttribute('data-note');
         unhighlightKey(note);
+        stopNote(note);  // Ferma il suono della nota se il mouse esce dal tasto
         pressedKeys[note] = false;
     });
 });
