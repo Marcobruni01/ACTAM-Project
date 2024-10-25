@@ -55,6 +55,7 @@ const keyMapOctave2 = {
 
 // Inizializzazione Web Audio API
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+document.getElementById('timbre-select').value = currentSet;
 
 let effectNodes = {
     flanger: null,
@@ -178,6 +179,7 @@ function applyActiveEffects(track) {
         lastNode = effectNodes.chorus;
     }
 
+    // Collega l'ultimo nodo alla destinazione finale
     lastNode.connect(audioContext.destination);
 }
 
@@ -202,8 +204,43 @@ document.getElementById('chorus-btn').addEventListener('click', () => {
 // Funzione per attivare o disattivare un effetto
 function toggleEffect(effect) {
     activeEffects[effect] = !activeEffects[effect];  // Attiva/disattiva l'effetto
-    updateLEDs();
+    if (activeEffects[effect]) {
+        // Se l'effetto è attivo, crea il nodo per l'effetto
+        effectNodes[effect] = createEffectNode(effect);
+    } else {
+        // Se l'effetto non è attivo, disconnetti il nodo
+        if (effectNodes[effect]) {
+            effectNodes[effect].disconnect();
+            effectNodes[effect] = null; // Resetta il nodo per quell'effetto
+        }
+    }
+    updateLEDs(); // Aggiorna gli LED per riflettere lo stato degli effetti
 }
+
+// Funzione per creare un nodo per l'effetto
+function createEffectNode(effect) {
+    switch (effect) {
+        case 'flanger':
+            return createFlanger(flangerKnob.value);
+        case 'delay':
+            return createDelay(delayKnob.value);
+        case 'distortion':
+            return createDistortion(distortionKnob.value);
+        case 'chorus':
+            return createChorus(chorusKnob.value);
+        default:
+            return null;
+    }
+}
+
+// Funzione per aggiornare gli LED
+function updateLEDs() {
+    flangerLed.style.backgroundColor = activeEffects.flanger ? 'green' : 'red';
+    delayLed.style.backgroundColor = activeEffects.delay ? 'green' : 'red';
+    distortionLed.style.backgroundColor = activeEffects.distortion ? 'green' : 'red';
+    chorusLed.style.backgroundColor = activeEffects.chorus ? 'green' : 'red';
+}
+
 
 // Aggiorna lo stato dei LED in base agli effetti attivi
 function updateLEDs() {
@@ -423,11 +460,16 @@ function unhighlightKey(note) {
 
 
 
-//SELECTOR//
-// Selettore di timbri
+// SELECTOR
 document.getElementById('timbre-select').addEventListener('change', function() {
     currentSet = parseInt(this.value);  // Aggiorna il set corrente
+
+    // Resetta l'ottava alla terza
+    keyMap = keyMapOctave1;  // Imposta la mappa delle note alla prima ottava
+    currentOctave = 3;       // Imposta l'ottava corrente a 3
+    updateKeyLabels();       // Aggiorna le etichette delle note sulla tastiera
 });
+
 
 
 
