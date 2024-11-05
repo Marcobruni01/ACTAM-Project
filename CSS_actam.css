@@ -331,7 +331,7 @@ Contenitore del pad musicale */
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     width: 500px;
-    height: 260px;
+    height: 300px;
 }
 
 canvas {
@@ -340,13 +340,13 @@ canvas {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;  /* Adatta la larghezza al contenitore */
-    height: 120px; /* Imposta l'altezza desiderata del pentagramma */
+    height: 185px; /* Imposta l'altezza desiderata del pentagramma */
 }
 
 
-/* Pulsante Start */
-#startButton {
-    padding: 10px 25px;
+/* Pulsante Mute Metronome */
+#muteMetronomeButton {
+    padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
     background-color: #008CBA;
@@ -355,32 +355,12 @@ canvas {
     border-radius: 5px;
     transition: background-color 0.3s ease, transform 0.2s ease-in-out;
     position: absolute;
-    top: 200px;
+    top: 275px;
     left: 20px;
 }
 
-#startButton:hover {
+#muteMetronomeButton:hover {
     background-color: #007BAA;
-    transform: scale(1.05);
-}
-
-/* Pulsante Stop */
-#stopButton {
-    padding: 10px 25px;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: #f44336;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.2s ease-in-out;
-    position: absolute;
-    top: 200px;
-    left: 120px;
-}
-
-#stopButton:hover {
-    background-color: #e53935;
     transform: scale(1.05);
 }
 
@@ -395,7 +375,7 @@ canvas {
     border-radius: 5px;
     transition: background-color 0.3s ease, transform 0.2s ease-in-out;
     position: absolute;
-    top: 180px;
+    top: 230px;
     left: 300px;
 }
 
@@ -415,7 +395,7 @@ canvas {
     border-radius: 5px;
     transition: background-color 0.3s ease, transform 0.2s ease-in-out;
     position: absolute;
-    top: 230px;
+    top: 275px;
     left: 300px;
 }
 
@@ -423,6 +403,27 @@ canvas {
     background-color: #F4511E;
     transform: scale(1.05);
 }
+
+/* Pulsante Clear Notes */
+#clearNotesButton {
+    padding: 8px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #9fa934;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+    position: absolute;
+    top: 235px;
+    left: 20px;
+}
+
+#clearNotesButton:hover {
+    background-color: #a8c955;
+    transform: scale(1.05);
+}
+
 
 /* Stile per l'input del BPM */
 #bpm {
