@@ -697,10 +697,16 @@ function drawNoteOnStaff(note, duration) {
     ctx.fillRect(currentXPosition, yPosition, rectWidth, rectHeight);
 
 
-    // Aggiungi il nome della nota accanto al rettangolo
-    ctx.fillStyle = "black";  // Colore del testo (nero per contrastare con i rettangoli colorati)
-    ctx.font = "12px Arial";  // Stile del testo
-    ctx.fillText(note, currentXPosition + rectWidth + 5, yPosition + rectHeight / 2);  // Testo accanto alla nota
+   // Aggiungi il nome della nota accanto al rettangolo
+   ctx.fillStyle = "black";  // Colore del testo (nero per contrastare con i rettangoli colorati)
+   ctx.font = "12px Arial";  // Stile del testo
+
+   // Controlla se il nome della nota contiene "sharp" e sostituiscilo con "#"
+   let displayNote = note.includes("sharp") ? note.replace("sharp", "#") : note;
+
+   // Mostra il testo accanto al rettangolo
+   ctx.fillText(displayNote, currentXPosition + rectWidth + 5, yPosition + rectHeight / 2);
+
 
     // Memorizziamo la nota per ridisegnarla successivamente
     playedNotes.push({ note, x: currentXPosition, y: yPosition, width: rectWidth, height: rectHeight, color: noteColor });
