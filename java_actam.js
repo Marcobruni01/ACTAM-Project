@@ -119,6 +119,11 @@ const activeNotes = {};
 
 // Funzione per riprodurre il suono della nota con effetti e selezione del timbro
 function playNote(note) {
+
+    // Attiva l'audioContext se è sospeso, ogni volta che viene chiamato playNote
+    if (audioContext.state === 'suspended') {
+        audioContext.resume();
+    }
     // Costruisce il percorso del file audio in base al set di timbri attuale
     const sound = `${soundSets[currentSet]}/${note}`;  // Prende il timbro selezionato
 
