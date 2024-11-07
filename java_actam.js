@@ -562,7 +562,7 @@ let metronomeIntervalId;  // Identificatore per il metronomo
 let bpm = 120;  // Default BPM
 let beatDuration = 60000 / bpm;  // Durata di un battito in millisecondi
 let numberOfBars = 4;  // Default battute
-const beatsPerBar = 4;  // Numero di battiti per battuta
+let beatsPerBar = 4;  // Numero di battiti per battuta, con let è modificabile 
 let barWidth = 200;  // Larghezza per ogni battuta
 let staffLength = numberOfBars * barWidth;  // Lunghezza totale del pentagramma
 let beatCount = 0;  // Contatore per i battiti
@@ -976,3 +976,32 @@ function playMetronomeAccent() {
     oscillator.start();
     oscillator.stop(audioContext.currentTime + 0.1);  // Suono breve
 }
+
+
+//TIME SIGNATURE
+
+const timeSignatureSelect = document.getElementById('timeSignature');
+
+timeSignatureSelect.addEventListener('change', function() {
+    const [beats, noteValue] = this.value.split('/').map(Number);
+
+    // Aggiorna beatsPerBar in base al ritmo selezionato
+    beatsPerBar = beats;
+
+    // Regola beatDuration a seconda che il ritmo sia in quarti o ottavi
+    beatDuration = (60000 / bpm) * (4 / noteValue);
+
+     // Aggiorna la lunghezza dello spartito
+     staffLength = numberOfBars * barWidth;
+     canvas.width = staffLength;
+ 
+     // Pulisce e ridisegna il canvas con la nuova configurazione del ritmo
+     clearStaff();
+     drawReferenceBars();
+ 
+     // Riavvia il metronomo se è già in esecuzione
+     if (metronomePlaying) {
+         stopMetronome();
+         startMetronome();
+     }
+});
