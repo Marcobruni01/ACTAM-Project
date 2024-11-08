@@ -334,6 +334,8 @@ function createChorus(depth) {
 // Inizialmente settiamo la keyMap alla prima ottava
 let keyMap = keyMapOctave1;
 let pressedKeys = {};
+let keyPressTimes = {};
+let mousePressTimes = {};
 
 updateKeyLabels();
 
@@ -387,26 +389,31 @@ function stopNote(note) {
 
 // Aggiungi ascoltatori per la pressione e rilascio dei tasti
 document.addEventListener('keydown', function(event) {
-    console.log(`Tasto premuto: ${event.key}, Codice: ${event.code}`);
     const dataKey = event.key.toUpperCase();
     const note = keyMap[dataKey];
-    
+
     if (note && !pressedKeys[dataKey]) {
         playNote(note);
         highlightKey(note);
         pressedKeys[dataKey] = true;
-        // Disegna la nota sul pentagramma in tempo reale
-        drawNoteOnStaff(note, 1 );  // Passiamo 1 come durata fissa per il momento (da migliorare)
+        keyPressTimes[dataKey] = performance.now();  // Memorizza il tempo di pressione
     }
 });
 
-
 document.addEventListener('keyup', function(event) {
-    const note = keyMap[event.key.toUpperCase()];
+    const dataKey = event.key.toUpperCase();
+    const note = keyMap[dataKey];
+
     if (note) {
         unhighlightKey(note);
         stopNote(note);  // Ferma il suono della nota al rilascio del tasto
-        pressedKeys[event.key.toUpperCase()] = false;
+        pressedKeys[dataKey] = false;
+
+        // Calcola la durata in millisecondi
+        const pressDuration = performance.now() - keyPressTimes[dataKey];
+
+        // Disegna il rettangolo con la durata corretta
+        drawNoteOnStaff(note, pressDuration);
     }
 });
 
@@ -414,32 +421,44 @@ document.addEventListener('keyup', function(event) {
 const keys = document.querySelectorAll('.tasto, .tasto-nero'); // Seleziona sia i tasti bianchi che quelli neri
 keys.forEach(key => {
     key.addEventListener('mousedown', function(event) {
-
         event.stopPropagation(); // Evita che il clic passi al canvas
         const note = this.getAttribute('data-note');
+
         if (!pressedKeys[note]) {
             playNote(note);
             highlightKey(note);
             pressedKeys[note] = true; // Segna il tasto come premuto
-            // Disegna la nota sul pentagramma in tempo reale con colore e etichetta
-            drawNoteOnStaff(note, 1);  // Passiamo 1 come durata fissa per il momento (da migliorare)
+            mousePressTimes[note] = performance.now();  // Memorizza il tempo di pressione
         }
     });
 
     key.addEventListener('mouseup', function() {
         const note = this.getAttribute('data-note');
-        unhighlightKey(note);
-        stopNote(note);  // Ferma il suono della nota al rilascio del clic
-        pressedKeys[note] = false; // Segna il tasto come non premuto
+
+        if (note) {
+            unhighlightKey(note);
+            stopNote(note);  // Ferma il suono della nota al rilascio del clic
+            pressedKeys[note] = false; // Segna il tasto come non premuto
+
+            // Calcola la durata in millisecondi del click
+            const pressDuration = performance.now() - mousePressTimes[note];
+
+            // Disegna il rettangolo con la durata corretta
+            drawNoteOnStaff(note, pressDuration);
+        }
     });
 
     key.addEventListener('mouseleave', function() {
         const note = this.getAttribute('data-note');
-        unhighlightKey(note);
-        stopNote(note);  // Ferma il suono della nota se il mouse esce dal tasto
-        pressedKeys[note] = false; // Segna il tasto come non premuto
+
+        if (note && pressedKeys[note]) {
+            unhighlightKey(note);
+            stopNote(note);  // Ferma il suono della nota se il mouse esce dal tasto
+            pressedKeys[note] = false; // Segna il tasto come non premuto
+        }
     });
 });
+
 
 
 function highlightKey(note) {
@@ -642,53 +661,53 @@ function getYPositionForNote(note) {
 // Funzione per disegnare rettangoli delle note e mantenerli fermi
 
 function drawNoteOnStaff(note, duration) {
-
     let yPosition = getYPositionForNote(note);  // Posizione Y basata sulla nota
     let rectHeight = 10;  // Altezza fissa per il rettangolo
 
     // Ottieni il colore dalla mappa delle note
     let noteColor = noteColors[note] || "black";  // Default nero se la nota non è nella mappa
 
-    // Ottieni il tempo corrente
-    let currentTime = performance.now();
+    // Calcola la larghezza del rettangolo in base alla durata (tempo di pressione)
+    let rectWidth = (duration / 1000) * barWidthPerBeat * 0.35;  // Durata in secondi, moltiplicata per il valore della larghezza per battito
+    
+    // Aumenta leggermente la larghezza del rettangolo per renderlo più visibile
+    rectWidth *= 2.8;  // Aumenta del 50% la larghezza per renderla visibile
 
-    // Calcola lo spazio tra le note in base al tempo trascorso dall'ultima nota suonata
-    let timeSinceLastNote = currentTime - lastNoteTime;
-    //let spaceBetweenNotes = (timeSinceLastNote / (60000 / bpm)) * barWidthPerBeat * 0.5;
-
-
-     ////////MAI USATA/////////////
-    // Determina la durata della nota basata sul tempo trascorso rispetto al battito 
-    let durationRatio = timeSinceLastNote / (60000 / bpm);  // Quanti battiti rappresenta timeSinceLastNote
-
-    // Calcola la larghezza del rettangolo basata sul numero di battiti per battuta
-    let rectWidth = barWidthPerBeat * duration * 0.35;  // Ogni durata è calcolata in battiti, e moltiplicata per lo spazio assegnato per ogni battito
-
-    /// Mantieni l'allineamento con timeBarX se il metronomo è attivo
-   // Calcola la posizione X corrente della barra
-   if (metronomePlaying) {
+    // Calcola la posizione X corrente della barra del tempo
+    if (metronomePlaying) {
         currentXPosition = timeBarX;
-
     } else if (!metronomePlaying && currentXPosition !== 0) {
-        currentXPosition += (timeSinceLastNote / beatDuration) * barWidthPerBeat * 0.5;
+        currentXPosition += (duration / 1000) * barWidthPerBeat * 0.5;  // Usa la durata per spostare la posizione X
     }
 
-    // Disegna il rettangolo colorato della nota
+    // Verifica se il rettangolo supera la larghezza del canvas
+    if (currentXPosition + rectWidth > canvas.width) {
+        // Prima parte: la parte che rimane nel canvas
+        let remainingWidth = canvas.width - currentXPosition;
+        ctx.fillStyle = noteColor;
+        ctx.fillRect(currentXPosition, yPosition, remainingWidth, rectHeight);  // Disegna la parte del rettangolo che resta visibile nel canvas
 
-    ctx.fillStyle = noteColor;
-    ctx.fillRect(currentXPosition, yPosition, rectWidth, rectHeight);
+        // Seconda parte: il resto del rettangolo che va dall'inizio
+        let remainingRectWidth = rectWidth - remainingWidth;
+        currentXPosition = 0;  // Ripristina la posizione X all'inizio del canvas
 
+        // Disegna la parte del rettangolo all'inizio del canvas
+        ctx.fillRect(currentXPosition, yPosition, remainingRectWidth, rectHeight);
+    } else {
+        // Se il rettangolo non esce dal canvas, disegnalo normalmente
+        ctx.fillStyle = noteColor;
+        ctx.fillRect(currentXPosition, yPosition, rectWidth, rectHeight);
+    }
 
-   // Aggiungi il nome della nota accanto al rettangolo
-   ctx.fillStyle = "black";  // Colore del testo (nero per contrastare con i rettangoli colorati)
-   ctx.font = "12px Arial";  // Stile del testo
+    // Aggiungi il nome della nota accanto al rettangolo
+    ctx.fillStyle = "black";  // Colore del testo (nero per contrastare con i rettangoli colorati)
+    ctx.font = "12px Arial";  // Stile del testo
 
-   // Controlla se il nome della nota contiene "sharp" e sostituiscilo con "#"
-   let displayNote = note.includes("sharp") ? note.replace("sharp", "#") : note;
+    // Gestione della notazione sharp
+    let displayNote = note.includes("sharp") ? note.replace("sharp", "#") : note;
 
-   // Mostra il testo accanto al rettangolo
-   ctx.fillText(displayNote, currentXPosition + rectWidth + 5, yPosition + rectHeight / 2);
-
+    // Mostra il testo accanto al rettangolo
+    ctx.fillText(displayNote, currentXPosition + rectWidth + 5, yPosition + rectHeight / 2);
 
     // Memorizziamo la nota per ridisegnarla successivamente
     playedNotes.push({ note, x: currentXPosition, y: yPosition, width: rectWidth, height: rectHeight, color: noteColor });
@@ -696,15 +715,16 @@ function drawNoteOnStaff(note, duration) {
     // Aggiorna la posizione X per la prossima nota
     currentXPosition += rectWidth;  // Aggiungi spazio per la prossima nota
 
-
     // Aggiorna l'ultimo tempo della nota
-    lastNoteTime = currentTime;
+    lastNoteTime = performance.now();
 
+    // Se la posizione X supera la larghezza del canvas, riportiamo la posizione a 0
     if (currentXPosition > canvas.width) {
         currentXPosition = 0;  // Torna all'inizio se si supera la larghezza del canvas
     }
-
 }
+
+
 
 
 // Funzione per ridisegnare tutte le note già suonate
@@ -717,7 +737,6 @@ function redrawNotes() {
         ctx.fillText(note.note, note.x + note.width + 5, note.y + note.height / 2);
     });
 }
-
 
 
 
@@ -787,14 +806,6 @@ barsInput.addEventListener('input', function() {
 
 
 // -------------------- Controllo Barra del Tempo --------------------
-//const startButton = document.getElementById('startButton');
-//const stopButton = document.getElementById('stopButton');
-
-//startButton.addEventListener('click', startTimeBar);
-//stopButton.addEventListener('click', stopTimeBar);
-
-// Funzione per avviare la barra del tempo
-
 // Funzione per disegnare la barra del tempo
 
 function drawTimeBar() {
@@ -991,17 +1002,20 @@ timeSignatureSelect.addEventListener('change', function() {
     // Regola beatDuration a seconda che il ritmo sia in quarti o ottavi
     beatDuration = (60000 / bpm) * (4 / noteValue);
 
-     // Aggiorna la lunghezza dello spartito
-     staffLength = numberOfBars * barWidth;
-     canvas.width = staffLength;
- 
-     // Pulisce e ridisegna il canvas con la nuova configurazione del ritmo
-     clearStaff();
-     drawReferenceBars();
- 
-     // Riavvia il metronomo se è già in esecuzione
-     if (metronomePlaying) {
-         stopMetronome();
-         startMetronome();
-     }
+    // Aggiorna la lunghezza dello spartito
+    staffLength = numberOfBars * barWidth;
+    canvas.width = staffLength;
+
+    // Pulisce e ridisegna il canvas con la nuova configurazione del ritmo
+    clearStaff();
+    drawReferenceBars();
+
+    // Riavvia il metronomo se è già in esecuzione
+    if (metronomePlaying) {
+        stopMetronome();
+        startMetronome();
+    }
+
+    // Rimuovi il focus dal select dopo la selezione
+    this.blur();
 });

@@ -500,6 +500,8 @@ label[for="timeSignature"] {
     border-color: #e21b9c;
 }
 
+
+
 /* Stile dell'etichetta del selettore */
 label[for="bars"] {
     font-family: 'Lucida Console', Monaco, monospace;
