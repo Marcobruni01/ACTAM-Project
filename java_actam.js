@@ -774,37 +774,22 @@ function drawFinalNoteOnStaff(note, duration) {
 
 // Funzione per ridisegnare tutte le note già suonate
 function redrawNotes() {
+    const scaleFactor = canvas.width / originalCanvasWidth;
+
     playedNotes.forEach(note => {
-        // Imposta la posizione X basata sullo stato del metronomo quando la nota è stata disegnata
-        let xPosition = note.wasMetronomePlaying 
-            ? timeBarX  // Usa la posizione del metronomo se attivo quando è stata disegnata
-            : note.x;   // Altrimenti, mantieni la posizione originale
+        let rectWidth = note.width * scaleFactor;
+        let xPosition = note.x * scaleFactor;
 
-        // Imposta la larghezza originale della nota
-        let rectWidth = note.width;
-        if(xPosition==note.x)
-             {
-                rectWidth=rectWidth*2  ;
-                xPosition= note.x + rectWidth -19.6;
-               
-
-            }
-        else{xPosition=note.x ;}
-
-        // Usa la posizione e larghezza corrette per disegnare
         ctx.fillStyle = note.color;
         ctx.fillRect(xPosition, note.y, rectWidth, note.height);
 
-        // **Sostituzione "sharp" con "#"**
         let displayNote = note.note.includes("sharp") ? note.note.replace("sharp", "#") : note.note;
-
-        // Visualizza il nome della nota
         ctx.fillStyle = "black";
         ctx.font = "12px Arial";
         ctx.fillText(displayNote, xPosition + rectWidth + 5, note.y + note.height / 2);
     });
-    
 }
+
 
 
 
@@ -835,25 +820,17 @@ document.getElementById('clearNotesButton').addEventListener('click', clearAllNo
 
 // Funzione per disegnare le barre di riferimento verticali grigie
 function drawReferenceBars() {
-
-    // Calcola la larghezza di ciascun quarto (beat) nel canvas
     const beatWidth = canvas.width / (numberOfBars * beatsPerBar);
-    ctx.strokeStyle = "gray"; // Imposta il colore grigio per le barre
+    ctx.strokeStyle = "gray";
 
-    // Ciclo per disegnare le barre di riferimento
     for (let i = 0; i < numberOfBars * beatsPerBar; i++) {
         const xPosition = i * beatWidth;
-        // Aumenta la larghezza della prima barra di ogni battuta (accentata)
         ctx.lineWidth = (i % beatsPerBar === 0) ? 3 : 1;
-
-        // Disegna la linea verticale
         ctx.beginPath();
         ctx.moveTo(xPosition, 0);
         ctx.lineTo(xPosition, canvas.height);
         ctx.stroke();
-
     }
-
 }
 
 drawReferenceBars();  // Ridisegna all'inizio le barre di riferimento statiche
@@ -1088,3 +1065,37 @@ timeSignatureSelect.addEventListener('change', function() {
     // Rimuovi il focus dal select dopo la selezione
     this.blur();
 });
+
+
+
+
+//----------------ZOOOOOOOOOOOOOOOOOOOOOOOOOOOOM--------------------------//
+
+let isZoomedIn = false;  // Variabile per tenere traccia dello stato di zoom
+let originalCanvasWidth = canvas.width;  // Salva la larghezza originale del canvas in pixel
+let originalCanvasStyleWidth = canvas.style.width;  // Salva lo stile originale in CSS
+
+function toggleZoom() {
+    const zoomFactor = 1.1;  // Fattore di ingrandimento per la larghezza visualizzata
+    const zoomButton = document.getElementById('zoomButton');
+
+    if (!isZoomedIn) {
+        // Ingrandisci solo visivamente la larghezza del canvas usando style.width
+        canvas.style.width = `${originalCanvasWidth * zoomFactor}px`;  // Applica lo zoom alla larghezza
+        zoomButton.textContent = '🔍 -';  // Cambia icona del bottone
+    } else {
+        // Torna alla larghezza visiva originale senza modificare canvas.width
+        canvas.style.width = originalCanvasStyleWidth;
+        zoomButton.textContent = '🔍 +';
+    }
+
+    isZoomedIn = !isZoomedIn;  // Cambia lo stato dello zoom
+
+    // Aggiorna e ridisegna le barre di riferimento e le note per adattarle alla nuova larghezza visualizzata
+    clearStaff();  // Cancella il contenuto del canvas
+    drawReferenceBars();  // Ridisegna le barre di riferimento
+    redrawNotes();  // Ridisegna le note tenendo conto della nuova larghezza
+}
+
+
+
