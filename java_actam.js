@@ -1027,3 +1027,33 @@ timeSignatureSelect.addEventListener('change', function() {
          startMetronome();
      }
 });
+
+
+
+//----------------ZOOOOOOOOOOOOOOOOOOOOOOOOOOOOM--------------------------//
+
+let isZoomedIn = false;  // Variabile per tenere traccia dello stato di zoom
+let originalCanvasWidth = canvas.width;  // Salva la larghezza originale del canvas in pixel
+let originalCanvasStyleWidth = canvas.style.width;  // Salva lo stile originale in CSS
+
+function toggleZoom() {
+    const zoomFactor = 1.1;  // Fattore di ingrandimento per la larghezza visualizzata
+    const zoomButton = document.getElementById('zoomButton');
+
+    if (!isZoomedIn) {
+        // Ingrandisci solo visivamente la larghezza del canvas usando style.width
+        canvas.style.width = `${originalCanvasWidth * zoomFactor}px`;  // Applica lo zoom alla larghezza
+        zoomButton.textContent = '🔍 -';  // Cambia icona del bottone
+    } else {
+        // Torna alla larghezza visiva originale senza modificare canvas.width
+        canvas.style.width = originalCanvasStyleWidth;
+        zoomButton.textContent = '🔍 +';
+    }
+
+    isZoomedIn = !isZoomedIn;  // Cambia lo stato dello zoom
+
+    // Aggiorna e ridisegna le barre di riferimento e le note per adattarle alla nuova larghezza visualizzata
+    clearStaff();  // Cancella il contenuto del canvas
+    drawReferenceBars();  // Ridisegna le barre di riferimento
+    redrawNotes();  // Ridisegna le note tenendo conto della nuova larghezza
+}
