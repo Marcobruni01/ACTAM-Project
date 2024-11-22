@@ -147,6 +147,79 @@
             
         </div>
     </div>
+
+    <div id="multitrack-recorder">
+        <!-- Traccia 1 -->
+        <div class="track" id="track-1">
+            <span>Track 1</span>
+            <div class="controls">
+                <button class="record-btn" data-track="1">Rec</button>
+                <button class="play-btn" data-track="1">Play</button>
+                <button class="delete-btn" data-track="1">Delete</button>
+                <input type="range" class="volume-slider" data-track="1" min="0" max="1" step="0.1">
+                <button class="loop-btn" data-track="1" data-multiplier="2">x2</button>
+                <button class="loop-btn" data-track="1" data-multiplier="3">x3</button>
+                <button class="loop-btn" data-track="1" data-multiplier="4">x4</button>
+                <button class="save-to-track-btn" data-track="1">Salva su Traccia 1</button>
+            </div>
+            <canvas class="track-canvas" id="track-canvas-1" width="400" height="50"></canvas>
+        </div>
+    
+        <!-- Traccia 2 -->
+        <div class="track" id="track-2">
+            <span>Track 2</span>
+            <div class="controls">
+                <button class="record-btn" data-track="2">Rec</button>
+                <button class="play-btn" data-track="2">Play</button>
+                <button class="delete-btn" data-track="2">Delete</button>
+                <input type="range" class="volume-slider" data-track="2" min="0" max="1" step="0.1">
+                <button class="loop-btn" data-track="2" data-multiplier="2">x2</button>
+                <button class="loop-btn" data-track="2" data-multiplier="3">x3</button>
+                <button class="loop-btn" data-track="2" data-multiplier="4">x4</button>
+                <button class="save-to-track-btn" data-track="2">Salva su Traccia 2</button>
+            </div>
+            <canvas class="track-canvas" id="track-canvas-2" width="400" height="50"></canvas>
+        </div>
+    
+        <!-- Traccia 3 -->
+        <div class="track" id="track-3">
+            <span>Track 3</span>
+            <div class="controls">
+                <button class="record-btn" data-track="3">Rec</button>
+                <button class="play-btn" data-track="3">Play</button>
+                <button class="delete-btn" data-track="3">Delete</button>
+                <input type="range" class="volume-slider" data-track="3" min="0" max="1" step="0.01">
+                <button class="loop-btn" data-track="3" data-multiplier="2">x2</button>
+                <button class="loop-btn" data-track="3" data-multiplier="3">x3</button>
+                <button class="loop-btn" data-track="3" data-multiplier="4">x4</button>
+                <button class="save-to-track-btn" data-track="3">Salva su Traccia 3</button>
+            </div>
+            <canvas class="track-canvas" id="track-canvas-3" width="400" height="50"></canvas>
+        </div>
+    
+        <!-- Traccia 4 -->
+        <div class="track" id="track-4">
+            <span>Track 4</span>
+            <div class="controls">
+                <button class="record-btn" data-track="4">Rec</button>
+                <button class="play-btn" data-track="4">Play</button>
+                <button class="delete-btn" data-track="4">Delete</button>
+                <input type="range" class="volume-slider" data-track="4" min="0" max="1" step="0.1">
+                <button class="loop-btn" data-track="4" data-multiplier="2">x2</button>
+                <button class="loop-btn" data-track="4" data-multiplier="3">x3</button>
+                <button class="loop-btn" data-track="4" data-multiplier="4">x4</button>
+                <button class="save-to-track-btn" data-track="4">Salva su Traccia 4</button>
+            </div>
+            <canvas class="track-canvas" id="track-canvas-4" width="400" height="50"></canvas>
+        </div>
+    
+        <!-- Controlli globali -->
+        <button id="global-rec">Global Rec</button>
+        <button id="global-play">Play All</button>
+        <button id="download-audio">Download</button>
+    </div>
+    
+    
 </div>
 <div></div>
 

@@ -55,6 +55,17 @@ const keyMapOctave2 = {
 
 // Inizializzazione Web Audio API
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+// Garantisce che il tuo AudioContext sia pronto per funzionare senza blocchi
+document.addEventListener('click', () => {
+    if (audioContext.state === 'suspended') {
+        audioContext.resume().then(() => {
+            console.log("AudioContext avviato dopo il clic dell'utente.");
+        });
+    }
+});
+
+
 document.getElementById('timbre-select').value = currentSet;
 
 let effectNodes = {
@@ -137,10 +148,29 @@ function playNote(note) {
     applyActiveEffects(track);
 
     // Memorizza l'oggetto audio attivo per questa nota
-    activeNotes[note] = audio;
+    if (!activeNotes[note]) {
+        activeNotes[note] = [];
+    }
+
+    // Memorizza l'istanza audio nella lista
+    activeNotes[note].push(audio);
+
+    // Connetti alla destinazione
+    track.connect(audioContext.destination);
+
+    console.log(`Riproduzione nota: ${note}, istanze attive: ${activeNotes[note].length}`);
 
     // Avvia la riproduzione
     audio.play().catch(error => console.error("Errore nel caricamento dell'audio: ", error));
+
+     // Event listener per rimuovere l'istanza audio una volta terminata
+     audio.addEventListener('ended', () => {
+        const index = activeNotes[note].indexOf(audio);
+        if (index > -1) {
+            activeNotes[note].splice(index, 1);
+        }
+        console.log(`Nota ${note} terminata, rimosso audio. Istanze rimanenti: ${activeNotes[note].length}`);
+    });
 }
 
 
@@ -378,42 +408,76 @@ function updateKeyLabels() {
 
 // Funzione per fermare il suono della nota
 function stopNote(note) {
-    if (activeNotes[note]) {
-        activeNotes[note].pause();  // Pausa immediata
-        activeNotes[note].currentTime = 0;  // Riporta l'audio all'inizio
-        delete activeNotes[note];  // Rimuove il riferimento alla nota attiva
+    if (activeNotes[note] && activeNotes[note].length > 0) {
+        console.log(`Stop nota: ${note}, istanze attive: ${activeNotes[note].length}`);
+
+        // Ferma solo una istanza alla volta
+        const audio = activeNotes[note].shift(); // Rimuove la prima istanza dal fronte dell'array
+        if (audio) {
+            audio.pause();
+            audio.currentTime = 0;
+            console.log(`Una istanza di ${note} fermata. Rimangono ${activeNotes[note].length} istanze.`);
+        }
+
+        // Se l'array è vuoto, elimina la chiave
+        if (activeNotes[note].length === 0) {
+            delete activeNotes[note];
+            console.log(`Tutte le istanze di ${note} sono state fermate e cancellate.`);
+        }
+    } else {
+        console.warn(`Nota ${note} non trovata o già fermata.`);
     }
 }
 
-// Aggiungi ascoltatori per la pressione e rilascio dei tasti
+
+
 document.addEventListener('keydown', function(event) {
     console.log(`Tasto premuto: ${event.key}, Codice: ${event.code}`);
     const dataKey = event.key.toUpperCase();
     const note = keyMap[dataKey];
     
+    // Verifica se la nota esiste e il tasto non è già premuto
     if (note && !pressedKeys[dataKey]) {
-        playNote(note);
-        highlightKey(note);
+        playNote(note); // Riproduci il suono della nota
+        highlightKey(note); // Evidenzia il tasto
         pressedKeys[dataKey] = true;
-        // Registra il tempo di inizio della pressione e inizializza il rettangolo
+
+        // Registra il tempo di inizio della pressione
         const startTime = performance.now();
+        console.log(`StartTime registrato per la nota ${note}: ${startTime}`); // Log per debug
+
+        // Inizializza il rettangolo per la nota attiva
         activeRectangles[dataKey] = {
-             note: note,
-             x: timeBarX,  // Posizione iniziale del rettangolo basata su timeBarX
-             y: getYPositionForNote(note),
-             width: 0,  // Partiamo da larghezza 0
-             startTime: startTime
+            note: note,
+            x: timeBarX,  // Posizione iniziale basata su timeBarX
+            y: getYPositionForNote(note), // Calcola la posizione verticale
+            width: 0,  // Partiamo con larghezza 0
+            startTime: startTime
         };
 
-       // Disegna tutti i rettangoli attivi, inclusa la nuova nota
-       for (let key in activeRectangles) {
-        drawActiveRectangle(activeRectangles[key]);
-       }
+        // Se una traccia è in registrazione, registra l'evento
+        if (activeTrackIndex !== -1 && tracks[activeTrackIndex].isRecording) {
+            const noteData = {
+                note: note,
+                startTime: startTime || performance.now(), // Assicurati che startTime non sia mai undefined
+                duration: null // Durata sarà calcolata al rilascio del tasto
+            };
+            
+            // Salva la nota nella traccia attiva
+            tracks[activeTrackIndex].audioData.push(noteData);
+            console.log(`Registrata nota ${note} sulla traccia ${activeTrackIndex + 1}`, noteData);
+        }
+
+        // Disegna i rettangoli attivi sul canvas
+        for (let key in activeRectangles) {
+            drawActiveRectangle(activeRectangles[key]);
+        }
 
         // Disegna il rettangolo immediatamente e inizia ad aggiornarlo
         requestAnimationFrame(() => updateRectangle(dataKey));
-     }
+    }
 });
+
 
 
 // Gestione rilascio del tasto
@@ -443,6 +507,17 @@ document.addEventListener('keyup', function(event) {
 
             // Rimuovi il rettangolo dall’oggetto `activeRectangles`
             delete activeRectangles[dataKey];
+        }
+
+
+        // Aggiorna la durata della nota nella traccia attiva (se presente)
+        if (activeTrackIndex !== -1 && tracks[activeTrackIndex].isRecording) {
+            const track = tracks[activeTrackIndex];
+            const noteEvent = track.audioData.find((n) => n.note === note && n.duration === null);
+            if (noteEvent) {
+                noteEvent.duration = performance.now() - noteEvent.startTime;
+                console.log(`Rilasciata nota ${note}, durata: ${noteEvent.duration}ms sulla traccia ${activeTrackIndex + 1}`);
+            }
         }
     }
 });
@@ -746,10 +821,13 @@ function redrawNotes() {
 
 
 // Funzione per pulire il pentagramma ma non cancellare le note
-function clearStaff() {
+function clearStaff(preserveNotes = true) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    redrawNotes();  // Ridisegna tutte le note già suonate
-    drawReferenceBars();  // Ridisegna le barre di riferimento statiche
+
+    if (preserveNotes) {
+        redrawNotes();
+        drawReferenceBars();
+    }
 }
 
 
@@ -1037,7 +1115,7 @@ let originalCanvasWidth = canvas.width;  // Salva la larghezza originale del can
 let originalCanvasStyleWidth = canvas.style.width;  // Salva lo stile originale in CSS
 
 function toggleZoom() {
-    const zoomFactor = 1.1;  // Fattore di ingrandimento per la larghezza visualizzata
+    const zoomFactor = 1.25;  // Fattore di ingrandimento per la larghezza visualizzata
     const zoomButton = document.getElementById('zoomButton');
 
     if (!isZoomedIn) {
@@ -1057,3 +1135,246 @@ function toggleZoom() {
     drawReferenceBars();  // Ridisegna le barre di riferimento
     redrawNotes();  // Ridisegna le note tenendo conto della nuova larghezza
 }
+
+
+
+
+// ---------------- REGISTRATORE MULTITRACCIA --------------------------//
+
+
+const tracks = Array(4).fill(null).map(() => ({
+    audioData: [], // Array per memorizzare le note registrate
+    isRecording: false,
+    volume: 1, // Volume della traccia
+    loops: 1, // Numero di ripetizioni (loop)
+}));
+
+let activeTrackIndex = -1; // Indice della traccia attualmente in registrazione
+let isGlobalRecording = false; // Stato della registrazione globale
+
+// Funzione per iniziare la registrazione su una traccia
+function startRecording(trackIndex) {
+    if (isGlobalRecording) return; // Evita registrazioni individuali durante quella globale
+    activeTrackIndex = trackIndex;
+    tracks[trackIndex].audioData = []; // Resetta i dati precedenti
+    tracks[trackIndex].isRecording = true;
+    console.log(`Inizio registrazione sulla traccia ${trackIndex + 1}`);
+}
+
+
+// Funzione per terminare la registrazione
+function stopRecording(trackIndex) {
+    tracks[trackIndex].isRecording = false;
+    activeTrackIndex = -1;
+    console.log(`Terminata registrazione sulla traccia ${trackIndex + 1}`);
+}
+
+
+// Funzione per evidenziare il canvas durante la registrazione
+function highlightTrackCanvas(trackIndex, isRecording) {
+    const canvas = document.getElementById(`track-canvas-${trackIndex + 1}`);
+    canvas.style.border = isRecording ? "2px solid red" : "1px solid #555";
+}
+
+
+// Funzione per registrare le note dal canvas principale
+function saveToTrackCanvas(trackIndex) {
+    console.log(`Salvataggio canvas per traccia ${trackIndex + 1} iniziato.`);
+
+    const trackCanvas = document.getElementById(`track-canvas-${trackIndex + 1}`);
+    const trackCtx = trackCanvas.getContext('2d');
+
+    // Cancella il canvas secondario
+    trackCtx.clearRect(0, 0, trackCanvas.width, trackCanvas.height);
+
+    // Se non ci sono dati in playedNotes, avvisa e non proseguire
+    if (playedNotes.length === 0) {
+        console.warn('Nessuna nota da salvare.');
+        return;
+    }
+
+    const staffDuration = numberOfBars * beatsPerBar * (60000 / bpm); // Durata complessiva dello spartito
+
+    // Calcola il tempo di inizio basato sulla posizione x
+    const updatedAudioData = playedNotes.map((note) => {
+        const startTime = (note.x / staffLength) * staffDuration; // Calcola il tempo in base alla posizione
+        return {
+            note: note.note,
+            startTime: startTime,
+            duration: note.duration || 500, // Default duration se mancante
+            x: note.x,
+            y: note.y,
+            width: note.width,
+            height: note.height,
+            color: note.color,
+        };
+    });
+
+    tracks[trackIndex].audioData = updatedAudioData;
+
+    console.log(`Dati salvati nella traccia ${trackIndex + 1}:`, tracks[trackIndex].audioData);
+
+    // Disegna le note sul canvas secondario
+    drawTrackCanvas(trackIndex);
+}
+
+
+
+
+
+// Funzione per disegnare i rettangoli su una traccia (per visualizzazione)
+function drawTrackCanvas(trackIndex) {
+    const canvas = document.getElementById(`track-canvas-${trackIndex + 1}`);
+    const ctx = canvas.getContext('2d');
+
+    // Pulisce il canvas secondario
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const track = tracks[trackIndex];
+    const beatWidth = canvas.width / (numberOfBars * beatsPerBar);
+
+    // Verifica che ci siano dati nella traccia
+    if (!track.audioData || track.audioData.length === 0) {
+        console.warn(`Nessun dato da disegnare sulla traccia ${trackIndex + 1}.`);
+        return;
+    }
+
+    track.audioData.forEach((noteEvent) => {
+        const x = (noteEvent.x / staffLength) * canvas.width; // Calcola la posizione sul canvas della traccia
+        const y = 10; // Fissa la posizione verticale
+        const width = (noteEvent.width / staffLength) * canvas.width;
+        const height = 30; // Altezza del rettangolo
+
+        ctx.fillStyle = noteColors[noteEvent.note] || '#FFF';
+        ctx.fillRect(x, y, width, height);
+        ctx.fillStyle = 'black';
+        ctx.fillText(noteEvent.note, x + 5, y + 20); // Nome della nota
+    });
+}
+
+
+function playTrack(trackIndex) {
+    const track = tracks[trackIndex];
+
+    if (!track.audioData.length) {
+        console.log(`Traccia ${trackIndex + 1} vuota!`);
+        return;
+    }
+
+    console.log(`Inizio riproduzione traccia ${trackIndex + 1}`);
+    console.log('Dati traccia:', track.audioData);
+
+    // Calcola il tempo globale di inizio (compreso il ritardo iniziale della prima nota)
+    const globalStartTime = performance.now() - track.audioData[0].startTime;
+
+    track.audioData.forEach((noteEvent, index) => {
+        // Calcola il tempo assoluto per ciascuna nota
+        const absoluteStartTime = globalStartTime + noteEvent.startTime;
+
+        console.log(
+            `Nota ${index + 1}: ${noteEvent.note}, startTime assoluto: ${absoluteStartTime}, durata: ${noteEvent.duration}`
+        );
+
+        // Pianifica la riproduzione della nota
+        setTimeout(() => {
+            console.log(`Riproduzione nota ${noteEvent.note}`);
+            playNote(noteEvent.note);
+
+            // Pianifica lo stop della nota
+            setTimeout(() => {
+                console.log(`Stop nota ${noteEvent.note}`);
+                stopNote(noteEvent.note);
+            }, noteEvent.duration);
+        }, absoluteStartTime - performance.now());
+    });
+}
+
+
+
+
+// Funzione per cancellare una traccia
+function deleteTrack(trackIndex) {
+    tracks[trackIndex].audioData = [];
+    console.log(`Cancellata traccia ${trackIndex + 1}`);
+    document.getElementById(`track-canvas-${trackIndex + 1}`).getContext('2d').clearRect(0, 0, 400, 50);
+}
+
+
+const maxVolume = 2; // Volume massimo configurabile (moltiplicatore)
+
+// Funzione per aggiornare il volume di una traccia
+function updateVolume(trackIndex, volume) {
+    const scaledVolume = volume * maxVolume; // Scala il volume in base al massimo
+    tracks[trackIndex].volume = scaledVolume;
+    console.log(`Volume traccia ${trackIndex + 1} aggiornato a: ${scaledVolume}`);
+}
+
+// Event listeners per i pulsanti di controllo delle tracce
+document.querySelectorAll('.record-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+        const trackIndex = parseInt(btn.dataset.track) - 1;
+        if (tracks[trackIndex].isRecording) {
+            stopRecording(trackIndex); // Ferma la registrazione se è già attiva
+            btn.textContent = 'Rec'; // Cambia il testo del bottone
+        } else {
+            startRecording(trackIndex); // Inizia la registrazione
+            btn.textContent = 'Stop'; // Cambia il testo del bottone
+        }
+    });
+});
+
+document.querySelectorAll('.save-to-track-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+        const trackIndex = parseInt(btn.dataset.track) - 1;
+
+        // Sincronizza i dati tra playedNotes e tracks
+        if (playedNotes.length > 0) {
+            saveToTrackCanvas(trackIndex);
+            console.log(`Pulsante Salva cliccato per traccia ${trackIndex + 1}`);
+        } else {
+            console.warn('Nessuna nota registrata per salvare.');
+        }
+
+        // Non cancellare i dati di playedNotes
+        console.log('Dati salvati, playedNotes non modificato.');
+    });
+});
+
+
+document.querySelectorAll('.play-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+        const trackIndex = parseInt(btn.dataset.track) - 1;
+        playTrack(trackIndex); // Riproduce la traccia
+        console.log(`Riproduzione traccia ${trackIndex + 1}`);
+    });
+});
+
+
+document.querySelectorAll('.delete-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+        const trackIndex = parseInt(btn.dataset.track) - 1;
+        deleteTrack(trackIndex);
+    });
+});
+
+document.querySelectorAll('.volume-slider').forEach((slider) => {
+    slider.addEventListener('input', () => {
+        const trackIndex = parseInt(slider.dataset.track) - 1;
+        const value = parseFloat(slider.value); // Valore tra 0 e 1
+        updateVolume(trackIndex, value);
+    });
+});
+
+// Funzione per riprodurre tutte le tracce insieme
+document.getElementById('global-play').addEventListener('click', () => {
+    console.log('Riproduzione di tutte le tracce');
+    tracks.forEach((track, index) => playTrack(index));
+});
+
+// Funzione per scaricare tutte le tracce come audio mixato
+document.getElementById('download-audio').addEventListener('click', () => {
+    console.log('Scaricamento dell\'audio mixato');
+    // Implementazione della logica per il mixaggio e download
+});
+
+

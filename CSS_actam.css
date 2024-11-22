@@ -330,7 +330,7 @@ Contenitore del pad musicale */
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 500px;
+    width: 650px;
     height: 300px;
 }
 
@@ -590,4 +590,37 @@ select:focus {
 /*ZOOM*/
 #zoomButton {
     margin-left: 20px; /* Regola il valore per spostarlo a destra */
+}
+
+/*MULTI-TRACKS RECORDER*/
+#multitrack-recorder {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+    left: 50px; /* Sposta 50px verso destra */
+    margin: -350px 0 0 0; /* Lascia invariati gli altri margini */
+    background: #222;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.track {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.track-canvas {
+    background: #333;
+    border: 1px solid #555;
+    width: 400px;
+    height: 50px;
 }
