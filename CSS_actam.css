@@ -330,7 +330,7 @@ Contenitore del pad musicale */
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 650px;
+    width: 550px;
     height: 300px;
 }
 
@@ -623,4 +623,140 @@ select:focus {
     border: 1px solid #555;
     width: 400px;
     height: 50px;
+}
+
+
+
+
+/* Contenitore principale */
+#multitrack-recorder {
+    display: flex;
+    flex-direction: column; /* Mantiene le tracce in colonna */
+    align-items: center;
+    gap: 10px; /* Spazio tra le tracce */
+    margin: 10px;
+    font-family: Arial, sans-serif;
+}
+
+/* Stile per ogni traccia */
+.track {
+    display: flex;
+    flex-direction: column; /* Mantiene i titoli e il canvas in verticale */
+    align-items: flex-start;
+    gap: 5px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 8px;
+    width: 100%; /* Adatta alla larghezza del contenitore */
+    max-width: 900px; /* Limita la larghezza massima */
+    background-color: hsl(0, 0%, 48%);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Titolo della traccia */
+.track span {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 3px; /* Ridotto lo spazio sotto il titolo */
+}
+
+/* Canvas della traccia */
+.track-canvas {
+    width: 100%; /* Occupa tutta la larghezza disponibile */
+    height: 30px; /* Altezza ancora più compatta */
+    border: 1px solid #555;
+    border-radius: 4px;
+    background-color: #f8f7f7;
+    margin-bottom: 5px;
+}
+
+/* Contenitore dei controlli */
+.track .controls {
+    display: flex;
+    flex-direction: row; /* Disposizione in riga */
+    align-items: center;
+    gap: 5px; /* Spazio tra i controlli */
+    flex-wrap: nowrap; /* Impedisce il wrapping su più righe */
+    width: 100%; /* Adatta alla larghezza del contenitore */
+    overflow-x: auto; /* Consente lo scrolling orizzontale se lo spazio è troppo stretto */
+}
+
+/* Stile per i pulsanti */
+.track .controls button {
+    padding: 3px 6px; /* Ridotto padding */
+    font-size: 12px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    white-space: nowrap; /* Impedisce che il testo venga spezzato */
+}
+
+.track .controls button:hover {
+    background-color: #0056b3;
+}
+
+/* Pulsante attivo per registrazione */
+.track .controls .record-btn {
+    background-color: #dc3545;
+}
+
+.track .controls .record-btn:hover {
+    background-color: #a71d2a;
+}
+
+/* Stile per gli slider di volume */
+.track .controls .volume-slider {
+    width: 50px; /* Slider compatto */
+    margin: 0 2px;
+}
+
+/* Contenitore dei pulsanti globali */
+#global-controls {
+    display: flex;
+    flex-direction: row; /* Disposizione in riga */
+    gap: 10px; /* Spazio tra i pulsanti */
+    justify-content: center;
+    margin-top: 10px;
+    width: 100%; /* Occupa tutta la larghezza */
+    max-width: 900px; /* Limita la larghezza */
+}
+
+/* Pulsanti globali */
+#global-rec,
+#global-play,
+#download-audio {
+    padding: 6px 12px;
+    font-size: 14px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    white-space: nowrap; /* Impedisce che il testo venga spezzato */
+}
+
+#global-rec:hover,
+#global-play:hover,
+#download-audio:hover {
+    background-color: #218838;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .track .controls {
+        overflow-x: auto; /* Lo scrolling orizzontale permette di vedere tutti i controlli */
+    }
+
+    .track-canvas {
+        height: 25px; /* Altezza minima per leggibilità */
+    }
+
+    #global-controls {
+        flex-wrap: wrap; /* Permette il wrapping su schermi stretti */
+    }
 }
