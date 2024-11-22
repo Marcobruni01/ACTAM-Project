@@ -605,41 +605,77 @@ let pressedPads = {};
 const pads = document.querySelectorAll('.pad');
 
 // Aggiungi evento click ai tasti del pad
+// Evento mousedown per numeri del pad
 pads.forEach(pad => {
     pad.addEventListener('mousedown', () => {
         const key = pad.getAttribute('data-key');
         if (!pressedPads[key]) {
+            const number = parseInt(pad.textContent.trim());
             playPadSound(pad);
-            pad.classList.add('key-active');  // Aggiunge l'effetto visivo
-            pad.classList.add('active-text');  // Aggiunge classe per cambiare il colore del testo
-            pressedPads[key] = true; // Segna il tasto del pad come premuto
+            pad.classList.add('key-active');
+            pad.classList.add('active-text');
+            pressedPads[key] = true;
+
+            if (number >= 1 && number <= 9) {
+                const x = metronomePlaying ? timeBarX : 0; // Usa la posizione della barra o 0 se ferma
+                activeNumbersWithPositions.push({ number, x }); // Salva numero con posizione
+
+                // Cambia colore solo se il metronomo è fermo
+                if (!metronomePlaying) {
+                    numberColors[number] = numberColors[number]
+                        ? `#${Math.floor(Math.random() * 16777215).toString(16)}`
+                        : defaultColor;
+                }
+
+                drawAllNumbers(); // Ridisegna i numeri
+            }
         }
     });
 
     pad.addEventListener('mouseup', () => {
         const key = pad.getAttribute('data-key');
-        pad.classList.remove('key-active');  // Rimuove l'effetto visivo
-        pad.classList.remove('active-text');  // Rimuove classe per il colore del testo
-        pressedPads[key] = false; // Segna il tasto del pad come rilasciato
+        pad.classList.remove('key-active');
+        pad.classList.remove('active-text');
+        pressedPads[key] = false;
     });
 
     pad.addEventListener('mouseleave', () => {
         const key = pad.getAttribute('data-key');
-        pad.classList.remove('key-active');  // Rimuove l'effetto visivo
-        pad.classList.remove('active-text');  // Rimuove classe per il colore del testo
-        pressedPads[key] = false; // Segna il tasto del pad come rilasciato
+        pad.classList.remove('key-active');
+        pad.classList.remove('active-text');
+        pressedPads[key] = false;
     });
 });
 
-// Ascolta per la pressione dei tasti numerici
+
+
+
 document.addEventListener('keydown', (e) => {
     const key = e.keyCode;
+    if (e.key === "Delete") {
+        clearAllNumbers(); // Pulisce tutti i numeri dal canvas
+    }
     const pad = document.querySelector(`.pad[data-key="${key}"]`);
     if (pad && !pressedPads[key]) {
         playPadSound(pad);
-        pad.classList.add('key-active');  // Aggiunge l'effetto visivo
-        pad.classList.add('active-text');  // Aggiunge classe per cambiare il colore del testo
-        pressedPads[key] = true; // Segna il tasto del pad come premuto
+        pad.classList.add('key-active');
+        pad.classList.add('active-text');
+        pressedPads[key] = true;
+
+        const number = parseInt(pad.textContent.trim());
+        if (number >= 1 && number <= 9) {
+            const x = metronomePlaying ? timeBarX : 0; // Usa la posizione della barra o 0 se ferma
+            activeNumbersWithPositions.push({ number, x }); // Salva numero con posizione
+
+            // Cambia colore solo se il metronomo è fermo
+            if (!metronomePlaying) {
+                numberColors[number] = numberColors[number]
+                    ? `#${Math.floor(Math.random() * 16777215).toString(16)}`
+                    : defaultColor;
+            }
+
+            drawAllNumbers(); // Ridisegna i numeri
+        }
     }
 });
 
@@ -647,11 +683,14 @@ document.addEventListener('keyup', (e) => {
     const key = e.keyCode;
     const pad = document.querySelector(`.pad[data-key="${key}"]`);
     if (pad) {
-        pad.classList.remove('key-active');  // Rimuove l'effetto visivo
-        pad.classList.remove('active-text');  // Rimuove classe per il colore del testo
-        pressedPads[key] = false; // Segna il tasto del pad come rilasciato
+        pad.classList.remove('key-active');
+        pad.classList.remove('active-text');
+        pressedPads[key] = false;
     }
 });
+
+
+
 
 // Funzione per riprodurre i suoni del pad
 function playPadSound(pad) {
@@ -782,35 +821,37 @@ function drawFixedNoteOnStaff(note, x, y, width, height, color) {
 
 // Funzione per aggiornare la larghezza del rettangolo attivo mentre il tasto è premuto
 function updateRectangle(dataKey) {
-    if (!activeRectangles[dataKey]) return;  // Esci se il rettangolo non è più attivo
+    if (!activeRectangles[dataKey]) return; // Esci se il rettangolo non è più attivo
 
     const rectangle = activeRectangles[dataKey];
     const currentTime = performance.now();
-    const duration = (currentTime - rectangle.startTime) / 1000;  // Durata in secondi
+    const duration = (currentTime - rectangle.startTime) / 1000; // Durata in secondi
 
     // Calcola la larghezza basata sulla durata
-    rectangle.width = duration * 100;  // Aggiusta il moltiplicatore a piacere
+    rectangle.width = duration * 100; // Aggiusta il moltiplicatore a piacere
 
     // Gestisce il ciclo continuo: se `timeBarX` torna a zero, reimposta `x` del rettangolo a 0
     if (canvasReset) {
-        rectangle.x = 0;  // Riporta la posizione x all'inizio del canvas
-        canvasReset = false;  // Resetta la variabile
+        rectangle.x = 0; // Riporta la posizione x all'inizio del canvas
+        canvasReset = false; // Resetta la variabile
     }
 
-
     // Pulisci e ridisegna il pentagramma per aggiornare la posizione in tempo reale
-    clearStaff();
-    drawTimeBar();  // Se il metronomo è attivo, ridisegna la barra del tempo
-    redrawNotes();  // Ridisegna tutte le note fisse
+    clearStaff(); // Cancella il canvas
+    redrawNotes(); // Ridisegna tutte le note fisse
 
     // Disegna tutti i rettangoli attivi
     for (let key in activeRectangles) {
         drawActiveRectangle(activeRectangles[key]);
     }
 
+    // Ridisegna i numeri sopra i rettangoli
+    drawAllNumbers();
+
     // Continua ad aggiornare finché il tasto è premuto
     requestAnimationFrame(() => updateRectangle(dataKey));
 }
+
 
 // Ridisegna tutte le note fissate già suonate
 function redrawNotes() {
@@ -837,6 +878,7 @@ function clearAllNotes() {
     playedNotes = [];  // Svuota l'array delle note suonate
     ctx.clearRect(0, 0, canvas.width, canvas.height);  // Pulisce il canvas
     drawReferenceBars();  // Ridisegna le barre di riferimento statiche
+    activeNumbersWithPositions = []; // Svuota anche i numeri
 
 }
 
@@ -943,6 +985,7 @@ function animateTimeBar() {
 
     clearStaff();  // Pulisce il pentagramma
     drawTimeBar();  // Ridisegna la barra del tempo
+    
 
     // Calcolo del tempo reale
     const currentTime = performance.now();
@@ -968,7 +1011,7 @@ function animateTimeBar() {
         canvasReset = false;  // Imposta il flag per segnalare il reset del canvas
     }
 
-
+    drawAllNumbers(); // Ridisegna i numeri sincronizzati
     requestAnimationFrame(animateTimeBar);  // Continua l'animazione
 }
 
@@ -1419,5 +1462,43 @@ document.getElementById('download-audio').addEventListener('click', () => {
     console.log('Scaricamento dell\'audio mixato');
     // Implementazione della logica per il mixaggio e download
 });
+
+
+
+
+
+
+
+
+///--------------------------------------------------------------NUMBERS ON CANVAS--------------------------------------------------
+
+let activeNumbersWithPositions = []; // Array di numeri con posizioni { number, x }
+let activeNumbers = []; // Array per i numeri attivi nel canvas
+const maxNumbersOnCanvas = 9; // Numero massimo di numeri nel canvas
+let numberColors = {}; // Mappa per tracciare i colori dei numeri
+const defaultColor = "black"; // Colore di default
+
+
+// Funzione per ottenere la posizione verticale di un numero nel canvas
+function getYPositionForNumber(number) {
+    const canvasHeight = canvas.height;
+    const step = canvasHeight / maxNumbersOnCanvas;
+    return canvasHeight - step * number + step / 2; // Calcola posizione basata su canvas
+}
+
+function drawNumberOnCanvas(number, x) {
+    const y = getYPositionForNumber(number); // Ottieni la posizione verticale
+    const color = metronomePlaying ? "black" : (numberColors[number] || defaultColor); // Nero se il metronomo è attivo
+    ctx.fillStyle = color;
+    ctx.font = "16px Arial";
+    ctx.fillText(number, x + 10, y); // Disegna il numero al canvas
+}
+
+
+function drawAllNumbers() {
+    [...activeNumbersWithPositions].forEach(({ number, x }) => {
+        drawNumberOnCanvas(number, x);
+    });
+}
 
 
