@@ -1187,36 +1187,68 @@ function saveToTrackCanvas(trackIndex) {
     // Cancella il canvas secondario
     trackCtx.clearRect(0, 0, trackCanvas.width, trackCanvas.height);
 
-    // Se non ci sono dati in playedNotes, avvisa e non proseguire
     if (playedNotes.length === 0) {
-        console.warn('Nessuna nota da salvare.');
+        console.warn("Nessuna nota da salvare.");
         return;
     }
 
     const staffDuration = numberOfBars * beatsPerBar * (60000 / bpm); // Durata complessiva dello spartito
 
-    // Calcola il tempo di inizio basato sulla posizione x
-    const updatedAudioData = playedNotes.map((note) => {
-        const startTime = (note.x / staffLength) * staffDuration; // Calcola il tempo in base alla posizione
-        return {
+    const serializedData = [];
+    let lastEndTime = 0; // Tiene traccia del tempo di fine della nota precedente
+
+    playedNotes.forEach((note) => {
+        const startTime = (note.x / staffLength) * staffDuration;
+        const duration = (note.width / staffLength) * staffDuration;
+
+        // Se c'è una pausa prima della nota corrente
+        if (startTime > lastEndTime) {
+            serializedData.push({
+                type: "pause",
+                startTime: lastEndTime,
+                duration: startTime - lastEndTime,
+            });
+        }
+
+        // Aggiungi la nota
+        serializedData.push({
+            type: "note",
             note: note.note,
             startTime: startTime,
-            duration: note.duration || 500, // Default duration se mancante
-            x: note.x,
-            y: note.y,
-            width: note.width,
-            height: note.height,
+            duration: duration,
             color: note.color,
-        };
+        });
+
+        // Aggiorna il tempo di fine
+        lastEndTime = startTime + duration;
     });
 
-    tracks[trackIndex].audioData = updatedAudioData;
+    // Salva i dati nella traccia
+    tracks[trackIndex].audioData = serializedData;
 
-    console.log(`Dati salvati nella traccia ${trackIndex + 1}:`, tracks[trackIndex].audioData);
+    console.log(`Traccia ${trackIndex + 1} salvata:`, serializedData);
 
-    // Disegna le note sul canvas secondario
-    drawTrackCanvas(trackIndex);
+    // Disegna sul canvas secondario
+    serializedData.forEach((item) => {
+        if (item.type === "note") {
+            const x = (item.startTime / staffDuration) * trackCanvas.width;
+            const width = (item.duration / staffDuration) * trackCanvas.width;
+
+            trackCtx.fillStyle = item.color || 'black';
+            trackCtx.fillRect(x, 10, width, 30); // Disegna rettangolo
+            trackCtx.fillStyle = 'black';
+            trackCtx.fillText(item.note, x + 5, 25); // Nome della nota
+        } else if (item.type === "pause") {
+            const x = (item.startTime / staffDuration) * trackCanvas.width;
+            const width = (item.duration / staffDuration) * trackCanvas.width;
+
+            // Disegna la pausa (es. rettangolo trasparente o linea)
+            trackCtx.fillStyle = 'rgba(0, 0, 0, 0.1)'; // Grigio trasparente per la pausa
+            trackCtx.fillRect(x, 10, width, 30);
+        }
+    });
 }
+
 
 
 
@@ -1254,40 +1286,51 @@ function drawTrackCanvas(trackIndex) {
 
 
 function playTrack(trackIndex) {
-    const track = tracks[trackIndex];
+    let notesToPlay;
+    let source;
 
-    if (!track.audioData.length) {
-        console.log(`Traccia ${trackIndex + 1} vuota!`);
+    // Controlla se la traccia salvata ha dati
+    if (tracks[trackIndex]?.audioData.length > 0) {
+        notesToPlay = tracks[trackIndex].audioData; // Riproduce dalla traccia salvata
+        source = `Traccia ${trackIndex + 1} (canvas secondario)`;
+    } else if (playedNotes.length > 0) {
+        notesToPlay = playedNotes; // Riproduce direttamente dal canvas primario
+        source = "Canvas principale (non salvato)";
+    } else {
+        console.warn(`Nessuna nota da riprodurre su Traccia ${trackIndex + 1}.`);
         return;
     }
 
-    console.log(`Inizio riproduzione traccia ${trackIndex + 1}`);
-    console.log('Dati traccia:', track.audioData);
+    console.log(`Riproduzione da ${source}.`, notesToPlay);
 
-    // Calcola il tempo globale di inizio (compreso il ritardo iniziale della prima nota)
-    const globalStartTime = performance.now() - track.audioData[0].startTime;
+    const globalStartTime = performance.now();
 
-    track.audioData.forEach((noteEvent, index) => {
-        // Calcola il tempo assoluto per ciascuna nota
-        const absoluteStartTime = globalStartTime + noteEvent.startTime;
+    notesToPlay.forEach((item) => {
+        const startTime = globalStartTime + (item.startTime || (item.x / staffLength) * (60000 / bpm)) - performance.now();
+        const duration = item.duration || (item.width / staffLength) * (60000 / bpm);
 
-        console.log(
-            `Nota ${index + 1}: ${noteEvent.note}, startTime assoluto: ${absoluteStartTime}, durata: ${noteEvent.duration}`
-        );
-
-        // Pianifica la riproduzione della nota
-        setTimeout(() => {
-            console.log(`Riproduzione nota ${noteEvent.note}`);
-            playNote(noteEvent.note);
-
-            // Pianifica lo stop della nota
+        if (item.type === "note" || !item.type) {
+            // Pianifica la riproduzione della nota
             setTimeout(() => {
-                console.log(`Stop nota ${noteEvent.note}`);
-                stopNote(noteEvent.note);
-            }, noteEvent.duration);
-        }, absoluteStartTime - performance.now());
+                console.log(`Riproduzione nota ${item.note}`);
+                playNote(item.note);
+
+                // Pianifica lo stop della nota
+                setTimeout(() => {
+                    console.log(`Stop nota ${item.note}`);
+                    stopNote(item.note);
+                }, duration);
+            }, startTime);
+        } else if (item.type === "pause") {
+            // Log per la pausa
+            setTimeout(() => {
+                console.log(`Pausa di ${item.duration} ms`);
+            }, startTime);
+        }
     });
 }
+
+
 
 
 
@@ -1343,7 +1386,7 @@ document.querySelectorAll('.save-to-track-btn').forEach((btn) => {
 
 document.querySelectorAll('.play-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
-        const trackIndex = parseInt(btn.dataset.track) - 1;
+        const trackIndex = parseInt(btn.dataset.track, 10) - 1; // Usa btn invece di button
         playTrack(trackIndex); // Riproduce la traccia
         console.log(`Riproduzione traccia ${trackIndex + 1}`);
     });
