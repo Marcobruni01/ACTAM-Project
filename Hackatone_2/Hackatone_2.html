@@ -1,1 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billie Jean Replica</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.36/Tone.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            margin-top: 20px;
+        }
+
+        #controls {
+            margin-top: 50px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Replicating "Billie Jean" with Tone.js</h1>
+    <div id="controls">
+        <button id="start">Play "Billie Jean"</button>
+    </div>
+
+    <script>
+        document.getElementById('start').addEventListener('click', async () => {
+            // Avvia l'audio context di Tone.js
+            await Tone.start();
+            console.log('Audio Context Started');
+
+            // **Kick Drum**
+            const kick = new Tone.MembraneSynth().toDestination();
+            const kickPart = new Tone.Loop(time => {
+                kick.triggerAttackRelease('C2', '8n', time);
+            }, '2n').start(0);
+
+            // **Snare Drum**
+            const snare = new Tone.NoiseSynth({
+                noise: { type: 'white' },
+                envelope: { attack: 0.001, decay: 0.2, sustain: 0 }
+            }).toDestination();
+            const snarePart = new Tone.Loop(time => {
+                snare.triggerAttackRelease('16n', time + 0.5);
+            }, '2n').start(0);
+
+            // **Hi-Hat**
+            const hiHat = new Tone.MetalSynth({
+                frequency: 200,
+                envelope: { attack: 0.001, decay: 0.1, release: 0.8 },
+                harmonicity: 5.1,
+                modulationIndex: 32
+            }).toDestination();
+            const hiHatPart = new Tone.Loop(time => {
+                hiHat.triggerAttackRelease('16n', time);
+            }, '4n').start(0);
+
+            // **Bassline**
+            const bass = new Tone.Synth({
+                oscillator: { type: 'square' },
+                envelope: { attack: 0.05, decay: 0.2, sustain: 0.3, release: 1.5 }
+            }).toDestination();
+            const bassPart = new Tone.Sequence(
+                (time, note) => {
+                    bass.triggerAttackRelease(note, '8n', time);
+                },
+                ['E1', 'E1', 'G1', 'A1', 'E1', 'E1', 'G1', 'A1'],
+                '8n'
+            ).start(0);
+
+            // Avvia il trasporto
+            Tone.Transport.start();
+        });
+    </script>
+</body>
+</html>
 
