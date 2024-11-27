@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pjanoo Recreation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #121212;
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 20px;
+      cursor: pointer;
+      background-color: #1db954;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #1ed760;
+    }
+
+    h1 {
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Pjanoo Recreation</h1>
+  <button id="start">Play Full Track</button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.45/Tone.min.js"></script>
+  <script>
+    const startButton = document.getElementById('start');
+
+    // Global BPM
+Tone.Transport.bpm.value = 128;
+
+// ---- 1. SECTIONS ----
+function createIntro() {
+  const kick = new Tone.MembraneSynth().toDestination();
+  const hiHat = new Tone.NoiseSynth({
+    noise: { type: "white" },
+    envelope: { attack: 0.01, decay: 0.1, sustain: 0 }
+  }).toDestination();
+
+  // Kick part
+  const kickPart = new Tone.Part((time) => {
+    kick.triggerAttackRelease("C2", "8n", time);
+  }, [...Array(64).keys()].map(i => [i * 0.5])); // 8th notes (0.5s per note)
+
+  // HiHat part
+  const hiHatPart = new Tone.Part((time) => {
+    hiHat.triggerAttackRelease("16n", time + 0.25);
+  }, [...Array(128).keys()].map(i => [i * 0.25])); // 16th notes (0.25s per note)
+
+  kickPart.start(0); // Start at 0s
+  hiHatPart.start(0); // Start at 0s
+}
+
+
+function createArpeggiator() {
+  const arpeggiator = new Tone.Synth({
+    oscillator: { type: "triangle" },
+    envelope: { attack: 0.01, decay: 0.1, sustain: 0.8, release: 0.1 },
+  }).toDestination();
+
+  const arpeggioSequence = [
+    "D4", "F4", "D4", "C4", "F4", "C4", "D4", "G4", "C4",
+    "D4", "F4", "C4", "D4", "F4", "C4",
+    "D4", "F4", "C4", "D4", "F4", "C4",
+    "D4", "G4", "C4", "D4", "F4", "C4", "D4", "G4", "C4", "D4", "G4"
+  ];
+
+  const arpeggiatorPart = new Tone.Part((time, note) => {
+    arpeggiator.triggerAttackRelease(note, "16n", time);
+  }, arpeggioSequence.map((note, i) => [i * 0.125, note])); // Each note is 0.125s apart
+
+  // Imposta il loop
+  arpeggiatorPart.loop = 4; // Ripeti 2 volte
+
+  arpeggiatorPart.start(4); // Start at 16 seconds
+}
+
+
+function createChords() {
+  const synth = new Tone.PolySynth(Tone.Synth, {
+    oscillator: { type: "sawtooth" },
+    envelope: { attack: 0.01, decay: 0.2, sustain: 0.15, release: 0.5 },
+  }).toDestination();
+
+  const chordSequence = [
+  // Primo accordo: D G Bb (semicrome, ripetuto 2 volte)
+  { time: 0, chord: ["D4", "G4", "Bb4"], duration: "16n" },
+  { time: "0:0:2", chord: ["D4", "G4", "Bb4"], duration: "16n" }, // "0:0:2" è il tempo per la seconda semicroma
+
+  // Secondo accordo: D F A (semicrome, ripetuto 2 volte)
+  { time: "0:1", chord: ["D4", "F4", "A4"], duration: "16n" },
+  { time: "0:1:2", chord: ["D4", "F4", "A4"], duration: "16n" }, // Successiva semicroma
+
+  // Terzo accordo: A# D G (crome, ripetuto 2 volte)
+  { time: "0:2", chord: ["A#3", "D4", "G4"], duration: "12n" },
+  { time: "0:3", chord: ["A#3", "D4", "G4"], duration: "6n" }, // Seconda croma
+];
+
+  const chordPart = new Tone.Part((time, value) => {
+    synth.triggerAttackRelease(value.chord, value.duration, time);
+  }, chordSequence);
+
+  chordPart.loop = 4; // Ripeti 2 volte
+  chordPart.start(16); // Start at the beginning
+}
+
+
+function createBass() {
+  const bass = new Tone.Synth({
+    oscillator: { type: "square" },
+    envelope: { attack: 0.05, decay: 0.2, sustain: 0.4, release: 0.1 },
+  }).toDestination();
+
+  const bassSequence = [
+    { time: 0, note: "A#2", duration: "4n" }, // Sib (A#)
+    { time: "0:1", note: "A#2", duration: "4n" }, // Sib (A#)
+
+    { time: "0:2", note: "A2", duration: "4n" }, // La (A)
+    { time: "0:3", note: "A2", duration: "4n" }, // La (A)
+
+    { time: "1:0", note: "G2", duration: "4n" }, // Sol (G)
+    { time: "1:1", note: "G2", duration: "4n" }, // Sol (G)
+  ];
+
+  const bassPart = new Tone.Part((time, value) => {
+    bass.triggerAttackRelease(value.note, value.duration, time);
+  }, bassSequence);
+
+  bassPart.loop = 4; // Loop infinito
+  
+  bassPart.start(16); // Parte subito
+}
+
+
+
+// ---- 2. MASTER FUNCTION ----
+function playSong() {
+  Tone.Transport.stop(); // Reset the transport
+  Tone.Transport.cancel(); // Clear previous events
+
+  // Call section functions
+  createIntro();
+  createArpeggiator();
+  createChords();
+  createBass(); 
+
+  // Start the transport
+  Tone.Transport.start();
+}
+
+// ---- 3. PLAY BUTTON ----
+document.getElementById("start").addEventListener("click", async () => {
+  await Tone.start(); // Unlock audio context
+  playSong(); // Start the song
+});
+
+  </script>
+</body>
+</html>
