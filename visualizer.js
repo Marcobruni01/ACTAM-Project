@@ -19,6 +19,9 @@ const audioSourcesMap = new Map();
 // Mappa per tracciare i tasti attivi
 const activeKeys = new Set();
 
+// Variabile per la dissolvenza
+let fading = false;
+
 // Funzione di inizializzazione del visualizzatore per una nota
 function initVisualizerForNote(audioElement) {
     console.log("Inizializzazione visualizzatore per la nota", audioElement);
@@ -60,6 +63,7 @@ function initVisualizerForNote(audioElement) {
         animationId = null;
     }
 
+    fading = false; // Resetta la dissolvenza
     animate();
 }
 
@@ -67,7 +71,19 @@ function initVisualizerForNote(audioElement) {
 function animate() {
     visualizerCtx.clearRect(0, 0, visualizerCanvas.width, visualizerCanvas.height);
 
-    analyser.getByteFrequencyData(dataArray);
+    if (activeKeys.size > 0) {
+        analyser.getByteFrequencyData(dataArray);
+    } else if (fading) {
+        // Fase di dissolvenza: riduci gradualmente i valori di dataArray
+        dataArray = dataArray.map(value => Math.max(0, value - 2)); // Riduci il valore gradualmente
+        if (dataArray.every(value => value === 0)) {
+            fading = false; // Termina la dissolvenza
+            cancelAnimationFrame(animationId);
+            animationId = null;
+            return;
+        }
+    }
+
     drawVisualizer(bufferLength, dataArray, visualizerBarWidth);
 
     animationId = requestAnimationFrame(animate);
@@ -92,7 +108,6 @@ function drawVisualizer(bufferLength, dataArray, visualizerBarWidth) {
     }
 }
 
-
 // Rileva la pressione di un tasto e attiva l'animazione
 document.addEventListener('keydown', (event) => {
     const key = event.key;
@@ -114,21 +129,16 @@ document.addEventListener('keydown', (event) => {
     }
 });
 
-// Rilascia il tasto e ferma l'animazione se necessario
+// Rilascia il tasto e attiva la dissolvenza
 document.addEventListener('keyup', (event) => {
     const key = event.key;
 
     if (activeKeys.has(key)) {
         activeKeys.delete(key); // Rimuovi il tasto dalla lista dei tasti attivi
     }
+
+    // Se non ci sono più tasti attivi, avvia la dissolvenza
+    if (activeKeys.size === 0 && !fading) {
+        fading = true;
+    }
 });
-
-// Interrompi l'animazione e il suono se l'audio termina
-document.querySelectorAll('audio').forEach(audioElement => {
-    audioElement.addEventListener('ended', () => {
-        cancelAnimationFrame(animationId);
-        animationId = null;
-    });
-});
-
-
