@@ -74,9 +74,11 @@ function animate() {
 }
 
 function drawVisualizer(bufferLength, dataArray, visualizerBarWidth) {
+    let maxBarHeight = Math.min(visualizerCanvas.width, visualizerCanvas.height) / 2 - 10; // Massima altezza delle barre
     let x = 0;
+
     for (let i = 0; i < bufferLength; i++) {
-        let barHeight = dataArray[i] * 1.5;
+        let barHeight = Math.min(dataArray[i] * 1.3, maxBarHeight); // Limita l'altezza della barra
         visualizerCtx.save();
         visualizerCtx.translate(visualizerCanvas.width / 2, visualizerCanvas.height / 2);
         visualizerCtx.rotate(i * Math.PI * 10 / bufferLength);
@@ -84,11 +86,12 @@ function drawVisualizer(bufferLength, dataArray, visualizerBarWidth) {
         const hue = i * 0.3;
         visualizerCtx.fillStyle = `hsl(${hue}, 100%, ${barHeight / 3}%)`;
 
-        visualizerCtx.fillRect(0, 0, visualizerBarWidth, barHeight);
+        visualizerCtx.fillRect(0, -barHeight, visualizerBarWidth, barHeight); // Disegna verso l'esterno
         visualizerCtx.restore();
         x += visualizerBarWidth;
     }
 }
+
 
 // Rileva la pressione di un tasto e attiva l'animazione
 document.addEventListener('keydown', (event) => {
@@ -127,3 +130,5 @@ document.querySelectorAll('audio').forEach(audioElement => {
         animationId = null;
     });
 });
+
+

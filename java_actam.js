@@ -9,7 +9,7 @@ const soundSets = {
     4: 'keyboard/timbro4'
 };
 
-const keyMapOctave1 = {
+window.keyMapOctave1 = {
     'A': 'C3',      // Do
     'W': 'Csharp3', // Do diesis
     'S': 'D3',      // Re
@@ -30,7 +30,7 @@ const keyMapOctave1 = {
     'À': 'F4'       // Fa (ottava superiore)
 };
 
-const keyMapOctave2 = {
+window.keyMapOctave2 = {
     'A': 'C4',      // Do
     'W': 'Csharp4', // Do diesis
     'S': 'D4',      // Re

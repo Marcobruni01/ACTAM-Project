@@ -767,4 +767,9 @@ select:focus {
     display: block;
     margin: auto;
     background-color: black;
+    width: 24%; /* Rendi il canvas più stretto */
+    height: 200px; /* Altezza ridotta */
+    position: absolute; /* Posizione assoluta per spostarlo */
+    top: 2%; /* Sposta verso l'alto */
+    right: 27.8%; /* Sposta leggermente a destra */
 }
