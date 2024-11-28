@@ -430,68 +430,67 @@ function stopNote(note) {
 }
 
 
+// Funzione per attivare una nota (sia da tastiera che da mouse)
+function activateNote(note, source, startTime = performance.now()) {
+    if (!note || pressedKeys[note]) return;
 
-document.addEventListener('keydown', function(event) {
-    console.log(`Tasto premuto: ${event.key}, Codice: ${event.code}`);
-    const dataKey = event.key.toUpperCase();
-    const note = keyMap[dataKey];
-    
-    // Verifica se la nota esiste e il tasto non è già premuto
-    if (note && !pressedKeys[dataKey]) {
-        playNote(note); // Riproduci il suono della nota
-        highlightKey(note); // Evidenzia il tasto
-        pressedKeys[dataKey] = true;
+    playNote(note); // Riproduci il suono della nota
+    highlightKey(note); // Evidenzia il tasto
+    pressedKeys[note] = true;
 
-        // Registra il tempo di inizio della pressione
-        const startTime = performance.now();
-        console.log(`StartTime registrato per la nota ${note}: ${startTime}`); // Log per debug
+    console.log(`Nota attivata da ${source}: ${note}`);
 
-        // Inizializza il rettangolo per la nota attiva
-        activeRectangles[dataKey] = {
+    // Inizializza il rettangolo per la nota attiva
+    activeRectangles[note] = {
+        note: note,
+        x: timeBarX,  // Posizione iniziale basata su timeBarX
+        y: getYPositionForNote(note), // Calcola la posizione verticale
+        width: 0,  // Partiamo con larghezza 0
+        startTime: startTime
+    };
+
+    // Disegna i rettangoli attivi sul canvas
+    for (let key in activeRectangles) {
+        drawActiveRectangle(activeRectangles[key]);
+    }
+
+    // Se una traccia è in registrazione, registra l'evento
+    if (activeTrackIndex !== -1 && tracks[activeTrackIndex].isRecording) {
+        const noteData = {
             note: note,
-            x: timeBarX,  // Posizione iniziale basata su timeBarX
-            y: getYPositionForNote(note), // Calcola la posizione verticale
-            width: 0,  // Partiamo con larghezza 0
-            startTime: startTime
+            startTime: startTime,
+            duration: null // Durata sarà calcolata al rilascio del tasto
         };
 
-        // Se una traccia è in registrazione, registra l'evento
-        if (activeTrackIndex !== -1 && tracks[activeTrackIndex].isRecording) {
-            const noteData = {
-                note: note,
-                startTime: startTime || performance.now(), // Assicurati che startTime non sia mai undefined
-                duration: null // Durata sarà calcolata al rilascio del tasto
-            };
-            
-            // Salva la nota nella traccia attiva
-            tracks[activeTrackIndex].audioData.push(noteData);
-            console.log(`Registrata nota ${note} sulla traccia ${activeTrackIndex + 1}`, noteData);
-        }
+        // Salva la nota nella traccia attiva
+        tracks[activeTrackIndex].audioData.push(noteData);
+        console.log(`Registrata nota ${note} sulla traccia ${activeTrackIndex + 1}`, noteData);
+    }
 
-        // Disegna i rettangoli attivi sul canvas
-        for (let key in activeRectangles) {
-            drawActiveRectangle(activeRectangles[key]);
-        }
+    // Inizia ad aggiornare il rettangolo
+    requestAnimationFrame(() => updateRectangle(note));
+}
 
-        // Disegna il rettangolo immediatamente e inizia ad aggiornarlo
-        requestAnimationFrame(() => updateRectangle(dataKey));
+// Gestione pressione tasti da tastiera
+document.addEventListener('keydown', function(event) {
+    const dataKey = event.key.toUpperCase();
+    const note = keyMap[dataKey];
+    if (note) {
+        activateNote(note, "tastiera");
     }
 });
 
-
-
-// Gestione rilascio del tasto
+// Gestione rilascio tasti da tastiera
 document.addEventListener('keyup', function(event) {
     const dataKey = event.key.toUpperCase();
     const note = keyMap[dataKey];
-    
     if (note) {
         unhighlightKey(note);
         stopNote(note);
-        pressedKeys[dataKey] = false;
+        pressedKeys[note] = false;
 
         // Fissa la larghezza finale e aggiungi il rettangolo a `playedNotes`
-        const rectangle = activeRectangles[dataKey];
+        const rectangle = activeRectangles[note];
         if (rectangle) {
             playedNotes.push({
                 note: rectangle.note,
@@ -506,9 +505,8 @@ document.addEventListener('keyup', function(event) {
             drawFixedNoteOnStaff(rectangle.note, rectangle.x, rectangle.y, rectangle.width, 10, noteColors[rectangle.note] || "black");
 
             // Rimuovi il rettangolo dall’oggetto `activeRectangles`
-            delete activeRectangles[dataKey];
+            delete activeRectangles[note];
         }
-
 
         // Aggiorna la durata della nota nella traccia attiva (se presente)
         if (activeTrackIndex !== -1 && tracks[activeTrackIndex].isRecording) {
@@ -526,30 +524,74 @@ document.addEventListener('keyup', function(event) {
 const keys = document.querySelectorAll('.tasto, .tasto-nero'); // Seleziona sia i tasti bianchi che quelli neri
 keys.forEach(key => {
     key.addEventListener('mousedown', function(event) {
-
         event.stopPropagation(); // Evita che il clic passi al canvas
         const note = this.getAttribute('data-note');
-        if (!pressedKeys[note]) {
-            playNote(note);
-            highlightKey(note);
-            pressedKeys[note] = true; // Segna il tasto come premuto
-            // Disegna la nota sul pentagramma in tempo reale con colore e etichetta
-            drawNoteOnStaff(note, 1);  // Passiamo 1 come durata fissa per il momento (da migliorare)
+        if (note) {
+            activateNote(note, "mouse");
         }
     });
 
     key.addEventListener('mouseup', function() {
         const note = this.getAttribute('data-note');
-        unhighlightKey(note);
-        stopNote(note);  // Ferma il suono della nota al rilascio del clic
-        pressedKeys[note] = false; // Segna il tasto come non premuto
+        if (note) {
+            unhighlightKey(note);
+            stopNote(note);
+            pressedKeys[note] = false;
+
+            // Fissa la larghezza finale e aggiungi il rettangolo a `playedNotes`
+            const rectangle = activeRectangles[note];
+            if (rectangle) {
+                playedNotes.push({
+                    note: rectangle.note,
+                    x: rectangle.x,
+                    y: rectangle.y,
+                    width: rectangle.width,
+                    height: 10,
+                    color: noteColors[rectangle.note] || "black"
+                });
+
+                // Disegna la nota fissata
+                drawFixedNoteOnStaff(rectangle.note, rectangle.x, rectangle.y, rectangle.width, 10, noteColors[rectangle.note] || "black");
+
+                // Rimuovi il rettangolo dall’oggetto `activeRectangles`
+                delete activeRectangles[note];
+            }
+
+            // Aggiorna la durata della nota nella traccia attiva (se presente)
+            if (activeTrackIndex !== -1 && tracks[activeTrackIndex].isRecording) {
+                const track = tracks[activeTrackIndex];
+                const noteEvent = track.audioData.find((n) => n.note === note && n.duration === null);
+                if (noteEvent) {
+                    noteEvent.duration = performance.now() - noteEvent.startTime;
+                    console.log(`Rilasciata nota ${note}, durata: ${noteEvent.duration}ms sulla traccia ${activeTrackIndex + 1}`);
+                }
+            }
+        }
     });
 
     key.addEventListener('mouseleave', function() {
         const note = this.getAttribute('data-note');
-        unhighlightKey(note);
-        stopNote(note);  // Ferma il suono della nota se il mouse esce dal tasto
-        pressedKeys[note] = false; // Segna il tasto come non premuto
+        if (note) {
+            unhighlightKey(note);
+            stopNote(note);
+            pressedKeys[note] = false;
+
+            // Se il mouse esce dal tasto, chiudiamo il rettangolo attivo
+            const rectangle = activeRectangles[note];
+            if (rectangle) {
+                playedNotes.push({
+                    note: rectangle.note,
+                    x: rectangle.x,
+                    y: rectangle.y,
+                    width: rectangle.width,
+                    height: 10,
+                    color: noteColors[rectangle.note] || "black"
+                });
+
+                drawFixedNoteOnStaff(rectangle.note, rectangle.x, rectangle.y, rectangle.width, 10, noteColors[rectangle.note] || "black");
+                delete activeRectangles[note];
+            }
+        }
     });
 });
 
