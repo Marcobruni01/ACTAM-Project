@@ -54,9 +54,35 @@
         <div class="tasto-container">
             <div data-note="F4" class="tasto" data-key="À"></div>
         </div>
+    
+     <!-- Elementi audio per ciascuna nota -->
+     <audio id="note-a" src="sounds/keyboard/timbro1/C3.mp3"></audio>
+     <audio id="note-A-c4" src="sounds/keyboard/timbro1/C4.mp3"></audio>
+
+     <audio id="note-w" src="sounds/keyboard/timbro1/Csharp3.mp3"></audio>
+     <audio id="note-s" src="sounds/keyboard/timbro1/D3.mp3"></audio>
+     <audio id="note-e" src="sounds/keyboard/timbro1/Dsharp3.mp3"></audio>
+     <audio id="note-d" src="sounds/keyboard/timbro1/E3.mp3"></audio>
+     <audio id="note-f" src="sounds/keyboard/timbro1/F3.mp3"></audio>
+     <audio id="note-t" src="sounds/keyboard/timbro1/Fsharp3.mp3"></audio>
+     <audio id="note-g" src="sounds/keyboard/timbro1/G3.mp3"></audio>
+     <audio id="note-y" src="sounds/keyboard/timbro1/Gsharp3.mp3"></audio>
+     <audio id="note-h" src="sounds/keyboard/timbro1/A3.mp3"></audio>
+     <audio id="note-u" src="sounds/keyboard/timbro1/Asharp3.mp3"></audio>
+     <audio id="note-j" src="sounds/keyboard/timbro1/B3.mp3"></audio>
+     <audio id="note-k" src="sounds/keyboard/timbro1/C4.mp3"></audio>
+     <audio id="note-o" src="sounds/keyboard/timbro1/Csharp4.mp3"></audio>
+     <audio id="note-l" src="sounds/keyboard/timbro1/D4.mp3"></audio>
+     <audio id="note-p" src="sounds/keyboard/timbro1/Dsharp4.mp3"></audio>
+     <audio id="note-ò" src="sounds/keyboard/timbro1/E4.mp3"></audio>
+     <audio id="note-à" src="sounds/keyboard/timbro1/F4.mp3"></audio> 
     </div>
     
-    
+    <!-- Canvas per il visualizzatore audio -->
+    <canvas id="canvas1" width="800" height="300"></canvas>
+
+
+
     <!--PAD-->
     <div class="pad-container">
         <div class="pad" data-sound="1" data-key="49">1</div>
@@ -224,7 +250,8 @@
     
 </div>
 <div></div>
-
+    
     <script src="java_actam.js"></script>
+    <script src="visualizer.js"></script>
 </body>
 </html>

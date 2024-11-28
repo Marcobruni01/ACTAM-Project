@@ -760,3 +760,11 @@ select:focus {
         flex-wrap: wrap; /* Permette il wrapping su schermi stretti */
     }
 }
+
+
+/* Stili per il visualizzatore audio */
+#canvas1 {
+    display: block;
+    margin: auto;
+    background-color: black;
+}
