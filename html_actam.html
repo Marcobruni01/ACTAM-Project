@@ -9,6 +9,28 @@
 </head>
 <body>
 
+   
+   
+   
+    <select id="ambienteSelect" onchange="cambiaAmbiente()">
+        <option value="">Seleziona un ambiente</option>
+      </select>
+      
+      <select id="setSuoniSelect" onchange="cambiaSetSuoni()" style="display: none;">
+        <option value="">Seleziona un set di suoni</option>
+      </select>
+      
+      <div id="suoniContainer"></div>
+      
+      <audio id="audioPlayer" controls>
+        <source src="" type="audio/wav">
+        Il tuo browser non supporta l'elemento audio.
+      </audio>
+      
+     
+      
+
+
 <div class="grid-container">
 
     <!--keyboard--></div>

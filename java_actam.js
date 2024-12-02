@@ -9,6 +9,76 @@ const soundSets = {
     4: 'keyboard/timbro4'
 };
 
+// Getting files for the different ambients
+let dati; // Variabile per salvare i dati JSON
+let ambienteCorrente;
+let setCorrente;
+
+fetch('Enviroments.json')
+  .then(response => response.json())
+  .then(data => {
+    dati = data;
+    popolaMenuAmbienti(data.ambienti);
+  })
+  .catch(error => console.error('Errore nel caricamento del JSON:', error));
+
+function popolaMenuAmbienti(ambienti) {
+  const ambienteSelect = document.getElementById('ambienteSelect');
+  ambienti.forEach(ambiente => {
+    const option = document.createElement('option');
+    option.value = ambiente.nome;
+    option.textContent = ambiente.nome;
+    ambienteSelect.appendChild(option);
+  });
+}
+
+function cambiaAmbiente() {
+  const ambienteSelect = document.getElementById('ambienteSelect');
+  const setSuoniSelect = document.getElementById('setSuoniSelect');
+  const suoniContainer = document.getElementById('suoniContainer');
+
+  suoniContainer.innerHTML = ''; // Reset
+  setSuoniSelect.style.display = 'none'; // Nascondi finché non c'è un ambiente selezionato
+
+  ambienteCorrente = dati.ambienti.find(a => a.nome === ambienteSelect.value);
+
+  if (ambienteCorrente) {
+    setSuoniSelect.innerHTML = '<option value="">Seleziona un set di suoni</option>';
+    ambienteCorrente.setSuoni.forEach(set => {
+      const option = document.createElement('option');
+      option.value = set.nome;
+      option.textContent = set.nome;
+      setSuoniSelect.appendChild(option);
+    });
+    setSuoniSelect.style.display = 'block'; // Mostra menu set di suoni
+  }
+}
+
+function cambiaSetSuoni() {
+  const setSuoniSelect = document.getElementById('setSuoniSelect');
+  const suoniContainer = document.getElementById('suoniContainer');
+
+  suoniContainer.innerHTML = ''; // Reset
+  setCorrente = ambienteCorrente.setSuoni.find(set => set.nome === setSuoniSelect.value);
+
+  if (setCorrente) {
+    Object.keys(setCorrente.suoni).forEach(chiave => {
+      const button = document.createElement('button');
+      button.textContent = chiave; // Nome del suono
+      button.onclick = () => cambiaSuono(setCorrente.suoni[chiave]);
+      suoniContainer.appendChild(button);
+    });
+  }
+}
+
+function cambiaSuono(url) {
+  const audioPlayer = document.getElementById('audioPlayer');
+  audioPlayer.src = url;
+  audioPlayer.play();
+}
+
+  
+
 window.keyMapOctave1 = {
     'A': 'C3',      // Do
     'W': 'Csharp3', // Do diesis
