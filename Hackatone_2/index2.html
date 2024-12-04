@@ -5,47 +5,98 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Interactive Music with Webcam</title>
   <style>
+    /* Stile generale */
     body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: #121212;
-      color: #ffffff;
-      margin: 0;
-      padding: 0;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  background-image: url('background.jpg'); /* Usa il nome del file */
+  background-size: cover; /* L'immagine copre l'intero sfondo */
+  background-repeat: no-repeat; /* Evita che l'immagine si ripeta */
+  background-attachment: fixed; /* L'immagine resta fissa durante lo scroll */
+  background-position: center center; /* Centra l'immagine */
+  color: #ffffff; /* Mantieni il testo leggibile */
+}
+
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+      letter-spacing: 2px;
     }
 
+    /* Video Styling */
     video {
       position: absolute;
-      top: 10px;
-      left: 10px;
+      top: 20px;
+      left: 20px;
       width: 200px;
-      border: 2px solid white;
+      border: 3px solid rgba(255, 255, 255, 0.7);
+      border-radius: 10px;
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
       display: block;
     }
 
+    /* Pulsante */
     button {
-      padding: 10px 20px;
-      font-size: 16px;
-      margin: 20px;
-      cursor: pointer;
-      background-color: #1db954;
+      padding: 15px 40px;
+      font-size: 18px;
+      margin-top: 20px;
+      background: linear-gradient(45deg, #1db954, #1ed760);
       color: white;
       border: none;
-      border-radius: 5px;
+      border-radius: 50px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
 
     button:hover {
-      background-color: #1ed760;
+      background: linear-gradient(45deg, #1ed760, #1db954);
+      transform: scale(1.05);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
     }
 
-    h1 {
-      margin-top: 50px;
+    button:active {
+      transform: scale(0.95);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Contenitore */
+    .container {
+      text-align: center;
+      padding: 30px;
+      border-radius: 15px;
+      background: rgba(0, 0, 0, 0.5);
+      box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      button {
+        font-size: 16px;
+        padding: 10px 30px;
+      }
+
+      video {
+        width: 150px;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Interactive Music with Webcam</h1>
-  <button id="start">Play Full Track</button>
+  <div class="container">
+    <h1>Interactive Music with Webcam</h1>
+    <button id="start">Play Full Track</button>
+    <button id="stop">Stop</button>
+
+  </div>
   <video id="webcam" autoplay playsinline></video>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.45/Tone.min.js"></script>
@@ -55,9 +106,19 @@
   <script>
     const startButton = document.getElementById('start');
     const videoElement = document.getElementById('webcam');
+    const stopButton = document.getElementById('stop');
+
+
 
     let bpmValue = 126; // BPM iniziale
     let cutoffFreq = 500; // Frequenza iniziale del filtro passa-basso
+
+    stopButton.addEventListener("click", () => {
+  Tone.Transport.stop(); // Ferma il trasporto di Tone.js
+  Tone.Transport.cancel(); // Cancella eventuali eventi in coda
+  camera.stop(); // Ferma la webcam
+});
+
 
     // Configurazione di Tone.js
     const lowPassFilter = new Tone.Filter({
@@ -117,28 +178,27 @@
     }
 
     function createChords() {
-  const synth = new Tone.PolySynth(Tone.Synth, {
-    oscillator: { type: "triangle" },
-    envelope: { attack: 0.02, decay: 0.3, sustain: 0.3, release: 0.8 },
-  }).connect(masterGain);
+      const synth = new Tone.PolySynth(Tone.Synth, {
+        oscillator: { type: "triangle" },
+        envelope: { attack: 0.02, decay: 0.3, sustain: 0.3, release: 0.8 },
+      }).connect(masterGain);
 
-  const chordSequence = [
-    { time: "0:0", chord: ["D4", "G4", "Bb4"], duration: "16n" },
-    { time: "0:0:2", chord: ["D4", "G4", "Bb4"], duration: "16n" },
-    { time: "0:1", chord: ["D4", "F4", "A4"], duration: "16n" },
-    { time: "0:1:2", chord: ["D4", "F4", "A4"], duration: "16n" },
-    { time: "0:2", chord: ["A#3", "D4", "G4"], duration: "12n" },
-    { time: "0:3", chord: ["A#3", "D4", "G4"], duration: "6n" },
-  ];
+      const chordSequence = [
+        { time: "0:0", chord: ["D4", "G4", "Bb4"], duration: "16n" },
+        { time: "0:0:2", chord: ["D4", "G4", "Bb4"], duration: "16n" },
+        { time: "0:1", chord: ["D4", "F4", "A4"], duration: "16n" },
+        { time: "0:1:2", chord: ["D4", "F4", "A4"], duration: "16n" },
+        { time: "0:2", chord: ["A#3", "D4", "G4"], duration: "12n" },
+        { time: "0:3", chord: ["A#3", "D4", "G4"], duration: "6n" },
+      ];
 
-  const chordPart = new Tone.Part((time, value) => {
-    synth.triggerAttackRelease(value.chord, value.duration, time);
-  }, chordSequence);
+      const chordPart = new Tone.Part((time, value) => {
+        synth.triggerAttackRelease(value.chord, value.duration, time);
+      }, chordSequence);
 
-  chordPart.loop = true; // Accordi in loop
-  chordPart.start("8m"); // Inizia alla misura 8
-}
-
+      chordPart.loop = true; // Accordi in loop
+      chordPart.start("8m");
+    }
 
     function createBass() {
       const bass = new Tone.Synth({
