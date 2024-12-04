@@ -190,28 +190,28 @@ let chordPart; // Variabile globale per gli accordi
 let chordVolume; // Variabile globale per il volume degli accordi
 
 function createChords() {
-  chordVolume = new Tone.Volume(-Infinity).toDestination(); // Volume iniziale a -Infinity
-  const synth = new Tone.PolySynth(Tone.Synth, {
-    oscillator: { type: "triangle" },
-    envelope: { attack: 0.02, decay: 0.3, sustain: 0.3, release: 0.8 },
-  }).connect(chordVolume);
+    chordVolume = new Tone.Volume(-Infinity).toDestination(); // Volume iniziale a -Infinity
+    const synth = new Tone.PolySynth(Tone.Synth, {
+        oscillator: { type: "triangle" },
+        envelope: { attack: 0.02, decay: 0.3, sustain: 0.3, release: 0.8 },
+    }).connect(chordVolume);
 
-  const chordSequence = [
-    { time: "0:0", chord: ["D4", "G4", "Bb4"], duration: "16n" },
-    { time: "0:0:2", chord: ["D4", "G4", "Bb4"], duration: "16n" },
-    { time: "0:1", chord: ["D4", "F4", "A4"], duration: "16n" },
-    { time: "0:1:2", chord: ["D4", "F4", "A4"], duration: "16n" },
-    { time: "0:2", chord: ["A#3", "D4", "G4"], duration: "12n" },
-    { time: "0:3", chord: ["A#3", "D4", "G4"], duration: "6n" },
-  ];
+    const chordSequence = [
+        { time: "0:0", chord: ["D4", "G4", "Bb4"], duration: "16n" },
+        { time: "0:0:2", chord: ["D4", "G4", "Bb4"], duration: "16n" },
+        { time: "0:1", chord: ["D4", "F4", "A4"], duration: "16n" },
+        { time: "0:1:2", chord: ["D4", "F4", "A4"], duration: "16n" },
+        { time: "0:2", chord: ["A#3", "D4", "G4"], duration: "12n" },
+        { time: "0:3", chord: ["A#3", "D4", "G4"], duration: "6n" },
+    ];
 
-  chordPart = new Tone.Part((time, value) => {
-    synth.triggerAttackRelease(value.chord, value.duration, time);
-  }, chordSequence);
+    chordPart = new Tone.Part((time, value) => {
+        synth.triggerAttackRelease(value.chord, value.duration, time);
+    }, chordSequence);
 
-  chordPart.loop = true; // Accordi in loop
-  chordPart.mute = true; // Inizia muto
-  chordPart.start(0);
+    chordPart.loop = true; // Accordi in loop
+    chordPart.mute = true; // Inizia muto
+    chordPart.start(0);
 }
 
 
@@ -280,6 +280,32 @@ function createBass() {
   bassPart.start(0);
 }
 
+function createMainDropDrums() {
+    const fastKick = new Tone.MembraneSynth().connect(drumVolume);
+    const hiHat = new Tone.NoiseSynth({
+        noise: { type: "white" },
+        envelope: { attack: 0.01, decay: 0.1, sustain: 0 },
+    }).connect(drumVolume);
+
+    const fastKickPart = new Tone.Part((time) => {
+        fastKick.triggerAttackRelease("C2", "8n", time);
+    }, [
+        { time: "0:0" }, { time: "0:1" }, { time: "0:2" }, { time: "0:3" },
+        { time: "1:0" }, { time: "1:1" }, { time: "1:2" }, { time: "1:3" },
+    ]);
+
+    const hiHatPart = new Tone.Part((time) => {
+        hiHat.triggerAttackRelease("16n", time);
+    }, [
+        { time: "0:0:1" }, { time: "0:0:3" }, { time: "0:1:1" }, { time: "0:1:3" },
+    ]);
+
+    fastKickPart.loop = true;
+    hiHatPart.loop = true;
+
+    fastKickPart.start(0);
+    hiHatPart.start(0);
+}
 
 
     function getTimeInSeconds(measures) {
@@ -301,81 +327,92 @@ function createBass() {
   createBass();
 
   // Calcolo delle tempistiche
-  const introDuration = getTimeInSeconds(16); // Intro (16 misure = 1 minuto)
-  const mainBridgeStart = introDuration; // Main Bridge inizia alla fine dell'Intro
-  const breakdownStart = mainBridgeStart + getTimeInSeconds(8); // Breakdown inizia dopo 8 misure (30 secondi)
-  const buildUpStart = breakdownStart + getTimeInSeconds(14); // Build-up inizia dopo 14 misure (45 secondi)
-  const mainDropStart = buildUpStart + getTimeInSeconds(8); // Main Drop inizia dopo 8 misure (30 secondi)
-  const outroStart = mainDropStart + getTimeInSeconds(28); // Outro inizia dopo 28 misure (2 minuti)
+  const introDuration = getTimeInSeconds(16);
+  const mainBridgeStart = introDuration;
+  const breakdownStart = mainBridgeStart + getTimeInSeconds(8);
+  const buildUpStart = breakdownStart + getTimeInSeconds(14);
+  const mainDropStart = buildUpStart + getTimeInSeconds(8);
+  const outroStart = mainDropStart + getTimeInSeconds(32);
 
-  const fadeInDuration = 8; // Durata del fade-in in secondi
-  const fadeOutDuration = 10; // Durata del fade-out in secondi
+  const fadeInDuration = 8;
+  const fadeOutDuration = 10;
+  const mainDropBoostDuration = 16;
 
-  // **Intro (0:00-1:00): Minimalist beat**
+  // **Intro**
   Tone.Transport.scheduleOnce(() => {
     console.log("Starting Drums for Intro");
-    kickPart.mute = false; // Attiva la batteria
+    kickPart.mute = false;
     clapPart.mute = false;
   }, "0:0:0");
 
-  // **Main Bridge (1:00-1:30): Introduction of the piano riff**
+  // **Main Bridge**
   Tone.Transport.scheduleOnce(() => {
     console.log("Starting Arpeggiator for Main Bridge");
-    arpeggiatorPart.mute = false; // Attiva l'arpeggiator
-    arpeggioVolume.volume.value = -Infinity; // Partono silenziate
-    arpeggioVolume.volume.rampTo(0, fadeInDuration); // Fade-in per l'arpeggiator
+    arpeggiatorPart.mute = false;
+    arpeggioVolume.volume.value = -Infinity;
+    arpeggioVolume.volume.rampTo(0, fadeInDuration);
   }, mainBridgeStart - fadeInDuration);
 
-  // **Breakdown (1:30-2:15): Focus on piano, removal of drums**
+  // **Breakdown**
   Tone.Transport.scheduleOnce(() => {
     console.log("Starting Chords for Breakdown");
-    chordPart.mute = false; // Attiva gli accordi con fade-in
-    chordVolume.volume.value = -Infinity; // Partono silenziati
-    chordVolume.volume.rampTo(0, fadeInDuration); // Fade-in per gli accordi
+    chordPart.mute = false;
+    chordVolume.volume.value = -Infinity;
+    chordVolume.volume.rampTo(0, fadeInDuration);
   }, breakdownStart - fadeInDuration);
 
   Tone.Transport.scheduleOnce(() => {
     console.log("Stopping Drums for Breakdown");
-    kickPart.mute = true; // Disattiva la batteria
+    kickPart.mute = true;
     clapPart.mute = true;
   }, breakdownStart);
 
-  // **Build-up (2:15-2:45): Gradual return of rhythmic elements**
+  // **Build-up**
   Tone.Transport.scheduleOnce(() => {
     console.log("Starting Build-up");
-    kickPart.mute = false; // Riattiva la batteria
+    kickPart.mute = false;
     clapPart.mute = false;
-    bassPart.mute = false; // Riattiva il basso
+    bassPart.mute = false;
   }, buildUpStart);
 
-  // **Main Drop (2:45-4:15): Full energy with all elements**
+  // **Main Drop**
   Tone.Transport.scheduleOnce(() => {
-    console.log("Starting Main Drop");
-    arpeggiatorPart.mute = false; // Assicura che le notine siano attive
-    bassPart.mute = false; // Assicura che il basso sia attivo
-    chordPart.mute = false; // Assicura che gli accordi siano attivi
-  }, mainDropStart);
+    console.log("Starting Main Drop with Advanced Drums");
+    createMainDropDrums(); // Pattern spinto per il Main Drop
 
-  // **Outro (4:15-end): Gradual deconstruction**
+    // Boost significativo del volume degli accordi
+    chordVolume.volume.rampTo(0, 2); // Boost immediato a 0 dB
+    chordVolume.volume.rampTo(-2, mainDropBoostDuration - 2); // Graduale ritorno a volume normale
+
+    // Crash di ingresso
+    const crash = new Tone.NoiseSynth({
+        noise: { type: "white" },
+        envelope: { attack: 0.01, decay: 0.5, sustain: 0, release: 0.1 },
+    }).toDestination();
+    crash.triggerAttackRelease("8n");
+}, mainDropStart);
+
+  // **Outro**
   Tone.Transport.scheduleOnce(() => {
     console.log("Starting Fade-out for Outro");
 
     // Fade-out per ogni elemento
     chordVolume.volume.rampTo(-Infinity, fadeOutDuration);
     arpeggioVolume.volume.rampTo(-Infinity, fadeOutDuration);
-    drumVolume.volume.rampTo(-Infinity, fadeOutDuration); // Fade-out della batteria
+    drumVolume.volume.rampTo(-Infinity, fadeOutDuration);
+
     Tone.Transport.scheduleOnce(() => {
-      bassPart.mute = true; // Disattiva il basso dopo il fade-out
-      chordPart.mute = true; // Disattiva gli accordi
-      arpeggiatorPart.mute = true; // Disattiva le notine
+      bassPart.mute = true;
+      chordPart.mute = true;
+      arpeggiatorPart.mute = true;
+      kickPart.mute = true;
+      clapPart.mute = true;
     }, Tone.now() + fadeOutDuration);
   }, outroStart);
 
   // Avvio del trasporto
   Tone.Transport.start();
 }
-
-
 
     // ---- 3. PULSANTE PLAY ----
     document.getElementById("start").addEventListener("click", async () => {
