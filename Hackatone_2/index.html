@@ -376,13 +376,16 @@ function createMainDropDrums() {
   }, buildUpStart);
 
   // **Main Drop**
-  Tone.Transport.scheduleOnce(() => {
+// **Main Drop**
+Tone.Transport.scheduleOnce(() => {
     console.log("Starting Main Drop with Advanced Drums");
     createMainDropDrums(); // Pattern spinto per il Main Drop
 
     // Boost significativo del volume degli accordi
     chordVolume.volume.rampTo(0, 2); // Boost immediato a 0 dB
-    chordVolume.volume.rampTo(-2, mainDropBoostDuration - 2); // Graduale ritorno a volume normale
+    Tone.Transport.scheduleOnce(() => {
+        chordVolume.volume.rampTo(-2, mainDropBoostDuration - 2); // Ritorno graduale a un volume leggermente ridotto
+    }, Tone.now() + mainDropBoostDuration - 2);
 
     // Crash di ingresso
     const crash = new Tone.NoiseSynth({
@@ -391,6 +394,7 @@ function createMainDropDrums() {
     }).toDestination();
     crash.triggerAttackRelease("8n");
 }, mainDropStart);
+
 
   // **Outro**
   Tone.Transport.scheduleOnce(() => {
