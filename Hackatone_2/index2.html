@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Music with Webcam</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #121212;
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
+    }
+
+    video {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 200px;
+      border: 2px solid white;
+      display: block;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 20px;
+      cursor: pointer;
+      background-color: #1db954;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #1ed760;
+    }
+
+    h1 {
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Interactive Music with Webcam</h1>
+  <button id="start">Play Full Track</button>
+  <video id="webcam" autoplay playsinline></video>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.45/Tone.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+
+  <script>
+    const startButton = document.getElementById('start');
+    const videoElement = document.getElementById('webcam');
+
+    let bpmValue = 126; // BPM iniziale
+    let cutoffFreq = 500; // Frequenza iniziale del filtro passa-basso
+
+    // Configurazione di Tone.js
+    const lowPassFilter = new Tone.Filter({
+      type: "lowpass",
+      frequency: cutoffFreq,
+      rolloff: -12,
+      Q: 1,
+    }).toDestination();
+
+    const masterGain = new Tone.Gain(0.8).connect(lowPassFilter);
+
+    Tone.Transport.bpm.value = bpmValue;
+
+    function createDrums() {
+      const kick = new Tone.MembraneSynth().connect(masterGain);
+      const clap = new Tone.NoiseSynth({
+        noise: { type: "white" },
+        envelope: { attack: 0.01, decay: 0.2, sustain: 0 },
+      }).connect(masterGain);
+
+      const kickPart = new Tone.Part((time) => {
+        kick.triggerAttackRelease("C2", "8n", time);
+      }, [
+        { time: "0:0" }, { time: "0:2" }, { time: "1:0" }, { time: "1:2" }
+      ]);
+
+      const clapPart = new Tone.Part((time) => {
+        clap.triggerAttackRelease("16n", time);
+      }, [
+        { time: "0:1" }, { time: "0:3" }, { time: "1:1" }, { time: "1:3" }
+      ]);
+
+      kickPart.loop = true;
+      clapPart.loop = true;
+
+      kickPart.start(0);
+      clapPart.start(0);
+    }
+
+    function createArpeggiator() {
+      const arpeggiator = new Tone.Synth({
+        oscillator: { type: "triangle" },
+        envelope: { attack: 0.01, decay: 0.1, sustain: 0.8, release: 0.2 },
+      }).connect(masterGain);
+
+      const arpeggioSequence = [
+        "D4", "F4", "D4", "C4", "F4", "C4", "D4", "G4", "C4",
+        "D4", "F4", "C4", "D4", "F4", "C4"
+      ];
+
+      const arpeggiatorPart = new Tone.Part((time, note) => {
+        arpeggiator.triggerAttackRelease(note, "16n", time);
+      }, arpeggioSequence.map((note, i) => [i * 0.12, note]));
+
+      arpeggiatorPart.loop = true;
+      arpeggiatorPart.start("4m");
+    }
+
+    function createChords() {
+  const synth = new Tone.PolySynth(Tone.Synth, {
+    oscillator: { type: "triangle" },
+    envelope: { attack: 0.02, decay: 0.3, sustain: 0.3, release: 0.8 },
+  }).connect(masterGain);
+
+  const chordSequence = [
+    { time: "0:0", chord: ["D4", "G4", "Bb4"], duration: "16n" },
+    { time: "0:0:2", chord: ["D4", "G4", "Bb4"], duration: "16n" },
+    { time: "0:1", chord: ["D4", "F4", "A4"], duration: "16n" },
+    { time: "0:1:2", chord: ["D4", "F4", "A4"], duration: "16n" },
+    { time: "0:2", chord: ["A#3", "D4", "G4"], duration: "12n" },
+    { time: "0:3", chord: ["A#3", "D4", "G4"], duration: "6n" },
+  ];
+
+  const chordPart = new Tone.Part((time, value) => {
+    synth.triggerAttackRelease(value.chord, value.duration, time);
+  }, chordSequence);
+
+  chordPart.loop = true; // Accordi in loop
+  chordPart.start("8m"); // Inizia alla misura 8
+}
+
+
+    function createBass() {
+      const bass = new Tone.Synth({
+        oscillator: { type: "triangle" },
+        envelope: { attack: 0.05, decay: 0.2, sustain: 0.4, release: 0.2 },
+      }).connect(masterGain);
+
+      const bassSequence = [
+        { time: "0:0", note: "A#1", duration: "4n" },
+        { time: "0:2", note: "A1", duration: "4n" },
+        { time: "1:0", note: "G1", duration: "4n" },
+        { time: "1:2", note: "F1", duration: "4n" }
+      ];
+
+      const bassPart = new Tone.Part((time, value) => {
+        bass.triggerAttackRelease(value.note, value.duration, time);
+      }, bassSequence);
+
+      bassPart.loop = true;
+      bassPart.start("12m");
+    }
+
+    function playSong() {
+      Tone.Transport.stop();
+      Tone.Transport.cancel();
+
+      createDrums();
+      createArpeggiator();
+      createChords();
+      createBass();
+
+      Tone.Transport.start();
+    }
+
+    // MediaPipe Hands setup
+    const hands = new Hands({
+      locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`,
+    });
+
+    hands.setOptions({
+      maxNumHands: 1,
+      modelComplexity: 1,
+      minDetectionConfidence: 0.7,
+      minTrackingConfidence: 0.7,
+    });
+
+    const camera = new Camera(videoElement, {
+      onFrame: async () => {
+        await hands.send({ image: videoElement });
+      },
+      width: 640,
+      height: 480,
+    });
+
+    hands.onResults((results) => {
+      if (results.multiHandLandmarks && results.multiHandLandmarks.length > 0) {
+        const hand = results.multiHandLandmarks[0];
+
+        // Estrarre la posizione x e y del palmo
+        const palmX = hand[9].x;
+        const palmY = hand[9].y;
+
+        // Regola il BPM
+        bpmValue = Math.round(60 + palmX * 180);
+        Tone.Transport.bpm.value = bpmValue;
+
+        // Regola il filtro passa-basso
+        cutoffFreq = Math.min(2000, Math.max(200, 2000 - palmY * 1800));
+        lowPassFilter.frequency.value = cutoffFreq;
+      }
+    });
+
+    // Pulsante Play
+    startButton.addEventListener("click", async () => {
+      await Tone.start();
+      playSong();
+      camera.start();
+    });
+  </script>
+</body>
+</html>
