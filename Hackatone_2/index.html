@@ -397,7 +397,8 @@ Tone.Transport.scheduleOnce(() => {
 
 
   // **Outro**
-  Tone.Transport.scheduleOnce(() => {
+// **Outro**
+Tone.Transport.scheduleOnce(() => {
     console.log("Starting Fade-out for Outro");
 
     // Fade-out per ogni elemento
@@ -405,14 +406,20 @@ Tone.Transport.scheduleOnce(() => {
     arpeggioVolume.volume.rampTo(-Infinity, fadeOutDuration);
     drumVolume.volume.rampTo(-Infinity, fadeOutDuration);
 
+    // Controllo diretto del basso per il fade-out
+    bassPart.stop(Tone.now() + fadeOutDuration); // Ferma la sequenza del basso
     Tone.Transport.scheduleOnce(() => {
-      bassPart.mute = true;
-      chordPart.mute = true;
-      arpeggiatorPart.mute = true;
-      kickPart.mute = true;
-      clapPart.mute = true;
+        bassPart.mute = true; // Disattiva il basso completamente
     }, Tone.now() + fadeOutDuration);
-  }, outroStart);
+
+    // Mute finale di tutte le parti
+    Tone.Transport.scheduleOnce(() => {
+        chordPart.mute = true; // Disattiva gli accordi
+        arpeggiatorPart.mute = true; // Disattiva l'arpeggio
+        kickPart.mute = true; // Disattiva la batteria
+        clapPart.mute = true; // Disattiva il clap
+    }, Tone.now() + fadeOutDuration);
+}, outroStart);
 
   // Avvio del trasporto
   Tone.Transport.start();
