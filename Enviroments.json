@@ -3,6 +3,7 @@
         
         {
             "nome": "House",
+            "sfondo": "https://www.dropbox.com/House/sfondo.jpg?dl=1",
             "setSuoni": [
                
                {  "nome": "timbre1",
@@ -279,6 +280,7 @@
       
        {
         "nome": "Sea",
+        "sfondo": "https://www.dropbox.com/Sea/sfondo.jpg?dl=1",
         "setSuoni": [
            
            {  "nome": "timbre1",
@@ -554,6 +556,7 @@
      
       {
         "nome": "City",
+        "sfondo": "https://www.dropbox.com/Sea/sfondo.jpg?dl=1",
         "setSuoni": [
            
            {  "nome": "timbre1",
@@ -827,6 +830,7 @@
       
       {
          "nome": "Country",
+         "sfondo": "https://www.dropbox.com/Country/sfondo.jpg?dl=1",
          "setSuoni": [
             
             {  "nome": "timbre1",
@@ -1103,7 +1107,8 @@
 
       {
         "name": "Your Enviroment!",
-        "sounds": [ ]
+        "Background": "insert backgorund" ,
+        "SoundsSet": [ ]
       }
 
    
