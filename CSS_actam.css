@@ -648,7 +648,7 @@ select:focus {
     padding: 5px;
     border-radius: 8px;
     width: 100%; /* Adatta alla larghezza del contenitore */
-    max-width: 900px; /* Limita la larghezza massima */
+    max-width: 1000px; /* Limita la larghezza massima */
     background-color: hsl(0, 0%, 48%);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -664,7 +664,7 @@ select:focus {
 /* Canvas della traccia */
 .track-canvas {
     width: 100%; /* Occupa tutta la larghezza disponibile */
-    height: 30px; /* Altezza ancora più compatta */
+    height: 150px; /* Altezza ancora più compatta */
     border: 1px solid #555;
     border-radius: 4px;
     background-color: #f8f7f7;

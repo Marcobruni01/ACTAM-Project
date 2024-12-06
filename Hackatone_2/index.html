@@ -5,29 +5,82 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pjanoo Recreation</title>
   <style>
+    /* Stile generale */
     body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: #121212;
-      color: #ffffff;
-      margin: 0;
-      padding: 0;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  background-image: url('backgrond2.jpg'); /* Usa il nome del file */
+  background-size: cover; /* L'immagine copre l'intero sfondo */
+  background-repeat: no-repeat; /* Evita che l'immagine si ripeta */
+  background-attachment: fixed; /* L'immagine resta fissa durante lo scroll */
+  background-position: center center; /* Centra l'immagine */
+  color: rgb(79, 234, 252); /* Mantieni il testo leggibile */
+}
+
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+      letter-spacing: 2px;
     }
 
+    /* Video Styling */
+    video {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 200px;
+      border: 3px solid rgba(255, 255, 255, 0.7);
+      border-radius: 10px;
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+      display: block;
+    }
+
+    /* Pulsante */
     button {
-      padding: 10px 20px;
-      font-size: 16px;
-      margin: 20px;
-      cursor: pointer;
-      background-color: #1db954;
-      color: white;
+      padding: 15px 40px;
+      font-size: 18px;
+      margin-top: 20px;
+      background: linear-gradient(45deg, #1db954, #1ed760);
+      color: #5512e6;
       border: none;
-      border-radius: 5px;
+      border-radius: 50px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
 
     button:hover {
-      background-color: #1ed760;
+      background: linear-gradient(45deg, #1ed760, #1db954);
+      transform: scale(1.05);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
     }
+
+    button:active {
+      transform: scale(0.95);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Contenitore */
+    .container {
+      text-align: center;
+      padding: 30px;
+      border-radius: 15px;
+      background: rgba(0, 0, 0, 0.5);
+      box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.5);
+    }
+    button#stop {
+  background: linear-gradient(45deg, #ff4b4b, #ff6b6b);
+  color: white;
+}
+
+button#stop:hover {
+  background: linear-gradient(45deg, #ff6b6b, #ff4b4b);
+}
+
 
     h1 {
       margin-top: 50px;
@@ -36,137 +89,347 @@
 </head>
 <body>
   <h1>Pjanoo Recreation</h1>
-  <button id="start">Play Full Track</button>
+  <button id="start">Play Track</button>
+  <button id="stop">Stop</button>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.45/Tone.min.js"></script>
   <script>
     const startButton = document.getElementById('start');
 
-    // Global BPM
-Tone.Transport.bpm.value = 128;
+    // Imposta il BPM globale
+    Tone.Transport.bpm.value = 126;
+    const stopButton = document.getElementById('stop');
 
-// ---- 1. SECTIONS ----
-function createIntro() {
-  const kick = new Tone.MembraneSynth().toDestination();
-  const hiHat = new Tone.NoiseSynth({
+stopButton.addEventListener("click", () => {
+  Tone.Transport.stop(); // Ferma il trasporto di Tone.js
+  Tone.Transport.cancel(); // Cancella tutti gli eventi in coda
+});
+
+    
+let kickPart, clapPart; // Variabili globali per la batteria
+
+    // ---- 1. DEFINIZIONE DELLE SEZIONI ----
+    let drumVolume; // Variabile per il volume della batteria
+
+function createDrums() {
+  drumVolume = new Tone.Volume(0).toDestination(); // Volume iniziale a 0 dB
+  const reverb = new Tone.Reverb({
+    decay: 1.5,
+    preDelay: 0.005,
+  }).connect(drumVolume);
+  reverb.generate();
+
+  const wetDry = new Tone.Gain().connect(drumVolume);
+  const dry = new Tone.Gain(0.8).connect(wetDry);
+  const wet = new Tone.Gain(0.2).connect(wetDry);
+  reverb.connect(wet);
+
+  const kick = new Tone.MembraneSynth({
+    pitchDecay: 0.08,
+    octaves: 3,
+    envelope: { attack: 0.02, decay: 0.4, sustain: 0, release: 0.1 },
+  });
+  kick.connect(dry);
+  kick.connect(wet);
+
+  const clap = new Tone.NoiseSynth({
     noise: { type: "white" },
-    envelope: { attack: 0.01, decay: 0.1, sustain: 0 }
-  }).toDestination();
+    envelope: { attack: 0.01, decay: 0.2, sustain: 0 },
+  });
+  clap.connect(dry);
+  clap.connect(wet);
 
-  // Kick part
-  const kickPart = new Tone.Part((time) => {
+  kickPart = new Tone.Part((time) => {
     kick.triggerAttackRelease("C2", "8n", time);
-  }, [...Array(64).keys()].map(i => [i * 0.5])); 
+  }, [
+    { time: "0:0" }, { time: "0:2" }, { time: "1:0" }, { time: "1:2" },
+  ]);
 
-  // HiHat part
-  const hiHatPart = new Tone.Part((time) => {
-    hiHat.triggerAttackRelease("16n", time + 0.25);
-  }, [...Array(128).keys()].map(i => [i * 0.25])); 
+  clapPart = new Tone.Part((time) => {
+    clap.triggerAttackRelease("16n", time);
+  }, [
+    { time: "0:1" }, { time: "0:3" }, { time: "1:1" }, { time: "1:3" },
+  ]);
 
-  kickPart.start(0); 
-  hiHatPart.start(0); 
+  kickPart.loop = true;
+  clapPart.loop = true;
+
+  kickPart.start(0);
+  clapPart.start(0);
 }
 
 
+let arpeggiatorPart; // Variabile globale per l'arpeggiator
+let arpeggioVolume; // Volume per il fade-in
+
 function createArpeggiator() {
+  arpeggioVolume = new Tone.Volume(-Infinity).toDestination(); // Volume iniziale a -Infinity
   const arpeggiator = new Tone.Synth({
     oscillator: { type: "triangle" },
-    envelope: { attack: 0.01, decay: 0.1, sustain: 0.8, release: 0.1 },
-  }).toDestination();
+    envelope: { attack: 0.01, decay: 0.1, sustain: 0.8, release: 0.2 },
+  }).connect(arpeggioVolume);
 
   const arpeggioSequence = [
     "D4", "F4", "D4", "C4", "F4", "C4", "D4", "G4", "C4",
     "D4", "F4", "C4", "D4", "F4", "C4",
     "D4", "F4", "C4", "D4", "F4", "C4",
-    "D4", "G4", "C4", "D4", "F4", "C4", "D4", "G4", "C4", "D4", "G4"
+    "D4", "G4", "C4", "D4", "F4", "C4", "D4", "G4", "C4", "D4", "G4",
   ];
 
-  const arpeggiatorPart = new Tone.Part((time, note) => {
+  arpeggiatorPart = new Tone.Part((time, note) => {
     arpeggiator.triggerAttackRelease(note, "16n", time);
-  }, arpeggioSequence.map((note, i) => [i * 0.125, note])); 
-  arpeggiatorPart.loop = 4; 
+  }, arpeggioSequence.map((note, i) => [i * 0.12, note]));
 
-  arpeggiatorPart.start(4); 
+  arpeggiatorPart.loop = true; // Arpeggio in loop
+  arpeggiatorPart.mute = true; // Arpeggio disattivato inizialmente
+  arpeggiatorPart.start(0); // Pianifica l'arpeggiator ma lo tiene muto
 }
 
+
+let chordPart; // Variabile globale per gli accordi
+let chordVolume; // Variabile globale per il volume degli accordi
 
 function createChords() {
-  const synth = new Tone.PolySynth(Tone.Synth, {
-    oscillator: { type: "sawtooth" },
-    envelope: { attack: 0.01, decay: 0.2, sustain: 0.25, release: 0.5 },
-  }).toDestination();
+    chordVolume = new Tone.Volume(-Infinity).toDestination(); // Volume iniziale a -Infinity
+    const synth = new Tone.PolySynth(Tone.Synth, {
+        oscillator: { type: "triangle" },
+        envelope: { attack: 0.02, decay: 0.3, sustain: 0.3, release: 0.8 },
+    }).connect(chordVolume);
 
-  const chordSequence = [
-  
-  { time: 0, chord: ["D4", "G4", "Bb4"], duration: "16n" },
-  { time: "0:0:2", chord: ["D4", "G4", "Bb4"], duration: "16n" }, 
- 
-  { time: "0:1", chord: ["D4", "F4", "A4"], duration: "16n" },
-  { time: "0:1:2", chord: ["D4", "F4", "A4"], duration: "16n" }, 
+    const chordSequence = [
+        { time: "0:0", chord: ["D4", "G4", "Bb4"], duration: "16n" },
+        { time: "0:0:2", chord: ["D4", "G4", "Bb4"], duration: "16n" },
+        { time: "0:1", chord: ["D4", "F4", "A4"], duration: "16n" },
+        { time: "0:1:2", chord: ["D4", "F4", "A4"], duration: "16n" },
+        { time: "0:2", chord: ["A#3", "D4", "G4"], duration: "12n" },
+        { time: "0:3", chord: ["A#3", "D4", "G4"], duration: "6n" },
+    ];
 
-  
-  { time: "0:2", chord: ["A#3", "D4", "G4"], duration: "12n" },
-  { time: "0:3", chord: ["A#3", "D4", "G4"], duration: "6n" }, 
-];
+    chordPart = new Tone.Part((time, value) => {
+        synth.triggerAttackRelease(value.chord, value.duration, time);
+    }, chordSequence);
 
-  const chordPart = new Tone.Part((time, value) => {
-    synth.triggerAttackRelease(value.chord, value.duration, time);
-  }, chordSequence);
-
-  chordPart.loop = 4; 
-  chordPart.start(16); 
+    chordPart.loop = true; // Accordi in loop
+    chordPart.mute = true; // Inizia muto
+    chordPart.start(0);
 }
 
+
+let bassPart; // Variabile globale per il basso
 
 function createBass() {
-  const bass = new Tone.Synth({
-    oscillator: { type: "square" },
-    envelope: { attack: 0.05, decay: 0.2, sustain: 0.4, release: 0.1 },
+  // Oscillatore con un suono più complesso
+  const bassSynth = new Tone.MonoSynth({
+    oscillator: {
+      type: "sawtooth", // Tipo di oscillatore: sawtooth per un suono ricco e armonico
+    },
+    filter: {
+      type: "lowpass", // Filtro passa-basso per enfatizzare le frequenze basse
+      frequency: 150,
+      Q: 1,
+    },
+    envelope: {
+      attack: 0.05,
+      decay: 0.3,
+      sustain: 0.5,
+      release: 0.8,
+    },
+    filterEnvelope: {
+      attack: 0.01,
+      decay: 0.1,
+      sustain: 0.6,
+      release: 0.8,
+      baseFrequency: 50,
+      octaves: 2.5,
+    },
+  });
+
+  // Aggiunta di riverbero
+  const reverb = new Tone.Reverb({
+    decay: 3, // Durata del riverbero
+    preDelay: 0.01, // Ritardo prima che il riverbero inizi
   }).toDestination();
+  reverb.generate();
 
+  // Compressione per migliorare il suono del basso
+  const compressor = new Tone.Compressor({
+    threshold: -12,
+    ratio: 4,
+    attack: 0.01,
+    release: 0.1,
+  }).connect(reverb);
+
+  // Collega il sintetizzatore al compressore e al riverbero
+  bassSynth.connect(compressor);
+
+  // Sequenza del basso
   const bassSequence = [
-    { time: 0, note: "A#2", duration: "4n" }, 
-    { time: "0:1", note: "A#2", duration: "4n" }, 
-
-    { time: "0:2", note: "A2", duration: "4n" }, 
-    { time: "0:3", note: "A2", duration: "4n" }, 
-
-    { time: "1:0", note: "G2", duration: "4n" }, 
-    { time: "1:1", note: "G2", duration: "4n" }, 
+    { time: "0:0", note: "A#1", duration: "4n" },
+    { time: "0:2", note: "A1", duration: "4n" },
+    { time: "1:0", note: "G1", duration: "4n" },
+    { time: "1:2", note: "F1", duration: "4n" },
   ];
 
-  const bassPart = new Tone.Part((time, value) => {
-    bass.triggerAttackRelease(value.note, value.duration, time);
+  // Parte del basso
+  bassPart = new Tone.Part((time, value) => {
+    bassSynth.triggerAttackRelease(value.note, value.duration, time);
   }, bassSequence);
 
-  bassPart.loop = 4; 
-  
-  bassPart.start(16); 
+  bassPart.loop = true; // Basso in loop
+  bassPart.mute = true; // Disattiva il basso inizialmente
+  bassPart.start(0);
+}
+
+function createMainDropDrums() {
+    const fastKick = new Tone.MembraneSynth().connect(drumVolume);
+    const hiHat = new Tone.NoiseSynth({
+        noise: { type: "white" },
+        envelope: { attack: 0.01, decay: 0.1, sustain: 0 },
+    }).connect(drumVolume);
+
+    const fastKickPart = new Tone.Part((time) => {
+        fastKick.triggerAttackRelease("C2", "8n", time);
+    }, [
+        { time: "0:0" }, { time: "0:1" }, { time: "0:2" }, { time: "0:3" },
+        { time: "1:0" }, { time: "1:1" }, { time: "1:2" }, { time: "1:3" },
+    ]);
+
+    const hiHatPart = new Tone.Part((time) => {
+        hiHat.triggerAttackRelease("16n", time);
+    }, [
+        { time: "0:0:1" }, { time: "0:0:3" }, { time: "0:1:1" }, { time: "0:1:3" },
+    ]);
+
+    fastKickPart.loop = true;
+    hiHatPart.loop = true;
+
+    fastKickPart.start(0);
+    hiHatPart.start(0);
 }
 
 
+    function getTimeInSeconds(measures) {
+  const bpm = Tone.Transport.bpm.value; // BPM globale
+  const beatsPerSecond = bpm / 60; // Numero di battiti al secondo
+  const secondsPerMeasure = 4 / beatsPerSecond; // Durata di una misura
+  return measures * secondsPerMeasure; // Durata totale in secondi
+}
 
-// ---- 2. MASTER FUNCTION ----
-function playSong() {
-  Tone.Transport.stop(); 
-  Tone.Transport.cancel(); 
+    // ---- 2. FUNZIONE PRINCIPALE ----
+    function playSong() {
+  Tone.Transport.stop();
+  Tone.Transport.cancel();
 
-  s
-  createIntro();
+  // Creazione delle sezioni
+  createDrums();
   createArpeggiator();
   createChords();
-  createBass(); 
+  createBass();
 
- 
+  // Calcolo delle tempistiche
+  const introDuration = getTimeInSeconds(16);
+  const mainBridgeStart = introDuration;
+  const breakdownStart = mainBridgeStart + getTimeInSeconds(8);
+  const buildUpStart = breakdownStart + getTimeInSeconds(14);
+  const mainDropStart = buildUpStart + getTimeInSeconds(8);
+  const outroStart = mainDropStart + getTimeInSeconds(32);
+
+  const fadeInDuration = 8;
+  const fadeOutDuration = 10;
+  const mainDropBoostDuration = 16;
+
+  // **Intro**
+  Tone.Transport.scheduleOnce(() => {
+    console.log("Starting Drums for Intro");
+    kickPart.mute = false;
+    clapPart.mute = false;
+  }, "0:0:0");
+
+  // **Main Bridge**
+  Tone.Transport.scheduleOnce(() => {
+    console.log("Starting Arpeggiator for Main Bridge");
+    arpeggiatorPart.mute = false;
+    arpeggioVolume.volume.value = -Infinity;
+    arpeggioVolume.volume.rampTo(0, fadeInDuration);
+  }, mainBridgeStart - fadeInDuration);
+
+  // **Breakdown**
+  Tone.Transport.scheduleOnce(() => {
+    console.log("Starting Chords for Breakdown");
+    chordPart.mute = false;
+    chordVolume.volume.value = -Infinity;
+    chordVolume.volume.rampTo(0, fadeInDuration);
+  }, breakdownStart - fadeInDuration);
+
+  Tone.Transport.scheduleOnce(() => {
+    console.log("Stopping Drums for Breakdown");
+    kickPart.mute = true;
+    clapPart.mute = true;
+  }, breakdownStart);
+
+  // **Build-up**
+  Tone.Transport.scheduleOnce(() => {
+    console.log("Starting Build-up");
+    kickPart.mute = false;
+    clapPart.mute = false;
+    bassPart.mute = false;
+  }, buildUpStart);
+
+  // **Main Drop**
+// **Main Drop**
+Tone.Transport.scheduleOnce(() => {
+    console.log("Starting Main Drop with Advanced Drums");
+    createMainDropDrums(); // Pattern spinto per il Main Drop
+
+    // Boost significativo del volume degli accordi
+    chordVolume.volume.rampTo(0, 2); // Boost immediato a 0 dB
+    Tone.Transport.scheduleOnce(() => {
+        chordVolume.volume.rampTo(-2, mainDropBoostDuration - 2); // Ritorno graduale a un volume leggermente ridotto
+    }, Tone.now() + mainDropBoostDuration - 2);
+
+    // Crash di ingresso
+    const crash = new Tone.NoiseSynth({
+        noise: { type: "white" },
+        envelope: { attack: 0.01, decay: 0.5, sustain: 0, release: 0.1 },
+    }).toDestination();
+    crash.triggerAttackRelease("8n");
+}, mainDropStart);
+
+
+  // **Outro**
+// **Outro**
+Tone.Transport.scheduleOnce(() => {
+    console.log("Starting Fade-out for Outro");
+
+    // Fade-out per ogni elemento
+    chordVolume.volume.rampTo(-Infinity, fadeOutDuration);
+    arpeggioVolume.volume.rampTo(-Infinity, fadeOutDuration);
+    drumVolume.volume.rampTo(-Infinity, fadeOutDuration);
+
+    // Controllo diretto del basso per il fade-out
+    bassPart.stop(Tone.now() + fadeOutDuration); // Ferma la sequenza del basso
+    Tone.Transport.scheduleOnce(() => {
+        bassPart.mute = true; // Disattiva il basso completamente
+    }, Tone.now() + fadeOutDuration);
+
+    // Mute finale di tutte le parti
+    Tone.Transport.scheduleOnce(() => {
+        chordPart.mute = true; // Disattiva gli accordi
+        arpeggiatorPart.mute = true; // Disattiva l'arpeggio
+        kickPart.mute = true; // Disattiva la batteria
+        clapPart.mute = true; // Disattiva il clap
+    }, Tone.now() + fadeOutDuration);
+}, outroStart);
+
+  // Avvio del trasporto
   Tone.Transport.start();
 }
 
-// ---- 3. PLAY BUTTON ----
-document.getElementById("start").addEventListener("click", async () => {
-  await Tone.start(); 
-  playSong(); 
-});
-
+    // ---- 3. PULSANTE PLAY ----
+    document.getElementById("start").addEventListener("click", async () => {
+      await Tone.start();
+      playSong();
+    });
   </script>
 </body>
 </html>
