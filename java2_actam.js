@@ -55,6 +55,9 @@ function cambiaAmbiente() {
   }
 }
 
+// Cambia sfondo
+document.body.style.backgroundImage = `url(${ambienteCorrente.sfondo})`;
+
 function cambiaSetSuoni() {
   const setSuoniSelect = document.getElementById('setSuoniSelect');
   const suoniContainer = document.getElementById('suoniContainer');
