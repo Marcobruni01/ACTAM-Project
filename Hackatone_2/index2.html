@@ -7,18 +7,17 @@
   <style>
     /* Stile generale */
     body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  background-image: url('background.jpg'); /* Usa il nome del file */
-  background-size: cover; /* L'immagine copre l'intero sfondo */
-  background-repeat: no-repeat; /* Evita che l'immagine si ripeta */
-  background-attachment: fixed; /* L'immagine resta fissa durante lo scroll */
-  background-position: center center; /* Centra l'immagine */
-  color: #ffffff; /* Mantieni il testo leggibile */
-}
-
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background-image: url('background.jpg'); /* Usa il nome del file */
+      background-size: cover; /* L'immagine copre l'intero sfondo */
+      background-repeat: no-repeat; /* Evita che l'immagine si ripeta */
+      background-attachment: fixed; /* L'immagine resta fissa durante lo scroll */
+      background-position: center center; /* Centra l'immagine */
+      color: #ffffff; /* Mantieni il testo leggibile */
+    }
 
     h1 {
       font-size: 2.5rem;
@@ -64,6 +63,21 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
+    /* Slider */
+    .slider-container {
+      margin-top: 20px;
+    }
+
+    input[type="range"] {
+      width: 300px;
+      margin: 10px 0;
+    }
+
+    label {
+      font-size: 1.2rem;
+      margin-right: 10px;
+    }
+
     /* Contenitore */
     .container {
       text-align: center;
@@ -87,6 +101,10 @@
       video {
         width: 150px;
       }
+
+      input[type="range"] {
+        width: 200px;
+      }
     }
   </style>
 </head>
@@ -95,7 +113,10 @@
     <h1>Interactive Pjanoo with Webcam</h1>
     <button id="start">Play Full Track</button>
     <button id="stop">Stop</button>
-
+    <div class="slider-container">
+      <label for="phaserFrequency">Phaser Frequency:</label>
+      <input type="range" id="phaserFrequency" min="0" max="10" step="0.1" value="1">
+    </div>
   </div>
   <video id="webcam" autoplay playsinline></video>
 
@@ -107,18 +128,30 @@
     const startButton = document.getElementById('start');
     const videoElement = document.getElementById('webcam');
     const stopButton = document.getElementById('stop');
-
-
+    const phaserSlider = document.getElementById('phaserFrequency');
 
     let bpmValue = 126; // BPM iniziale
     let cutoffFreq = 500; // Frequenza iniziale del filtro passa-basso
 
-    stopButton.addEventListener("click", () => {
-  Tone.Transport.stop(); // Ferma il trasporto di Tone.js
-  Tone.Transport.cancel(); // Cancella eventuali eventi in coda
-  camera.stop(); // Ferma la webcam
-});
+    // Effetto Phaser
+    const phaser = new Tone.Phaser({
+      frequency: 1,
+      octaves: 3,
+      baseFrequency: 350,
+    }).toDestination();
 
+    const masterGain = new Tone.Gain(0.8).connect(phaser);
+
+    stopButton.addEventListener("click", () => {
+      Tone.Transport.stop(); // Ferma il trasporto di Tone.js
+      Tone.Transport.cancel(); // Cancella eventuali eventi in coda
+      camera.stop(); // Ferma la webcam
+    });
+
+    // Slider per controllare il Phaser
+    phaserSlider.addEventListener("input", (event) => {
+      phaser.frequency.value = event.target.value;
+    });
 
     // Configurazione di Tone.js
     const lowPassFilter = new Tone.Filter({
@@ -126,9 +159,7 @@
       frequency: cutoffFreq,
       rolloff: -12,
       Q: 1,
-    }).toDestination();
-
-    const masterGain = new Tone.Gain(0.8).connect(lowPassFilter);
+    }).connect(masterGain);
 
     Tone.Transport.bpm.value = bpmValue;
 
@@ -236,6 +267,7 @@
     // MediaPipe Hands setup
     const hands = new Hands({
       locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`,
+
     });
 
     hands.setOptions({
