@@ -1,22 +1,16 @@
 body {
     font-family: Arial, sans-serif;
+    /*font-style: italic;*/ 
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;  /* Altezza totale della pagina */
     margin: 0;
-    background: linear-gradient(red, orange, yellow);
+    background: linear-gradient(rgb(47, 0, 255), rgb(0, 89, 255), rgb(0, 208, 255));
 }
 
 /* Contenitore centrale principale */
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    padding: 10px;
-    max-width: 1200px;
-    margin-top: 20px;
-}
+
 
 .pianola {
     position: absolute;
@@ -61,6 +55,7 @@ body {
     left: 50%;
     transform: translateX(-50%);
     font-size: 12px; /* Dimensione del testo delle note */
+    font-family: inherit; /* Forza l'uso del font del body */
     color: hsl(0, 1%, 32%); /* Colore delle note */
 }
 
@@ -130,6 +125,7 @@ body {
     border: 2px solid transparent; /* Bordi inizialmente trasparenti */
     border-radius: 30px; /* Bordi arrotondati */
     padding: 10px 20px; /* Padding per un bottone più grande */
+    font-family: inherit; /* Forza l'uso del font del body */
     font-size: 16px; /* Dimensione del testo */
     cursor: pointer; /* Cambia il cursore quando sopra il pulsante */
     transition: background-color 0.3s, transform 0.1s, box-shadow 0.3s, border 0.3s; /* Transizioni */
@@ -214,8 +210,8 @@ Contenitore del pad musicale */
 .effect-container {
     position: absolute;
     grid-column: span 1;
-    left: 2vw;
-    top: 84vh;
+    left: 40vw;
+    top: 56vh;
     transform: translateY(-50%);
     background-color: #836ecf;
     padding: 15px;
@@ -224,7 +220,8 @@ Contenitore del pad musicale */
     z-index: 1;
     width: 300px; /* Riduci la larghezza per adattare meglio i pulsanti e slider */
     height: 150px;
-    font-family: 'Verdana', sans-serif;
+    font-family: inherit; /* Forza l'uso del font del body */
+    /*font-family: 'Verdana', sans-serif;*/
 }
 
 /* Griglia per pulsanti ed effetti */
@@ -247,6 +244,7 @@ Contenitore del pad musicale */
     cursor: pointer;
     border-radius: 10px;
     font-size: 12px;
+    font-family: inherit; /* Forza l'uso del font del body */
     width: 60px;
     height: 60px;
     position: relative;
@@ -324,8 +322,8 @@ Contenitore del pad musicale */
 /* SPARTITO*/
 .staff-container {
     position: absolute;
-    left: 0vw; /* Distanza dal bordo sinistro */
-    top: -68vh; 
+    left: 1vw; /* Distanza dal bordo sinistro */
+    top: 1vh; 
     background-color: white;
     padding: 10px;
     border-radius: 10px;
@@ -348,6 +346,7 @@ canvas {
 #muteMetronomeButton {
     padding: 10px 20px;
     font-size: 16px;
+    font-family: inherit; /* Forza l'uso del font del body */
     cursor: pointer;
     background-color: #008CBA;
     color: white;
@@ -368,6 +367,7 @@ canvas {
 #startMetronomeButton {
     padding: 10px 25px;
     font-size: 16px;
+    font-family: inherit; /* Forza l'uso del font del body */
     cursor: pointer;
     background-color: #4CAF50;
     color: white;
@@ -388,6 +388,7 @@ canvas {
 #stopMetronomeButton {
     padding: 10px 25px;
     font-size: 16px;
+    font-family: inherit; /* Forza l'uso del font del body */
     cursor: pointer;
     background-color: #FF5722;
     color: white;
@@ -408,6 +409,7 @@ canvas {
 #clearNotesButton {
     padding: 8px 10px;
     font-size: 16px;
+    font-family: inherit; /* Forza l'uso del font del body */
     cursor: pointer;
     background-color: #9fa934;
     color: white;
@@ -428,6 +430,7 @@ canvas {
 /* Stile per l'input del BPM */
 #bpm {
     font-size: 16px;
+    font-family: inherit; /* Forza l'uso del font del body */
     width: 60px;
     padding: 5px;
     margin-left: -10px;
@@ -442,8 +445,9 @@ canvas {
 }
 
 label[for="bpm"] {
-    font-family: 'Lucida Console', Monaco, monospace;
+    /*font-family: 'Lucida Console', Monaco, monospace;*/
     font-size: 18px;
+    font-family: inherit; /* Forza l'uso del font del body */
     color: #333;
 }
 
@@ -451,6 +455,7 @@ label[for="bpm"] {
 /* Stile per il menu a tendina del ritmo */
 #timeSignature {
     font-size: 15px;
+    font-family: inherit; /* Forza l'uso del font del body */
     width: 50px;  /* Larghezza del selettore */
     padding: 5px;
     border: 1px solid #ddd;
@@ -471,8 +476,9 @@ label[for="bpm"] {
 
 /* Stile dell'etichetta del selettore */
 label[for="timeSignature"] {
-    font-family: 'Lucida Console', Monaco, monospace;
+    /*font-family: 'Lucida Console', Monaco, monospace;*/
     font-size: 18px;
+    font-family: inherit; /* Forza l'uso del font del body */
     color: #333;
     position: absolute;
     top: 245px; /* Allineato leggermente sopra il menu a tendina */
@@ -504,8 +510,9 @@ label[for="timeSignature"] {
 
 /* Stile dell'etichetta del selettore */
 label[for="bars"] {
-    font-family: 'Lucida Console', Monaco, monospace;
+    /*font-family: 'Lucida Console', Monaco, monospace;*/
     font-size: 18px;
+    font-family: inherit; /* Forza l'uso del font del body */
     color: #333;
     position: absolute;
     top: 207px; /* Allineato sopra il menu a tendina */
@@ -515,6 +522,7 @@ label[for="bars"] {
 /* Stile per il menu a tendina */
 .controls label {
     font-size: 14px;
+    font-family: inherit; /* Forza l'uso del font del body */
     margin-right: 10px;
     color: #333;
 }
@@ -523,6 +531,7 @@ select {
     width: 150px;
     padding: 5px;
     font-size: 14px;
+    font-family: inherit; /* Forza l'uso del font del body */
     color: #333;
     border: 2px solid #666;
     border-radius: 5px;
@@ -542,6 +551,7 @@ select:focus {
     right: 13vw;
     padding: 5px;
     font-size: 16px;
+    font-family: inherit; /* Forza l'uso del font del body */
     border-radius: 5px;
     border: 2px solid #555;
     background-color: #f0f0f0;
@@ -587,74 +597,73 @@ select:focus {
 
 
 
+
+
+/* Selettore degli ambienti e rirpduzione traccia */
+#bloccoJSON {
+    position: absolute;
+    top: 47vh; /* Posiziona verticalmente */
+    left: 70vw; /* Sposta il contenitore verso destra */
+}
+
+
+
+
+
+
+
+
 /*ZOOM*/
 #zoomButton {
     margin-left: 20px; /* Regola il valore per spostarlo a destra */
 }
 
+
+
+
 /*MULTI-TRACKS RECORDER*/
-#multitrack-recorder {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    position: relative;
-    left: 50px; /* Sposta 50px verso destra */
-    margin: -350px 0 0 0; /* Lascia invariati gli altri margini */
-    background: #222;
-    color: white;
-    padding: 20px;
-    border-radius: 10px;
-}
 
-.track {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
 
-.controls {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.track-canvas {
-    background: #333;
-    border: 1px solid #555;
-    width: 400px;
-    height: 50px;
+#multitrack-recorder-wrapper {
+    position: absolute;
+    left: 1vw; /* Posizione orizzontale */
+    top: 44vh; /* Posizione verticale */
+    width: 60%; /* Larghezza del contenitore */
+    max-width: 500px; /* Larghezza massima */
+    z-index: 10; /* Assicurati che il contenitore sia sopra altri elementi */
+    background: #222; /* Sfondo nero */
+    border-radius: 10px; /* Arrotonda gli angoli */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Aggiunge un'ombra leggera */
+    padding: 10px; /* Spazio interno */
 }
 
 
 
 
-/* Contenitore principale */
-#multitrack-recorder {
-    display: flex;
-    flex-direction: column; /* Mantiene le tracce in colonna */
-    align-items: center;
-    gap: 10px; /* Spazio tra le tracce */
-    margin: 10px;
-    font-family: Arial, sans-serif;
+/*SFONDO NERO*/
+/* Contenitore scrollabile delle tracce */
+#tracks-container {
+    height: 350px; /* Altezza per visualizzare solo due tracce */
+    overflow-y: auto; /* Scrolling verticale */
+    scroll-behavior: smooth; /* Scrolling fluido */
+    padding: 10px;
 }
 
 /* Stile per ogni traccia */
 .track {
     display: flex;
-    flex-direction: column; /* Mantiene i titoli e il canvas in verticale */
-    align-items: flex-start;
+    flex-direction: column;
     gap: 5px;
     border: 1px solid #ccc;
     padding: 5px;
     border-radius: 8px;
-    width: 100%; /* Adatta alla larghezza del contenitore */
-    max-width: 1000px; /* Limita la larghezza massima */
     background-color: hsl(0, 0%, 48%);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
 }
 
 /* Titolo della traccia */
 .track span {
+    font-family: inherit; /* Forza l'uso del font del body */
     font-size: 14px;
     font-weight: bold;
     color: #333;
@@ -664,7 +673,7 @@ select:focus {
 /* Canvas della traccia */
 .track-canvas {
     width: 100%; /* Occupa tutta la larghezza disponibile */
-    height: 150px; /* Altezza ancora più compatta */
+    height: 100px; /* Altezza ancora più compatta */
     border: 1px solid #555;
     border-radius: 4px;
     background-color: #f8f7f7;
@@ -686,6 +695,7 @@ select:focus {
 .track .controls button {
     padding: 3px 6px; /* Ridotto padding */
     font-size: 12px;
+    font-family: inherit; /* Forza l'uso del font del body */
     background-color: #007bff;
     color: #fff;
     border: none;
@@ -731,6 +741,7 @@ select:focus {
 #download-audio {
     padding: 6px 12px;
     font-size: 14px;
+    font-family: inherit; /* Forza l'uso del font del body */
     background-color: #28a745;
     color: white;
     border: none;
@@ -773,3 +784,6 @@ select:focus {
     top: 2%; /* Sposta verso l'alto */
     right: 27.8%; /* Sposta leggermente a destra */
 }
+
+
+
