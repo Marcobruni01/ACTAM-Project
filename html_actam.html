@@ -11,26 +11,31 @@
 
    
    
-   
+<div id="bloccoJSON">
     <select id="ambienteSelect" onchange="cambiaAmbiente()">
         <option value="">Seleziona un ambiente</option>
-      </select>
-      
-      <select id="setSuoniSelect" onchange="cambiaSetSuoni()" style="display: none;">
-        <option value="">Seleziona un set di suoni</option>
-      </select>
-      
-      <div id="suoniContainer"></div>
-      
+    </select>
     
+    <select id="setSuoniSelect" onchange="cambiaSetSuoni()" style="display: none;">
+        <option value="">Seleziona un set di suoni</option>
+    </select>
+    
+    <div id="suoniContainer"></div>
+    
+    <audio id="audioPlayer" controls>
+        <source src="" type="audio/wav">
+        Il tuo browser non supporta l'elemento audio.
+    </audio>
+</div>
+    
+     
       
 
 
-<div class="grid-container">
 
-    <!--keyboard--></div>
+<!--keyboard-->
    
-    <div class="pianola">
+ <div class="pianola">
         <div class="tasto-container">
             <div data-note="C3" class="tasto" data-key="A"></div>
             <div data-note="Csharp3" class="tasto-nero" data-key="W"></div>
@@ -93,15 +98,16 @@
      <audio id="note-p" src="sounds/keyboard/timbro1/Dsharp4.mp3"></audio>
      <audio id="note-ò" src="sounds/keyboard/timbro1/E4.mp3"></audio>
      <audio id="note-à" src="sounds/keyboard/timbro1/F4.mp3"></audio> 
-    </div>
+</div>
     
-    <!-- Canvas per il visualizzatore audio -->
-    <canvas id="canvas1" width="800" height="300"></canvas>
+
+<!-- Canvas per il visualizzatore audio -->
+<canvas id="canvas1" width="800" height="300"></canvas>
 
 
 
     <!--PAD-->
-    <div class="pad-container">
+<div class="pad-container">
         <div class="pad" data-sound="1" data-key="49">1</div>
         <div class="pad" data-sound="2" data-key="50">2</div>
         <div class="pad" data-sound="3" data-key="51">3</div>
@@ -111,28 +117,28 @@
         <div class="pad" data-sound="7" data-key="55">7</div>
         <div class="pad" data-sound="8" data-key="56">8</div>
         <div class="pad" data-sound="9" data-key="57">9</div>
-    </div>
+ </div>
 
 
-    <!--OCTAVE-->
-    <div>
-        <button id="switch-octave">Octave</button>
-    </div>
+<!--OCTAVE-->
+<div>
+    <button id="switch-octave">Octave</button>
+</div>
 
-    
-    <!--SELECTOR-->
-    <div>
-        <select id="timbre-select">
-            <option value="1">Timbre Set 1</option>
-            <option value="2">Timbre Set 2</option>
-            <option value="3">Timbre Set 3</option>
-            <option value="4">Timbre Set 4</option>
-        </select>
-    </div>
-    
 
-  <!--EFFECTS-->
-    <div class="effect-container">
+<!--SELECTOR-->
+<div>
+    <select id="timbre-select">
+        <option value="1">Timbre Set 1</option>
+        <option value="2">Timbre Set 2</option>
+        <option value="3">Timbre Set 3</option>
+        <option value="4">Timbre Set 4</option>
+    </select>
+</div>
+
+
+<!--EFFECTS-->
+<div class="effect-container">
     <div class="effect-buttons">
         <button class="effect-btn" id="flanger-btn">Flanger
             <div class="led" id="flanger-led"></div>
@@ -157,41 +163,47 @@
         <input type="range" id="knob-distortion" min="100" max="1000" step="100" value="400">
         <input type="range" id="knob-chorus" min="0" max="1" step="0.01" value="0.5">
     </div>
+</div>
 
-    <div class="staff-container">
-        <canvas id="staffCanvas" width="800" height="390"></canvas>
-        <div class="controls">
-            <button id="muteMetronomeButton">Metronome Mute</button>
-            <button id="startMetronomeButton">Metronome Start</button>  <!-- Pulsante per il metronomo -->
-            <button id="stopMetronomeButton">Metronome Stop</button> 
-            <button id="clearNotesButton">Clear Notes</button>
-            <label for="bpm">BPM:</label>
-            <input type="number" id="bpm" value="120" min="40" max="250" step="1"> 
-            <label for="bars">Bars:</label>
-            <input type="number" id="bars" value="4" min="4" max="16" step="4">
+<!-- Spartito -->
+<div class="staff-container">
+    <canvas id="staffCanvas" width="800" height="400"></canvas> 
+    <div class="controls">
+        <button id="muteMetronomeButton">Metronome Mute</button>
+        <button id="startMetronomeButton">Metronome Start</button>  <!-- Pulsante per il metronomo -->
+        <button id="stopMetronomeButton">Metronome Stop</button> 
+        <button id="clearNotesButton">Clear Notes</button>
+        <label for="bpm">BPM:</label>
+        <input type="number" id="bpm" value="120" min="40" max="250" step="1"> 
+        <label for="bars">Bars:</label>
+        <input type="number" id="bars" value="4" min="4" max="16" step="4">
 
-            <label for="timeSignature">Signature:</label>
-            <select id="timeSignature">
-                <option value="4/4">4/4</option>
-                <option value="2/4">2/4</option>
-                <option value="3/4">3/4</option>
-                <option value="5/4">5/4</option>
-                <option value="6/4">6/4</option>
-                <option value="7/4">7/4</option>
-                <option value="6/8">6/8</option>
-                <option value="7/8">7/8</option>
-                <option value="9/8">9/8</option>
-                <option value="10/8">10/8</option>
-                <option value="12/8">12/8</option>
-                <option value="13/8">13/8</option>
-            </select>
-            
-            <button id="zoomButton" onclick="toggleZoom()">🔍 +</button>
-            
-        </div>
+        <label for="timeSignature">Signature:</label>
+        <select id="timeSignature">
+            <option value="4/4">4/4</option>
+            <option value="2/4">2/4</option>
+            <option value="3/4">3/4</option>
+            <option value="5/4">5/4</option>
+            <option value="6/4">6/4</option>
+            <option value="7/4">7/4</option>
+            <option value="6/8">6/8</option>
+            <option value="7/8">7/8</option>
+            <option value="9/8">9/8</option>
+            <option value="10/8">10/8</option>
+            <option value="12/8">12/8</option>
+            <option value="13/8">13/8</option>
+        </select>
+        
+        <button id="zoomButton" onclick="toggleZoom()">🔍 +</button>
     </div>
+</div>
 
-    <div id="multitrack-recorder">
+
+
+<!-- Contenitore principale -->
+<div id="multitrack-recorder-wrapper">
+    <!-- Contenitore scrollabile delle tracce -->
+    <div id="tracks-container">
         <!-- Traccia 1 -->
         <div class="track" id="track-1">
             <span>Track 1</span>
@@ -207,7 +219,7 @@
             </div>
             <canvas class="track-canvas" id="track-canvas-1" width="400" height="100"></canvas>
         </div>
-    
+
         <!-- Traccia 2 -->
         <div class="track" id="track-2">
             <span>Track 2</span>
@@ -223,7 +235,7 @@
             </div>
             <canvas class="track-canvas" id="track-canvas-2" width="400" height="100"></canvas>
         </div>
-    
+
         <!-- Traccia 3 -->
         <div class="track" id="track-3">
             <span>Track 3</span>
@@ -239,7 +251,7 @@
             </div>
             <canvas class="track-canvas" id="track-canvas-3" width="400" height="100"></canvas>
         </div>
-    
+
         <!-- Traccia 4 -->
         <div class="track" id="track-4">
             <span>Track 4</span>
@@ -255,20 +267,21 @@
             </div>
             <canvas class="track-canvas" id="track-canvas-4" width="400" height="100"></canvas>
         </div>
-    
-        <div id="global-controls">
-            <button id="global-rec">Global Rec</button>
-            <button id="global-play">Play All</button>
-            <button id="download-audio">Download</button>
-        </div>
-        
     </div>
-    
-    
+
+    <!-- Pulsanti Globali -->
+    <div id="global-controls">
+        <button id="global-rec">Global Rec</button>
+        <button id="global-play">Play All</button>
+        <button id="download-audio">Download</button>
+    </div>
 </div>
+
+
+
 <div></div>
     
-    <script src="java_actam.js"></script>
+    <script src="java2_actam.js"></script>
     <script src="visualizer.js"></script>
 </body>
 </html>
