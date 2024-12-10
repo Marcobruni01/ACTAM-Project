@@ -909,9 +909,9 @@ function drawActiveRectangle(rectangle) {
     ctx.fillStyle = noteColors[rectangle.note] || "black";
     ctx.fillRect(rectangle.x, rectangle.y, rectangle.width, 10);  // Usa la posizione x dinamica
     ctx.fillStyle = "black";
-    ctx.font = "12px Arial";
+    ctx.font = "30px Arial";
     let displayNote = rectangle.note.includes("sharp") ? rectangle.note.replace("sharp", "#") : rectangle.note;
-    ctx.fillText(displayNote, rectangle.x + rectangle.width + 5, rectangle.y + 5);
+    ctx.fillText(displayNote, rectangle.x + rectangle.width + 5, rectangle.y - 5);
 }
 
 // Disegna una nota fissata sul pentagramma
@@ -921,9 +921,9 @@ function drawFixedNoteOnStaff(note, x, y, width, height, color) {
 
     // Mostra il nome della nota accanto al rettangolo
     ctx.fillStyle = "black";
-    ctx.font = "12px Arial";
+    ctx.font = "17px Arial";
     let displayNote = note.includes("sharp") ? note.replace("sharp", "#") : note;
-    ctx.fillText(displayNote, x + width + 5, y + height / 2);
+    ctx.fillText(displayNote, x + width + 10, y + height / 2 + 1);
 }
 
 
@@ -1145,9 +1145,11 @@ function toggleMetronomeMute() {
 
 function startMetronome() {
     if (!metronomePlaying) {
+
         metronomePlaying = true;
         beatCount = 0;  // Resetta il conteggio dei battiti all'inizio
         timeBarX = 0;   // Reset della posizione della barra del tempo
+        lastBarX = 0;   // Resetta anche la posizione salvata
         performanceStartTime = performance.now();  // Reset del tempo di inizio per sincronizzare
 
 
@@ -1186,6 +1188,7 @@ function stopMetronome() {
     metronomePlaying = false;
     stopTimeBar();  // Ferma la barra del tempo
 }
+
 
 // Funzione per il click normale del metronomo
 function playMetronomeClick() {
@@ -1306,6 +1309,7 @@ const tracks = Array(4).fill(null).map(() => ({
     isRecording: false,
     recordStartTime: null, // Tempo d'inizio reale della registrazione
 }));
+
 
 // Funzione per avviare la registrazione con Pre-Roll
 function startRecordingWithPreRoll(trackIndex) {
@@ -1563,9 +1567,31 @@ function getYPositionForNumber(number) {
 
 function drawNumberOnCanvas(number, x, color) {
     const y = getYPositionForNumber(number); // Ottieni la posizione verticale
-    ctx.fillStyle = color; // Usa il colore specifico del numero
+    const rectWidth = 35; // Larghezza del rettangolo
+    const rectHeight = 30; // Altezza del rettangolo
+    const cornerRadius = 5; // Raggio degli angoli arrotondati
+
+    // Disegna il rettangolo nero con angoli smussati
+    ctx.beginPath();
+    ctx.moveTo(x + cornerRadius, y - rectHeight / 2);
+    ctx.lineTo(x + rectWidth - cornerRadius, y - rectHeight / 2);
+    ctx.arcTo(x + rectWidth, y - rectHeight / 2, x + rectWidth, y - rectHeight / 2 + cornerRadius, cornerRadius);
+    ctx.lineTo(x + rectWidth, y + rectHeight / 2 - cornerRadius);
+    ctx.arcTo(x + rectWidth, y + rectHeight / 2, x + rectWidth - cornerRadius, y + rectHeight / 2, cornerRadius);
+    ctx.lineTo(x + cornerRadius, y + rectHeight / 2);
+    ctx.arcTo(x, y + rectHeight / 2, x, y + rectHeight / 2 - cornerRadius, cornerRadius);
+    ctx.lineTo(x, y - rectHeight / 2 + cornerRadius);
+    ctx.arcTo(x, y - rectHeight / 2, x + cornerRadius, y - rectHeight / 2, cornerRadius);
+    ctx.closePath();
+    ctx.fillStyle = "black"; // Colore del rettangolo
+    ctx.fill();
+
+    // Disegna il numero bianco
+    ctx.fillStyle = "white"; // Colore del numero
     ctx.font = "16px Arial";
-    ctx.fillText(number, x, y); // Disegna il numero nel canvas
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(number, x + rectWidth / 2, y); // Posiziona il numero al centro del rettangolo
 }
 
 
