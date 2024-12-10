@@ -673,7 +673,7 @@ select:focus {
 /* Canvas della traccia */
 .track-canvas {
     width: 100%; /* Occupa tutta la larghezza disponibile */
-    height: 100px; /* Altezza ancora più compatta */
+    height: 110px; /* Altezza ancora più compatta */
     border: 1px solid #555;
     border-radius: 4px;
     background-color: #f8f7f7;
@@ -720,7 +720,7 @@ select:focus {
 
 /* Stile per gli slider di volume */
 .track .controls .volume-slider {
-    width: 50px; /* Slider compatto */
+    width: 100px; /* Slider compatto */
     margin: 0 2px;
 }
 

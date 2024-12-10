@@ -1346,7 +1346,25 @@ function stopRecording(trackIndex) {
 }
 
 
-// Funzione per riprodurre una traccia
+// Creiamo i GainNode per ogni traccia
+tracks.forEach((track, index) => {
+    track.gainNode = audioContext.createGain(); // Creazione del GainNode
+    track.gainNode.gain.value = 1; // Volume iniziale (100%)
+    track.gainNode.connect(audioContext.destination); // Collegamento alla destinazione
+});
+
+
+// Funzione per aggiornare il volume di una traccia
+function updateVolume(trackIndex, volume) {
+    if (trackIndex >= 0 && trackIndex < tracks.length) {
+        const track = tracks[trackIndex];
+        track.gainNode.gain.value = volume; // Aggiorna il valore di guadagno
+        console.log(`Volume della traccia ${trackIndex + 1} aggiornato a ${volume}`);
+    }
+}
+
+
+// Funzione per riprodurre una traccia con il controllo del volume
 function playTrack(trackIndex) {
     const track = tracks[trackIndex];
     if (!track.audioData.length) {
@@ -1366,18 +1384,27 @@ function playTrack(trackIndex) {
 
         if (delay >= 0) {
             setTimeout(() => {
-                playNote(noteData.note); // Riproduci la nota
+                // Creiamo una sorgente per la riproduzione della nota
+                const audio = new Audio(`sounds/${soundSets[currentSet]}/${noteData.note}.mp3`);
+                const trackSource = audioContext.createMediaElementSource(audio);
+
+                // Collegamento della sorgente al GainNode della traccia
+                trackSource.connect(track.gainNode);
+
+                audio.play().catch(error => console.error("Errore nel caricamento dell'audio: ", error));
 
                 // Ferma la nota dopo la durata specificata
                 if (noteData.duration) {
                     setTimeout(() => {
-                        stopNote(noteData.note); // Ferma la nota
+                        audio.pause();
+                        audio.currentTime = 0; // Resetta il playback
                     }, noteData.duration);
                 }
             }, delay);
         }
     });
 }
+
 
 
 
@@ -1445,15 +1472,6 @@ function deleteTrack(trackIndex) {
 
 
 
-const maxVolume = 20; // Volume massimo configurabile (moltiplicatore)
-
-// Funzione per aggiornare il volume di una traccia
-function updateVolume(trackIndex, volume) {
-    const scaledVolume = volume * maxVolume; // Scala il volume in base al massimo
-    tracks[trackIndex].volume = scaledVolume;
-    console.log(`Volume traccia ${trackIndex + 1} aggiornato a: ${scaledVolume}`);
-}
-
 
 
 // Event listeners per i pulsanti di registrazione
@@ -1492,14 +1510,14 @@ document.querySelectorAll('.delete-btn').forEach((btn) => {
     });
 });
 
+// Collegamento degli slider al controllo del volume
 document.querySelectorAll('.volume-slider').forEach((slider) => {
     slider.addEventListener('input', () => {
-        const trackIndex = parseInt(slider.dataset.track) - 1;
+        const trackIndex = parseInt(slider.dataset.track) - 1; // Ottieni l'indice della traccia
         const value = parseFloat(slider.value); // Valore tra 0 e 1
-        updateVolume(trackIndex, value);
+        updateVolume(trackIndex, value); // Aggiorna il volume
     });
 });
-
 
 // Event listener per i pulsanti "Copy Canvas"
 document.querySelectorAll('.copy-canvas-btn').forEach((button) => {
