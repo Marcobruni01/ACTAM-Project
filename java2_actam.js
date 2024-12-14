@@ -711,7 +711,7 @@ document.getElementById('timbre-select').addEventListener('change', function() {
 
 
 
-// ----------------------- PAD -----------------------------
+// ----------------------  PAD  ----------------------
 
 // Mappa per tenere traccia dello stato dei tasti del pad premuti
 let pressedPads = {};
@@ -731,17 +731,34 @@ pads.forEach(pad => {
             pad.classList.add('active-text');
             pressedPads[key] = true;
 
-            if (number >= 1 && number <= 9) {
-                const x = metronomePlaying ? timeBarX : lastBarX; // Usa la posizione corrente
-                let color = "black"; // Default nero
+            if (isGlobalRecording && activeTrackIndex !== -1) {
+                console.log(`Registrazione attiva sulla traccia ${activeTrackIndex + 1}`);
+                const track = tracks[activeTrackIndex];
+                const startTime = performance.now(); // Tempo di inizio della nota
 
-                // Cambia colore solo se il metronomo è fermo
-                if (!metronomePlaying && activeNumbersWithPositions.some(n => n.number === number)) {
-                    color = `#${Math.floor(Math.random() * 16777215).toString(16)}`; // Colore casuale
+                // Salva i dati audio e visivi per il PAD
+                track.audioData.push({
+                    note: pad.getAttribute('data-sound'), // Nome del file audio del pad
+                    startTime    // Tempo di inizio della nota
+                });
+
+                console.log(`Registrato suono del pad (${pad.getAttribute('data-sound')}) sulla traccia ${activeTrackIndex + 1}`);
+
+                // Disegna il numero associato al PAD sul canvas principale
+                if (number >= 1 && number <= 9) {
+                    const x = metronomePlaying ? timeBarX : lastBarX; // Usa la posizione corrente
+                    let color = "black"; // Default nero
+
+                    // Cambia colore solo se il metronomo è fermo
+                    if (!metronomePlaying && activeNumbersWithPositions.some(n => n.number === number)) {
+                        color = `#${Math.floor(Math.random() * 16777215).toString(16)}`; // Colore casuale
+                    }
+
+                    activeNumbersWithPositions.push({ number, x, color }); // Salva numero con posizione e colore
+                    drawAllNumbers(); // Ridisegna i numeri
                 }
-
-                activeNumbersWithPositions.push({ number, x, color }); // Salva numero con posizione e colore
-                drawAllNumbers(); // Ridisegna i numeri
+            } else {
+                console.log("Registrazione non attiva o nessuna traccia selezionata.");
             }
         }
     });
@@ -772,17 +789,34 @@ document.addEventListener('keydown', (e) => {
         pressedPads[key] = true;
 
         const number = parseInt(pad.textContent.trim());
-        if (number >= 1 && number <= 9) {
-            const x = metronomePlaying ? timeBarX : lastBarX; // Usa la posizione corrente
-            let color = "black"; // Default nero
+        if (isGlobalRecording && activeTrackIndex !== -1) {
+            console.log(`Registrazione attiva sulla traccia ${activeTrackIndex + 1}`);
+            const track = tracks[activeTrackIndex];
+            const startTime = performance.now(); // Tempo di inizio della nota
 
-            // Cambia colore solo se il metronomo è fermo
-            if (!metronomePlaying && activeNumbersWithPositions.some(n => n.number === number)) {
-                color = `#${Math.floor(Math.random() * 16777215).toString(16)}`; // Colore casuale
+            // Salva i dati audio e visivi per il PAD
+            track.audioData.push({
+                note: pad.getAttribute('data-sound'), // Nome del file audio del pad
+                startTime    // Tempo di inizio della nota
+            });
+
+            console.log(`Registrato suono del pad (${pad.getAttribute('data-sound')}) sulla traccia ${activeTrackIndex + 1}`);
+
+            // Disegna il numero associato al PAD sul canvas principale
+            if (number >= 1 && number <= 9) {
+                const x = metronomePlaying ? timeBarX : lastBarX; // Usa la posizione corrente
+                let color = "black"; // Default nero
+
+                // Cambia colore solo se il metronomo è fermo
+                if (!metronomePlaying && activeNumbersWithPositions.some(n => n.number === number)) {
+                    color = `#${Math.floor(Math.random() * 16777215).toString(16)}`; // Colore casuale
+                }
+
+                activeNumbersWithPositions.push({ number, x, color }); // Salva numero con posizione e colore
+                drawAllNumbers(); // Ridisegna i numeri
             }
-
-            activeNumbersWithPositions.push({ number, x, color }); // Salva numero con posizione e colore
-            drawAllNumbers(); // Ridisegna i numeri
+        } else {
+            console.log("Registrazione non attiva o nessuna traccia selezionata.");
         }
     }
 });
@@ -796,7 +830,6 @@ document.addEventListener('keyup', (e) => {
         pressedPads[key] = false;
     }
 });
-
 
 
 
@@ -1388,8 +1421,13 @@ function playTrack(trackIndex) {
 
         if (delay >= 0) {
             setTimeout(() => {
+                // Determina il percorso del file audio in base al tipo di input
+                const audioPath = Number.isInteger(Number(noteData.note)) && Number(noteData.note) >= 1 && Number(noteData.note) <= 9
+                    ? `sounds/pad/${noteData.note}.mp3`          // Percorso per i suoni del PAD
+                    : `sounds/${soundSets[currentSet]}/${noteData.note}.mp3`; // Percorso per i suoni della tastiera
+
                 // Creiamo una sorgente per la riproduzione della nota
-                const audio = new Audio(`sounds/${soundSets[currentSet]}/${noteData.note}.mp3`);
+                const audio = new Audio(audioPath);
                 const trackSource = audioContext.createMediaElementSource(audio);
 
                 // Collegamento della sorgente al GainNode della traccia
@@ -1408,7 +1446,6 @@ function playTrack(trackIndex) {
         }
     });
 }
-
 
 
 
