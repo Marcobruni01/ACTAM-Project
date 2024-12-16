@@ -950,16 +950,19 @@ function drawActiveRectangle(rectangle) {
 }
 
 // Disegna una nota fissata sul pentagramma
-function drawFixedNoteOnStaff(note, x, y, width, height, color) {
+function drawFixedNoteOnStaff(note, x, y, width, height, color, noLabel = false) {
     ctx.fillStyle = color;
     ctx.fillRect(x, y, width, height);
 
-    // Mostra il nome della nota accanto al rettangolo
-    ctx.fillStyle = "black";
-    ctx.font = "17px Arial";
-    let displayNote = note.includes("sharp") ? note.replace("sharp", "#") : note;
-    ctx.fillText(displayNote, x + width + 10, y + height / 2 + 1);
+    // Disegna la label solo se noLabel è false
+    if (!noLabel) {
+        ctx.fillStyle = "black";
+        ctx.font = "17px Arial";
+        let displayNote = note.includes("sharp") ? note.replace("sharp", "#") : note;
+        ctx.fillText(displayNote, x + width + 10, y + height / 2 + 1);
+    }
 }
+
 
 
 
@@ -972,39 +975,59 @@ function updateRectangle(dataKey) {
     const duration = (currentTime - rectangle.startTime) / 1000; // Durata in secondi
 
     // Calcola la larghezza basata sulla durata
-    rectangle.width = duration * 100; // Aggiusta il moltiplicatore a piacere
+    rectangle.width = duration * 100; // Modifica il moltiplicatore se necessario
 
-    // Gestisce il ciclo continuo: se `timeBarX` torna a zero, reimposta `x` del rettangolo a 0
-    if (canvasReset) {
-        rectangle.x = lastBarX || 0; // Usa `lastBarX` o l'inizio del canvas
-        canvasReset = false; // Resetta la variabile
+    // Gestione ciclica delle battute
+    const maxX = staffLength; // Lunghezza totale del canvas
+    if (rectangle.x + rectangle.width > maxX) {
+        rectangle.width = maxX - rectangle.x; // Adatta la larghezza alla fine del canvas
+        const overflowWidth = duration * 100 - rectangle.width;
+
+        if (overflowWidth > 0) {
+            // Aggiungi la parte "spezzata" senza label
+            playedNotes.push({
+                note: rectangle.note,
+                x: 0, // Riparte da inizio canvas
+                y: rectangle.y,
+                width: overflowWidth,
+                height: 10,
+                color: noteColors[rectangle.note] || "black",
+                noLabel: true // Flag per evitare di disegnare la label
+            });
+        }
     }
 
-    // Pulisci e ridisegna il pentagramma per aggiornare la posizione in tempo reale
+    // Ridisegna il canvas
     clearStaff();
-    drawTimeBar(); // Ridisegna la barra del tempo se attiva
-    redrawNotes(); // Ridisegna tutte le note fisse
-
-    // Disegna tutti i rettangoli attivi
+    drawTimeBar(); // Ridisegna la barra del tempo
+    redrawNotes(); // Ridisegna le note fissate
     for (let key in activeRectangles) {
-        drawActiveRectangle(activeRectangles[key]);
+        drawActiveRectangle(activeRectangles[key]); // Disegna i rettangoli attivi
     }
+    drawAllNumbers(); // Ridisegna i numeri
 
-    // Ridisegna i numeri sopra i rettangoli
-    drawAllNumbers();
-
-    // Continua ad aggiornare finché il tasto è premuto
+    // Continua l'aggiornamento finché il tasto è premuto
     requestAnimationFrame(() => updateRectangle(dataKey));
 }
+
 
 
 
 // Ridisegna tutte le note fissate già suonate
 function redrawNotes() {
     playedNotes.forEach(note => {
-        drawFixedNoteOnStaff(note.note, note.x, note.y, note.width, note.height, note.color);
+        drawFixedNoteOnStaff(
+            note.note,
+            note.x,
+            note.y,
+            note.width,
+            note.height,
+            note.color,
+            note.noLabel || false // Passa il flag per disegnare o meno la label
+        );
     });
 }
+
 
 
 // Funzione per pulire il pentagramma ma non cancellare le note
