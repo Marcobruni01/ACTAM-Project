@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -67,11 +67,11 @@
     .slider-container {
       margin-top: 20px;
     }
-
     input[type="range"] {
       width: 300px;
       margin: 10px 0;
     }
+
 
     label {
       font-size: 1.2rem;
@@ -117,6 +117,11 @@
       <label for="phaserFrequency">Phaser Frequency:</label>
       <input type="range" id="phaserFrequency" min="0" max="10" step="0.1" value="1">
     </div>
+    <div class="slider-container">
+      <label for="newEffectSlider">Reverb Decay:</label>
+      <input type="range" id="newEffectSlider" min="0" max="10" step="0.1" value="1">
+    </div>
+    
   </div>
   <video id="webcam" autoplay playsinline></video>
 
@@ -142,6 +147,16 @@
 
     const masterGain = new Tone.Gain(0.8).connect(phaser);
 
+    // Effetto Reverb
+    const reverb = new Tone.Reverb({
+       decay: 1.5, // Durata iniziale del riverbero
+       preDelay: 0.01, // Piccola attesa prima dell'effetto
+    }).toDestination();
+
+    // Collega il Reverb alla catena audio
+    masterGain.connect(reverb);
+
+
     stopButton.addEventListener("click", () => {
       Tone.Transport.stop(); // Ferma il trasporto di Tone.js
       Tone.Transport.cancel(); // Cancella eventuali eventi in coda
@@ -152,6 +167,13 @@
     phaserSlider.addEventListener("input", (event) => {
       phaser.frequency.value = event.target.value;
     });
+
+    // Listener per il Reverb
+    const newEffectSlider = document.getElementById('newEffectSlider');
+         newEffectSlider.addEventListener('input', (event) => {
+        reverb.decay = parseFloat(event.target.value); // Imposta la durata del decay
+    });
+      
 
     // Configurazione di Tone.js
     const lowPassFilter = new Tone.Filter({
@@ -264,11 +286,10 @@
       Tone.Transport.start();
     }
 
-    // MediaPipe Hands setup
-    const hands = new Hands({
-      locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`,
-
-    });
+// MediaPipe Hands setup
+const hands = new Hands({
+  locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`,
+});
 
     hands.setOptions({
       maxNumHands: 1,
