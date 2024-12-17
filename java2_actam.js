@@ -54,8 +54,9 @@ function cambiaAmbiente() {
     setSuoniSelect.style.display = 'block'; // Mostra menu set di suoni
   }
 
-   
+  cambiaSfondo(ambiente.sfondo);
 
+   
 }
 
 
@@ -84,6 +85,16 @@ function cambiaSuono(url) {
   audioPlayer.src = url;
   
 }
+
+function cambiaSfondo(url) {
+    document.body.style.backgroundImage = `url(${url})`;
+    document.body.style.backgroundSize = 'cover';
+    document.body.style.backgroundPosition = 'center';
+    document.body.style.backgroundRepeat = 'no-repeat';
+  }
+
+
+  
 
   
 
