@@ -6,7 +6,7 @@
             "sfondo": "https://www.dropbox.com/House/sfondo.jpg?dl=1",
             "setSuoni": [
                
-               {  "nome": "timbre1",
+               {  "nome": "Timbre 1",
                   "suoni": {
                 
                   "C3": "https://www.dropbox.com/House/Timbre1/C3.wav?dl=1",
@@ -73,203 +73,217 @@
          
              
      
-             {  "nome": "timbre2",
+             {  "nome": "Timbre 2",
                   "suoni": {
                 
-                  "C3": "https://www.dropbox.com/House/ Timbre2/C3.wav?dl=1",
+                  "C3": "https://www.dropbox.com/House/Timbre2/C3.wav?dl=1",
    
-                  "C3sharp": "https://www.dropbox.com/House/ Timbre2/C3sharp.wav?dl=1",
+                  "C3sharp": "https://www.dropbox.com/House/Timbre2/C3sharp.wav?dl=1",
    
-                  "D3": "https://www.dropbox.com/House/ Timbre2/D3.wav?dl=1",
+                  "D3": "https://www.dropbox.com/House/Timbre2/D3.wav?dl=1",
                 
-                  "D3sharp": "https://www.dropbox.com/House/ Timbre2/D3sharp.wav?dl=1",
+                  "D3sharp": "https://www.dropbox.com/House/Timbre2/D3sharp.wav?dl=1",
                 
-                  "E3": "https://www.dropbox.com/House/ Timbre2/E3.wav?dl=1",
+                  "E3": "https://www.dropbox.com/House/Timbre2/E3.wav?dl=1",
                 
-                  "F3": "https://www.dropbox.com/House/ Timbre2/F3.wav?dl=1",
+                  "F3": "https://www.dropbox.com/House/Timbre2/F3.wav?dl=1",
                 
-                  "F3sharp": "https://www.dropbox.com/House/ Timbre2/F3sharp.wav?dl=1",
+                  "F3sharp": "https://www.dropbox.com/House/Timbre2/F3sharp.wav?dl=1",
                 
-                  "G3": "https://www.dropbox.com/House/ Timbre2/C3.wav?dl=1",
+                  "G3": "https://www.dropbox.com/House/Timbre2/C3.wav?dl=1",
                 
-                  "G3sharp": "https://www.dropbox.com/House/ Timbre2/G3sharp.wav?dl=1",
+                  "G3sharp": "https://www.dropbox.com/House/Timbre2/G3sharp.wav?dl=1",
                 
-                  "A3": "https://www.dropbox.com/House/ Timbre2/A3.wav?dl=1",
+                  "A3": "https://www.dropbox.com/House/Timbre2/A3.wav?dl=1",
                 
-                  "A3sharp": "https://www.dropbox.com/House/ Timbre2/A3sharp.wav?dl=1",
+                  "A3sharp": "https://www.dropbox.com/House/Timbre2/A3sharp.wav?dl=1",
                 
-                  "B3": "https://www.dropbox.com/House/ Timbre2/B3.wav?dl=1",
+                  "B3": "https://www.dropbox.com/House/Timbre2/B3.wav?dl=1",
                 
-                  "C4": "https://www.dropbox.com/House/ Timbre2/C3.wav?dl=1",
+                  "C4": "https://www.dropbox.com/House/Timbre2/C3.wav?dl=1",
                 
-                  "C4sharp": "https://www.dropbox.com/House/ Timbre2/C4sharp.wav?dl=1",
+                  "C4sharp": "https://www.dropbox.com/House/Timbre2/C4sharp.wav?dl=1",
                 
-                  "D4": "https://www.dropbox.com/House/ Timbre2/D4.wav?dl=1",
+                  "D4": "https://www.dropbox.com/House/Timbre2/D4.wav?dl=1",
                 
-                  "D4sharp": "https://www.dropbox.com/House/ Timbre2/D4sharp.wav?dl=1",
+                  "D4sharp": "https://www.dropbox.com/House/Timbre2/D4sharp.wav?dl=1",
                 
-                  "E4": "https://www.dropbox.com/House/ Timbre2/E4.wav?dl=1",
+                  "E4": "https://www.dropbox.com/House/Timbre2/E4.wav?dl=1",
                    
-                  "F4": "https://www.dropbox.com/House/ Timbre2/F4sharp.wav?dl=1",
+                  "F4": "https://www.dropbox.com/House/Timbre2/F4sharp.wav?dl=1",
                 
-                  "F4sharp": "https://www.dropbox.com/House/ Timbre2/F4sharp.wav?dl=1",
+                  "F4sharp": "https://www.dropbox.com/House/Timbre2/F4sharp.wav?dl=1",
                 
-                  "G4": "https://www.dropbox.com/House/ Timbre2/G4.wav?dl=1",
+                  "G4": "https://www.dropbox.com/House/Timbre2/G4.wav?dl=1",
                 
-                  "G4sharp": "https://www.dropbox.com/House/ Timbre2/G4sharp.wav?dl=1",
+                  "G4sharp": "https://www.dropbox.com/House/Timbre2/G4sharp.wav?dl=1",
                 
-                  "A4": "https://www.dropbox.com/House/ Timbre2/A4.wav?dl=1",
+                  "A4": "https://www.dropbox.com/House/Timbre2/A4.wav?dl=1",
                 
-                  "A4sharp": "https://www.dropbox.com/House/ Timbre2/A4sharp.wav?dl=1",
+                  "A4sharp": "https://www.dropbox.com/House/Timbre2/A4sharp.wav?dl=1",
                 
-                  "B4": "https://www.dropbox.com/House/ Timbre2/B4.wav?dl=1",
+                  "B4": "https://www.dropbox.com/House/Timbre2/B4.wav?dl=1",
                 
-                  "C5": "https://www.dropbox.com/House/ Timbre2/C5.wav?dl=1",
+                  "C5": "https://www.dropbox.com/House/Timbre2/C5.wav?dl=1",
                 
-                  "C5sharp": "https://www.dropbox.com/House/ Timbre2/C5sharp.wav?dl=1",
+                  "C5sharp": "https://www.dropbox.com/House/Timbre2/C5sharp.wav?dl=1",
                 
-                  "D5": "https://www.dropbox.com/House/ Timbre2/D5.wav?dl=1",
+                  "D5": "https://www.dropbox.com/House/Timbre2/D5.wav?dl=1",
                 
-                  "D5sharp": "https://www.dropbox.com/House/ Timbre2/D5sharp.wav?dl=1",
+                  "D5sharp": "https://www.dropbox.com/House/Timbre2/D5sharp.wav?dl=1",
                  
-                  "E5": "https://www.dropbox.com/House/ Timbre2/E5.wav?dl=1",
+                  "E5": "https://www.dropbox.com/House/Timbre2/E5.wav?dl=1",
                 
-                  "F5": "https://www.dropbox.com/House/ Timbre2/F4sharp.wav?dl=1"
+                  "F5": "https://www.dropbox.com/House/Timbre2/F4sharp.wav?dl=1"
                }
              }, 
              
      
-             {  "nome": "timbre3",
+             {  "nome": "Timbre 3",
                   "suoni": {
                 
-                  "C3": "https://www.dropbox.com/House/ Timbre3/C3.wav?dl=1",
+                  "C3": "https://www.dropbox.com/House/Timbre3/C3.wav?dl=1",
    
-                  "C3sharp": "https://www.dropbox.com/House/ Timbre3/C3sharp.wav?dl=1",
+                  "C3sharp": "https://www.dropbox.com/House/Timbre3/C3sharp.wav?dl=1",
    
-                  "D3": "https://www.dropbox.com/House/ Timbre3/D3.wav?dl=1",
+                  "D3": "https://www.dropbox.com/House/Timbre3/D3.wav?dl=1",
                 
-                  "D3sharp": "https://www.dropbox.com/House/ Timbre3/D3sharp.wav?dl=1",
+                  "D3sharp": "https://www.dropbox.com/House/Timbre3/D3sharp.wav?dl=1",
                 
-                  "E3": "https://www.dropbox.com/House/ Timbre3/E3.wav?dl=1",
+                  "E3": "https://www.dropbox.com/House/Timbre3/E3.wav?dl=1",
                 
-                  "F3": "https://www.dropbox.com/House/ Timbre3/F3.wav?dl=1",
+                  "F3": "https://www.dropbox.com/House/Timbre3/F3.wav?dl=1",
                 
-                  "F3sharp": "https://www.dropbox.com/House/ Timbre3/F3sharp.wav?dl=1",
+                  "F3sharp": "https://www.dropbox.com/House/Timbre3/F3sharp.wav?dl=1",
                 
-                  "G3": "https://www.dropbox.com/House/ Timbre3/C3.wav?dl=1",
+                  "G3": "https://www.dropbox.com/House/Timbre3/C3.wav?dl=1",
                 
-                  "G3sharp": "https://www.dropbox.com/House/ Timbre3/G3sharp.wav?dl=1",
+                  "G3sharp": "https://www.dropbox.com/House/Timbre3/G3sharp.wav?dl=1",
                 
-                  "A3": "https://www.dropbox.com/House/ Timbre3/A3.wav?dl=1",
+                  "A3": "https://www.dropbox.com/House/Timbre3/A3.wav?dl=1",
                 
-                  "A3sharp": "https://www.dropbox.com/House/ Timbre3/A3sharp.wav?dl=1",
+                  "A3sharp": "https://www.dropbox.com/House/Timbre3/A3sharp.wav?dl=1",
                 
-                  "B3": "https://www.dropbox.com/House/ Timbre3/B3.wav?dl=1",
+                  "B3": "https://www.dropbox.com/House/Timbre3/B3.wav?dl=1",
                 
-                  "C4": "https://www.dropbox.com/House/ Timbre3/C3.wav?dl=1",
+                  "C4": "https://www.dropbox.com/House/Timbre3/C3.wav?dl=1",
                 
-                  "C4sharp": "https://www.dropbox.com/House/ Timbre3/C4sharp.wav?dl=1",
+                  "C4sharp": "https://www.dropbox.com/House/Timbre3/C4sharp.wav?dl=1",
                 
-                  "D4": "https://www.dropbox.com/House/ Timbre3/D4.wav?dl=1",
+                  "D4": "https://www.dropbox.com/House/Timbre3/D4.wav?dl=1",
                 
-                  "D4sharp": "https://www.dropbox.com/House/ Timbre3/D4sharp.wav?dl=1",
+                  "D4sharp": "https://www.dropbox.com/House/Timbre3/D4sharp.wav?dl=1",
                 
-                  "E4": "https://www.dropbox.com/House/ Timbre3/E4.wav?dl=1",
+                  "E4": "https://www.dropbox.com/House/Timbre3/E4.wav?dl=1",
                    
-                  "F4": "https://www.dropbox.com/House/ Timbre3/F4sharp.wav?dl=1",
+                  "F4": "https://www.dropbox.com/House/Timbre3/F4sharp.wav?dl=1",
                 
-                  "F4sharp": "https://www.dropbox.com/House/ Timbre3/F4sharp.wav?dl=1",
+                  "F4sharp": "https://www.dropbox.com/House/Timbre3/F4sharp.wav?dl=1",
                 
-                  "G4": "https://www.dropbox.com/House/ Timbre3/G4.wav?dl=1",
+                  "G4": "https://www.dropbox.com/House/Timbre3/G4.wav?dl=1",
                 
-                  "G4sharp": "https://www.dropbox.com/House/ Timbre3/G4sharp.wav?dl=1",
+                  "G4sharp": "https://www.dropbox.com/House/Timbre3/G4sharp.wav?dl=1",
                 
-                  "A4": "https://www.dropbox.com/House/ Timbre3/A4.wav?dl=1",
+                  "A4": "https://www.dropbox.com/House/Timbre3/A4.wav?dl=1",
                 
-                  "A4sharp": "https://www.dropbox.com/House/ Timbre3/A4sharp.wav?dl=1",
+                  "A4sharp": "https://www.dropbox.com/House/Timbre3/A4sharp.wav?dl=1",
                 
-                  "B4": "https://www.dropbox.com/House/ Timbre3/B4.wav?dl=1",
+                  "B4": "https://www.dropbox.com/House/Timbre3/B4.wav?dl=1",
                 
-                  "C5": "https://www.dropbox.com/House/ Timbre3/C5.wav?dl=1",
+                  "C5": "https://www.dropbox.com/House/Timbre3/C5.wav?dl=1",
                 
-                  "C5sharp": "https://www.dropbox.com/House/ Timbre3/C5sharp.wav?dl=1",
+                  "C5sharp": "https://www.dropbox.com/House/Timbre3/C5sharp.wav?dl=1",
                 
-                  "D5": "https://www.dropbox.com/House/ Timbre3/D5.wav?dl=1",
+                  "D5": "https://www.dropbox.com/House/Timbre3/D5.wav?dl=1",
                 
-                  "D5sharp": "https://www.dropbox.com/House/ Timbre3/D5sharp.wav?dl=1",
+                  "D5sharp": "https://www.dropbox.com/House/Timbre3/D5sharp.wav?dl=1",
                  
-                  "E5": "https://www.dropbox.com/House/ Timbre3/E5.wav?dl=1",
+                  "E5": "https://www.dropbox.com/House/Timbre3/E5.wav?dl=1",
                 
-                  "F5": "https://www.dropbox.com/House/ Timbre3/F4sharp.wav?dl=1"
+                  "F5": "https://www.dropbox.com/House/Timbre3/F4sharp.wav?dl=1"
                }
              }, 
              
      
-             {  "nome": "timbre4",
+             {  "nome": "Timbre 4",
                   "suoni": {
                 
-                  "C3": "https://www.dropbox.com/House/ Timbre4/C3.wav?dl=1",
+                  "C3": "https://www.dropbox.com/House/Timbre4/C3.wav?dl=1",
    
-                  "C3sharp": "https://www.dropbox.com/House/ Timbre4/C3sharp.wav?dl=1",
+                  "C3sharp": "https://www.dropbox.com/House/Timbre4/C3sharp.wav?dl=1",
    
-                  "D3": "https://www.dropbox.com/House/ Timbre4/D3.wav?dl=1",
+                  "D3": "https://www.dropbox.com/House/Timbre4/D3.wav?dl=1",
                 
-                  "D3sharp": "https://www.dropbox.com/House/ Timbre4/D3sharp.wav?dl=1",
+                  "D3sharp": "https://www.dropbox.com/House/Timbre4/D3sharp.wav?dl=1",
                 
-                  "E3": "https://www.dropbox.com/House/ Timbre4/E3.wav?dl=1",
+                  "E3": "https://www.dropbox.com/House/Timbre4/E3.wav?dl=1",
                 
-                  "F3": "https://www.dropbox.com/House/ Timbre4/F3.wav?dl=1",
+                  "F3": "https://www.dropbox.com/House/Timbre4/F3.wav?dl=1",
                 
-                  "F3sharp": "https://www.dropbox.com/House/ Timbre4/F3sharp.wav?dl=1",
+                  "F3sharp": "https://www.dropbox.com/House/Timbre4/F3sharp.wav?dl=1",
                 
-                  "G3": "https://www.dropbox.com/House/ Timbre4/C3.wav?dl=1",
+                  "G3": "https://www.dropbox.com/House/Timbre4/C3.wav?dl=1",
                 
-                  "G3sharp": "https://www.dropbox.com/House/ Timbre4/G3sharp.wav?dl=1",
+                  "G3sharp": "https://www.dropbox.com/House/Timbre4/G3sharp.wav?dl=1",
                 
-                  "A3": "https://www.dropbox.com/House/ Timbre4/A3.wav?dl=1",
+                  "A3": "https://www.dropbox.com/House/Timbre4/A3.wav?dl=1",
                 
-                  "A3sharp": "https://www.dropbox.com/House/ Timbre4/A3sharp.wav?dl=1",
+                  "A3sharp": "https://www.dropbox.com/House/Timbre4/A3sharp.wav?dl=1",
                 
-                  "B3": "https://www.dropbox.com/House/ Timbre4/B3.wav?dl=1",
+                  "B3": "https://www.dropbox.com/House/Timbre4/B3.wav?dl=1",
                 
-                  "C4": "https://www.dropbox.com/House/ Timbre4/C3.wav?dl=1",
+                  "C4": "https://www.dropbox.com/House/Timbre4/C3.wav?dl=1",
                 
-                  "C4sharp": "https://www.dropbox.com/House/ Timbre4/C4sharp.wav?dl=1",
+                  "C4sharp": "https://www.dropbox.com/House/Timbre4/C4sharp.wav?dl=1",
                 
-                  "D4": "https://www.dropbox.com/House/ Timbre4/D4.wav?dl=1",
+                  "D4": "https://www.dropbox.com/House/Timbre4/D4.wav?dl=1",
                 
-                  "D4sharp": "https://www.dropbox.com/House/ Timbre4/D4sharp.wav?dl=1",
+                  "D4sharp": "https://www.dropbox.com/House/Timbre4/D4sharp.wav?dl=1",
                 
-                  "E4": "https://www.dropbox.com/House/ Timbre4/E4.wav?dl=1",
+                  "E4": "https://www.dropbox.com/House/Timbre4/E4.wav?dl=1",
                    
-                  "F4": "https://www.dropbox.com/House/ Timbre4/F4sharp.wav?dl=1",
+                  "F4": "https://www.dropbox.com/House/Timbre4/F4sharp.wav?dl=1",
                 
-                  "F4sharp": "https://www.dropbox.com/House/ Timbre4/F4sharp.wav?dl=1",
+                  "F4sharp": "https://www.dropbox.com/House/Timbre4/F4sharp.wav?dl=1",
                 
-                  "G4": "https://www.dropbox.com/House/ Timbre4/G4.wav?dl=1",
+                  "G4": "https://www.dropbox.com/House/Timbre4/G4.wav?dl=1",
                 
-                  "G4sharp": "https://www.dropbox.com/House/ Timbre4/G4sharp.wav?dl=1",
+                  "G4sharp": "https://www.dropbox.com/House/Timbre4/G4sharp.wav?dl=1",
                 
-                  "A4": "https://www.dropbox.com/House/ Timbre4/A4.wav?dl=1",
+                  "A4": "https://www.dropbox.com/House/Timbre4/A4.wav?dl=1",
                 
-                  "A4sharp": "https://www.dropbox.com/House/ Timbre4/A4sharp.wav?dl=1",
+                  "A4sharp": "https://www.dropbox.com/House/Timbre4/A4sharp.wav?dl=1",
                 
-                  "B4": "https://www.dropbox.com/House/ Timbre4/B4.wav?dl=1",
+                  "B4": "https://www.dropbox.com/House/Timbre4/B4.wav?dl=1",
                 
-                  "C5": "https://www.dropbox.com/House/ Timbre4/C5.wav?dl=1",
+                  "C5": "https://www.dropbox.com/House/Timbre4/C5.wav?dl=1",
                 
-                  "C5sharp": "https://www.dropbox.com/House/ Timbre4/C5sharp.wav?dl=1",
+                  "C5sharp": "https://www.dropbox.com/House/Timbre4/C5sharp.wav?dl=1",
                 
-                  "D5": "https://www.dropbox.com/House/ Timbre4/D5.wav?dl=1",
+                  "D5": "https://www.dropbox.com/House/Timbre4/D5.wav?dl=1",
                 
-                  "D5sharp": "https://www.dropbox.com/House/ Timbre4/D5sharp.wav?dl=1",
+                  "D5sharp": "https://www.dropbox.com/House/Timbre4/D5sharp.wav?dl=1",
                  
-                  "E5": "https://www.dropbox.com/House/ Timbre4/E5.wav?dl=1",
+                  "E5": "https://www.dropbox.com/House/Timbre4/E5.wav?dl=1",
                 
-                  "F5": "https://www.dropbox.com/House/ Timbre4/F4sharp.wav?dl=1"
+                  "F5": "https://www.dropbox.com/House/Timbre4/F4sharp.wav?dl=1"
                }
              }
    
+           ],
+
+           "soundPad": [
+            {
+              "suono1": "https://www.dropbox.com/House/Pad/suono1.wav?dl=1",
+              "suono2": "https://www.dropbox.com/House/Pad/suono2.wav?dl=1",
+              "suono3": "https://www.dropbox.com/House/Pad/suono3.wav?dl=1",
+              "suono4": "https://www.dropbox.com/House/Pad/suono4.wav?dl=1",
+              "suono5": "https://www.dropbox.com/House/Pad/suono5.wav?dl=1",
+              "suono6": "https://www.dropbox.com/House/Pad/suono6.wav?dl=1",
+              "suono7": "https://www.dropbox.com/House/Pad/suono7.wav?dl=1",
+              "suono8": "https://www.dropbox.com/House/Pad/suono8.wav?dl=1",
+              "suono9": "https://www.dropbox.com/House/Pad/suono9.wav?dl=1"
+            }
            ]
    
            },
@@ -283,7 +297,7 @@
         "sfondo": "https://www.dropbox.com/Sea/sfondo.jpg?dl=1",
         "setSuoni": [
            
-           {  "nome": "timbre1",
+           {  "nome": "Timbre 1",
               "suoni": {
             
               "C3": "https://www.dropbox.com/Sea/Timbre1/C3.wav?dl=1",
@@ -350,204 +364,218 @@
      
          
  
-         {  "nome": "timbre2",
+         {  "nome": "Timbre 2",
               "suoni": {
             
-              "C3": "https://www.dropbox.com/Sea/ Timbre2/C3.wav?dl=1",
+              "C3": "https://www.dropbox.com/Sea/Timbre2/C3.wav?dl=1",
 
-              "C3sharp": "https://www.dropbox.com/Sea/ Timbre2/C3sharp.wav?dl=1",
+              "C3sharp": "https://www.dropbox.com/Sea/Timbre2/C3sharp.wav?dl=1",
 
-              "D3": "https://www.dropbox.com/Sea/ Timbre2/D3.wav?dl=1",
+              "D3": "https://www.dropbox.com/Sea/Timbre2/D3.wav?dl=1",
             
-              "D3sharp": "https://www.dropbox.com/Sea/ Timbre2/D3sharp.wav?dl=1",
+              "D3sharp": "https://www.dropbox.com/Sea/Timbre2/D3sharp.wav?dl=1",
             
-              "E3": "https://www.dropbox.com/Sea/ Timbre2/E3.wav?dl=1",
+              "E3": "https://www.dropbox.com/Sea/Timbre2/E3.wav?dl=1",
             
-              "F3": "https://www.dropbox.com/Sea/ Timbre2/F3.wav?dl=1",
+              "F3": "https://www.dropbox.com/Sea/Timbre2/F3.wav?dl=1",
             
-              "F3sharp": "https://www.dropbox.com/Sea/ Timbre2/F3sharp.wav?dl=1",
+              "F3sharp": "https://www.dropbox.com/Sea/Timbre2/F3sharp.wav?dl=1",
             
-              "G3": "https://www.dropbox.com/Sea/ Timbre2/C3.wav?dl=1",
+              "G3": "https://www.dropbox.com/Sea/Timbre2/C3.wav?dl=1",
             
-              "G3sharp": "https://www.dropbox.com/Sea/ Timbre2/G3sharp.wav?dl=1",
+              "G3sharp": "https://www.dropbox.com/Sea/Timbre2/G3sharp.wav?dl=1",
             
-              "A3": "https://www.dropbox.com/Sea/ Timbre2/A3.wav?dl=1",
+              "A3": "https://www.dropbox.com/Sea/Timbre2/A3.wav?dl=1",
             
-              "A3sharp": "https://www.dropbox.com/Sea/ Timbre2/A3sharp.wav?dl=1",
+              "A3sharp": "https://www.dropbox.com/Sea/Timbre2/A3sharp.wav?dl=1",
             
-              "B3": "https://www.dropbox.com/Sea/ Timbre2/B3.wav?dl=1",
+              "B3": "https://www.dropbox.com/Sea/Timbre2/B3.wav?dl=1",
             
-              "C4": "https://www.dropbox.com/Sea/ Timbre2/C3.wav?dl=1",
+              "C4": "https://www.dropbox.com/Sea/Timbre2/C3.wav?dl=1",
             
-              "C4sharp": "https://www.dropbox.com/Sea/ Timbre2/C4sharp.wav?dl=1",
+              "C4sharp": "https://www.dropbox.com/Sea/Timbre2/C4sharp.wav?dl=1",
             
-              "D4": "https://www.dropbox.com/Sea/ Timbre2/D4.wav?dl=1",
+              "D4": "https://www.dropbox.com/Sea/Timbre2/D4.wav?dl=1",
             
-              "D4sharp": "https://www.dropbox.com/Sea/ Timbre2/D4sharp.wav?dl=1",
+              "D4sharp": "https://www.dropbox.com/Sea/Timbre2/D4sharp.wav?dl=1",
             
-              "E4": "https://www.dropbox.com/Sea/ Timbre2/E4.wav?dl=1",
+              "E4": "https://www.dropbox.com/Sea/Timbre2/E4.wav?dl=1",
                
-              "F4": "https://www.dropbox.com/Sea/ Timbre2/F4sharp.wav?dl=1",
+              "F4": "https://www.dropbox.com/Sea/Timbre2/F4sharp.wav?dl=1",
             
-              "F4sharp": "https://www.dropbox.com/Sea/ Timbre2/F4sharp.wav?dl=1",
+              "F4sharp": "https://www.dropbox.com/Sea/Timbre2/F4sharp.wav?dl=1",
             
-              "G4": "https://www.dropbox.com/Sea/ Timbre2/G4.wav?dl=1",
+              "G4": "https://www.dropbox.com/Sea/Timbre2/G4.wav?dl=1",
             
-              "G4sharp": "https://www.dropbox.com/Sea/ Timbre2/G4sharp.wav?dl=1",
+              "G4sharp": "https://www.dropbox.com/Sea/Timbre2/G4sharp.wav?dl=1",
             
-              "A4": "https://www.dropbox.com/Sea/ Timbre2/A4.wav?dl=1",
+              "A4": "https://www.dropbox.com/Sea/Timbre2/A4.wav?dl=1",
             
-              "A4sharp": "https://www.dropbox.com/Sea/ Timbre2/A4sharp.wav?dl=1",
+              "A4sharp": "https://www.dropbox.com/Sea/Timbre2/A4sharp.wav?dl=1",
             
-              "B4": "https://www.dropbox.com/Sea/ Timbre2/B4.wav?dl=1",
+              "B4": "https://www.dropbox.com/Sea/Timbre2/B4.wav?dl=1",
             
-              "C5": "https://www.dropbox.com/Sea/ Timbre2/C5.wav?dl=1",
+              "C5": "https://www.dropbox.com/Sea/Timbre2/C5.wav?dl=1",
             
-              "C5sharp": "https://www.dropbox.com/Sea/ Timbre2/C5sharp.wav?dl=1",
+              "C5sharp": "https://www.dropbox.com/Sea/Timbre2/C5sharp.wav?dl=1",
             
-              "D5": "https://www.dropbox.com/Sea/ Timbre2/D5.wav?dl=1",
+              "D5": "https://www.dropbox.com/Sea/Timbre2/D5.wav?dl=1",
             
-              "D5sharp": "https://www.dropbox.com/Sea/ Timbre2/D5sharp.wav?dl=1",
+              "D5sharp": "https://www.dropbox.com/Sea/Timbre2/D5sharp.wav?dl=1",
              
-              "E5": "https://www.dropbox.com/Sea/ Timbre2/E5.wav?dl=1",
+              "E5": "https://www.dropbox.com/Sea/Timbre2/E5.wav?dl=1",
             
-              "F5": "https://www.dropbox.com/Sea/ Timbre2/F4sharp.wav?dl=1"
+              "F5": "https://www.dropbox.com/Sea/Timbre2/F4sharp.wav?dl=1"
            }
          }, 
          
  
-         {  "nome": "timbre3",
+         {  "nome": "Timbre 3",
               "suoni": {
             
-              "C3": "https://www.dropbox.com/Sea/ Timbre3/C3.wav?dl=1",
+              "C3": "https://www.dropbox.com/Sea/Timbre3/C3.wav?dl=1",
 
-              "C3sharp": "https://www.dropbox.com/Sea/ Timbre3/C3sharp.wav?dl=1",
+              "C3sharp": "https://www.dropbox.com/Sea/Timbre3/C3sharp.wav?dl=1",
 
-              "D3": "https://www.dropbox.com/Sea/ Timbre3/D3.wav?dl=1",
+              "D3": "https://www.dropbox.com/Sea/Timbre3/D3.wav?dl=1",
             
-              "D3sharp": "https://www.dropbox.com/Sea/ Timbre3/D3sharp.wav?dl=1",
+              "D3sharp": "https://www.dropbox.com/Sea/Timbre3/D3sharp.wav?dl=1",
             
-              "E3": "https://www.dropbox.com/Sea/ Timbre3/E3.wav?dl=1",
+              "E3": "https://www.dropbox.com/Sea/Timbre3/E3.wav?dl=1",
             
-              "F3": "https://www.dropbox.com/Sea/ Timbre3/F3.wav?dl=1",
+              "F3": "https://www.dropbox.com/Sea/Timbre3/F3.wav?dl=1",
             
-              "F3sharp": "https://www.dropbox.com/Sea/ Timbre3/F3sharp.wav?dl=1",
+              "F3sharp": "https://www.dropbox.com/Sea/Timbre3/F3sharp.wav?dl=1",
             
-              "G3": "https://www.dropbox.com/Sea/ Timbre3/C3.wav?dl=1",
+              "G3": "https://www.dropbox.com/Sea/Timbre3/C3.wav?dl=1",
             
-              "G3sharp": "https://www.dropbox.com/Sea/ Timbre3/G3sharp.wav?dl=1",
+              "G3sharp": "https://www.dropbox.com/Sea/Timbre3/G3sharp.wav?dl=1",
             
-              "A3": "https://www.dropbox.com/Sea/ Timbre3/A3.wav?dl=1",
+              "A3": "https://www.dropbox.com/Sea/Timbre3/A3.wav?dl=1",
             
-              "A3sharp": "https://www.dropbox.com/Sea/ Timbre3/A3sharp.wav?dl=1",
+              "A3sharp": "https://www.dropbox.com/Sea/Timbre3/A3sharp.wav?dl=1",
             
-              "B3": "https://www.dropbox.com/Sea/ Timbre3/B3.wav?dl=1",
+              "B3": "https://www.dropbox.com/Sea/Timbre3/B3.wav?dl=1",
             
-              "C4": "https://www.dropbox.com/Sea/ Timbre3/C3.wav?dl=1",
+              "C4": "https://www.dropbox.com/Sea/Timbre3/C3.wav?dl=1",
             
-              "C4sharp": "https://www.dropbox.com/Sea/ Timbre3/C4sharp.wav?dl=1",
+              "C4sharp": "https://www.dropbox.com/Sea/Timbre3/C4sharp.wav?dl=1",
             
-              "D4": "https://www.dropbox.com/Sea/ Timbre3/D4.wav?dl=1",
+              "D4": "https://www.dropbox.com/Sea/Timbre3/D4.wav?dl=1",
             
-              "D4sharp": "https://www.dropbox.com/Sea/ Timbre3/D4sharp.wav?dl=1",
+              "D4sharp": "https://www.dropbox.com/Sea/Timbre3/D4sharp.wav?dl=1",
             
-              "E4": "https://www.dropbox.com/Sea/ Timbre3/E4.wav?dl=1",
+              "E4": "https://www.dropbox.com/Sea/Timbre3/E4.wav?dl=1",
                
-              "F4": "https://www.dropbox.com/Sea/ Timbre3/F4sharp.wav?dl=1",
+              "F4": "https://www.dropbox.com/Sea/Timbre3/F4sharp.wav?dl=1",
             
-              "F4sharp": "https://www.dropbox.com/Sea/ Timbre3/F4sharp.wav?dl=1",
+              "F4sharp": "https://www.dropbox.com/Sea/Timbre3/F4sharp.wav?dl=1",
             
-              "G4": "https://www.dropbox.com/Sea/ Timbre3/G4.wav?dl=1",
+              "G4": "https://www.dropbox.com/Sea/Timbre3/G4.wav?dl=1",
             
-              "G4sharp": "https://www.dropbox.com/Sea/ Timbre3/G4sharp.wav?dl=1",
+              "G4sharp": "https://www.dropbox.com/Sea/Timbre3/G4sharp.wav?dl=1",
             
-              "A4": "https://www.dropbox.com/Sea/ Timbre3/A4.wav?dl=1",
+              "A4": "https://www.dropbox.com/Sea/Timbre3/A4.wav?dl=1",
             
-              "A4sharp": "https://www.dropbox.com/Sea/ Timbre3/A4sharp.wav?dl=1",
+              "A4sharp": "https://www.dropbox.com/Sea/Timbre3/A4sharp.wav?dl=1",
             
-              "B4": "https://www.dropbox.com/Sea/ Timbre3/B4.wav?dl=1",
+              "B4": "https://www.dropbox.com/Sea/Timbre3/B4.wav?dl=1",
             
-              "C5": "https://www.dropbox.com/Sea/ Timbre3/C5.wav?dl=1",
+              "C5": "https://www.dropbox.com/Sea/Timbre3/C5.wav?dl=1",
             
-              "C5sharp": "https://www.dropbox.com/Sea/ Timbre3/C5sharp.wav?dl=1",
+              "C5sharp": "https://www.dropbox.com/Sea/Timbre3/C5sharp.wav?dl=1",
             
-              "D5": "https://www.dropbox.com/Sea/ Timbre3/D5.wav?dl=1",
+              "D5": "https://www.dropbox.com/Sea/Timbre3/D5.wav?dl=1",
             
-              "D5sharp": "https://www.dropbox.com/Sea/ Timbre3/D5sharp.wav?dl=1",
+              "D5sharp": "https://www.dropbox.com/Sea/Timbre3/D5sharp.wav?dl=1",
              
-              "E5": "https://www.dropbox.com/Sea/ Timbre3/E5.wav?dl=1",
+              "E5": "https://www.dropbox.com/Sea/Timbre3/E5.wav?dl=1",
             
-              "F5": "https://www.dropbox.com/Sea/ Timbre3/F4sharp.wav?dl=1"
+              "F5": "https://www.dropbox.com/Sea/Timbre3/F4sharp.wav?dl=1"
            }
          }, 
          
  
-         {  "nome": "timbre4",
+         {  "nome": "Timbre 4",
               "suoni": {
             
-              "C3": "https://www.dropbox.com/Sea/ Timbre4/C3.wav?dl=1",
+              "C3": "https://www.dropbox.com/Sea/Timbre4/C3.wav?dl=1",
 
-              "C3sharp": "https://www.dropbox.com/Sea/ Timbre4/C3sharp.wav?dl=1",
+              "C3sharp": "https://www.dropbox.com/Sea/Timbre4/C3sharp.wav?dl=1",
 
-              "D3": "https://www.dropbox.com/Sea/ Timbre4/D3.wav?dl=1",
+              "D3": "https://www.dropbox.com/Sea/Timbre4/D3.wav?dl=1",
             
-              "D3sharp": "https://www.dropbox.com/Sea/ Timbre4/D3sharp.wav?dl=1",
+              "D3sharp": "https://www.dropbox.com/Sea/Timbre4/D3sharp.wav?dl=1",
             
-              "E3": "https://www.dropbox.com/Sea/ Timbre4/E3.wav?dl=1",
+              "E3": "https://www.dropbox.com/Sea/Timbre4/E3.wav?dl=1",
             
-              "F3": "https://www.dropbox.com/Sea/ Timbre4/F3.wav?dl=1",
+              "F3": "https://www.dropbox.com/Sea/Timbre4/F3.wav?dl=1",
             
-              "F3sharp": "https://www.dropbox.com/Sea/ Timbre4/F3sharp.wav?dl=1",
+              "F3sharp": "https://www.dropbox.com/Sea/Timbre4/F3sharp.wav?dl=1",
             
-              "G3": "https://www.dropbox.com/Sea/ Timbre4/C3.wav?dl=1",
+              "G3": "https://www.dropbox.com/Sea/Timbre4/C3.wav?dl=1",
             
-              "G3sharp": "https://www.dropbox.com/Sea/ Timbre4/G3sharp.wav?dl=1",
+              "G3sharp": "https://www.dropbox.com/Sea/Timbre4/G3sharp.wav?dl=1",
             
-              "A3": "https://www.dropbox.com/Sea/ Timbre4/A3.wav?dl=1",
+              "A3": "https://www.dropbox.com/Sea/Timbre4/A3.wav?dl=1",
             
-              "A3sharp": "https://www.dropbox.com/Sea/ Timbre4/A3sharp.wav?dl=1",
+              "A3sharp": "https://www.dropbox.com/Sea/Timbre4/A3sharp.wav?dl=1",
             
-              "B3": "https://www.dropbox.com/Sea/ Timbre4/B3.wav?dl=1",
+              "B3": "https://www.dropbox.com/Sea/Timbre4/B3.wav?dl=1",
             
-              "C4": "https://www.dropbox.com/Sea/ Timbre4/C3.wav?dl=1",
+              "C4": "https://www.dropbox.com/Sea/Timbre4/C3.wav?dl=1",
             
-              "C4sharp": "https://www.dropbox.com/Sea/ Timbre4/C4sharp.wav?dl=1",
+              "C4sharp": "https://www.dropbox.com/Sea/Timbre4/C4sharp.wav?dl=1",
             
-              "D4": "https://www.dropbox.com/Sea/ Timbre4/D4.wav?dl=1",
+              "D4": "https://www.dropbox.com/Sea/Timbre4/D4.wav?dl=1",
             
-              "D4sharp": "https://www.dropbox.com/Sea/ Timbre4/D4sharp.wav?dl=1",
+              "D4sharp": "https://www.dropbox.com/Sea/Timbre4/D4sharp.wav?dl=1",
             
-              "E4": "https://www.dropbox.com/Sea/ Timbre4/E4.wav?dl=1",
+              "E4": "https://www.dropbox.com/Sea/Timbre4/E4.wav?dl=1",
                
-              "F4": "https://www.dropbox.com/Sea/ Timbre4/F4sharp.wav?dl=1",
+              "F4": "https://www.dropbox.com/Sea/Timbre4/F4sharp.wav?dl=1",
             
-              "F4sharp": "https://www.dropbox.com/Sea/ Timbre4/F4sharp.wav?dl=1",
+              "F4sharp": "https://www.dropbox.com/Sea/Timbre4/F4sharp.wav?dl=1",
             
-              "G4": "https://www.dropbox.com/Sea/ Timbre4/G4.wav?dl=1",
+              "G4": "https://www.dropbox.com/Sea/Timbre4/G4.wav?dl=1",
             
-              "G4sharp": "https://www.dropbox.com/Sea/ Timbre4/G4sharp.wav?dl=1",
+              "G4sharp": "https://www.dropbox.com/Sea/Timbre4/G4sharp.wav?dl=1",
             
-              "A4": "https://www.dropbox.com/Sea/ Timbre4/A4.wav?dl=1",
+              "A4": "https://www.dropbox.com/Sea/Timbre4/A4.wav?dl=1",
             
-              "A4sharp": "https://www.dropbox.com/Sea/ Timbre4/A4sharp.wav?dl=1",
+              "A4sharp": "https://www.dropbox.com/Sea/Timbre4/A4sharp.wav?dl=1",
             
-              "B4": "https://www.dropbox.com/Sea/ Timbre4/B4.wav?dl=1",
+              "B4": "https://www.dropbox.com/Sea/Timbre4/B4.wav?dl=1",
             
-              "C5": "https://www.dropbox.com/Sea/ Timbre4/C5.wav?dl=1",
+              "C5": "https://www.dropbox.com/Sea/Timbre4/C5.wav?dl=1",
             
-              "C5sharp": "https://www.dropbox.com/Sea/ Timbre4/C5sharp.wav?dl=1",
+              "C5sharp": "https://www.dropbox.com/Sea/Timbre4/C5sharp.wav?dl=1",
             
-              "D5": "https://www.dropbox.com/Sea/ Timbre4/D5.wav?dl=1",
+              "D5": "https://www.dropbox.com/Sea/Timbre4/D5.wav?dl=1",
             
-              "D5sharp": "https://www.dropbox.com/Sea/ Timbre4/D5sharp.wav?dl=1",
+              "D5sharp": "https://www.dropbox.com/Sea/Timbre4/D5sharp.wav?dl=1",
              
-              "E5": "https://www.dropbox.com/Sea/ Timbre4/E5.wav?dl=1",
+              "E5": "https://www.dropbox.com/Sea/Timbre4/E5.wav?dl=1",
             
-              "F5": "https://www.dropbox.com/Sea/ Timbre4/F4sharp.wav?dl=1"
+              "F5": "https://www.dropbox.com/Sea/Timbre4/F4sharp.wav?dl=1"
            }
          }
 
-       ]
+       ],
+
+       "soundPad": [
+            {
+              "suono1": "https://www.dropbox.com/Sea/Pad/suono1.wav?dl=1",
+              "suono2": "https://www.dropbox.com/Sea/Pad/suono2.wav?dl=1",
+              "suono3": "https://www.dropbox.com/Sea/Pad/suono3.wav?dl=1",
+              "suono4": "https://www.dropbox.com/Sea/Pad/suono4.wav?dl=1",
+              "suono5": "https://www.dropbox.com/Sea/Pad/suono5.wav?dl=1",
+              "suono6": "https://www.dropbox.com/Sea/Pad/suono6.wav?dl=1",
+              "suono7": "https://www.dropbox.com/Sea/Pad/suono7.wav?dl=1",
+              "suono8": "https://www.dropbox.com/Sea/Pad/suono8.wav?dl=1",
+              "suono9": "https://www.dropbox.com/Sea/Pad/suono9.wav?dl=1"
+            }
+           ]
 
        },
      
@@ -559,7 +587,7 @@
         "sfondo": "https://www.dropbox.com/Sea/sfondo.jpg?dl=1",
         "setSuoni": [
            
-           {  "nome": "timbre1",
+           {  "nome": "Timbre 1",
               "suoni": {
             
               "C3": "https://www.dropbox.com/City/Timbre1/C3.wav?dl=1",
@@ -626,204 +654,218 @@
      
          
  
-         {  "nome": "timbre2",
+         {  "nome": "Timbre 2",
               "suoni": {
             
-              "C3": "https://www.dropbox.com/City/ Timbre2/C3.wav?dl=1",
+              "C3": "https://www.dropbox.com/City/Timbre2/C3.wav?dl=1",
 
-              "C3sharp": "https://www.dropbox.com/City/ Timbre2/C3sharp.wav?dl=1",
+              "C3sharp": "https://www.dropbox.com/City/Timbre2/C3sharp.wav?dl=1",
 
-              "D3": "https://www.dropbox.com/City/ Timbre2/D3.wav?dl=1",
+              "D3": "https://www.dropbox.com/City/Timbre2/D3.wav?dl=1",
             
-              "D3sharp": "https://www.dropbox.com/City/ Timbre2/D3sharp.wav?dl=1",
+              "D3sharp": "https://www.dropbox.com/City/Timbre2/D3sharp.wav?dl=1",
             
-              "E3": "https://www.dropbox.com/City/ Timbre2/E3.wav?dl=1",
+              "E3": "https://www.dropbox.com/City/Timbre2/E3.wav?dl=1",
             
-              "F3": "https://www.dropbox.com/City/ Timbre2/F3.wav?dl=1",
+              "F3": "https://www.dropbox.com/City/Timbre2/F3.wav?dl=1",
             
-              "F3sharp": "https://www.dropbox.com/City/ Timbre2/F3sharp.wav?dl=1",
+              "F3sharp": "https://www.dropbox.com/City/Timbre2/F3sharp.wav?dl=1",
             
-              "G3": "https://www.dropbox.com/City/ Timbre2/C3.wav?dl=1",
+              "G3": "https://www.dropbox.com/City/Timbre2/C3.wav?dl=1",
             
-              "G3sharp": "https://www.dropbox.com/City/ Timbre2/G3sharp.wav?dl=1",
+              "G3sharp": "https://www.dropbox.com/City/Timbre2/G3sharp.wav?dl=1",
             
-              "A3": "https://www.dropbox.com/City/ Timbre2/A3.wav?dl=1",
+              "A3": "https://www.dropbox.com/City/Timbre2/A3.wav?dl=1",
             
-              "A3sharp": "https://www.dropbox.com/City/ Timbre2/A3sharp.wav?dl=1",
+              "A3sharp": "https://www.dropbox.com/City/Timbre2/A3sharp.wav?dl=1",
             
-              "B3": "https://www.dropbox.com/City/ Timbre2/B3.wav?dl=1",
+              "B3": "https://www.dropbox.com/City/Timbre2/B3.wav?dl=1",
             
-              "C4": "https://www.dropbox.com/City/ Timbre2/C3.wav?dl=1",
+              "C4": "https://www.dropbox.com/City/Timbre2/C3.wav?dl=1",
             
-              "C4sharp": "https://www.dropbox.com/City/ Timbre2/C4sharp.wav?dl=1",
+              "C4sharp": "https://www.dropbox.com/City/Timbre2/C4sharp.wav?dl=1",
             
-              "D4": "https://www.dropbox.com/City/ Timbre2/D4.wav?dl=1",
+              "D4": "https://www.dropbox.com/City/Timbre2/D4.wav?dl=1",
             
-              "D4sharp": "https://www.dropbox.com/City/ Timbre2/D4sharp.wav?dl=1",
+              "D4sharp": "https://www.dropbox.com/City/Timbre2/D4sharp.wav?dl=1",
             
-              "E4": "https://www.dropbox.com/City/ Timbre2/E4.wav?dl=1",
+              "E4": "https://www.dropbox.com/City/Timbre2/E4.wav?dl=1",
                
-              "F4": "https://www.dropbox.com/City/ Timbre2/F4sharp.wav?dl=1",
+              "F4": "https://www.dropbox.com/City/Timbre2/F4sharp.wav?dl=1",
             
-              "F4sharp": "https://www.dropbox.com/City/ Timbre2/F4sharp.wav?dl=1",
+              "F4sharp": "https://www.dropbox.com/City/Timbre2/F4sharp.wav?dl=1",
             
-              "G4": "https://www.dropbox.com/City/ Timbre2/G4.wav?dl=1",
+              "G4": "https://www.dropbox.com/City/Timbre2/G4.wav?dl=1",
             
-              "G4sharp": "https://www.dropbox.com/City/ Timbre2/G4sharp.wav?dl=1",
+              "G4sharp": "https://www.dropbox.com/City/Timbre2/G4sharp.wav?dl=1",
             
-              "A4": "https://www.dropbox.com/City/ Timbre2/A4.wav?dl=1",
+              "A4": "https://www.dropbox.com/City/Timbre2/A4.wav?dl=1",
             
-              "A4sharp": "https://www.dropbox.com/City/ Timbre2/A4sharp.wav?dl=1",
+              "A4sharp": "https://www.dropbox.com/City/Timbre2/A4sharp.wav?dl=1",
             
-              "B4": "https://www.dropbox.com/City/ Timbre2/B4.wav?dl=1",
+              "B4": "https://www.dropbox.com/City/Timbre2/B4.wav?dl=1",
             
-              "C5": "https://www.dropbox.com/City/ Timbre2/C5.wav?dl=1",
+              "C5": "https://www.dropbox.com/City/Timbre2/C5.wav?dl=1",
             
-              "C5sharp": "https://www.dropbox.com/City/ Timbre2/C5sharp.wav?dl=1",
+              "C5sharp": "https://www.dropbox.com/City/Timbre2/C5sharp.wav?dl=1",
             
-              "D5": "https://www.dropbox.com/City/ Timbre2/D5.wav?dl=1",
+              "D5": "https://www.dropbox.com/City/Timbre2/D5.wav?dl=1",
             
-              "D5sharp": "https://www.dropbox.com/City/ Timbre2/D5sharp.wav?dl=1",
+              "D5sharp": "https://www.dropbox.com/City/Timbre2/D5sharp.wav?dl=1",
              
-              "E5": "https://www.dropbox.com/City/ Timbre2/E5.wav?dl=1",
+              "E5": "https://www.dropbox.com/City/Timbre2/E5.wav?dl=1",
             
-              "F5": "https://www.dropbox.com/City/ Timbre2/F4sharp.wav?dl=1"
+              "F5": "https://www.dropbox.com/City/Timbre2/F4sharp.wav?dl=1"
            }
          }, 
          
  
-         {  "nome": "timbre3",
+         {  "nome": "Timbre 3",
               "suoni": {
             
-              "C3": "https://www.dropbox.com/City/ Timbre3/C3.wav?dl=1",
+              "C3": "https://www.dropbox.com/City/Timbre3/C3.wav?dl=1",
 
-              "C3sharp": "https://www.dropbox.com/City/ Timbre3/C3sharp.wav?dl=1",
+              "C3sharp": "https://www.dropbox.com/City/Timbre3/C3sharp.wav?dl=1",
 
-              "D3": "https://www.dropbox.com/City/ Timbre3/D3.wav?dl=1",
+              "D3": "https://www.dropbox.com/City/Timbre3/D3.wav?dl=1",
             
-              "D3sharp": "https://www.dropbox.com/City/ Timbre3/D3sharp.wav?dl=1",
+              "D3sharp": "https://www.dropbox.com/City/Timbre3/D3sharp.wav?dl=1",
             
-              "E3": "https://www.dropbox.com/City/ Timbre3/E3.wav?dl=1",
+              "E3": "https://www.dropbox.com/City/Timbre3/E3.wav?dl=1",
             
-              "F3": "https://www.dropbox.com/City/ Timbre3/F3.wav?dl=1",
+              "F3": "https://www.dropbox.com/City/Timbre3/F3.wav?dl=1",
             
-              "F3sharp": "https://www.dropbox.com/City/ Timbre3/F3sharp.wav?dl=1",
+              "F3sharp": "https://www.dropbox.com/City/Timbre3/F3sharp.wav?dl=1",
             
-              "G3": "https://www.dropbox.com/City/ Timbre3/C3.wav?dl=1",
+              "G3": "https://www.dropbox.com/City/Timbre3/C3.wav?dl=1",
             
-              "G3sharp": "https://www.dropbox.com/City/ Timbre3/G3sharp.wav?dl=1",
+              "G3sharp": "https://www.dropbox.com/City/Timbre3/G3sharp.wav?dl=1",
             
-              "A3": "https://www.dropbox.com/City/ Timbre3/A3.wav?dl=1",
+              "A3": "https://www.dropbox.com/City/Timbre3/A3.wav?dl=1",
             
-              "A3sharp": "https://www.dropbox.com/City/ Timbre3/A3sharp.wav?dl=1",
+              "A3sharp": "https://www.dropbox.com/City/Timbre3/A3sharp.wav?dl=1",
             
-              "B3": "https://www.dropbox.com/City/ Timbre3/B3.wav?dl=1",
+              "B3": "https://www.dropbox.com/City/Timbre3/B3.wav?dl=1",
             
-              "C4": "https://www.dropbox.com/City/ Timbre3/C3.wav?dl=1",
+              "C4": "https://www.dropbox.com/City/Timbre3/C3.wav?dl=1",
             
-              "C4sharp": "https://www.dropbox.com/City/ Timbre3/C4sharp.wav?dl=1",
+              "C4sharp": "https://www.dropbox.com/City/Timbre3/C4sharp.wav?dl=1",
             
-              "D4": "https://www.dropbox.com/City/ Timbre3/D4.wav?dl=1",
+              "D4": "https://www.dropbox.com/City/Timbre3/D4.wav?dl=1",
             
-              "D4sharp": "https://www.dropbox.com/City/ Timbre3/D4sharp.wav?dl=1",
+              "D4sharp": "https://www.dropbox.com/City/Timbre3/D4sharp.wav?dl=1",
             
-              "E4": "https://www.dropbox.com/City/ Timbre3/E4.wav?dl=1",
+              "E4": "https://www.dropbox.com/City/Timbre3/E4.wav?dl=1",
                
-              "F4": "https://www.dropbox.com/City/ Timbre3/F4sharp.wav?dl=1",
+              "F4": "https://www.dropbox.com/City/Timbre3/F4sharp.wav?dl=1",
             
-              "F4sharp": "https://www.dropbox.com/City/ Timbre3/F4sharp.wav?dl=1",
+              "F4sharp": "https://www.dropbox.com/City/Timbre3/F4sharp.wav?dl=1",
             
-              "G4": "https://www.dropbox.com/City/ Timbre3/G4.wav?dl=1",
+              "G4": "https://www.dropbox.com/City/Timbre3/G4.wav?dl=1",
             
-              "G4sharp": "https://www.dropbox.com/City/ Timbre3/G4sharp.wav?dl=1",
+              "G4sharp": "https://www.dropbox.com/City/Timbre3/G4sharp.wav?dl=1",
             
-              "A4": "https://www.dropbox.com/City/ Timbre3/A4.wav?dl=1",
+              "A4": "https://www.dropbox.com/City/Timbre3/A4.wav?dl=1",
             
-              "A4sharp": "https://www.dropbox.com/City/ Timbre3/A4sharp.wav?dl=1",
+              "A4sharp": "https://www.dropbox.com/City/Timbre3/A4sharp.wav?dl=1",
             
-              "B4": "https://www.dropbox.com/City/ Timbre3/B4.wav?dl=1",
+              "B4": "https://www.dropbox.com/City/Timbre3/B4.wav?dl=1",
             
-              "C5": "https://www.dropbox.com/City/ Timbre3/C5.wav?dl=1",
+              "C5": "https://www.dropbox.com/City/Timbre3/C5.wav?dl=1",
             
-              "C5sharp": "https://www.dropbox.com/City/ Timbre3/C5sharp.wav?dl=1",
+              "C5sharp": "https://www.dropbox.com/City/Timbre3/C5sharp.wav?dl=1",
             
-              "D5": "https://www.dropbox.com/City/ Timbre3/D5.wav?dl=1",
+              "D5": "https://www.dropbox.com/City/Timbre3/D5.wav?dl=1",
             
-              "D5sharp": "https://www.dropbox.com/City/ Timbre3/D5sharp.wav?dl=1",
+              "D5sharp": "https://www.dropbox.com/City/Timbre3/D5sharp.wav?dl=1",
              
-              "E5": "https://www.dropbox.com/City/ Timbre3/E5.wav?dl=1",
+              "E5": "https://www.dropbox.com/City/Timbre3/E5.wav?dl=1",
             
-              "F5": "https://www.dropbox.com/City/ Timbre3/F4sharp.wav?dl=1"
+              "F5": "https://www.dropbox.com/City/Timbre3/F4sharp.wav?dl=1"
            }
          }, 
          
  
-         {  "nome": "timbre4",
+         {  "nome": "Timbre 4",
               "suoni": {
             
-              "C3": "https://www.dropbox.com/City/ Timbre4/C3.wav?dl=1",
+              "C3": "https://www.dropbox.com/City/Timbre4/C3.wav?dl=1",
 
-              "C3sharp": "https://www.dropbox.com/City/ Timbre4/C3sharp.wav?dl=1",
+              "C3sharp": "https://www.dropbox.com/City/Timbre4/C3sharp.wav?dl=1",
 
-              "D3": "https://www.dropbox.com/City/ Timbre4/D3.wav?dl=1",
+              "D3": "https://www.dropbox.com/City/Timbre4/D3.wav?dl=1",
             
-              "D3sharp": "https://www.dropbox.com/City/ Timbre4/D3sharp.wav?dl=1",
+              "D3sharp": "https://www.dropbox.com/City/Timbre4/D3sharp.wav?dl=1",
             
-              "E3": "https://www.dropbox.com/City/ Timbre4/E3.wav?dl=1",
+              "E3": "https://www.dropbox.com/City/Timbre4/E3.wav?dl=1",
             
-              "F3": "https://www.dropbox.com/City/ Timbre4/F3.wav?dl=1",
+              "F3": "https://www.dropbox.com/City/Timbre4/F3.wav?dl=1",
             
-              "F3sharp": "https://www.dropbox.com/City/ Timbre4/F3sharp.wav?dl=1",
+              "F3sharp": "https://www.dropbox.com/City/Timbre4/F3sharp.wav?dl=1",
             
-              "G3": "https://www.dropbox.com/City/ Timbre4/C3.wav?dl=1",
+              "G3": "https://www.dropbox.com/City/Timbre4/C3.wav?dl=1",
             
-              "G3sharp": "https://www.dropbox.com/City/ Timbre4/G3sharp.wav?dl=1",
+              "G3sharp": "https://www.dropbox.com/City/Timbre4/G3sharp.wav?dl=1",
             
-              "A3": "https://www.dropbox.com/City/ Timbre4/A3.wav?dl=1",
+              "A3": "https://www.dropbox.com/City/Timbre4/A3.wav?dl=1",
             
-              "A3sharp": "https://www.dropbox.com/City/ Timbre4/A3sharp.wav?dl=1",
+              "A3sharp": "https://www.dropbox.com/City/Timbre4/A3sharp.wav?dl=1",
             
-              "B3": "https://www.dropbox.com/City/ Timbre4/B3.wav?dl=1",
+              "B3": "https://www.dropbox.com/City/Timbre4/B3.wav?dl=1",
             
-              "C4": "https://www.dropbox.com/City/ Timbre4/C3.wav?dl=1",
+              "C4": "https://www.dropbox.com/City/Timbre4/C3.wav?dl=1",
             
-              "C4sharp": "https://www.dropbox.com/City/ Timbre4/C4sharp.wav?dl=1",
+              "C4sharp": "https://www.dropbox.com/City/Timbre4/C4sharp.wav?dl=1",
             
-              "D4": "https://www.dropbox.com/City/ Timbre4/D4.wav?dl=1",
+              "D4": "https://www.dropbox.com/City/Timbre4/D4.wav?dl=1",
             
-              "D4sharp": "https://www.dropbox.com/City/ Timbre4/D4sharp.wav?dl=1",
+              "D4sharp": "https://www.dropbox.com/City/Timbre4/D4sharp.wav?dl=1",
             
-              "E4": "https://www.dropbox.com/City/ Timbre4/E4.wav?dl=1",
+              "E4": "https://www.dropbox.com/City/Timbre4/E4.wav?dl=1",
                
-              "F4": "https://www.dropbox.com/City/ Timbre4/F4sharp.wav?dl=1",
+              "F4": "https://www.dropbox.com/City/Timbre4/F4sharp.wav?dl=1",
             
-              "F4sharp": "https://www.dropbox.com/City/ Timbre4/F4sharp.wav?dl=1",
+              "F4sharp": "https://www.dropbox.com/City/Timbre4/F4sharp.wav?dl=1",
             
-              "G4": "https://www.dropbox.com/City/ Timbre4/G4.wav?dl=1",
+              "G4": "https://www.dropbox.com/City/Timbre4/G4.wav?dl=1",
             
-              "G4sharp": "https://www.dropbox.com/City/ Timbre4/G4sharp.wav?dl=1",
+              "G4sharp": "https://www.dropbox.com/City/Timbre4/G4sharp.wav?dl=1",
             
-              "A4": "https://www.dropbox.com/City/ Timbre4/A4.wav?dl=1",
+              "A4": "https://www.dropbox.com/City/Timbre4/A4.wav?dl=1",
             
-              "A4sharp": "https://www.dropbox.com/City/ Timbre4/A4sharp.wav?dl=1",
+              "A4sharp": "https://www.dropbox.com/City/Timbre4/A4sharp.wav?dl=1",
             
-              "B4": "https://www.dropbox.com/City/ Timbre4/B4.wav?dl=1",
+              "B4": "https://www.dropbox.com/City/Timbre4/B4.wav?dl=1",
             
-              "C5": "https://www.dropbox.com/City/ Timbre4/C5.wav?dl=1",
+              "C5": "https://www.dropbox.com/City/Timbre4/C5.wav?dl=1",
             
-              "C5sharp": "https://www.dropbox.com/City/ Timbre4/C5sharp.wav?dl=1",
+              "C5sharp": "https://www.dropbox.com/City/Timbre4/C5sharp.wav?dl=1",
             
-              "D5": "https://www.dropbox.com/City/ Timbre4/D5.wav?dl=1",
+              "D5": "https://www.dropbox.com/City/Timbre4/D5.wav?dl=1",
             
-              "D5sharp": "https://www.dropbox.com/City/ Timbre4/D5sharp.wav?dl=1",
+              "D5sharp": "https://www.dropbox.com/City/Timbre4/D5sharp.wav?dl=1",
              
-              "E5": "https://www.dropbox.com/City/ Timbre4/E5.wav?dl=1",
+              "E5": "https://www.dropbox.com/City/Timbre4/E5.wav?dl=1",
             
-              "F5": "https://www.dropbox.com/City/ Timbre4/F4sharp.wav?dl=1"
+              "F5": "https://www.dropbox.com/City/Timbre4/F4sharp.wav?dl=1"
            }
          }
 
-       ]
+       ],
+
+       "soundPad": [
+            {
+              "suono1": "https://www.dropbox.com/City/Pad/suono1.wav?dl=1",
+              "suono2": "https://www.dropbox.com/City/Pad/suono2.wav?dl=1",
+              "suono3": "https://www.dropbox.com/City/Pad/suono3.wav?dl=1",
+              "suono4": "https://www.dropbox.com/City/Pad/suono4.wav?dl=1",
+              "suono5": "https://www.dropbox.com/City/Pad/suono5.wav?dl=1",
+              "suono6": "https://www.dropbox.com/City/Pad/suono6.wav?dl=1",
+              "suono7": "https://www.dropbox.com/City/Pad/suono7.wav?dl=1",
+              "suono8": "https://www.dropbox.com/City/Pad/suono8.wav?dl=1",
+              "suono9": "https://www.dropbox.com/City/Pad/suono9.wav?dl=1"
+            }
+           ]
 
        },
       
@@ -833,7 +875,7 @@
          "sfondo": "https://www.dropbox.com/Country/sfondo.jpg?dl=1",
          "setSuoni": [
             
-            {  "nome": "timbre1",
+            {  "nome": "Timbre 1",
                "suoni": {
              
                "C3": "https://www.dropbox.com/Country/Timbre1/C3.wav?dl=1",
@@ -900,204 +942,218 @@
       
           
   
-          {  "nome": "timbre2",
+          {  "nome": "Timbre 2",
                "suoni": {
              
-               "C3": "https://www.dropbox.com/Country/ Timbre2/C3.wav?dl=1",
+               "C3": "https://www.dropbox.com/Country/Timbre2/C3.wav?dl=1",
 
-               "C3sharp": "https://www.dropbox.com/Country/ Timbre2/C3sharp.wav?dl=1",
+               "C3sharp": "https://www.dropbox.com/Country/Timbre2/C3sharp.wav?dl=1",
 
-               "D3": "https://www.dropbox.com/Country/ Timbre2/D3.wav?dl=1",
+               "D3": "https://www.dropbox.com/Country/Timbre2/D3.wav?dl=1",
              
-               "D3sharp": "https://www.dropbox.com/Country/ Timbre2/D3sharp.wav?dl=1",
+               "D3sharp": "https://www.dropbox.com/Country/Timbre2/D3sharp.wav?dl=1",
              
-               "E3": "https://www.dropbox.com/Country/ Timbre2/E3.wav?dl=1",
+               "E3": "https://www.dropbox.com/Country/Timbre2/E3.wav?dl=1",
              
-               "F3": "https://www.dropbox.com/Country/ Timbre2/F3.wav?dl=1",
+               "F3": "https://www.dropbox.com/Country/Timbre2/F3.wav?dl=1",
              
-               "F3sharp": "https://www.dropbox.com/Country/ Timbre2/F3sharp.wav?dl=1",
+               "F3sharp": "https://www.dropbox.com/Country/Timbre2/F3sharp.wav?dl=1",
              
-               "G3": "https://www.dropbox.com/Country/ Timbre2/C3.wav?dl=1",
+               "G3": "https://www.dropbox.com/Country/Timbre2/C3.wav?dl=1",
              
-               "G3sharp": "https://www.dropbox.com/Country/ Timbre2/G3sharp.wav?dl=1",
+               "G3sharp": "https://www.dropbox.com/Country/Timbre2/G3sharp.wav?dl=1",
              
-               "A3": "https://www.dropbox.com/Country/ Timbre2/A3.wav?dl=1",
+               "A3": "https://www.dropbox.com/Country/Timbre2/A3.wav?dl=1",
              
-               "A3sharp": "https://www.dropbox.com/Country/ Timbre2/A3sharp.wav?dl=1",
+               "A3sharp": "https://www.dropbox.com/Country/Timbre2/A3sharp.wav?dl=1",
              
-               "B3": "https://www.dropbox.com/Country/ Timbre2/B3.wav?dl=1",
+               "B3": "https://www.dropbox.com/Country/Timbre2/B3.wav?dl=1",
              
-               "C4": "https://www.dropbox.com/Country/ Timbre2/C3.wav?dl=1",
+               "C4": "https://www.dropbox.com/Country/Timbre2/C3.wav?dl=1",
              
-               "C4sharp": "https://www.dropbox.com/Country/ Timbre2/C4sharp.wav?dl=1",
+               "C4sharp": "https://www.dropbox.com/Country/Timbre2/C4sharp.wav?dl=1",
              
-               "D4": "https://www.dropbox.com/Country/ Timbre2/D4.wav?dl=1",
+               "D4": "https://www.dropbox.com/Country/Timbre2/D4.wav?dl=1",
              
-               "D4sharp": "https://www.dropbox.com/Country/ Timbre2/D4sharp.wav?dl=1",
+               "D4sharp": "https://www.dropbox.com/Country/Timbre2/D4sharp.wav?dl=1",
              
-               "E4": "https://www.dropbox.com/Country/ Timbre2/E4.wav?dl=1",
+               "E4": "https://www.dropbox.com/Country/Timbre2/E4.wav?dl=1",
                 
-               "F4": "https://www.dropbox.com/Country/ Timbre2/F4sharp.wav?dl=1",
+               "F4": "https://www.dropbox.com/Country/Timbre2/F4sharp.wav?dl=1",
              
-               "F4sharp": "https://www.dropbox.com/Country/ Timbre2/F4sharp.wav?dl=1",
+               "F4sharp": "https://www.dropbox.com/Country/Timbre2/F4sharp.wav?dl=1",
              
-               "G4": "https://www.dropbox.com/Country/ Timbre2/G4.wav?dl=1",
+               "G4": "https://www.dropbox.com/Country/Timbre2/G4.wav?dl=1",
              
-               "G4sharp": "https://www.dropbox.com/Country/ Timbre2/G4sharp.wav?dl=1",
+               "G4sharp": "https://www.dropbox.com/Country/Timbre2/G4sharp.wav?dl=1",
              
-               "A4": "https://www.dropbox.com/Country/ Timbre2/A4.wav?dl=1",
+               "A4": "https://www.dropbox.com/Country/Timbre2/A4.wav?dl=1",
              
-               "A4sharp": "https://www.dropbox.com/Country/ Timbre2/A4sharp.wav?dl=1",
+               "A4sharp": "https://www.dropbox.com/Country/Timbre2/A4sharp.wav?dl=1",
              
-               "B4": "https://www.dropbox.com/Country/ Timbre2/B4.wav?dl=1",
+               "B4": "https://www.dropbox.com/Country/Timbre2/B4.wav?dl=1",
              
-               "C5": "https://www.dropbox.com/Country/ Timbre2/C5.wav?dl=1",
+               "C5": "https://www.dropbox.com/Country/Timbre2/C5.wav?dl=1",
              
-               "C5sharp": "https://www.dropbox.com/Country/ Timbre2/C5sharp.wav?dl=1",
+               "C5sharp": "https://www.dropbox.com/Country/Timbre2/C5sharp.wav?dl=1",
              
-               "D5": "https://www.dropbox.com/Country/ Timbre2/D5.wav?dl=1",
+               "D5": "https://www.dropbox.com/Country/Timbre2/D5.wav?dl=1",
              
-               "D5sharp": "https://www.dropbox.com/Country/ Timbre2/D5sharp.wav?dl=1",
+               "D5sharp": "https://www.dropbox.com/Country/Timbre2/D5sharp.wav?dl=1",
               
-               "E5": "https://www.dropbox.com/Country/ Timbre2/E5.wav?dl=1",
+               "E5": "https://www.dropbox.com/Country/Timbre2/E5.wav?dl=1",
              
-               "F5": "https://www.dropbox.com/Country/ Timbre2/F4sharp.wav?dl=1"
+               "F5": "https://www.dropbox.com/Country/Timbre2/F4sharp.wav?dl=1"
             }
           }, 
           
   
-          {  "nome": "timbre3",
+          {  "nome": "Timbre 3",
                "suoni": {
              
-               "C3": "https://www.dropbox.com/Country/ Timbre3/C3.wav?dl=1",
+               "C3": "https://www.dropbox.com/Country/Timbre3/C3.wav?dl=1",
 
-               "C3sharp": "https://www.dropbox.com/Country/ Timbre3/C3sharp.wav?dl=1",
+               "C3sharp": "https://www.dropbox.com/Country/Timbre3/C3sharp.wav?dl=1",
 
-               "D3": "https://www.dropbox.com/Country/ Timbre3/D3.wav?dl=1",
+               "D3": "https://www.dropbox.com/Country/Timbre3/D3.wav?dl=1",
              
-               "D3sharp": "https://www.dropbox.com/Country/ Timbre3/D3sharp.wav?dl=1",
+               "D3sharp": "https://www.dropbox.com/Country/Timbre3/D3sharp.wav?dl=1",
              
-               "E3": "https://www.dropbox.com/Country/ Timbre3/E3.wav?dl=1",
+               "E3": "https://www.dropbox.com/Country/Timbre3/E3.wav?dl=1",
              
-               "F3": "https://www.dropbox.com/Country/ Timbre3/F3.wav?dl=1",
+               "F3": "https://www.dropbox.com/Country/Timbre3/F3.wav?dl=1",
              
-               "F3sharp": "https://www.dropbox.com/Country/ Timbre3/F3sharp.wav?dl=1",
+               "F3sharp": "https://www.dropbox.com/Country/Timbre3/F3sharp.wav?dl=1",
              
-               "G3": "https://www.dropbox.com/Country/ Timbre3/C3.wav?dl=1",
+               "G3": "https://www.dropbox.com/Country/Timbre3/C3.wav?dl=1",
              
-               "G3sharp": "https://www.dropbox.com/Country/ Timbre3/G3sharp.wav?dl=1",
+               "G3sharp": "https://www.dropbox.com/Country/Timbre3/G3sharp.wav?dl=1",
              
-               "A3": "https://www.dropbox.com/Country/ Timbre3/A3.wav?dl=1",
+               "A3": "https://www.dropbox.com/Country/Timbre3/A3.wav?dl=1",
              
-               "A3sharp": "https://www.dropbox.com/Country/ Timbre3/A3sharp.wav?dl=1",
+               "A3sharp": "https://www.dropbox.com/Country/Timbre3/A3sharp.wav?dl=1",
              
-               "B3": "https://www.dropbox.com/Country/ Timbre3/B3.wav?dl=1",
+               "B3": "https://www.dropbox.com/Country/Timbre3/B3.wav?dl=1",
              
-               "C4": "https://www.dropbox.com/Country/ Timbre3/C3.wav?dl=1",
+               "C4": "https://www.dropbox.com/Country/Timbre3/C3.wav?dl=1",
              
-               "C4sharp": "https://www.dropbox.com/Country/ Timbre3/C4sharp.wav?dl=1",
+               "C4sharp": "https://www.dropbox.com/Country/Timbre3/C4sharp.wav?dl=1",
              
-               "D4": "https://www.dropbox.com/Country/ Timbre3/D4.wav?dl=1",
+               "D4": "https://www.dropbox.com/Country/Timbre3/D4.wav?dl=1",
              
-               "D4sharp": "https://www.dropbox.com/Country/ Timbre3/D4sharp.wav?dl=1",
+               "D4sharp": "https://www.dropbox.com/Country/Timbre3/D4sharp.wav?dl=1",
              
-               "E4": "https://www.dropbox.com/Country/ Timbre3/E4.wav?dl=1",
+               "E4": "https://www.dropbox.com/Country/Timbre3/E4.wav?dl=1",
                 
-               "F4": "https://www.dropbox.com/Country/ Timbre3/F4sharp.wav?dl=1",
+               "F4": "https://www.dropbox.com/Country/Timbre3/F4sharp.wav?dl=1",
              
-               "F4sharp": "https://www.dropbox.com/Country/ Timbre3/F4sharp.wav?dl=1",
+               "F4sharp": "https://www.dropbox.com/Country/Timbre3/F4sharp.wav?dl=1",
              
-               "G4": "https://www.dropbox.com/Country/ Timbre3/G4.wav?dl=1",
+               "G4": "https://www.dropbox.com/Country/Timbre3/G4.wav?dl=1",
              
-               "G4sharp": "https://www.dropbox.com/Country/ Timbre3/G4sharp.wav?dl=1",
+               "G4sharp": "https://www.dropbox.com/Country/Timbre3/G4sharp.wav?dl=1",
              
-               "A4": "https://www.dropbox.com/Country/ Timbre3/A4.wav?dl=1",
+               "A4": "https://www.dropbox.com/Country/Timbre3/A4.wav?dl=1",
              
-               "A4sharp": "https://www.dropbox.com/Country/ Timbre3/A4sharp.wav?dl=1",
+               "A4sharp": "https://www.dropbox.com/Country/Timbre3/A4sharp.wav?dl=1",
              
-               "B4": "https://www.dropbox.com/Country/ Timbre3/B4.wav?dl=1",
+               "B4": "https://www.dropbox.com/Country/Timbre3/B4.wav?dl=1",
              
-               "C5": "https://www.dropbox.com/Country/ Timbre3/C5.wav?dl=1",
+               "C5": "https://www.dropbox.com/Country/Timbre3/C5.wav?dl=1",
              
-               "C5sharp": "https://www.dropbox.com/Country/ Timbre3/C5sharp.wav?dl=1",
+               "C5sharp": "https://www.dropbox.com/Country/Timbre3/C5sharp.wav?dl=1",
              
-               "D5": "https://www.dropbox.com/Country/ Timbre3/D5.wav?dl=1",
+               "D5": "https://www.dropbox.com/Country/Timbre3/D5.wav?dl=1",
              
-               "D5sharp": "https://www.dropbox.com/Country/ Timbre3/D5sharp.wav?dl=1",
+               "D5sharp": "https://www.dropbox.com/Country/Timbre3/D5sharp.wav?dl=1",
               
-               "E5": "https://www.dropbox.com/Country/ Timbre3/E5.wav?dl=1",
+               "E5": "https://www.dropbox.com/Country/Timbre3/E5.wav?dl=1",
              
-               "F5": "https://www.dropbox.com/Country/ Timbre3/F4sharp.wav?dl=1"
+               "F5": "https://www.dropbox.com/Country/Timbre3/F4sharp.wav?dl=1"
             }
           }, 
           
   
-          {  "nome": "timbre4",
+          {  "nome": "Timbre 4",
                "suoni": {
              
-               "C3": "https://www.dropbox.com/Country/ Timbre4/C3.wav?dl=1",
+               "C3": "https://www.dropbox.com/Country/Timbre4/C3.wav?dl=1",
 
-               "C3sharp": "https://www.dropbox.com/Country/ Timbre4/C3sharp.wav?dl=1",
+               "C3sharp": "https://www.dropbox.com/Country/Timbre4/C3sharp.wav?dl=1",
 
-               "D3": "https://www.dropbox.com/Country/ Timbre4/D3.wav?dl=1",
+               "D3": "https://www.dropbox.com/Country/Timbre4/D3.wav?dl=1",
              
-               "D3sharp": "https://www.dropbox.com/Country/ Timbre4/D3sharp.wav?dl=1",
+               "D3sharp": "https://www.dropbox.com/Country/Timbre4/D3sharp.wav?dl=1",
              
-               "E3": "https://www.dropbox.com/Country/ Timbre4/E3.wav?dl=1",
+               "E3": "https://www.dropbox.com/Country/Timbre4/E3.wav?dl=1",
              
-               "F3": "https://www.dropbox.com/Country/ Timbre4/F3.wav?dl=1",
+               "F3": "https://www.dropbox.com/Country/Timbre4/F3.wav?dl=1",
              
-               "F3sharp": "https://www.dropbox.com/Country/ Timbre4/F3sharp.wav?dl=1",
+               "F3sharp": "https://www.dropbox.com/Country/Timbre4/F3sharp.wav?dl=1",
              
-               "G3": "https://www.dropbox.com/Country/ Timbre4/C3.wav?dl=1",
+               "G3": "https://www.dropbox.com/Country/Timbre4/C3.wav?dl=1",
              
-               "G3sharp": "https://www.dropbox.com/Country/ Timbre4/G3sharp.wav?dl=1",
+               "G3sharp": "https://www.dropbox.com/Country/Timbre4/G3sharp.wav?dl=1",
              
-               "A3": "https://www.dropbox.com/Country/ Timbre4/A3.wav?dl=1",
+               "A3": "https://www.dropbox.com/Country/Timbre4/A3.wav?dl=1",
              
-               "A3sharp": "https://www.dropbox.com/Country/ Timbre4/A3sharp.wav?dl=1",
+               "A3sharp": "https://www.dropbox.com/Country/Timbre4/A3sharp.wav?dl=1",
              
-               "B3": "https://www.dropbox.com/Country/ Timbre4/B3.wav?dl=1",
+               "B3": "https://www.dropbox.com/Country/Timbre4/B3.wav?dl=1",
              
-               "C4": "https://www.dropbox.com/Country/ Timbre4/C3.wav?dl=1",
+               "C4": "https://www.dropbox.com/Country/Timbre4/C3.wav?dl=1",
              
-               "C4sharp": "https://www.dropbox.com/Country/ Timbre4/C4sharp.wav?dl=1",
+               "C4sharp": "https://www.dropbox.com/Country/Timbre4/C4sharp.wav?dl=1",
              
-               "D4": "https://www.dropbox.com/Country/ Timbre4/D4.wav?dl=1",
+               "D4": "https://www.dropbox.com/Country/Timbre4/D4.wav?dl=1",
              
-               "D4sharp": "https://www.dropbox.com/Country/ Timbre4/D4sharp.wav?dl=1",
+               "D4sharp": "https://www.dropbox.com/Country/Timbre4/D4sharp.wav?dl=1",
              
-               "E4": "https://www.dropbox.com/Country/ Timbre4/E4.wav?dl=1",
+               "E4": "https://www.dropbox.com/Country/Timbre4/E4.wav?dl=1",
                 
-               "F4": "https://www.dropbox.com/Country/ Timbre4/F4sharp.wav?dl=1",
+               "F4": "https://www.dropbox.com/Country/Timbre4/F4sharp.wav?dl=1",
              
-               "F4sharp": "https://www.dropbox.com/Country/ Timbre4/F4sharp.wav?dl=1",
+               "F4sharp": "https://www.dropbox.com/Country/Timbre4/F4sharp.wav?dl=1",
              
-               "G4": "https://www.dropbox.com/Country/ Timbre4/G4.wav?dl=1",
+               "G4": "https://www.dropbox.com/Country/Timbre4/G4.wav?dl=1",
              
-               "G4sharp": "https://www.dropbox.com/Country/ Timbre4/G4sharp.wav?dl=1",
+               "G4sharp": "https://www.dropbox.com/Country/Timbre4/G4sharp.wav?dl=1",
              
-               "A4": "https://www.dropbox.com/Country/ Timbre4/A4.wav?dl=1",
+               "A4": "https://www.dropbox.com/Country/Timbre4/A4.wav?dl=1",
              
-               "A4sharp": "https://www.dropbox.com/Country/ Timbre4/A4sharp.wav?dl=1",
+               "A4sharp": "https://www.dropbox.com/Country/Timbre4/A4sharp.wav?dl=1",
              
-               "B4": "https://www.dropbox.com/Country/ Timbre4/B4.wav?dl=1",
+               "B4": "https://www.dropbox.com/Country/Timbre4/B4.wav?dl=1",
              
-               "C5": "https://www.dropbox.com/Country/ Timbre4/C5.wav?dl=1",
+               "C5": "https://www.dropbox.com/Country/Timbre4/C5.wav?dl=1",
              
-               "C5sharp": "https://www.dropbox.com/Country/ Timbre4/C5sharp.wav?dl=1",
+               "C5sharp": "https://www.dropbox.com/Country/Timbre4/C5sharp.wav?dl=1",
              
-               "D5": "https://www.dropbox.com/Country/ Timbre4/D5.wav?dl=1",
+               "D5": "https://www.dropbox.com/Country/Timbre4/D5.wav?dl=1",
              
-               "D5sharp": "https://www.dropbox.com/Country/ Timbre4/D5sharp.wav?dl=1",
+               "D5sharp": "https://www.dropbox.com/Country/Timbre4/D5sharp.wav?dl=1",
               
-               "E5": "https://www.dropbox.com/Country/ Timbre4/E5.wav?dl=1",
+               "E5": "https://www.dropbox.com/Country/Timbre4/E5.wav?dl=1",
              
-               "F5": "https://www.dropbox.com/Country/ Timbre4/F4sharp.wav?dl=1"
+               "F5": "https://www.dropbox.com/Country/Timbre4/F4sharp.wav?dl=1"
             }
           }
 
-        ]
+        ],
+
+        "soundPad": [
+            {
+              "suono1": "https://www.dropbox.com/City/Pad/suono1.wav?dl=1",
+              "suono2": "https://www.dropbox.com/City/Pad/suono2.wav?dl=1",
+              "suono3": "https://www.dropbox.com/City/Pad/suono3.wav?dl=1",
+              "suono4": "https://www.dropbox.com/City/Pad/suono4.wav?dl=1",
+              "suono5": "https://www.dropbox.com/City/Pad/suono5.wav?dl=1",
+              "suono6": "https://www.dropbox.com/City/Pad/suono6.wav?dl=1",
+              "suono7": "https://www.dropbox.com/City/Pad/suono7.wav?dl=1",
+              "suono8": "https://www.dropbox.com/City/Pad/suono8.wav?dl=1",
+              "suono9": "https://www.dropbox.com/City/Pad/suono9.wav?dl=1"
+            }
+           ]
 
         },
        

@@ -37,7 +37,7 @@ function cambiaAmbiente() {
   const ambienteSelect = document.getElementById('ambienteSelect');
   const setSuoniSelect = document.getElementById('setSuoniSelect');
   const suoniContainer = document.getElementById('suoniContainer');
-
+  
   suoniContainer.innerHTML = ''; // Reset
   setSuoniSelect.style.display = 'none'; // Nascondi finché non c'è un ambiente selezionato
 
@@ -53,6 +53,9 @@ function cambiaAmbiente() {
     });
     setSuoniSelect.style.display = 'block'; // Mostra menu set di suoni
   }
+
+   
+
 }
 
 
@@ -60,9 +63,11 @@ function cambiaAmbiente() {
 function cambiaSetSuoni() {
   const setSuoniSelect = document.getElementById('setSuoniSelect');
   const suoniContainer = document.getElementById('suoniContainer');
+  
 
   suoniContainer.innerHTML = ''; // Reset
   setCorrente = ambienteCorrente.setSuoni.find(set => set.nome === setSuoniSelect.value);
+  
 
   if (setCorrente) {
     Object.keys(setCorrente.suoni).forEach(chiave => {
@@ -77,7 +82,7 @@ function cambiaSetSuoni() {
 function cambiaSuono(url) {
   const audioPlayer = document.getElementById('audioPlayer');
   audioPlayer.src = url;
-  audioPlayer.play();
+  
 }
 
   
