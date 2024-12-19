@@ -62,23 +62,16 @@ function cambiaAmbiente() {
 
 
 function cambiaSetSuoni() {
-  const setSuoniSelect = document.getElementById('setSuoniSelect');
-  const suoniContainer = document.getElementById('suoniContainer');
-  
+    const setSuoniSelect = document.getElementById('setSuoniSelect');
+    setCorrente = ambienteCorrente.setSuoni.find(set => set.nome === setSuoniSelect.value);
 
-  suoniContainer.innerHTML = ''; // Reset
-  setCorrente = ambienteCorrente.setSuoni.find(set => set.nome === setSuoniSelect.value);
-  
-
-  if (setCorrente) {
-    Object.keys(setCorrente.suoni).forEach(chiave => {
-      const button = document.createElement('button');
-      button.textContent = chiave; // Nome del suono
-      button.onclick = () => cambiaSuono(setCorrente.suoni[chiave]);
-      suoniContainer.appendChild(button);
-    });
-  }
+    if (setCorrente) {
+        Object.keys(setCorrente.suoni).forEach(chiave => {
+            keyMap[chiave] = setCorrente.suoni[chiave]; // Mappa nota-suono
+        });
+    }
 }
+
 
 function cambiaSuono(url) {
   const audioPlayer = document.getElementById('audioPlayer');
@@ -225,10 +218,9 @@ function playNote(note) {
         audioContext.resume();
     }
     // Costruisce il percorso del file audio in base al set di timbri attuale
-    const sound = `${soundSets[currentSet]}/${note}`;  // Prende il timbro selezionato
-
-    // Carica il file audio della nota con il timbro corretto
-    const audio = new Audio(`sounds/${sound}.mp3`);
+    const sound = setCorrente.suoni[note];
+    
+    const audio = new Audio(sound);
     
     // Crea una sorgente audio nel contesto audio
     const track = audioContext.createMediaElementSource(audio);
@@ -854,9 +846,11 @@ document.addEventListener('keyup', (e) => {
 
 // Funzione per riprodurre i suoni del pad
 function playPadSound(pad) {
-    const sound = pad.getAttribute('data-sound');
-    const audio = new Audio(`sounds/pad/${sound}.mp3`);
-    audio.play().catch(error => console.error("Errore nel caricamento dell'audio PAD: ", error));
+    const sound = setCorrente.soundPad[pad.getAttribute('data-sound')];
+    if (sound) {
+        const audio = new Audio(sound);
+        audio.play().catch(error => console.error("Errore nel caricamento dell'audio PAD: ", error));
+    }
 }
 
 
