@@ -108,13 +108,19 @@ function drawVisualizer(bufferLength, dataArray, visualizerBarWidth) {
     }
 }
 
-// Rileva la pressione di un tasto e attiva l'animazione
 document.addEventListener('keydown', (event) => {
     const key = event.key;
-    const audioElement = document.getElementById(`note-${key}`);
+
+    // Usa currentOctave per determinare l'ID audio corretto
+    const noteId = `note-${key}-${currentOctave}`; // ID come 'note-a-3'
+    console.log(`ID audio cercato: ${noteId}`);
+    const audioElement = document.getElementById(noteId);
 
     // Controlla se il tasto è già attivo
-    if (activeKeys.has(key)) return;
+    if (activeKeys.has(key)) {
+        console.log(`Tasto già attivo: ${key}`);
+        return;
+    }
 
     console.log(`Tasto premuto: ${key}, Codice: ${event.code}`);
     console.log(`Elemento audio trovato:`, audioElement);
@@ -123,11 +129,13 @@ document.addEventListener('keydown', (event) => {
         activeKeys.add(key); // Segna il tasto come attivo
         audioElement.currentTime = 0; 
         audioElement.play();
-        initVisualizerForNote(audioElement);
+        initVisualizerForNote(audioElement); // Avvia il visualizzatore
     } else {
-        console.log(`Elemento audio con ID 'note-${key}' non trovato.`);
+        console.log(`Elemento audio con ID '${noteId}' non trovato.`);
     }
 });
+
+
 
 // Rilascia il tasto e attiva la dissolvenza
 document.addEventListener('keyup', (event) => {
@@ -141,4 +149,112 @@ document.addEventListener('keyup', (event) => {
     if (activeKeys.size === 0 && !fading) {
         fading = true;
     }
+});
+
+
+
+
+
+
+
+
+
+
+let activeMouseKeys = 0; // Contatore dei tasti premuti con il mouse
+
+// Funzione per attivare il visualizzatore con il mouse
+function activateVisualizerWithMouse(key) {
+    key = key.toLowerCase();
+
+    console.log(`Visualizzatore attivato con mouse per il tasto: ${key}`);
+    console.log(`Ottava corrente: ${currentOctave}`);
+
+    const noteId = `note-${key}-${currentOctave}`;
+    console.log(`ID audio generato: ${noteId}`);
+    const audioElement = document.getElementById(noteId);
+
+    if (!audioElement) {
+        console.error(`Elemento audio con ID '${noteId}' non trovato. Verifica l'HTML.`);
+        return;
+    }
+
+    if (activeKeys.has(key)) {
+        console.log(`Tasto già attivo: ${key}`);
+        return;
+    }
+
+    activeKeys.add(key);
+    audioElement.currentTime = 0;
+    audioElement.play();
+    console.log(`Audio riprodotto per il tasto: ${key}`);
+
+    initVisualizerForNote(audioElement);
+
+    // Incrementa il contatore dei tasti premuti con il mouse
+    activeMouseKeys++;
+    console.log(`Tasti attivi con mouse: ${activeMouseKeys}`);
+
+    // Se la dissolvenza è attiva, annullala
+    if (fading) {
+        fading = false;
+        console.log("Dissolvenza annullata.");
+    }
+}
+
+// Funzione per disattivare il visualizzatore con il mouse
+function deactivateVisualizerWithMouse(key) {
+    key = key.toLowerCase();
+
+    console.log(`Visualizzatore disattivato con mouse per il tasto: ${key}`);
+
+    if (activeKeys.has(key)) {
+        activeKeys.delete(key);
+        console.log(`Tasto rimosso dalla lista attivi: ${key}`);
+    }
+
+    // Decrementa il contatore dei tasti premuti con il mouse
+    activeMouseKeys = Math.max(0, activeMouseKeys - 1);
+    console.log(`Tasti attivi con mouse: ${activeMouseKeys}`);
+
+    // Se non ci sono più tasti attivi, avvia la dissolvenza
+    if (activeMouseKeys === 0 && activeKeys.size === 0 && !fading) {
+        fading = true;
+        console.log("Inizio dissolvenza...");
+    }
+}
+
+// Listener globale per eventi mouseup
+document.addEventListener('mouseup', () => {
+    console.log("Evento mouseup globale rilevato.");
+    document.querySelectorAll('.tasto, .tasto-nero').forEach(keyElement => {
+        const key = keyElement.getAttribute('data-key');
+        if (key) {
+            deactivateVisualizerWithMouse(key);
+        }
+    });
+
+    // Se non ci sono più tasti attivi, avvia la dissolvenza
+    if (activeMouseKeys === 0 && activeKeys.size === 0 && !fading) {
+        fading = true;
+        console.log("Inizio dissolvenza globale...");
+    }
+});
+
+// Collegamento eventi mouse
+document.querySelectorAll('.tasto, .tasto-nero').forEach(keyElement => {
+    keyElement.addEventListener('mousedown', function () {
+        const key = this.getAttribute('data-key');
+        console.log(`Tasto cliccato con mouse: ${key}`);
+        if (key) {
+            activateVisualizerWithMouse(key);
+        }
+    });
+
+    keyElement.addEventListener('mouseup', function () {
+        const key = this.getAttribute('data-key');
+        console.log(`Mouse rilasciato: ${key}`);
+        if (key) {
+            deactivateVisualizerWithMouse(key);
+        }
+    });
 });
