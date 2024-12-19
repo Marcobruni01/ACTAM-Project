@@ -856,7 +856,7 @@ document.addEventListener('keyup', (e) => {
 function playPadSound(pad) {
     const sound = pad.getAttribute('data-sound');
     const audio = new Audio(`sounds/pad/${sound}.mp3`);
-    audio.play().catch(error => console.error("Errore nel caricamento dell'audio: ", error));
+    audio.play().catch(error => console.error("Errore nel caricamento dell'audio PAD: ", error));
 }
 
 
