@@ -3,71 +3,71 @@
         
         {
             "nome": "House",
-            "sfondo": "https://www.dropbox.com/home/sounds/sounds/home/sounds/sounds/House/sfondo.jpg?dl=1",
+            "sfondo": "sounds/sounds/House/sfondohouse.webp",
             "setSuoni": [
                
                {  "nome": "Timbre 1",
                   "suoni": {
                 
-                  "C3": "https://www.dropbox.com/home/sounds/sounds/home/sounds/sounds/House/Timbre1/C3.mp3?dl=1",
+                  "C3": "sounds/sounds/House/Timbre1/C3.mp3",
    
-                  "Csharp3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre1/Csharp3.mp3?dl=1",
+                  "Csharp3": "sounds/sounds/House/Timbre1/Csharp3.mp3",
    
-                  "D3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre1/D3.mp3?dl=1",
+                  "D3": "sounds/sounds/House/Timbre1/D3.mp3",
                 
-                  "Dsharp3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre1/Dsharp3.mp3?dl=1",
+                  "Dsharp3": "sounds/sounds/House/Timbre1/Dsharp3.mp3",
                 
-                  "E3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre1/E3.mp3?dl=1",
+                  "E3": "sounds/sounds/House/Timbre1/E3.mp3",
                 
-                  "F3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre1/F3.mp3?dl=1",
+                  "F3": "sounds/sounds/House/Timbre1/F3.mp3",
                 
-                  "Fsharp3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre1/Fsharp3.mp3?dl=1",
+                  "Fsharp3": "sounds/sounds/House/Timbre1/Fsharp3.mp3",
                 
-                  "G3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre1/C3.mp3?dl=1",
+                  "G3": "sounds/sounds/House/Timbre1/C3.mp3",
                 
-                  "Gsharp3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre1/Gsharp3.mp3?dl=1",
+                  "Gsharp3": "sounds/sounds/House/Timbre1/Gsharp3.mp3",
                 
-                  "A3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre1/A3.mp3?dl=1",
+                  "A3": "sounds/sounds/House/Timbre1/A3.mp3",
                 
-                  "Asharp3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre1/Asharp3.mp3?dl=1",
+                  "Asharp3": "sounds/sounds/House/Timbre1/Asharp3.mp3",
                 
-                  "B3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre1/B3.mp3?dl=1",
+                  "B3": "sounds/sounds/House/Timbre1/B3.mp3",
                 
-                  "C4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre1/C3.mp3?dl=1",
+                  "C4": "sounds/sounds/House/Timbre1/C3.mp3",
                 
-                  "Csharp4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre1/Csharp4.mp3?dl=1",
+                  "Csharp4": "sounds/sounds/House/Timbre1/Csharp4.mp3",
                 
-                  "D4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre1/D4.mp3?dl=1",
+                  "D4": "sounds/sounds/House/Timbre1/D4.mp3",
                 
-                  "Dsharp4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre1/Dsharp4.mp3?dl=1",
+                  "Dsharp4": "sounds/sounds/House/Timbre1/Dsharp4.mp3",
                 
-                  "E4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre1/E4.mp3?dl=1",
+                  "E4": "sounds/sounds/House/Timbre1/E4.mp3",
                    
-                  "F4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre1/Fsharp4.mp3?dl=1",
+                  "F4": "sounds/sounds/House/Timbre1/Fsharp4.mp3",
                 
-                  "Fsharp4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre1/Fsharp4.mp3?dl=1",
+                  "Fsharp4": "sounds/sounds/House/Timbre1/Fsharp4.mp3",
                 
-                  "G4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre1/G4.mp3?dl=1",
+                  "G4": "sounds/sounds/House/Timbre1/G4.mp3",
                 
-                  "Gsharp4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre1/Gsharp4.mp3?dl=1",
+                  "Gsharp4": "sounds/sounds/House/Timbre1/Gsharp4.mp3",
                 
-                  "A4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre1/A4.mp3?dl=1",
+                  "A4": "sounds/sounds/House/Timbre1/A4.mp3",
                 
-                  "Asharp4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre1/Asharp4.mp3?dl=1",
+                  "Asharp4": "sounds/sounds/House/Timbre1/Asharp4.mp3",
                 
-                  "B4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre1/B4.mp3?dl=1",
+                  "B4": "sounds/sounds/House/Timbre1/B4.mp3",
                 
-                  "C5": "https://www.dropbox.com/home/sounds/sounds/House/Timbre1/C5.mp3?dl=1",
+                  "C5": "sounds/sounds/House/Timbre1/C5.mp3",
                 
-                  "Csharp5": "https://www.dropbox.com/home/sounds/sounds/House/Timbre1/Csharp5.mp3?dl=1",
+                  "Csharp5": "sounds/sounds/House/Timbre1/Csharp5.mp3",
                 
-                  "D5": "https://www.dropbox.com/home/sounds/sounds/House/Timbre1/D5.mp3?dl=1",
+                  "D5": "sounds/sounds/House/Timbre1/D5.mp3",
                 
-                  "Dsharp5": "https://www.dropbox.com/home/sounds/sounds/House/Timbre1/Dsharp5.mp3?dl=1",
+                  "Dsharp5": "sounds/sounds/House/Timbre1/Dsharp5.mp3",
                  
-                  "E5": "https://www.dropbox.com/home/sounds/sounds/House/Timbre1/E5.mp3?dl=1",
+                  "E5": "sounds/sounds/House/Timbre1/E5.mp3",
                 
-                  "F5": "https://www.dropbox.com/home/sounds/sounds/House/Timbre1/Fsharp4.mp3?dl=1"
+                  "F5": "sounds/sounds/House/Timbre1/Fsharp4.mp3"
                }
              }, 
          
@@ -76,65 +76,65 @@
              {  "nome": "Timbre 2",
                   "suoni": {
                 
-                  "C3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre2/C3.mp3?dl=1",
+                  "C3": "sounds/sounds/House/Timbre2/C3.mp3",
    
-                  "Csharp3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre2/Csharp3.mp3?dl=1",
+                  "Csharp3": "sounds/sounds/House/Timbre2/Csharp3.mp3",
    
-                  "D3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre2/D3.mp3?dl=1",
+                  "D3": "sounds/sounds/House/Timbre2/D3.mp3",
                 
-                  "Dsharp3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre2/Dsharp3.mp3?dl=1",
+                  "Dsharp3": "sounds/sounds/House/Timbre2/Dsharp3.mp3",
                 
-                  "E3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre2/E3.mp3?dl=1",
+                  "E3": "sounds/sounds/House/Timbre2/E3.mp3",
                 
-                  "F3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre2/F3.mp3?dl=1",
+                  "F3": "sounds/sounds/House/Timbre2/F3.mp3",
                 
-                  "Fsharp3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre2/Fsharp3.mp3?dl=1",
+                  "Fsharp3": "sounds/sounds/House/Timbre2/Fsharp3.mp3",
                 
-                  "G3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre2/C3.mp3?dl=1",
+                  "G3": "sounds/sounds/House/Timbre2/C3.mp3",
                 
-                  "Gsharp3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre2/Gsharp3.mp3?dl=1",
+                  "Gsharp3": "sounds/sounds/House/Timbre2/Gsharp3.mp3",
                 
-                  "A3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre2/A3.mp3?dl=1",
+                  "A3": "sounds/sounds/House/Timbre2/A3.mp3",
                 
-                  "Asharp3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre2/Asharp3.mp3?dl=1",
+                  "Asharp3": "sounds/sounds/House/Timbre2/Asharp3.mp3",
                 
-                  "B3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre2/B3.mp3?dl=1",
+                  "B3": "sounds/sounds/House/Timbre2/B3.mp3",
                 
-                  "C4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre2/C3.mp3?dl=1",
+                  "C4": "sounds/sounds/House/Timbre2/C3.mp3",
                 
-                  "Csharp4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre2/Csharp4.mp3?dl=1",
+                  "Csharp4": "sounds/sounds/House/Timbre2/Csharp4.mp3",
                 
-                  "D4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre2/D4.mp3?dl=1",
+                  "D4": "sounds/sounds/House/Timbre2/D4.mp3",
                 
-                  "Dsharp4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre2/Dsharp4.mp3?dl=1",
+                  "Dsharp4": "sounds/sounds/House/Timbre2/Dsharp4.mp3",
                 
-                  "E4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre2/E4.mp3?dl=1",
+                  "E4": "sounds/sounds/House/Timbre2/E4.mp3",
                    
-                  "F4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre2/Fsharp4.mp3?dl=1",
+                  "F4": "sounds/sounds/House/Timbre2/Fsharp4.mp3",
                 
-                  "Fsharp4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre2/Fsharp4.mp3?dl=1",
+                  "Fsharp4": "sounds/sounds/House/Timbre2/Fsharp4.mp3",
                 
-                  "G4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre2/G4.mp3?dl=1",
+                  "G4": "sounds/sounds/House/Timbre2/G4.mp3",
                 
-                  "Gsharp4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre2/Gsharp4.mp3?dl=1",
+                  "Gsharp4": "sounds/sounds/House/Timbre2/Gsharp4.mp3",
                 
-                  "A4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre2/A4.mp3?dl=1",
+                  "A4": "sounds/sounds/House/Timbre2/A4.mp3",
                 
-                  "Asharp4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre2/Asharp4.mp3?dl=1",
+                  "Asharp4": "sounds/sounds/House/Timbre2/Asharp4.mp3",
                 
-                  "B4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre2/B4.mp3?dl=1",
+                  "B4": "sounds/sounds/House/Timbre2/B4.mp3",
                 
-                  "C5": "https://www.dropbox.com/home/sounds/sounds/House/Timbre2/C5.mp3?dl=1",
+                  "C5": "sounds/sounds/House/Timbre2/C5.mp3",
                 
-                  "Csharp5": "https://www.dropbox.com/home/sounds/sounds/House/Timbre2/Csharp5.mp3?dl=1",
+                  "Csharp5": "sounds/sounds/House/Timbre2/Csharp5.mp3",
                 
-                  "D5": "https://www.dropbox.com/home/sounds/sounds/House/Timbre2/D5.mp3?dl=1",
+                  "D5": "sounds/sounds/House/Timbre2/D5.mp3",
                 
-                  "Dsharp5": "https://www.dropbox.com/home/sounds/sounds/House/Timbre2/Dsharp5.mp3?dl=1",
+                  "Dsharp5": "sounds/sounds/House/Timbre2/Dsharp5.mp3",
                  
-                  "E5": "https://www.dropbox.com/home/sounds/sounds/House/Timbre2/E5.mp3?dl=1",
+                  "E5": "sounds/sounds/House/Timbre2/E5.mp3",
                 
-                  "F5": "https://www.dropbox.com/home/sounds/sounds/House/Timbre2/Fsharp4.mp3?dl=1"
+                  "F5": "sounds/sounds/House/Timbre2/Fsharp4.mp3"
                }
              }, 
              
@@ -142,65 +142,65 @@
              {  "nome": "Timbre 3",
                   "suoni": {
                 
-                  "C3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre3/C3.mp3?dl=1",
+                  "C3": "sounds/sounds/House/Timbre3/C3.mp3",
    
-                  "Csharp3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre3/Csharp3.mp3?dl=1",
+                  "Csharp3": "sounds/sounds/House/Timbre3/Csharp3.mp3",
    
-                  "D3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre3/D3.mp3?dl=1",
+                  "D3": "sounds/sounds/House/Timbre3/D3.mp3",
                 
-                  "Dsharp3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre3/Dsharp3.mp3?dl=1",
+                  "Dsharp3": "sounds/sounds/House/Timbre3/Dsharp3.mp3",
                 
-                  "E3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre3/E3.mp3?dl=1",
+                  "E3": "sounds/sounds/House/Timbre3/E3.mp3",
                 
-                  "F3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre3/F3.mp3?dl=1",
+                  "F3": "sounds/sounds/House/Timbre3/F3.mp3",
                 
-                  "Fsharp3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre3/Fsharp3.mp3?dl=1",
+                  "Fsharp3": "sounds/sounds/House/Timbre3/Fsharp3.mp3",
                 
-                  "G3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre3/C3.mp3?dl=1",
+                  "G3": "sounds/sounds/House/Timbre3/C3.mp3",
                 
-                  "Gsharp3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre3/Gsharp3.mp3?dl=1",
+                  "Gsharp3": "sounds/sounds/House/Timbre3/Gsharp3.mp3",
                 
-                  "A3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre3/A3.mp3?dl=1",
+                  "A3": "sounds/sounds/House/Timbre3/A3.mp3",
                 
-                  "Asharp3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre3/Asharp3.mp3?dl=1",
+                  "Asharp3": "sounds/sounds/House/Timbre3/Asharp3.mp3",
                 
-                  "B3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre3/B3.mp3?dl=1",
+                  "B3": "sounds/sounds/House/Timbre3/B3.mp3",
                 
-                  "C4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre3/C3.mp3?dl=1",
+                  "C4": "sounds/sounds/House/Timbre3/C3.mp3",
                 
-                  "Csharp4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre3/Csharp4.mp3?dl=1",
+                  "Csharp4": "sounds/sounds/House/Timbre3/Csharp4.mp3",
                 
-                  "D4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre3/D4.mp3?dl=1",
+                  "D4": "sounds/sounds/House/Timbre3/D4.mp3",
                 
-                  "Dsharp4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre3/Dsharp4.mp3?dl=1",
+                  "Dsharp4": "sounds/sounds/House/Timbre3/Dsharp4.mp3",
                 
-                  "E4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre3/E4.mp3?dl=1",
+                  "E4": "sounds/sounds/House/Timbre3/E4.mp3",
                    
-                  "F4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre3/Fsharp4.mp3?dl=1",
+                  "F4": "sounds/sounds/House/Timbre3/Fsharp4.mp3",
                 
-                  "Fsharp4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre3/Fsharp4.mp3?dl=1",
+                  "Fsharp4": "sounds/sounds/House/Timbre3/Fsharp4.mp3",
                 
-                  "G4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre3/G4.mp3?dl=1",
+                  "G4": "sounds/sounds/House/Timbre3/G4.mp3",
                 
-                  "Gsharp4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre3/Gsharp4.mp3?dl=1",
+                  "Gsharp4": "sounds/sounds/House/Timbre3/Gsharp4.mp3",
                 
-                  "A4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre3/A4.mp3?dl=1",
+                  "A4": "sounds/sounds/House/Timbre3/A4.mp3",
                 
-                  "Asharp4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre3/Asharp4.mp3?dl=1",
+                  "Asharp4": "sounds/sounds/House/Timbre3/Asharp4.mp3",
                 
-                  "B4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre3/B4.mp3?dl=1",
+                  "B4": "sounds/sounds/House/Timbre3/B4.mp3",
                 
-                  "C5": "https://www.dropbox.com/home/sounds/sounds/House/Timbre3/C5.mp3?dl=1",
+                  "C5": "sounds/sounds/House/Timbre3/C5.mp3",
                 
-                  "Csharp5": "https://www.dropbox.com/home/sounds/sounds/House/Timbre3/Csharp5.mp3?dl=1",
+                  "Csharp5": "sounds/sounds/House/Timbre3/Csharp5.mp3",
                 
-                  "D5": "https://www.dropbox.com/home/sounds/sounds/House/Timbre3/D5.mp3?dl=1",
+                  "D5": "sounds/sounds/House/Timbre3/D5.mp3",
                 
-                  "Dsharp5": "https://www.dropbox.com/home/sounds/sounds/House/Timbre3/Dsharp5.mp3?dl=1",
+                  "Dsharp5": "sounds/sounds/House/Timbre3/Dsharp5.mp3",
                  
-                  "E5": "https://www.dropbox.com/home/sounds/sounds/House/Timbre3/E5.mp3?dl=1",
+                  "E5": "sounds/sounds/House/Timbre3/E5.mp3",
                 
-                  "F5": "https://www.dropbox.com/home/sounds/sounds/House/Timbre3/Fsharp4.mp3?dl=1"
+                  "F5": "sounds/sounds/House/Timbre3/Fsharp4.mp3"
                }
              }, 
              
@@ -208,65 +208,65 @@
              {  "nome": "Timbre 4",
                   "suoni": {
                 
-                  "C3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre4/C3.mp3?dl=1",
+                  "C3": "sounds/sounds/House/Timbre4/C3.mp3",
    
-                  "Csharp3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre4/Csharp3.mp3?dl=1",
+                  "Csharp3": "sounds/sounds/House/Timbre4/Csharp3.mp3",
    
-                  "D3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre4/D3.mp3?dl=1",
+                  "D3": "sounds/sounds/House/Timbre4/D3.mp3",
                 
-                  "Dsharp3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre4/Dsharp3.mp3?dl=1",
+                  "Dsharp3": "sounds/sounds/House/Timbre4/Dsharp3.mp3",
                 
-                  "E3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre4/E3.mp3?dl=1",
+                  "E3": "sounds/sounds/House/Timbre4/E3.mp3",
                 
-                  "F3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre4/F3.mp3?dl=1",
+                  "F3": "sounds/sounds/House/Timbre4/F3.mp3",
                 
-                  "Fsharp3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre4/Fsharp3.mp3?dl=1",
+                  "Fsharp3": "sounds/sounds/House/Timbre4/Fsharp3.mp3",
                 
-                  "G3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre4/C3.mp3?dl=1",
+                  "G3": "sounds/sounds/House/Timbre4/C3.mp3",
                 
-                  "Gsharp3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre4/Gsharp3.mp3?dl=1",
+                  "Gsharp3": "sounds/sounds/House/Timbre4/Gsharp3.mp3",
                 
-                  "A3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre4/A3.mp3?dl=1",
+                  "A3": "sounds/sounds/House/Timbre4/A3.mp3",
                 
-                  "Asharp3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre4/Asharp3.mp3?dl=1",
+                  "Asharp3": "sounds/sounds/House/Timbre4/Asharp3.mp3",
                 
-                  "B3": "https://www.dropbox.com/home/sounds/sounds/House/Timbre4/B3.mp3?dl=1",
+                  "B3": "sounds/sounds/House/Timbre4/B3.mp3",
                 
-                  "C4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre4/C3.mp3?dl=1",
+                  "C4": "sounds/sounds/House/Timbre4/C3.mp3",
                 
-                  "Csharp4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre4/Csharp4.mp3?dl=1",
+                  "Csharp4": "sounds/sounds/House/Timbre4/Csharp4.mp3",
                 
-                  "D4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre4/D4.mp3?dl=1",
+                  "D4": "sounds/sounds/House/Timbre4/D4.mp3",
                 
-                  "Dsharp4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre4/Dsharp4.mp3?dl=1",
+                  "Dsharp4": "sounds/sounds/House/Timbre4/Dsharp4.mp3",
                 
-                  "E4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre4/E4.mp3?dl=1",
+                  "E4": "sounds/sounds/House/Timbre4/E4.mp3",
                    
-                  "F4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre4/Fsharp4.mp3?dl=1",
+                  "F4": "sounds/sounds/House/Timbre4/Fsharp4.mp3",
                 
-                  "Fsharp4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre4/Fsharp4.mp3?dl=1",
+                  "Fsharp4": "sounds/sounds/House/Timbre4/Fsharp4.mp3",
                 
-                  "G4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre4/G4.mp3?dl=1",
+                  "G4": "sounds/sounds/House/Timbre4/G4.mp3",
                 
-                  "Gsharp4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre4/Gsharp4.mp3?dl=1",
+                  "Gsharp4": "sounds/sounds/House/Timbre4/Gsharp4.mp3",
                 
-                  "A4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre4/A4.mp3?dl=1",
+                  "A4": "sounds/sounds/House/Timbre4/A4.mp3",
                 
-                  "Asharp4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre4/Asharp4.mp3?dl=1",
+                  "Asharp4": "sounds/sounds/House/Timbre4/Asharp4.mp3",
                 
-                  "B4": "https://www.dropbox.com/home/sounds/sounds/House/Timbre4/B4.mp3?dl=1",
+                  "B4": "sounds/sounds/House/Timbre4/B4.mp3",
                 
-                  "C5": "https://www.dropbox.com/home/sounds/sounds/House/Timbre4/C5.mp3?dl=1",
+                  "C5": "sounds/sounds/House/Timbre4/C5.mp3",
                 
-                  "Csharp5": "https://www.dropbox.com/home/sounds/sounds/House/Timbre4/Csharp5.mp3?dl=1",
+                  "Csharp5": "sounds/sounds/House/Timbre4/Csharp5.mp3",
                 
-                  "D5": "https://www.dropbox.com/home/sounds/sounds/House/Timbre4/D5.mp3?dl=1",
+                  "D5": "sounds/sounds/House/Timbre4/D5.mp3",
                 
-                  "Dsharp5": "https://www.dropbox.com/home/sounds/sounds/House/Timbre4/Dsharp5.mp3?dl=1",
+                  "Dsharp5": "sounds/sounds/House/Timbre4/Dsharp5.mp3",
                  
-                  "E5": "https://www.dropbox.com/home/sounds/sounds/House/Timbre4/E5.mp3?dl=1",
+                  "E5": "sounds/sounds/House/Timbre4/E5.mp3",
                 
-                  "F5": "https://www.dropbox.com/home/sounds/sounds/House/Timbre4/Fsharp4.mp3?dl=1"
+                  "F5": "sounds/sounds/House/Timbre4/Fsharp4.mp3"
                }
              }
    
@@ -274,15 +274,15 @@
 
            "soundPad": [
             {
-              "suono1": "https://www.dropbox.com/home/sounds/sounds/House/Pad/suono1.mp3?dl=1",
-              "suono2": "https://www.dropbox.com/home/sounds/sounds/House/Pad/suono2.mp3?dl=1",
-              "suono3": "https://www.dropbox.com/home/sounds/sounds/House/Pad/suono3.mp3?dl=1",
-              "suono4": "https://www.dropbox.com/home/sounds/sounds/House/Pad/suono4.mp3?dl=1",
-              "suono5": "https://www.dropbox.com/home/sounds/sounds/House/Pad/suono5.mp3?dl=1",
-              "suono6": "https://www.dropbox.com/home/sounds/sounds/House/Pad/suono6.mp3?dl=1",
-              "suono7": "https://www.dropbox.com/home/sounds/sounds/House/Pad/suono7.mp3?dl=1",
-              "suono8": "https://www.dropbox.com/home/sounds/sounds/House/Pad/suono8.mp3?dl=1",
-              "suono9": "https://www.dropbox.com/home/sounds/sounds/House/Pad/suono9.mp3?dl=1"
+              "suono1": "sounds/sounds/House/Pad/suono1.mp3",
+              "suono2": "sounds/sounds/House/Pad/suono2.mp3",
+              "suono3": "sounds/sounds/House/Pad/suono3.mp3",
+              "suono4": "sounds/sounds/House/Pad/suono4.mp3",
+              "suono5": "sounds/sounds/House/Pad/suono5.mp3",
+              "suono6": "sounds/sounds/House/Pad/suono6.mp3",
+              "suono7": "sounds/sounds/House/Pad/suono7.mp3",
+              "suono8": "sounds/sounds/House/Pad/suono8.mp3",
+              "suono9": "sounds/sounds/House/Pad/suono9.mp3"
             }
            ]
    
@@ -294,71 +294,71 @@
       
        {
         "nome": "Sea",
-        "sfondo": "https://www.dropbox.com/home/sounds/sounds/Sea/sfondo.jpg?dl=1",
+        "sfondo": "sounds/sounds/Sea/sfondosea.webp",
         "setSuoni": [
            
            {  "nome": "Timbre 1",
               "suoni": {
             
-              "C3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre1/C3.mp3?dl=1",
+              "C3": "sounds/sounds/Sea/Timbre1/C3.mp3",
 
-              "Csharp3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre1/Csharp3.mp3?dl=1",
+              "Csharp3": "sounds/sounds/Sea/Timbre1/Csharp3.mp3",
 
-              "D3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre1/D3.mp3?dl=1",
+              "D3": "sounds/sounds/Sea/Timbre1/D3.mp3",
             
-              "Dsharp3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre1/Dsharp3.mp3?dl=1",
+              "Dsharp3": "sounds/sounds/Sea/Timbre1/Dsharp3.mp3",
             
-              "E3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre1/E3.mp3?dl=1",
+              "E3": "sounds/sounds/Sea/Timbre1/E3.mp3",
             
-              "F3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre1/F3.mp3?dl=1",
+              "F3": "sounds/sounds/Sea/Timbre1/F3.mp3",
             
-              "Fsharp3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre1/Fsharp3.mp3?dl=1",
+              "Fsharp3": "sounds/sounds/Sea/Timbre1/Fsharp3.mp3",
             
-              "G3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre1/C3.mp3?dl=1",
+              "G3": "sounds/sounds/Sea/Timbre1/G3.mp3",
             
-              "Gsharp3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre1/Gsharp3.mp3?dl=1",
+              "Gsharp3": "sounds/sounds/Sea/Timbre1/Gsharp3.mp3",
             
-              "A3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre1/A3.mp3?dl=1",
+              "A3": "sounds/sounds/Sea/Timbre1/A3.mp3",
             
-              "Asharp3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre1/Asharp3.mp3?dl=1",
+              "Asharp3": "sounds/sounds/Sea/Timbre1/Asharp3.mp3",
             
-              "B3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre1/B3.mp3?dl=1",
+              "B3": "sounds/sounds/Sea/Timbre1/B3.mp3",
             
-              "C4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre1/C3.mp3?dl=1",
+              "C4": "sounds/sounds/Sea/Timbre1/C4.mp3",
             
-              "Csharp4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre1/Csharp4.mp3?dl=1",
+              "Csharp4": "sounds/sounds/Sea/Timbre1/Csharp4.mp3",
             
-              "D4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre1/D4.mp3?dl=1",
+              "D4": "sounds/sounds/Sea/Timbre1/D4.mp3",
             
-              "Dsharp4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre1/Dsharp4.mp3?dl=1",
+              "Dsharp4": "sounds/sounds/Sea/Timbre1/Dsharp4.mp3",
             
-              "E4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre1/E4.mp3?dl=1",
+              "E4": "sounds/sounds/Sea/Timbre1/E4.mp3",
                
-              "F4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre1/Fsharp4.mp3?dl=1",
+              "F4": "sounds/sounds/Sea/Timbre1/Fsharp4.mp3",
             
-              "Fsharp4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre1/Fsharp4.mp3?dl=1",
+              "Fsharp4": "sounds/sounds/Sea/Timbre1/Fsharp4.mp3",
             
-              "G4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre1/G4.mp3?dl=1",
+              "G4": "sounds/sounds/Sea/Timbre1/G4.mp3",
             
-              "Gsharp4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre1/Gsharp4.mp3?dl=1",
+              "Gsharp4": "sounds/sounds/Sea/Timbre1/Gsharp4.mp3",
             
-              "A4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre1/A4.mp3?dl=1",
+              "A4": "sounds/sounds/Sea/Timbre1/A4.mp3",
             
-              "Asharp4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre1/Asharp4.mp3?dl=1",
+              "Asharp4": "sounds/sounds/Sea/Timbre1/Asharp4.mp3",
             
-              "B4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre1/B4.mp3?dl=1",
+              "B4": "sounds/sounds/Sea/Timbre1/B4.mp3",
             
-              "C5": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre1/C5.mp3?dl=1",
+              "C5": "sounds/sounds/Sea/Timbre1/C5.mp3",
             
-              "Csharp5": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre1/Csharp5.mp3?dl=1",
+              "Csharp5": "sounds/sounds/Sea/Timbre1/Csharp5.mp3",
             
-              "D5": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre1/D5.mp3?dl=1",
+              "D5": "sounds/sounds/Sea/Timbre1/D5.mp3",
             
-              "Dsharp5": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre1/Dsharp5.mp3?dl=1",
+              "Dsharp5": "sounds/sounds/Sea/Timbre1/Dsharp5.mp3",
              
-              "E5": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre1/E5.mp3?dl=1",
+              "E5": "sounds/sounds/Sea/Timbre1/E5.mp3",
             
-              "F5": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre1/Fsharp4.mp3?dl=1"
+              "F5": "sounds/sounds/Sea/Timbre1/F5.mp3"
            }
          }, 
      
@@ -367,65 +367,65 @@
          {  "nome": "Timbre 2",
               "suoni": {
             
-              "C3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre2/C3.mp3?dl=1",
+              "C3": "sounds/sounds/Sea/Timbre2/C3.mp3",
 
-              "Csharp3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre2/Csharp3.mp3?dl=1",
+              "Csharp3": "sounds/sounds/Sea/Timbre2/Csharp3.mp3",
 
-              "D3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre2/D3.mp3?dl=1",
+              "D3": "sounds/sounds/Sea/Timbre2/D3.mp3",
             
-              "Dsharp3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre2/Dsharp3.mp3?dl=1",
+              "Dsharp3": "sounds/sounds/Sea/Timbre2/Dsharp3.mp3",
             
-              "E3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre2/E3.mp3?dl=1",
+              "E3": "sounds/sounds/Sea/Timbre2/E3.mp3",
             
-              "F3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre2/F3.mp3?dl=1",
+              "F3": "sounds/sounds/Sea/Timbre2/F3.mp3",
             
-              "Fsharp3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre2/Fsharp3.mp3?dl=1",
+              "Fsharp3": "sounds/sounds/Sea/Timbre2/Fsharp3.mp3",
             
-              "G3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre2/C3.mp3?dl=1",
+              "G3": "sounds/sounds/Sea/Timbre2/G3.mp3",
             
-              "Gsharp3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre2/Gsharp3.mp3?dl=1",
+              "Gsharp3": "sounds/sounds/Sea/Timbre2/Gsharp3.mp3",
             
-              "A3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre2/A3.mp3?dl=1",
+              "A3": "sounds/sounds/Sea/Timbre2/A3.mp3",
             
-              "Asharp3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre2/Asharp3.mp3?dl=1",
+              "Asharp3": "sounds/sounds/Sea/Timbre2/Asharp3.mp3",
             
-              "B3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre2/B3.mp3?dl=1",
+              "B3": "sounds/sounds/Sea/Timbre2/B3.mp3",
             
-              "C4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre2/C3.mp3?dl=1",
+              "C4": "sounds/sounds/Sea/Timbre2/C4.mp3",
             
-              "Csharp4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre2/Csharp4.mp3?dl=1",
+              "Csharp4": "sounds/sounds/Sea/Timbre2/Csharp4.mp3",
             
-              "D4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre2/D4.mp3?dl=1",
+              "D4": "sounds/sounds/Sea/Timbre2/D4.mp3",
             
-              "Dsharp4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre2/Dsharp4.mp3?dl=1",
+              "Dsharp4": "sounds/sounds/Sea/Timbre2/Dsharp4.mp3",
             
-              "E4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre2/E4.mp3?dl=1",
+              "E4": "sounds/sounds/Sea/Timbre2/E4.mp3",
                
-              "F4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre2/Fsharp4.mp3?dl=1",
+              "F4": "sounds/sounds/Sea/Timbre2/Fsharp4.mp3",
             
-              "Fsharp4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre2/Fsharp4.mp3?dl=1",
+              "Fsharp4": "sounds/sounds/Sea/Timbre2/Fsharp4.mp3",
             
-              "G4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre2/G4.mp3?dl=1",
+              "G4": "sounds/sounds/Sea/Timbre2/G4.mp3",
             
-              "Gsharp4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre2/Gsharp4.mp3?dl=1",
+              "Gsharp4": "sounds/sounds/Sea/Timbre2/Gsharp4.mp3",
             
-              "A4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre2/A4.mp3?dl=1",
+              "A4": "sounds/sounds/Sea/Timbre2/A4.mp3",
             
-              "Asharp4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre2/Asharp4.mp3?dl=1",
+              "Asharp4": "sounds/sounds/Sea/Timbre2/Asharp4.mp3",
             
-              "B4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre2/B4.mp3?dl=1",
+              "B4": "sounds/sounds/Sea/Timbre2/B4.mp3",
             
-              "C5": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre2/C5.mp3?dl=1",
+              "C5": "sounds/sounds/Sea/Timbre2/C5.mp3",
             
-              "Csharp5": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre2/Csharp5.mp3?dl=1",
+              "Csharp5": "sounds/sounds/Sea/Timbre2/Csharp5.mp3",
             
-              "D5": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre2/D5.mp3?dl=1",
+              "D5": "sounds/sounds/Sea/Timbre2/D5.mp3",
             
-              "Dsharp5": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre2/Dsharp5.mp3?dl=1",
+              "Dsharp5": "sounds/sounds/Sea/Timbre2/Dsharp5.mp3",
              
-              "E5": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre2/E5.mp3?dl=1",
+              "E5": "sounds/sounds/Sea/Timbre2/E5.mp3",
             
-              "F5": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre2/Fsharp4.mp3?dl=1"
+              "F5": "sounds/sounds/Sea/Timbre2/F5.mp3"
            }
          }, 
          
@@ -433,65 +433,65 @@
          {  "nome": "Timbre 3",
               "suoni": {
             
-              "C3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre3/C3.mp3?dl=1",
+              "C3": "sounds/sounds/Sea/Timbre3/C3.mp3",
 
-              "Csharp3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre3/Csharp3.mp3?dl=1",
+              "Csharp3": "sounds/sounds/Sea/Timbre3/Csharp3.mp3",
 
-              "D3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre3/D3.mp3?dl=1",
+              "D3": "sounds/sounds/Sea/Timbre3/D3.mp3",
             
-              "Dsharp3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre3/Dsharp3.mp3?dl=1",
+              "Dsharp3": "sounds/sounds/Sea/Timbre3/Dsharp3.mp3",
             
-              "E3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre3/E3.mp3?dl=1",
+              "E3": "sounds/sounds/Sea/Timbre3/E3.mp3",
             
-              "F3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre3/F3.mp3?dl=1",
+              "F3": "sounds/sounds/Sea/Timbre3/F3.mp3",
             
-              "Fsharp3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre3/Fsharp3.mp3?dl=1",
+              "Fsharp3": "sounds/sounds/Sea/Timbre3/Fsharp3.mp3",
             
-              "G3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre3/C3.mp3?dl=1",
+              "G3": "sounds/sounds/Sea/Timbre3/G3.mp3",
             
-              "Gsharp3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre3/Gsharp3.mp3?dl=1",
+              "Gsharp3": "sounds/sounds/Sea/Timbre3/Gsharp3.mp3",
             
-              "A3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre3/A3.mp3?dl=1",
+              "A3": "sounds/sounds/Sea/Timbre3/A3.mp3",
             
-              "Asharp3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre3/Asharp3.mp3?dl=1",
+              "Asharp3": "sounds/sounds/Sea/Timbre3/Asharp3.mp3",
             
-              "B3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre3/B3.mp3?dl=1",
+              "B3": "sounds/sounds/Sea/Timbre3/B3.mp3",
             
-              "C4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre3/C3.mp3?dl=1",
+              "C4": "sounds/sounds/Sea/Timbre3/C4.mp3",
             
-              "Csharp4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre3/Csharp4.mp3?dl=1",
+              "Csharp4": "sounds/sounds/Sea/Timbre3/Csharp4.mp3",
             
-              "D4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre3/D4.mp3?dl=1",
+              "D4": "sounds/sounds/Sea/Timbre3/D4.mp3",
             
-              "Dsharp4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre3/Dsharp4.mp3?dl=1",
+              "Dsharp4": "sounds/sounds/Sea/Timbre3/Dsharp4.mp3",
             
-              "E4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre3/E4.mp3?dl=1",
+              "E4": "sounds/sounds/Sea/Timbre3/E4.mp3",
                
-              "F4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre3/Fsharp4.mp3?dl=1",
+              "F4": "sounds/sounds/Sea/Timbre3/Fsharp4.mp3",
             
-              "Fsharp4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre3/Fsharp4.mp3?dl=1",
+              "Fsharp4": "sounds/sounds/Sea/Timbre3/Fsharp4.mp3",
             
-              "G4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre3/G4.mp3?dl=1",
+              "G4": "sounds/sounds/Sea/Timbre3/G4.mp3",
             
-              "Gsharp4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre3/Gsharp4.mp3?dl=1",
+              "Gsharp4": "sounds/sounds/Sea/Timbre3/Gsharp4.mp3",
             
-              "A4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre3/A4.mp3?dl=1",
+              "A4": "sounds/sounds/Sea/Timbre3/A4.mp3",
             
-              "Asharp4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre3/Asharp4.mp3?dl=1",
+              "Asharp4": "sounds/sounds/Sea/Timbre3/Asharp4.mp3",
             
-              "B4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre3/B4.mp3?dl=1",
+              "B4": "sounds/sounds/Sea/Timbre3/B4.mp3",
             
-              "C5": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre3/C5.mp3?dl=1",
+              "C5": "sounds/sounds/Sea/Timbre3/C5.mp3",
             
-              "Csharp5": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre3/Csharp5.mp3?dl=1",
+              "Csharp5": "sounds/sounds/Sea/Timbre3/Csharp5.mp3",
             
-              "D5": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre3/D5.mp3?dl=1",
+              "D5": "sounds/sounds/Sea/Timbre3/D5.mp3",
             
-              "Dsharp5": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre3/Dsharp5.mp3?dl=1",
+              "Dsharp5": "sounds/sounds/Sea/Timbre3/Dsharp5.mp3",
              
-              "E5": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre3/E5.mp3?dl=1",
+              "E5": "sounds/sounds/Sea/Timbre3/E5.mp3",
             
-              "F5": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre3/Fsharp4.mp3?dl=1"
+              "F5": "sounds/sounds/Sea/Timbre3/F5.mp3"
            }
          }, 
          
@@ -499,65 +499,65 @@
          {  "nome": "Timbre 4",
               "suoni": {
             
-              "C3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre4/C3.mp3?dl=1",
+              "C3": "sounds/sounds/Sea/Timbre4/C3.mp3",
 
-              "Csharp3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre4/Csharp3.mp3?dl=1",
+              "Csharp3": "sounds/sounds/Sea/Timbre4/Csharp3.mp3",
 
-              "D3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre4/D3.mp3?dl=1",
+              "D3": "sounds/sounds/Sea/Timbre4/D3.mp3",
             
-              "Dsharp3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre4/Dsharp3.mp3?dl=1",
+              "Dsharp3": "sounds/sounds/Sea/Timbre4/Dsharp3.mp3",
             
-              "E3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre4/E3.mp3?dl=1",
+              "E3": "sounds/sounds/Sea/Timbre4/E3.mp3",
             
-              "F3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre4/F3.mp3?dl=1",
+              "F3": "sounds/sounds/Sea/Timbre4/F3.mp3",
             
-              "Fsharp3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre4/Fsharp3.mp3?dl=1",
+              "Fsharp3": "sounds/sounds/Sea/Timbre4/Fsharp3.mp3",
             
-              "G3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre4/C3.mp3?dl=1",
+              "G3": "sounds/sounds/Sea/Timbre4/G3.mp3",
             
-              "Gsharp3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre4/Gsharp3.mp3?dl=1",
+              "Gsharp3": "sounds/sounds/Sea/Timbre4/Gsharp3.mp3",
             
-              "A3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre4/A3.mp3?dl=1",
+              "A3": "sounds/sounds/Sea/Timbre4/A3.mp3",
             
-              "Asharp3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre4/Asharp3.mp3?dl=1",
+              "Asharp3": "sounds/sounds/Sea/Timbre4/Asharp3.mp3",
             
-              "B3": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre4/B3.mp3?dl=1",
+              "B3": "sounds/sounds/Sea/Timbre4/B3.mp3",
             
-              "C4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre4/C3.mp3?dl=1",
+              "C4": "sounds/sounds/Sea/Timbre4/C4.mp3",
             
-              "Csharp4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre4/Csharp4.mp3?dl=1",
+              "Csharp4": "sounds/sounds/Sea/Timbre4/Csharp4.mp3",
             
-              "D4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre4/D4.mp3?dl=1",
+              "D4": "sounds/sounds/Sea/Timbre4/D4.mp3",
             
-              "Dsharp4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre4/Dsharp4.mp3?dl=1",
+              "Dsharp4": "sounds/sounds/Sea/Timbre4/Dsharp4.mp3",
             
-              "E4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre4/E4.mp3?dl=1",
+              "E4": "sounds/sounds/Sea/Timbre4/E4.mp3",
                
-              "F4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre4/Fsharp4.mp3?dl=1",
+              "F4": "sounds/sounds/Sea/Timbre4/Fsharp4.mp3",
             
-              "Fsharp4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre4/Fsharp4.mp3?dl=1",
+              "Fsharp4": "sounds/sounds/Sea/Timbre4/Fsharp4.mp3",
             
-              "G4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre4/G4.mp3?dl=1",
+              "G4": "sounds/sounds/Sea/Timbre4/G4.mp3",
             
-              "Gsharp4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre4/Gsharp4.mp3?dl=1",
+              "Gsharp4": "sounds/sounds/Sea/Timbre4/Gsharp4.mp3",
             
-              "A4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre4/A4.mp3?dl=1",
+              "A4": "sounds/sounds/Sea/Timbre4/A4.mp3",
             
-              "Asharp4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre4/Asharp4.mp3?dl=1",
+              "Asharp4": "sounds/sounds/Sea/Timbre4/Asharp4.mp3",
             
-              "B4": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre4/B4.mp3?dl=1",
+              "B4": "sounds/sounds/Sea/Timbre4/B4.mp3",
             
-              "C5": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre4/C5.mp3?dl=1",
+              "C5": "sounds/sounds/Sea/Timbre4/C5.mp3",
             
-              "Csharp5": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre4/Csharp5.mp3?dl=1",
+              "Csharp5": "sounds/sounds/Sea/Timbre4/Csharp5.mp3",
             
-              "D5": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre4/D5.mp3?dl=1",
+              "D5": "sounds/sounds/Sea/Timbre4/D5.mp3",
             
-              "Dsharp5": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre4/Dsharp5.mp3?dl=1",
+              "Dsharp5": "sounds/sounds/Sea/Timbre4/Dsharp5.mp3",
              
-              "E5": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre4/E5.mp3?dl=1",
+              "E5": "sounds/sounds/Sea/Timbre4/E5.mp3",
             
-              "F5": "https://www.dropbox.com/home/sounds/sounds/Sea/Timbre4/Fsharp4.mp3?dl=1"
+              "F5": "sounds/sounds/Sea/Timbre4/F5.mp3"
            }
          }
 
@@ -565,15 +565,15 @@
 
        "soundPad": [
             {
-              "suono1": "https://www.dropbox.com/home/sounds/sounds/Sea/Pad/suono1.mp3?dl=1",
-              "suono2": "https://www.dropbox.com/home/sounds/sounds/Sea/Pad/suono2.mp3?dl=1",
-              "suono3": "https://www.dropbox.com/home/sounds/sounds/Sea/Pad/suono3.mp3?dl=1",
-              "suono4": "https://www.dropbox.com/home/sounds/sounds/Sea/Pad/suono4.mp3?dl=1",
-              "suono5": "https://www.dropbox.com/home/sounds/sounds/Sea/Pad/suono5.mp3?dl=1",
-              "suono6": "https://www.dropbox.com/home/sounds/sounds/Sea/Pad/suono6.mp3?dl=1",
-              "suono7": "https://www.dropbox.com/home/sounds/sounds/Sea/Pad/suono7.mp3?dl=1",
-              "suono8": "https://www.dropbox.com/home/sounds/sounds/Sea/Pad/suono8.mp3?dl=1",
-              "suono9": "https://www.dropbox.com/home/sounds/sounds/Sea/Pad/suono9.mp3?dl=1"
+              "suono1": "sounds/sounds/Sea/Pad/suono1.mp3",
+              "suono2": "sounds/sounds/Sea/Pad/suono2.mp3",
+              "suono3": "sounds/sounds/Sea/Pad/suono3.mp3",
+              "suono4": "sounds/sounds/Sea/Pad/suono4.mp3",
+              "suono5": "sounds/sounds/Sea/Pad/suono5.mp3",
+              "suono6": "sounds/sounds/Sea/Pad/suono6.mp3",
+              "suono7": "sounds/sounds/Sea/Pad/suono7.mp3",
+              "suono8": "sounds/sounds/Sea/Pad/suono8.mp3",
+              "suono9": "sounds/sounds/Sea/Pad/suono9.mp3"
             }
            ]
 
@@ -584,71 +584,71 @@
      
       {
         "nome": "City",
-        "sfondo": "https://www.dropbox.com/home/sounds/sounds/Sea/sfondo.jpg?dl=1",
+        "sfondo": "sounds/sounds/City/sfondocity.webp",
         "setSuoni": [
            
            {  "nome": "Timbre 1",
               "suoni": {
             
-              "C3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre1/C3.mp3?dl=1",
+              "C3": "sounds/sounds/City/Timbre1/C3.mp3",
 
-              "Csharp3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre1/Csharp3.mp3?dl=1",
+              "Csharp3": "sounds/sounds/City/Timbre1/Csharp3.mp3",
 
-              "D3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre1/D3.mp3?dl=1",
+              "D3": "sounds/sounds/City/Timbre1/D3.mp3",
             
-              "Dsharp3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre1/Dsharp3.mp3?dl=1",
+              "Dsharp3": "sounds/sounds/City/Timbre1/Dsharp3.mp3",
             
-              "E3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre1/E3.mp3?dl=1",
+              "E3": "sounds/sounds/City/Timbre1/E3.mp3",
             
-              "F3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre1/F3.mp3?dl=1",
+              "F3": "sounds/sounds/City/Timbre1/F3.mp3",
             
-              "Fsharp3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre1/Fsharp3.mp3?dl=1",
+              "Fsharp3": "sounds/sounds/City/Timbre1/Fsharp3.mp3",
             
-              "G3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre1/C3.mp3?dl=1",
+              "G3": "sounds/sounds/City/Timbre1/G3.mp3",
             
-              "Gsharp3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre1/Gsharp3.mp3?dl=1",
+              "Gsharp3": "sounds/sounds/City/Timbre1/Gsharp3.mp3",
             
-              "A3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre1/A3.mp3?dl=1",
+              "A3": "sounds/sounds/City/Timbre1/A3.mp3",
             
-              "Asharp3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre1/Asharp3.mp3?dl=1",
+              "Asharp3": "sounds/sounds/City/Timbre1/Asharp3.mp3",
             
-              "B3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre1/B3.mp3?dl=1",
+              "B3": "sounds/sounds/City/Timbre1/B3.mp3",
             
-              "C4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre1/C3.mp3?dl=1",
+              "C4": "sounds/sounds/City/Timbre1/C4.mp3",
             
-              "Csharp4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre1/Csharp4.mp3?dl=1",
+              "Csharp4": "sounds/sounds/City/Timbre1/Csharp4.mp3",
             
-              "D4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre1/D4.mp3?dl=1",
+              "D4": "sounds/sounds/City/Timbre1/D4.mp3",
             
-              "Dsharp4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre1/Dsharp4.mp3?dl=1",
+              "Dsharp4": "sounds/sounds/City/Timbre1/Dsharp4.mp3",
             
-              "E4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre1/E4.mp3?dl=1",
+              "E4": "sounds/sounds/City/Timbre1/E4.mp3",
                
-              "F4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre1/Fsharp4.mp3?dl=1",
+              "F4": "sounds/sounds/City/Timbre1/Fsharp4.mp3",
             
-              "Fsharp4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre1/Fsharp4.mp3?dl=1",
+              "Fsharp4": "sounds/sounds/City/Timbre1/Fsharp4.mp3",
             
-              "G4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre1/G4.mp3?dl=1",
+              "G4": "sounds/sounds/City/Timbre1/G4.mp3",
             
-              "Gsharp4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre1/Gsharp4.mp3?dl=1",
+              "Gsharp4": "sounds/sounds/City/Timbre1/Gsharp4.mp3",
             
-              "A4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre1/A4.mp3?dl=1",
+              "A4": "sounds/sounds/City/Timbre1/A4.mp3",
             
-              "Asharp4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre1/Asharp4.mp3?dl=1",
+              "Asharp4": "sounds/sounds/City/Timbre1/Asharp4.mp3",
             
-              "B4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre1/B4.mp3?dl=1",
+              "B4": "sounds/sounds/City/Timbre1/B4.mp3",
             
-              "C5": "https://www.dropbox.com/home/sounds/sounds/City/Timbre1/C5.mp3?dl=1",
+              "C5": "sounds/sounds/City/Timbre1/C5.mp3",
             
-              "Csharp5": "https://www.dropbox.com/home/sounds/sounds/City/Timbre1/Csharp5.mp3?dl=1",
+              "Csharp5": "sounds/sounds/City/Timbre1/Csharp5.mp3",
             
-              "D5": "https://www.dropbox.com/home/sounds/sounds/City/Timbre1/D5.mp3?dl=1",
+              "D5": "sounds/sounds/City/Timbre1/D5.mp3",
             
-              "Dsharp5": "https://www.dropbox.com/home/sounds/sounds/City/Timbre1/Dsharp5.mp3?dl=1",
+              "Dsharp5": "sounds/sounds/City/Timbre1/Dsharp5.mp3",
              
-              "E5": "https://www.dropbox.com/home/sounds/sounds/City/Timbre1/E5.mp3?dl=1",
+              "E5": "sounds/sounds/City/Timbre1/E5.mp3",
             
-              "F5": "https://www.dropbox.com/home/sounds/sounds/City/Timbre1/Fsharp4.mp3?dl=1"
+              "F5": "sounds/sounds/City/Timbre1/F5.mp3"
            }
          }, 
      
@@ -657,65 +657,65 @@
          {  "nome": "Timbre 2",
               "suoni": {
             
-              "C3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre2/C3.mp3?dl=1",
+              "C3": "sounds/sounds/City/Timbre2/C3.mp3",
 
-              "Csharp3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre2/Csharp3.mp3?dl=1",
+              "Csharp3": "sounds/sounds/City/Timbre2/Csharp3.mp3",
 
-              "D3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre2/D3.mp3?dl=1",
+              "D3": "sounds/sounds/City/Timbre2/D3.mp3",
             
-              "Dsharp3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre2/Dsharp3.mp3?dl=1",
+              "Dsharp3": "sounds/sounds/City/Timbre2/Dsharp3.mp3",
             
-              "E3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre2/E3.mp3?dl=1",
+              "E3": "sounds/sounds/City/Timbre2/E3.mp3",
             
-              "F3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre2/F3.mp3?dl=1",
+              "F3": "sounds/sounds/City/Timbre2/F3.mp3",
             
-              "Fsharp3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre2/Fsharp3.mp3?dl=1",
+              "Fsharp3": "sounds/sounds/City/Timbre2/Fsharp3.mp3",
             
-              "G3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre2/C3.mp3?dl=1",
+              "G3": "sounds/sounds/City/Timbre2/G3.mp3",
             
-              "Gsharp3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre2/Gsharp3.mp3?dl=1",
+              "Gsharp3": "sounds/sounds/City/Timbre2/Gsharp3.mp3",
             
-              "A3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre2/A3.mp3?dl=1",
+              "A3": "sounds/sounds/City/Timbre2/A3.mp3",
             
-              "Asharp3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre2/Asharp3.mp3?dl=1",
+              "Asharp3": "sounds/sounds/City/Timbre2/Asharp3.mp3",
             
-              "B3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre2/B3.mp3?dl=1",
+              "B3": "sounds/sounds/City/Timbre2/B3.mp3",
             
-              "C4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre2/C3.mp3?dl=1",
+              "C4": "sounds/sounds/City/Timbre2/C4.mp3",
             
-              "Csharp4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre2/Csharp4.mp3?dl=1",
+              "Csharp4": "sounds/sounds/City/Timbre2/Csharp4.mp3",
             
-              "D4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre2/D4.mp3?dl=1",
+              "D4": "sounds/sounds/City/Timbre2/D4.mp3",
             
-              "Dsharp4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre2/Dsharp4.mp3?dl=1",
+              "Dsharp4": "sounds/sounds/City/Timbre2/Dsharp4.mp3",
             
-              "E4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre2/E4.mp3?dl=1",
+              "E4": "sounds/sounds/City/Timbre2/E4.mp3",
                
-              "F4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre2/Fsharp4.mp3?dl=1",
+              "F4": "sounds/sounds/City/Timbre2/Fsharp4.mp3",
             
-              "Fsharp4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre2/Fsharp4.mp3?dl=1",
+              "Fsharp4": "sounds/sounds/City/Timbre2/Fsharp4.mp3",
             
-              "G4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre2/G4.mp3?dl=1",
+              "G4": "sounds/sounds/City/Timbre2/G4.mp3",
             
-              "Gsharp4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre2/Gsharp4.mp3?dl=1",
+              "Gsharp4": "sounds/sounds/City/Timbre2/Gsharp4.mp3",
             
-              "A4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre2/A4.mp3?dl=1",
+              "A4": "sounds/sounds/City/Timbre2/A4.mp3",
             
-              "Asharp4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre2/Asharp4.mp3?dl=1",
+              "Asharp4": "sounds/sounds/City/Timbre2/Asharp4.mp3",
             
-              "B4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre2/B4.mp3?dl=1",
+              "B4": "sounds/sounds/City/Timbre2/B4.mp3",
             
-              "C5": "https://www.dropbox.com/home/sounds/sounds/City/Timbre2/C5.mp3?dl=1",
+              "C5": "sounds/sounds/City/Timbre2/C5.mp3",
             
-              "Csharp5": "https://www.dropbox.com/home/sounds/sounds/City/Timbre2/Csharp5.mp3?dl=1",
+              "Csharp5": "sounds/sounds/City/Timbre2/Csharp5.mp3",
             
-              "D5": "https://www.dropbox.com/home/sounds/sounds/City/Timbre2/D5.mp3?dl=1",
+              "D5": "sounds/sounds/City/Timbre2/D5.mp3",
             
-              "Dsharp5": "https://www.dropbox.com/home/sounds/sounds/City/Timbre2/Dsharp5.mp3?dl=1",
+              "Dsharp5": "sounds/sounds/City/Timbre2/Dsharp5.mp3",
              
-              "E5": "https://www.dropbox.com/home/sounds/sounds/City/Timbre2/E5.mp3?dl=1",
+              "E5": "sounds/sounds/City/Timbre2/E5.mp3",
             
-              "F5": "https://www.dropbox.com/home/sounds/sounds/City/Timbre2/Fsharp4.mp3?dl=1"
+              "F5": "sounds/sounds/City/Timbre2/F5.mp3"
            }
          }, 
          
@@ -723,65 +723,65 @@
          {  "nome": "Timbre 3",
               "suoni": {
             
-              "C3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre3/C3.mp3?dl=1",
+              "C3": "sounds/sounds/City/Timbre3/C3.mp3",
 
-              "Csharp3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre3/Csharp3.mp3?dl=1",
+              "Csharp3": "sounds/sounds/City/Timbre3/Csharp3.mp3",
 
-              "D3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre3/D3.mp3?dl=1",
+              "D3": "sounds/sounds/City/Timbre3/D3.mp3",
             
-              "Dsharp3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre3/Dsharp3.mp3?dl=1",
+              "Dsharp3": "sounds/sounds/City/Timbre3/Dsharp3.mp3",
             
-              "E3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre3/E3.mp3?dl=1",
+              "E3": "sounds/sounds/City/Timbre3/E3.mp3",
             
-              "F3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre3/F3.mp3?dl=1",
+              "F3": "sounds/sounds/City/Timbre3/F3.mp3",
             
-              "Fsharp3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre3/Fsharp3.mp3?dl=1",
+              "Fsharp3": "sounds/sounds/City/Timbre3/Fsharp3.mp3",
             
-              "G3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre3/C3.mp3?dl=1",
+              "G3": "sounds/sounds/City/Timbre3/G3.mp3",
             
-              "Gsharp3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre3/Gsharp3.mp3?dl=1",
+              "Gsharp3": "sounds/sounds/City/Timbre3/Gsharp3.mp3",
             
-              "A3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre3/A3.mp3?dl=1",
+              "A3": "sounds/sounds/City/Timbre3/A3.mp3",
             
-              "Asharp3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre3/Asharp3.mp3?dl=1",
+              "Asharp3": "sounds/sounds/City/Timbre3/Asharp3.mp3",
             
-              "B3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre3/B3.mp3?dl=1",
+              "B3": "sounds/sounds/City/Timbre3/B3.mp3",
             
-              "C4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre3/C3.mp3?dl=1",
+              "C4": "sounds/sounds/City/Timbre3/C4.mp3",
             
-              "Csharp4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre3/Csharp4.mp3?dl=1",
+              "Csharp4": "sounds/sounds/City/Timbre3/Csharp4.mp3",
             
-              "D4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre3/D4.mp3?dl=1",
+              "D4": "sounds/sounds/City/Timbre3/D4.mp3",
             
-              "Dsharp4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre3/Dsharp4.mp3?dl=1",
+              "Dsharp4": "sounds/sounds/City/Timbre3/Dsharp4.mp3",
             
-              "E4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre3/E4.mp3?dl=1",
+              "E4": "sounds/sounds/City/Timbre3/E4.mp3",
                
-              "F4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre3/Fsharp4.mp3?dl=1",
+              "F4": "sounds/sounds/City/Timbre3/Fsharp4.mp3",
             
-              "Fsharp4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre3/Fsharp4.mp3?dl=1",
+              "Fsharp4": "sounds/sounds/City/Timbre3/Fsharp4.mp3",
             
-              "G4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre3/G4.mp3?dl=1",
+              "G4": "sounds/sounds/City/Timbre3/G4.mp3",
             
-              "Gsharp4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre3/Gsharp4.mp3?dl=1",
+              "Gsharp4": "sounds/sounds/City/Timbre3/Gsharp4.mp3",
             
-              "A4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre3/A4.mp3?dl=1",
+              "A4": "sounds/sounds/City/Timbre3/A4.mp3",
             
-              "Asharp4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre3/Asharp4.mp3?dl=1",
+              "Asharp4": "sounds/sounds/City/Timbre3/Asharp4.mp3",
             
-              "B4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre3/B4.mp3?dl=1",
+              "B4": "sounds/sounds/City/Timbre3/B4.mp3",
             
-              "C5": "https://www.dropbox.com/home/sounds/sounds/City/Timbre3/C5.mp3?dl=1",
+              "C5": "sounds/sounds/City/Timbre3/C5.mp3",
             
-              "Csharp5": "https://www.dropbox.com/home/sounds/sounds/City/Timbre3/Csharp5.mp3?dl=1",
+              "Csharp5": "sounds/sounds/City/Timbre3/Csharp5.mp3",
             
-              "D5": "https://www.dropbox.com/home/sounds/sounds/City/Timbre3/D5.mp3?dl=1",
+              "D5": "sounds/sounds/City/Timbre3/D5.mp3",
             
-              "Dsharp5": "https://www.dropbox.com/home/sounds/sounds/City/Timbre3/Dsharp5.mp3?dl=1",
+              "Dsharp5": "sounds/sounds/City/Timbre3/Dsharp5.mp3",
              
-              "E5": "https://www.dropbox.com/home/sounds/sounds/City/Timbre3/E5.mp3?dl=1",
+              "E5": "sounds/sounds/City/Timbre3/E5.mp3",
             
-              "F5": "https://www.dropbox.com/home/sounds/sounds/City/Timbre3/Fsharp4.mp3?dl=1"
+              "F5": "sounds/sounds/City/Timbre3/F5.mp3"
            }
          }, 
          
@@ -789,65 +789,65 @@
          {  "nome": "Timbre 4",
               "suoni": {
             
-              "C3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre4/C3.mp3?dl=1",
+              "C3": "sounds/sounds/City/Timbre4/C3.mp3",
 
-              "Csharp3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre4/Csharp3.mp3?dl=1",
+              "Csharp3": "sounds/sounds/City/Timbre4/Csharp3.mp3",
 
-              "D3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre4/D3.mp3?dl=1",
+              "D3": "sounds/sounds/City/Timbre4/D3.mp3",
             
-              "Dsharp3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre4/Dsharp3.mp3?dl=1",
+              "Dsharp3": "sounds/sounds/City/Timbre4/Dsharp3.mp3",
             
-              "E3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre4/E3.mp3?dl=1",
+              "E3": "sounds/sounds/City/Timbre4/E3.mp3",
             
-              "F3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre4/F3.mp3?dl=1",
+              "F3": "sounds/sounds/City/Timbre4/F3.mp3",
             
-              "Fsharp3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre4/Fsharp3.mp3?dl=1",
+              "Fsharp3": "sounds/sounds/City/Timbre4/Fsharp3.mp3",
             
-              "G3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre4/C3.mp3?dl=1",
+              "G3": "sounds/sounds/City/Timbre4/G3.mp3",
             
-              "Gsharp3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre4/Gsharp3.mp3?dl=1",
+              "Gsharp3": "sounds/sounds/City/Timbre4/Gsharp3.mp3",
             
-              "A3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre4/A3.mp3?dl=1",
+              "A3": "sounds/sounds/City/Timbre4/A3.mp3",
             
-              "Asharp3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre4/Asharp3.mp3?dl=1",
+              "Asharp3": "sounds/sounds/City/Timbre4/Asharp3.mp3",
             
-              "B3": "https://www.dropbox.com/home/sounds/sounds/City/Timbre4/B3.mp3?dl=1",
+              "B3": "sounds/sounds/City/Timbre4/B3.mp3",
             
-              "C4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre4/C3.mp3?dl=1",
+              "C4": "sounds/sounds/City/Timbre4/C4.mp3",
             
-              "Csharp4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre4/Csharp4.mp3?dl=1",
+              "Csharp4": "sounds/sounds/City/Timbre4/Csharp4.mp3",
             
-              "D4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre4/D4.mp3?dl=1",
+              "D4": "sounds/sounds/City/Timbre4/D4.mp3",
             
-              "Dsharp4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre4/Dsharp4.mp3?dl=1",
+              "Dsharp4": "sounds/sounds/City/Timbre4/Dsharp4.mp3",
             
-              "E4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre4/E4.mp3?dl=1",
+              "E4": "sounds/sounds/City/Timbre4/E4.mp3",
                
-              "F4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre4/Fsharp4.mp3?dl=1",
+              "F4": "sounds/sounds/City/Timbre4/Fsharp4.mp3",
             
-              "Fsharp4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre4/Fsharp4.mp3?dl=1",
+              "Fsharp4": "sounds/sounds/City/Timbre4/Fsharp4.mp3",
             
-              "G4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre4/G4.mp3?dl=1",
+              "G4": "sounds/sounds/City/Timbre4/G4.mp3",
             
-              "Gsharp4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre4/Gsharp4.mp3?dl=1",
+              "Gsharp4": "sounds/sounds/City/Timbre4/Gsharp4.mp3",
             
-              "A4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre4/A4.mp3?dl=1",
+              "A4": "sounds/sounds/City/Timbre4/A4.mp3",
             
-              "Asharp4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre4/Asharp4.mp3?dl=1",
+              "Asharp4": "sounds/sounds/City/Timbre4/Asharp4.mp3",
             
-              "B4": "https://www.dropbox.com/home/sounds/sounds/City/Timbre4/B4.mp3?dl=1",
+              "B4": "sounds/sounds/City/Timbre4/B4.mp3",
             
-              "C5": "https://www.dropbox.com/home/sounds/sounds/City/Timbre4/C5.mp3?dl=1",
+              "C5": "sounds/sounds/City/Timbre4/C5.mp3",
             
-              "Csharp5": "https://www.dropbox.com/home/sounds/sounds/City/Timbre4/Csharp5.mp3?dl=1",
+              "Csharp5": "sounds/sounds/City/Timbre4/Csharp5.mp3",
             
-              "D5": "https://www.dropbox.com/home/sounds/sounds/City/Timbre4/D5.mp3?dl=1",
+              "D5": "sounds/sounds/City/Timbre4/D5.mp3",
             
-              "Dsharp5": "https://www.dropbox.com/home/sounds/sounds/City/Timbre4/Dsharp5.mp3?dl=1",
+              "Dsharp5": "sounds/sounds/City/Timbre4/Dsharp5.mp3",
              
-              "E5": "https://www.dropbox.com/home/sounds/sounds/City/Timbre4/E5.mp3?dl=1",
+              "E5": "sounds/sounds/City/Timbre4/E5.mp3",
             
-              "F5": "https://www.dropbox.com/home/sounds/sounds/City/Timbre4/Fsharp4.mp3?dl=1"
+              "F5": "sounds/sounds/City/Timbre4/F5.mp3"
            }
          }
 
@@ -855,15 +855,15 @@
 
        "soundPad": [
             {
-              "suono1": "https://www.dropbox.com/home/sounds/sounds/City/Pad/suono1.mp3?dl=1",
-              "suono2": "https://www.dropbox.com/home/sounds/sounds/City/Pad/suono2.mp3?dl=1",
-              "suono3": "https://www.dropbox.com/home/sounds/sounds/City/Pad/suono3.mp3?dl=1",
-              "suono4": "https://www.dropbox.com/home/sounds/sounds/City/Pad/suono4.mp3?dl=1",
-              "suono5": "https://www.dropbox.com/home/sounds/sounds/City/Pad/suono5.mp3?dl=1",
-              "suono6": "https://www.dropbox.com/home/sounds/sounds/City/Pad/suono6.mp3?dl=1",
-              "suono7": "https://www.dropbox.com/home/sounds/sounds/City/Pad/suono7.mp3?dl=1",
-              "suono8": "https://www.dropbox.com/home/sounds/sounds/City/Pad/suono8.mp3?dl=1",
-              "suono9": "https://www.dropbox.com/home/sounds/sounds/City/Pad/suono9.mp3?dl=1"
+              "suono1": "sounds/sounds/City/Pad/suono1.mp3",
+              "suono2": "sounds/sounds/City/Pad/suono2.mp3",
+              "suono3": "sounds/sounds/City/Pad/suono3.mp3",
+              "suono4": "sounds/sounds/City/Pad/suono4.mp3",
+              "suono5": "sounds/sounds/City/Pad/suono5.mp3",
+              "suono6": "sounds/sounds/City/Pad/suono6.mp3",
+              "suono7": "sounds/sounds/City/Pad/suono7.mp3",
+              "suono8": "sounds/sounds/City/Pad/suono8.mp3",
+              "suono9": "sounds/sounds/City/Pad/suono9.mp3"
             }
            ]
 
@@ -872,71 +872,71 @@
       
       {
          "nome": "Country",
-         "sfondo": "https://www.dropbox.com/home/sounds/sounds/Country/sfondo.jpg?dl=1",
+         "sfondo": "sounds/sounds/Country/sfondocountry.webp",
          "setSuoni": [
             
             {  "nome": "Timbre 1",
                "suoni": {
              
-               "C3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre1/C3.mp3?dl=1",
+               "C3": "sounds/sounds/Country/Timbre1/C3.mp3",
 
-               "Csharp3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre1/Csharp3.mp3?dl=1",
+               "Csharp3": "sounds/sounds/Country/Timbre1/Csharp3.mp3",
 
-               "D3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre1/D3.mp3?dl=1",
+               "D3": "sounds/sounds/Country/Timbre1/D3.mp3",
              
-               "Dsharp3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre1/Dsharp3.mp3?dl=1",
+               "Dsharp3": "sounds/sounds/Country/Timbre1/Dsharp3.mp3",
              
-               "E3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre1/E3.mp3?dl=1",
+               "E3": "sounds/sounds/Country/Timbre1/E3.mp3",
              
-               "F3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre1/F3.mp3?dl=1",
+               "F3": "sounds/sounds/Country/Timbre1/F3.mp3",
              
-               "Fsharp3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre1/Fsharp3.mp3?dl=1",
+               "Fsharp3": "sounds/sounds/Country/Timbre1/Fsharp3.mp3",
              
-               "G3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre1/C3.mp3?dl=1",
+               "G3": "sounds/sounds/Country/Timbre1/G3.mp3",
              
-               "Gsharp3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre1/Gsharp3.mp3?dl=1",
+               "Gsharp3": "sounds/sounds/Country/Timbre1/Gsharp3.mp3",
              
-               "A3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre1/A3.mp3?dl=1",
+               "A3": "sounds/sounds/Country/Timbre1/A3.mp3",
              
-               "Asharp3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre1/Asharp3.mp3?dl=1",
+               "Asharp3": "sounds/sounds/Country/Timbre1/Asharp3.mp3",
              
-               "B3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre1/B3.mp3?dl=1",
+               "B3": "sounds/sounds/Country/Timbre1/B3.mp3",
              
-               "C4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre1/C3.mp3?dl=1",
+               "C4": "sounds/sounds/Country/Timbre1/C4.mp3",
              
-               "Csharp4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre1/Csharp4.mp3?dl=1",
+               "Csharp4": "sounds/sounds/Country/Timbre1/Csharp4.mp3",
              
-               "D4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre1/D4.mp3?dl=1",
+               "D4": "sounds/sounds/Country/Timbre1/D4.mp3",
              
-               "Dsharp4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre1/Dsharp4.mp3?dl=1",
+               "Dsharp4": "sounds/sounds/Country/Timbre1/Dsharp4.mp3",
              
-               "E4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre1/E4.mp3?dl=1",
+               "E4": "sounds/sounds/Country/Timbre1/E4.mp3",
                 
-               "F4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre1/Fsharp4.mp3?dl=1",
+               "F4": "sounds/sounds/Country/Timbre1/Fsharp4.mp3",
              
-               "Fsharp4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre1/Fsharp4.mp3?dl=1",
+               "Fsharp4": "sounds/sounds/Country/Timbre1/Fsharp4.mp3",
              
-               "G4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre1/G4.mp3?dl=1",
+               "G4": "sounds/sounds/Country/Timbre1/G4.mp3",
              
-               "Gsharp4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre1/Gsharp4.mp3?dl=1",
+               "Gsharp4": "sounds/sounds/Country/Timbre1/Gsharp4.mp3",
              
-               "A4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre1/A4.mp3?dl=1",
+               "A4": "sounds/sounds/Country/Timbre1/A4.mp3",
              
-               "Asharp4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre1/Asharp4.mp3?dl=1",
+               "Asharp4": "sounds/sounds/Country/Timbre1/Asharp4.mp3",
              
-               "B4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre1/B4.mp3?dl=1",
+               "B4": "sounds/sounds/Country/Timbre1/B4.mp3",
              
-               "C5": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre1/C5.mp3?dl=1",
+               "C5": "sounds/sounds/Country/Timbre1/C5.mp3",
              
-               "Csharp5": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre1/Csharp5.mp3?dl=1",
+               "Csharp5": "sounds/sounds/Country/Timbre1/Csharp5.mp3",
              
-               "D5": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre1/D5.mp3?dl=1",
+               "D5": "sounds/sounds/Country/Timbre1/D5.mp3",
              
-               "Dsharp5": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre1/Dsharp5.mp3?dl=1",
+               "Dsharp5": "sounds/sounds/Country/Timbre1/Dsharp5.mp3",
               
-               "E5": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre1/E5.mp3?dl=1",
+               "E5": "sounds/sounds/Country/Timbre1/E5.mp3",
              
-               "F5": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre1/Fsharp4.mp3?dl=1"
+               "F5": "sounds/sounds/Country/Timbre1/F5.mp3"
             }
           }, 
       
@@ -945,65 +945,65 @@
           {  "nome": "Timbre 2",
                "suoni": {
              
-               "C3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre2/C3.mp3?dl=1",
+               "C3": "sounds/sounds/Country/Timbre2/C3.mp3",
 
-               "Csharp3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre2/Csharp3.mp3?dl=1",
+               "Csharp3": "sounds/sounds/Country/Timbre2/Csharp3.mp3",
 
-               "D3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre2/D3.mp3?dl=1",
+               "D3": "sounds/sounds/Country/Timbre2/D3.mp3",
              
-               "Dsharp3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre2/Dsharp3.mp3?dl=1",
+               "Dsharp3": "sounds/sounds/Country/Timbre2/Dsharp3.mp3",
              
-               "E3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre2/E3.mp3?dl=1",
+               "E3": "sounds/sounds/Country/Timbre2/E3.mp3",
              
-               "F3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre2/F3.mp3?dl=1",
+               "F3": "sounds/sounds/Country/Timbre2/F3.mp3",
              
-               "Fsharp3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre2/Fsharp3.mp3?dl=1",
+               "Fsharp3": "sounds/sounds/Country/Timbre2/Fsharp3.mp3",
              
-               "G3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre2/C3.mp3?dl=1",
+               "G3": "sounds/sounds/Country/Timbre2/G3.mp3",
              
-               "Gsharp3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre2/Gsharp3.mp3?dl=1",
+               "Gsharp3": "sounds/sounds/Country/Timbre2/Gsharp3.mp3",
              
-               "A3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre2/A3.mp3?dl=1",
+               "A3": "sounds/sounds/Country/Timbre2/A3.mp3",
              
-               "Asharp3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre2/Asharp3.mp3?dl=1",
+               "Asharp3": "sounds/sounds/Country/Timbre2/Asharp3.mp3",
              
-               "B3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre2/B3.mp3?dl=1",
+               "B3": "sounds/sounds/Country/Timbre2/B3.mp3",
              
-               "C4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre2/C3.mp3?dl=1",
+               "C4": "sounds/sounds/Country/Timbre2/C4.mp3",
              
-               "Csharp4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre2/Csharp4.mp3?dl=1",
+               "Csharp4": "sounds/sounds/Country/Timbre2/Csharp4.mp3",
              
-               "D4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre2/D4.mp3?dl=1",
+               "D4": "sounds/sounds/Country/Timbre2/D4.mp3",
              
-               "Dsharp4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre2/Dsharp4.mp3?dl=1",
+               "Dsharp4": "sounds/sounds/Country/Timbre2/Dsharp4.mp3",
              
-               "E4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre2/E4.mp3?dl=1",
+               "E4": "sounds/sounds/Country/Timbre2/E4.mp3",
                 
-               "F4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre2/Fsharp4.mp3?dl=1",
+               "F4": "sounds/sounds/Country/Timbre2/Fsharp4.mp3",
              
-               "Fsharp4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre2/Fsharp4.mp3?dl=1",
+               "Fsharp4": "sounds/sounds/Country/Timbre2/Fsharp4.mp3",
              
-               "G4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre2/G4.mp3?dl=1",
+               "G4": "sounds/sounds/Country/Timbre2/G4.mp3",
              
-               "Gsharp4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre2/Gsharp4.mp3?dl=1",
+               "Gsharp4": "sounds/sounds/Country/Timbre2/Gsharp4.mp3",
              
-               "A4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre2/A4.mp3?dl=1",
+               "A4": "sounds/sounds/Country/Timbre2/A4.mp3",
              
-               "Asharp4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre2/Asharp4.mp3?dl=1",
+               "Asharp4": "sounds/sounds/Country/Timbre2/Asharp4.mp3",
              
-               "B4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre2/B4.mp3?dl=1",
+               "B4": "sounds/sounds/Country/Timbre2/B4.mp3",
              
-               "C5": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre2/C5.mp3?dl=1",
+               "C5": "sounds/sounds/Country/Timbre2/C5.mp3",
              
-               "Csharp5": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre2/Csharp5.mp3?dl=1",
+               "Csharp5": "sounds/sounds/Country/Timbre2/Csharp5.mp3",
              
-               "D5": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre2/D5.mp3?dl=1",
+               "D5": "sounds/sounds/Country/Timbre2/D5.mp3",
              
-               "Dsharp5": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre2/Dsharp5.mp3?dl=1",
+               "Dsharp5": "sounds/sounds/Country/Timbre2/Dsharp5.mp3",
               
-               "E5": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre2/E5.mp3?dl=1",
+               "E5": "sounds/sounds/Country/Timbre2/E5.mp3",
              
-               "F5": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre2/Fsharp4.mp3?dl=1"
+               "F5": "sounds/sounds/Country/Timbre2/F5.mp3"
             }
           }, 
           
@@ -1011,65 +1011,65 @@
           {  "nome": "Timbre 3",
                "suoni": {
              
-               "C3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre3/C3.mp3?dl=1",
+               "C3": "sounds/sounds/Country/Timbre3/C3.mp3",
 
-               "Csharp3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre3/Csharp3.mp3?dl=1",
+               "Csharp3": "sounds/sounds/Country/Timbre3/Csharp3.mp3",
 
-               "D3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre3/D3.mp3?dl=1",
+               "D3": "sounds/sounds/Country/Timbre3/D3.mp3",
              
-               "Dsharp3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre3/Dsharp3.mp3?dl=1",
+               "Dsharp3": "sounds/sounds/Country/Timbre3/Dsharp3.mp3",
              
-               "E3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre3/E3.mp3?dl=1",
+               "E3": "sounds/sounds/Country/Timbre3/E3.mp3",
              
-               "F3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre3/F3.mp3?dl=1",
+               "F3": "sounds/sounds/Country/Timbre3/F3.mp3",
              
-               "Fsharp3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre3/Fsharp3.mp3?dl=1",
+               "Fsharp3": "sounds/sounds/Country/Timbre3/Fsharp3.mp3",
              
-               "G3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre3/C3.mp3?dl=1",
+               "G3": "sounds/sounds/Country/Timbre3/G3.mp3",
              
-               "Gsharp3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre3/Gsharp3.mp3?dl=1",
+               "Gsharp3": "sounds/sounds/Country/Timbre3/Gsharp3.mp3",
              
-               "A3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre3/A3.mp3?dl=1",
+               "A3": "sounds/sounds/Country/Timbre3/A3.mp3",
              
-               "Asharp3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre3/Asharp3.mp3?dl=1",
+               "Asharp3": "sounds/sounds/Country/Timbre3/Asharp3.mp3",
              
-               "B3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre3/B3.mp3?dl=1",
+               "B3": "sounds/sounds/Country/Timbre3/B3.mp3",
              
-               "C4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre3/C3.mp3?dl=1",
+               "C4": "sounds/sounds/Country/Timbre3/C4.mp3",
              
-               "Csharp4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre3/Csharp4.mp3?dl=1",
+               "Csharp4": "sounds/sounds/Country/Timbre3/Csharp4.mp3",
              
-               "D4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre3/D4.mp3?dl=1",
+               "D4": "sounds/sounds/Country/Timbre3/D4.mp3",
              
-               "Dsharp4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre3/Dsharp4.mp3?dl=1",
+               "Dsharp4": "sounds/sounds/Country/Timbre3/Dsharp4.mp3",
              
-               "E4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre3/E4.mp3?dl=1",
+               "E4": "sounds/sounds/Country/Timbre3/E4.mp3",
                 
-               "F4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre3/Fsharp4.mp3?dl=1",
+               "F4": "sounds/sounds/Country/Timbre3/Fsharp4.mp3",
              
-               "Fsharp4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre3/Fsharp4.mp3?dl=1",
+               "Fsharp4": "sounds/sounds/Country/Timbre3/Fsharp4.mp3",
              
-               "G4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre3/G4.mp3?dl=1",
+               "G4": "sounds/sounds/Country/Timbre3/G4.mp3",
              
-               "Gsharp4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre3/Gsharp4.mp3?dl=1",
+               "Gsharp4": "sounds/sounds/Country/Timbre3/Gsharp4.mp3",
              
-               "A4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre3/A4.mp3?dl=1",
+               "A4": "sounds/sounds/Country/Timbre3/A4.mp3",
              
-               "Asharp4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre3/Asharp4.mp3?dl=1",
+               "Asharp4": "sounds/sounds/Country/Timbre3/Asharp4.mp3",
              
-               "B4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre3/B4.mp3?dl=1",
+               "B4": "sounds/sounds/Country/Timbre3/B4.mp3",
              
-               "C5": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre3/C5.mp3?dl=1",
+               "C5": "sounds/sounds/Country/Timbre3/C5.mp3",
              
-               "Csharp5": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre3/Csharp5.mp3?dl=1",
+               "Csharp5": "sounds/sounds/Country/Timbre3/Csharp5.mp3",
              
-               "D5": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre3/D5.mp3?dl=1",
+               "D5": "sounds/sounds/Country/Timbre3/D5.mp3",
              
-               "Dsharp5": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre3/Dsharp5.mp3?dl=1",
+               "Dsharp5": "sounds/sounds/Country/Timbre3/Dsharp5.mp3",
               
-               "E5": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre3/E5.mp3?dl=1",
+               "E5": "sounds/sounds/Country/Timbre3/E5.mp3",
              
-               "F5": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre3/Fsharp4.mp3?dl=1"
+               "F5": "sounds/sounds/Country/Timbre3/F5.mp3"
             }
           }, 
           
@@ -1077,65 +1077,65 @@
           {  "nome": "Timbre 4",
                "suoni": {
              
-               "C3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre4/C3.mp3?dl=1",
+               "C3": "sounds/sounds/Country/Timbre4/C3.mp3",
 
-               "Csharp3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre4/Csharp3.mp3?dl=1",
+               "Csharp3": "sounds/sounds/Country/Timbre4/Csharp3.mp3",
 
-               "D3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre4/D3.mp3?dl=1",
+               "D3": "sounds/sounds/Country/Timbre4/D3.mp3",
              
-               "Dsharp3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre4/Dsharp3.mp3?dl=1",
+               "Dsharp3": "sounds/sounds/Country/Timbre4/Dsharp3.mp3",
              
-               "E3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre4/E3.mp3?dl=1",
+               "E3": "sounds/sounds/Country/Timbre4/E3.mp3",
              
-               "F3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre4/F3.mp3?dl=1",
+               "F3": "sounds/sounds/Country/Timbre4/F3.mp3",
              
-               "Fsharp3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre4/Fsharp3.mp3?dl=1",
+               "Fsharp3": "sounds/sounds/Country/Timbre4/Fsharp3.mp3",
              
-               "G3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre4/C3.mp3?dl=1",
+               "G3": "sounds/sounds/Country/Timbre4/G3.mp3",
              
-               "Gsharp3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre4/Gsharp3.mp3?dl=1",
+               "Gsharp3": "sounds/sounds/Country/Timbre4/Gsharp3.mp3",
              
-               "A3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre4/A3.mp3?dl=1",
+               "A3": "sounds/sounds/Country/Timbre4/A3.mp3",
              
-               "Asharp3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre4/Asharp3.mp3?dl=1",
+               "Asharp3": "sounds/sounds/Country/Timbre4/Asharp3.mp3",
              
-               "B3": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre4/B3.mp3?dl=1",
+               "B3": "sounds/sounds/Country/Timbre4/B3.mp3",
              
-               "C4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre4/C3.mp3?dl=1",
+               "C4": "sounds/sounds/Country/Timbre4/C4.mp3",
              
-               "Csharp4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre4/Csharp4.mp3?dl=1",
+               "Csharp4": "sounds/sounds/Country/Timbre4/Csharp4.mp3",
              
-               "D4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre4/D4.mp3?dl=1",
+               "D4": "sounds/sounds/Country/Timbre4/D4.mp3",
              
-               "Dsharp4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre4/Dsharp4.mp3?dl=1",
+               "Dsharp4": "sounds/sounds/Country/Timbre4/Dsharp4.mp3",
              
-               "E4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre4/E4.mp3?dl=1",
+               "E4": "sounds/sounds/Country/Timbre4/E4.mp3",
                 
-               "F4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre4/Fsharp4.mp3?dl=1",
+               "F4": "sounds/sounds/Country/Timbre4/Fsharp4.mp3",
              
-               "Fsharp4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre4/Fsharp4.mp3?dl=1",
+               "Fsharp4": "sounds/sounds/Country/Timbre4/Fsharp4.mp3",
              
-               "G4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre4/G4.mp3?dl=1",
+               "G4": "sounds/sounds/Country/Timbre4/G4.mp3",
              
-               "Gsharp4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre4/Gsharp4.mp3?dl=1",
+               "Gsharp4": "sounds/sounds/Country/Timbre4/Gsharp4.mp3",
              
-               "A4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre4/A4.mp3?dl=1",
+               "A4": "sounds/sounds/Country/Timbre4/A4.mp3",
              
-               "Asharp4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre4/Asharp4.mp3?dl=1",
+               "Asharp4": "sounds/sounds/Country/Timbre4/Asharp4.mp3",
              
-               "B4": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre4/B4.mp3?dl=1",
+               "B4": "sounds/sounds/Country/Timbre4/B4.mp3",
              
-               "C5": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre4/C5.mp3?dl=1",
+               "C5": "sounds/sounds/Country/Timbre4/C5.mp3",
              
-               "Csharp5": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre4/Csharp5.mp3?dl=1",
+               "Csharp5": "sounds/sounds/Country/Timbre4/Csharp5.mp3",
              
-               "D5": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre4/D5.mp3?dl=1",
+               "D5": "sounds/sounds/Country/Timbre4/D5.mp3",
              
-               "Dsharp5": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre4/Dsharp5.mp3?dl=1",
+               "Dsharp5": "sounds/sounds/Country/Timbre4/Dsharp5.mp3",
               
-               "E5": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre4/E5.mp3?dl=1",
+               "E5": "sounds/sounds/Country/Timbre4/E5.mp3",
              
-               "F5": "https://www.dropbox.com/home/sounds/sounds/Country/Timbre4/Fsharp4.mp3?dl=1"
+               "F5": "sounds/sounds/Country/Timbre4/F5.mp3"
             }
           }
 
@@ -1143,15 +1143,15 @@
 
         "soundPad": [
             {
-              "suono1": "https://www.dropbox.com/home/sounds/sounds/City/Pad/suono1.mp3?dl=1",
-              "suono2": "https://www.dropbox.com/home/sounds/sounds/City/Pad/suono2.mp3?dl=1",
-              "suono3": "https://www.dropbox.com/home/sounds/sounds/City/Pad/suono3.mp3?dl=1",
-              "suono4": "https://www.dropbox.com/home/sounds/sounds/City/Pad/suono4.mp3?dl=1",
-              "suono5": "https://www.dropbox.com/home/sounds/sounds/City/Pad/suono5.mp3?dl=1",
-              "suono6": "https://www.dropbox.com/home/sounds/sounds/City/Pad/suono6.mp3?dl=1",
-              "suono7": "https://www.dropbox.com/home/sounds/sounds/City/Pad/suono7.mp3?dl=1",
-              "suono8": "https://www.dropbox.com/home/sounds/sounds/City/Pad/suono8.mp3?dl=1",
-              "suono9": "https://www.dropbox.com/home/sounds/sounds/City/Pad/suono9.mp3?dl=1"
+              "suono1": "sounds/sounds/City/Pad/suono1.mp3",
+              "suono2": "sounds/sounds/City/Pad/suono2.mp3",
+              "suono3": "sounds/sounds/City/Pad/suono3.mp3",
+              "suono4": "sounds/sounds/City/Pad/suono4.mp3",
+              "suono5": "sounds/sounds/City/Pad/suono5.mp3",
+              "suono6": "sounds/sounds/City/Pad/suono6.mp3",
+              "suono7": "sounds/sounds/City/Pad/suono7.mp3",
+              "suono8": "sounds/sounds/City/Pad/suono8.mp3",
+              "suono9": "sounds/sounds/City/Pad/suono9.mp3"
             }
            ]
 
