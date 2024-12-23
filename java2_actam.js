@@ -54,7 +54,7 @@ function cambiaAmbiente() {
     setSuoniSelect.style.display = 'block'; // Mostra menu set di suoni
   }
 
-  cambiaSfondo(ambienteCorrente);
+  cambiaSfondo(ambienteCorrente.sfondo);
 
 }
 
