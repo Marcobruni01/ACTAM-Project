@@ -14,6 +14,7 @@ const soundSets = {
 let dati; // Variabile per salvare i dati JSON
 let ambienteCorrente;
 let setCorrente;
+let paddone;
 
 fetch('Enviroments.json')
   .then(response => response.json())
@@ -55,6 +56,11 @@ function cambiaAmbiente() {
   }
 
   cambiaSfondo(ambienteCorrente.sfondo);
+
+  if (ambienteCorrente) {
+    paddone = ambienteCorrente.soundPad[0];
+  }
+
 
 }
 
@@ -845,12 +851,16 @@ document.addEventListener('keyup', (e) => {
 
 // Funzione per riprodurre i suoni del pad
 function playPadSound(pad) {
-    const sound = setCorrente.soundPad[pad.getAttribute('data-sound')];
+    const key = pad.getAttribute('data-sound');
+    const sound = paddone[`suono${key}`];
+    
     if (sound) {
-        const audio = new Audio(sound);
-        audio.play().catch(error => console.error("Errore nel caricamento dell'audio PAD: ", error));
+      const audio = new Audio(sound);
+      audio.play().catch(error => console.error("Errore nel caricamento dell'audio PAD:", error));
+    } else {
+      console.warn(`Nessun suono trovato per il tasto ${key}`);
     }
-}
+  }
 
 
 
