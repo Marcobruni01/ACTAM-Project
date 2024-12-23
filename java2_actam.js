@@ -45,7 +45,7 @@ function cambiaAmbiente() {
   ambienteCorrente = dati.ambienti.find(a => a.nome === ambienteSelect.value);
 
   if (ambienteCorrente) {
-    setSuoniSelect.innerHTML = '<option value="">Seleziona un set di suoni</option>';
+    setSuoniSelect.innerHTML = '<option value="">Select a Sound Set</option>';
     ambienteCorrente.setSuoni.forEach(set => {
       const option = document.createElement('option');
       option.value = set.nome;
