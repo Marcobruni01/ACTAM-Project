@@ -123,14 +123,14 @@ body {
     background-color: #333; /* Stesso colore del bordo della pianola */
     color: #fff; /* Colore del testo */
     border: none; /* Rimuove i bordi */
-    border-radius: 10px; /* Arrotondato per uniformità */
+    border-radius: 2px; /* Arrotondato per uniformità */
     padding: 8px 16px; /* Dimensione contenuta del pulsante */
     font-family: inherit; /* Coerenza con il font generale */
     font-size: 14px; /* Testo di dimensione media */
     cursor: pointer; /* Cambia il cursore quando sopra */
     position: absolute; /* Posizionamento assoluto per integrazione precisa */
-    right: 10px; /* Posizionato vicino al bordo destro */
-    top: -25px; /* Posizionato vicino al bordo superiore */
+    right: 0px; /* Posizionato vicino al bordo destro */
+    top: -22px; /* Posizionato vicino al bordo superiore */
     box-shadow: none; /* Rimuove l'ombra per integrare completamente */
     z-index: 2; /* Sopra gli elementi della pianola */
     transition: background-color 0.2s ease, color 0.2s ease; /* Effetti di transizione */
