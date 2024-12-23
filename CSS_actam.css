@@ -118,42 +118,37 @@ body {
 }
 
 
-/* Bottone Octave */
+/* Modifica del pulsante Octave per integrarlo nel bordo in alto a destra */
 #switch-octave {
-    background-color: hsl(237, 91%, 42%); /* Colore di sfondo */
-    color: hwb(187 69% 0%); /* Colore del testo */
-    border: 2px solid transparent; /* Bordi inizialmente trasparenti */
-    border-radius: 30px; /* Bordi arrotondati */
-    padding: 10px 20px; /* Padding per un bottone più grande */
-    font-family: inherit; /* Forza l'uso del font del body */
-    font-size: 16px; /* Dimensione del testo */
-    cursor: pointer; /* Cambia il cursore quando sopra il pulsante */
-    transition: background-color 0.3s, transform 0.1s, box-shadow 0.3s, border 0.3s; /* Transizioni */
-    top: 60vh;
-    position: absolute; /* Posizionamento */
-    right: 3vw; /* Posizione iniziale */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Ombra elegante */
-    background-image: linear-gradient(145deg, hsl(237, 91%, 42%), hsl(237, 91%, 52%)); /* Sfondo sfumato */
+    background-color: #333; /* Stesso colore del bordo della pianola */
+    color: #fff; /* Colore del testo */
+    border: none; /* Rimuove i bordi */
+    border-radius: 10px; /* Arrotondato per uniformità */
+    padding: 8px 16px; /* Dimensione contenuta del pulsante */
+    font-family: inherit; /* Coerenza con il font generale */
+    font-size: 14px; /* Testo di dimensione media */
+    cursor: pointer; /* Cambia il cursore quando sopra */
+    position: absolute; /* Posizionamento assoluto per integrazione precisa */
+    right: 10px; /* Posizionato vicino al bordo destro */
+    top: -25px; /* Posizionato vicino al bordo superiore */
+    box-shadow: none; /* Rimuove l'ombra per integrare completamente */
+    z-index: 2; /* Sopra gli elementi della pianola */
+    transition: background-color 0.2s ease, color 0.2s ease; /* Effetti di transizione */
 }
 
+/* Hover del pulsante */
 #switch-octave:hover {
-    background-color: hsl(237, 91%, 45%);
-    background-image: linear-gradient(145deg, hsl(237, 91%, 45%), hsl(237, 91%, 55%)); /* Modifica sfumatura al passaggio del mouse */
-    border: 2px solid rgb(153, 234, 250); /* Aggiungi un bordo bianco quando hover */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Ombra più profonda quando hover */
+    background-color: #444; /* Colore leggermente più chiaro per l'interazione */
+    color: #ddd; /* Colore testo più chiaro */
 }
 
+/* Stato attivo */
 #switch-octave:active {
-    background-color: hsl(237, 91%, 38%);
-    transform: translateY(2px); /* Spostamento verso il basso quando attivo */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Ombra ridotta quando cliccato */
+    background-color: #555; /* Colore più scuro quando cliccato */
+    transform: scale(0.98); /* Leggero effetto di compressione */
 }
 
-/* Effetto Glow */
-#switch-octave:focus {
-    outline: none;
-    box-shadow: 0 0 10px hsl(237, 91%, 72%), 0 0 20px hsl(237, 91%, 72%); /* Effetto glow attorno al bottone */
-}
+
 
 
 
@@ -505,97 +500,6 @@ label[for="timeSignature"] {
 #bars:focus {
     border-color: #e21b9c;
 }
-
-
-
-/* Stile dell'etichetta del selettore */
-label[for="bars"] {
-    /*font-family: 'Lucida Console', Monaco, monospace;*/
-    font-size: 18px;
-    font-family: inherit; /* Forza l'uso del font del body */
-    color: #333;
-    position: absolute;
-    top: 207px; /* Allineato sopra il menu a tendina */
-    left: 230px; /* Posizionato a sinistra di #bars */
-}
-
-/* Stile per il menu a tendina */
-.controls label {
-    font-size: 14px;
-    font-family: inherit; /* Forza l'uso del font del body */
-    margin-right: 10px;
-    color: #333;
-}
-
-select {
-    width: 150px;
-    padding: 5px;
-    font-size: 14px;
-    font-family: inherit; /* Forza l'uso del font del body */
-    color: #333;
-    border: 2px solid #666;
-    border-radius: 5px;
-    background-color: #f0f0f0;
-    outline: none;
-    
-}
-
-select:focus {
-    border-color: #333;
-    background-color: #fff;
-}
-
-#timbre-select {
-    position: absolute;
-    top: 58vh;
-    right: 13vw;
-    padding: 5px;
-    font-size: 16px;
-    font-family: inherit; /* Forza l'uso del font del body */
-    border-radius: 5px;
-    border: 2px solid #555;
-    background-color: #f0f0f0;
-    color: #333;
-    margin: 20px auto; /* Center horizontally */
-    cursor: pointer;
-    transition: all 0.2s ease;
-    z-index: 10; /* Ensure it appears above other elements */
-}
-
-
-#timbre-select:hover {
-    background-color: #bbb; /* Colore di sfondo al passaggio del mouse */
-    border-color: #333; /* Colore del bordo al passaggio del mouse */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Ombra più intensa */
-    transform: translate(-5%, -3px);
-}
-
-/* Effetto per i riquadri del menu */
-#timbre-select option {
-    padding: 5px; /* Padding per le opzioni */
-}
-
-#timbre-select option:hover {
-    background-color: hsl(0, 26%, 95%); /* Colore di sfondo per le opzioni al passaggio del mouse */
-    color: #fff; /* Colore del testo per maggiore contrasto */
-}
-
-/* Riquadri degli altri elementi */
-.other-elements {
-    transition: opacity 0.3s ease; /* Transizione per un effetto fluido */
-}
-
-/* Fai attenuare gli altri elementi quando si passa il mouse sul selettore */
-#timbre-select:hover ~ .other-elements {
-    opacity: 0.3; /* Fai attenuare gli altri elementi */
-}
-
-/* Assicurati che l'elemento selezionato rimanga visibile */
-#timbre-select:hover {
-    opacity: 1; /* Mantiene la visibilità dell'elemento attivo */
-}
-
-
 
 
 
