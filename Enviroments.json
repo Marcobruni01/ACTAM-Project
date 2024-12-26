@@ -1143,15 +1143,15 @@
 
         "soundPad": [
             {
-              "suono1": "sounds/sounds/City/Pad/suono1.mp3",
-              "suono2": "sounds/sounds/City/Pad/suono2.mp3",
-              "suono3": "sounds/sounds/City/Pad/suono3.mp3",
-              "suono4": "sounds/sounds/City/Pad/suono4.mp3",
-              "suono5": "sounds/sounds/City/Pad/suono5.mp3",
-              "suono6": "sounds/sounds/City/Pad/suono6.mp3",
-              "suono7": "sounds/sounds/City/Pad/suono7.mp3",
-              "suono8": "sounds/sounds/City/Pad/suono8.mp3",
-              "suono9": "sounds/sounds/City/Pad/suono9.mp3"
+              "suono1": "sounds/sounds/Country/Pad/suono1.mp3",
+              "suono2": "sounds/sounds/Country/Pad/suono2.mp3",
+              "suono3": "sounds/sounds/Country/Pad/suono3.mp3",
+              "suono4": "sounds/sounds/Country/Pad/suono4.mp3",
+              "suono5": "sounds/sounds/Country/Pad/suono5.mp3",
+              "suono6": "sounds/sounds/Country/Pad/suono6.mp3",
+              "suono7": "sounds/sounds/Country/Pad/suono7.mp3",
+              "suono8": "sounds/sounds/Country/Pad/suono8.mp3",
+              "suono9": "sounds/sounds/Country/Pad/suono9.mp3"
             }
            ]
 

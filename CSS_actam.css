@@ -441,9 +441,10 @@ canvas {
 
 label[for="bpm"] {
     /*font-family: 'Lucida Console', Monaco, monospace;*/
-    font-size: 18px;
+    font-size: 16px;
     font-family: inherit; /* Forza l'uso del font del body */
     color: #333;
+    margin-right: 10px;
 }
 
 
