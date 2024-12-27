@@ -137,6 +137,25 @@ The core functionality of **Ambient Machine** is powered by a JavaScript archite
 
 2. **Time Bar Animation**:
    - **`drawTimeBar`** renders a moving bar across the canvas, synchronized with the current beat, aiding in tempo and rhythm visualization.
+     
+### **Visualizer**
+1. **Canvas Initialization**:
+   - The visualizer uses a canvas element (`#canvas1`) with dynamic width and a fixed height of 300px.
+   - The **`initVisualizer`** function ensures the audio context and analyzer nodes are properly initialized.
+
+2. **Audio Analysis**:
+   - The analyzer node processes audio data in real-time using an FFT (Fast Fourier Transform) algorithm.
+   - The processed data is represented as an array of frequencies (`dataArray`) which drives the visual display.
+
+3. **Animation**:
+   - The **`animate`** function clears the canvas on each frame and updates the visual bars based on the audio data.
+   - Bars are drawn using the **`drawVisualizer`** function, which uses a radial pattern with dynamic colors (hue-based) and bar heights proportional to the frequency amplitude.
+
+4. **Interactivity**:
+   - Notes triggered via keyboard (`keydown` events) or mouse clicks on piano keys (`mousedown` events) are processed through the **`processNoteFromJSON`** function, which:
+     - Fetches the audio file for the note.
+     - Decodes and plays the audio while connecting it to the analyzer for visualization.
+   - A fading effect is applied when the note ends, gradually reducing the visual bars until they disappear.
 
 ---
 
