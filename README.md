@@ -83,6 +83,102 @@ Users can add their own custom environment by:
    - Edit, replay, and combine them into a single downloadable song.
 
 ---
+## How It Works
+
+The core functionality of **Ambient Machine** is powered by a JavaScript architecture that integrates audio playback, recording, and interactive user interfaces. Here's a detailed breakdown of its components and how they function:
+
+### **Environment Selection and Sound Management**
+1. **Dynamic Loading of Environments**:
+   - The **`popolaMenuAmbienti`** function populates the dropdown menu with available environments listed in the `Environments.json` file.
+   - Each environment includes a unique set of sounds for the keyboard and pad, along with a background image.
+
+2. **Changing the Environment**:
+   - **`cambiaAmbiente`** dynamically updates the loaded sounds and visuals when a user selects a new environment. It also resets sound configurations and sets default values for the pad and keyboard.
+
+3. **Sound Set Selection**:
+   - Through **`cambiaSetSuoni`**, users can switch between predefined timbres. This function remaps the keyboard's notes to match the new set of sounds.
+
+4. **Visual Customization**:
+   - **`cambiaSfondo`** changes the application's background image to match the chosen environment, providing a visual representation of the ambiance.
+
+---
+
+### **Keyboard Interaction**
+1. **Playing Notes**:
+   - **`playNote`** triggers audio playback for a specific note. It dynamically applies active effects (e.g., flanger, delay) and visually represents the note on the canvas.
+
+2. **Stopping Notes**:
+   - **`stopNote`** halts the playback of a note and finalizes its visual representation, allowing for accurate timing in the displayed music.
+
+3. **Octave Management**:
+   - **`updateKeyLabels`** ensures that the visual labels on the keyboard reflect the currently selected octave, ranging from **C3 to F5**.
+
+---
+
+### **Pad Interaction**
+1. **Interactive Pads**:
+   - **`playPadSound`** handles audio playback for the percussion-like sounds triggered by the pad buttons. This function also synchronizes the pad's visual representation on the canvas.
+
+---
+
+### **Effects**
+1. **Audio Effects**:
+   - Functions like **`createFlanger`**, **`createDelay`**, **`createDistortion`**, and **`createChorus`** use the Web Audio API to design and apply customizable sound effects to keyboard notes.
+
+2. **Effect Management**:
+   - **`toggleEffect`** allows users to activate or deactivate effects. This includes real-time updates to the interface (e.g., turning effect LEDs on or off).
+
+---
+
+### **Canvas and Visual Feedback**
+1. **Dynamic Visuals**:
+   - **`drawActiveRectangle`** creates live visual feedback by drawing rectangles that grow as notes are played and held.
+   - **`redrawNotes`** ensures previously played notes remain visible even after new notes are added.
+
+2. **Time Bar Animation**:
+   - **`drawTimeBar`** renders a moving bar across the canvas, synchronized with the current beat, aiding in tempo and rhythm visualization.
+
+---
+
+### **Metronome and Time Management**
+1. **Synchronizing Playback**:
+   - **`startMetronome`** and **`stopMetronome`** control the metronome's beat cycle, with options to include accented beats for rhythm guidance.
+
+2. **Mute and Beat Adjustment**:
+   - **`toggleMetronomeMute`** silences the metronome without affecting the timekeeping visuals.
+
+3. **Animated Syncing**:
+   - **`animateTimeBar`** ensures the time bar movement aligns perfectly with the tempo (BPM) and time signature.
+
+---
+
+### **Recording and Playback**
+1. **Track Recording**:
+   - **`startRecordingWithPreRoll`** initiates recording with a pre-roll countdown, giving users time to prepare.
+   - **`stopRecording`** finalizes the recording and stores the data for playback or export.
+
+2. **Track Playback**:
+   - **`playTrack`** replays recorded tracks, syncing with the metronome and time bar to provide accurate timing.
+
+3. **Volume Control**:
+   - **`updateVolume`** lets users adjust the playback volume for individual tracks.
+
+---
+
+### **Utilities**
+1. **Canvas Management**:
+   - **`clearStaff`** clears the canvas without deleting recorded notes, while **`copyCanvasToTrack`** saves a snapshot of the canvas for specific tracks.
+
+2. **Zoom Functionality**:
+   - **`toggleZoom`** allows users to zoom in and out of the canvas for a more detailed or broader view of the visual feedback.
+
+3. **Dynamic Cleanup**:
+   - Users can clear all notes and reset the canvas with a single action using **`clearAllNotes`**.
+
+---
+
+The thoughtful integration of these functions ensures that Ambient Machine delivers an engaging, flexible, and interactive musical experience. Each component works in harmony, providing users with tools to explore soundscapes, record compositions, and visualize their creations in real time.
+
 
 Enjoy creating music with **Ambient Machine**!
 
