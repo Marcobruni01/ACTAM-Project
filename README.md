@@ -25,6 +25,15 @@ Users can add their own custom environment by:
 1. Uploading a folder containing audio files.
 2. Modifying the accompanying JSON file to define the new environment.
 
+#### Sound Design
+The sounds for the various environments were sourced using two primary methods:
+- **Recording**: Many sounds were captured using a Zoom H6 recorder to ensure high-quality and authentic audio.
+- **Freesound**: For sounds that were difficult to capture, resources from [Freesound](https://freesound.org) were used under appropriate licensing.
+
+All audio files were processed with **Reaper** to adjust their length and quality, making them suitable for the synthesizer. For keyboard sounds, the pitch of each note was carefully analyzed using [Singing Carrots](https://singingcarrots.com/analyser/mp3) and then shifted across the keyboard range using [Audioalter](https://audioalter.com/pitch-shifter).
+
+---
+
 ---
 
 ### **Keyboard Features**
