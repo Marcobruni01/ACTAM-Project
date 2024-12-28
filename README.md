@@ -198,6 +198,21 @@ The core functionality of **Ambient Machine** is powered by a JavaScript archite
 
 The thoughtful integration of these functions ensures that Ambient Machine delivers an engaging, flexible, and interactive musical experience. Each component works in harmony, providing users with tools to explore soundscapes, record compositions, and visualize their creations in real time.
 
+### Team Contribution
+This project was a collaborative effort by a group of four contributors:
+
+- **Carmen Frieda Franci**
+- **Stefano Liera**
+- **Marco Bruni**
+- **Nicola Magno**
+
+The design of Ambient Machine allowed for a highly modular and efficient division of tasks. Each team member worked on a distinct module, ensuring minimal overlap and seamless integration:
+
+- **Carmen Frieda Franci**: Focused on creating the pad, keyboard, and audio effects system. Her work involved designing interactive and visually engaging components for real-time sound manipulation.
+- **Stefano Liera**: Specialized in developing the canvas and recorder functionalities. Stefano ensured that all visual elements and recording capabilities were robust and user-friendly.
+- **Marco Bruni**: Took charge of implementing the four ambient environments, crafting a dynamic and immersive experience with unique soundscapes.
+- **Nicola Magno**: Built the note visualizer using Fourier transforms, enabling users to see real-time graphical representations of the sounds being played.
+
 
 Enjoy creating music with **Ambient Machine**!
 
