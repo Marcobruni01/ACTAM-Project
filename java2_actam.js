@@ -1231,20 +1231,14 @@ function startMetronome() {
 
         // Avvia il metronomo
         metronomeIntervalId = setInterval(() => {
-            // Sincronizza il primo battito quando il canvas si azzera
-            const elapsedTime = performance.now() - performanceStartTime;
-            const totalBeatsElapsed = Math.floor(elapsedTime / beatDuration);
-            const currentBeatInCycle = totalBeatsElapsed % beatsPerBar;
-        
-            beatCount = currentBeatInCycle;
-        
+            beatCount = (beatCount + 1) % beatsPerBar;
+
             if (beatCount === 0) {
-                playMetronomeAccent(); // Suona l'accento
+                playMetronomeAccent(); // Primo battito accentato
             } else {
-                playMetronomeClick();  // Suona un click normale
+                playMetronomeClick();  // Battiti normali
             }
         }, beatDuration);
-        
 
         // Avvia anche la barra del tempo
         startTimeBar();
