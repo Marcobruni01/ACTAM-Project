@@ -1105,16 +1105,18 @@ drawReferenceBars();  // Ridisegna all'inizio le barre di riferimento statiche
 
 
 // Quando cambia il numero di battute
+bpmInput.addEventListener('input', function() {
+    bpm = parseInt(this.value);
+    beatDuration = 60000 / bpm;  // Aggiorna la durata del battito
 
-barsInput.addEventListener('input', function() {
-
-    numberOfBars = parseInt(this.value);
-    staffLength = numberOfBars * barWidth;  // Ricalcola la lunghezza totale del pentagramma
-    canvas.width = staffLength;  // Aggiorna la larghezza del canvas
-    clearStaff();  // Pulisce il pentagramma
-    drawReferenceBars();  // Disegna le barre di riferimento
-
+    // Ferma il metronomo e la barra se sono attivi
+    if (metronomePlaying) {
+        clearInterval(metronomeIntervalId);
+        stopTimeBar();  // Ferma la barra
+        startMetronome();  // Riavvia il metronomo con il nuovo BPM
+    }
 });
+
 
 
 
@@ -1127,7 +1129,7 @@ function drawTimeBar() {
     ctx.lineWidth = 4; // Imposta la larghezza della linea
     ctx.beginPath();
 
-    // Usa `timeBarX` se la barra è attiva, altrimenti `lastBarX`
+    // Usa timeBarX se la barra è attiva, altrimenti lastBarX
     const roundedX = Math.round(isTimeBarActive ? timeBarX : lastBarX);
     ctx.moveTo(roundedX, 0); // Inizia la linea in alto
 
@@ -1144,14 +1146,16 @@ function startTimeBar() {
     if (!isTimeBarActive) {
         isTimeBarActive = true;
 
-        // Calcola il tempo di partenza per sincronizzare correttamente la barra
+        // Sincronizza il tempo di partenza con il metronomo
         const elapsedFromLastStop = (lastBarX / barWidth) * beatDuration * beatsPerBar;
         performanceStartTime = performance.now() - elapsedFromLastStop;
 
-        timeBarX = lastBarX; // Riprende dalla posizione corrente
-        requestAnimationFrame(animateTimeBar); // Inizia l'animazione della barra del tempo
+        timeBarX = lastBarX;
+        beatCount = 0; // Reset del conteggio dei battiti
+        requestAnimationFrame(animateTimeBar);
     }
 }
+
 
 
 // Funzione per fermare la barra del tempo
@@ -1164,41 +1168,31 @@ function stopTimeBar() {
 
 // Funzione per animare la barra del tempo
 function animateTimeBar() {
-    if (!isTimeBarActive) return; // Esci se la barra del tempo non è attiva
+    if (!isTimeBarActive) return;
 
-    clearStaff(); // Pulisce il pentagramma
-    drawTimeBar(); // Ridisegna la barra del tempo
+    clearStaff();
+    drawTimeBar();
 
-    // Calcolo del tempo reale
     const currentTime = performance.now();
-    const elapsedTime = currentTime - performanceStartTime; // Tempo trascorso dall'inizio della performance
+    const elapsedTime = currentTime - performanceStartTime;
 
-    // Durata totale di una battuta (in millisecondi)
-    const barDuration = beatDuration * beatsPerBar;
+    // Calcola la posizione della barra
+    const progressInBar = (elapsedTime % (beatDuration * beatsPerBar)) / (beatDuration * beatsPerBar);
+    timeBarX = (progressInBar * barWidth) + Math.floor(elapsedTime / (beatDuration * beatsPerBar)) * barWidth;
 
-    // Calcola la posizione attuale all'interno della battuta corrente
-    const progressInBar = (elapsedTime % barDuration) / barDuration;
-
-    // Calcola `timeBarX` come frazione della larghezza della battuta
-    timeBarX = progressInBar * barWidth;
-
-    // Calcola quante barre sono passate
-    const barsElapsed = Math.floor(elapsedTime / barDuration);
-    timeBarX += barsElapsed * barWidth;
-
-    // Allinea la posizione della barra alla larghezza del canvas
+    // Sincronizza la barra e i battiti all'inizio
     if (timeBarX >= canvas.width) {
-        timeBarX %= canvas.width; // Torna all'inizio ma continua in modo fluido
+        timeBarX %= canvas.width;
         beatCount = 0; // Resetta il conteggio dei battiti
         performanceStartTime = currentTime; // Sincronizza il tempo
+        // Rimuovi playMetronomeAccent() da qui
     }
 
-    // Aggiorna `beatCount` basato su `elapsedTime`
-    beatCount = Math.floor((elapsedTime / beatDuration) % beatsPerBar);
-
     drawAllNumbers(); // Ridisegna i numeri sincronizzati
-    requestAnimationFrame(animateTimeBar); // Continua l'animazione
+    requestAnimationFrame(animateTimeBar);
 }
+
+
 
 
 // -------------------- Controllo Barra del Tempo e Metronomo Sincronizzati --------------------
@@ -1222,42 +1216,42 @@ function toggleMetronomeMute() {
 
 function startMetronome() {
     if (!metronomePlaying) {
-
         metronomePlaying = true;
-        beatCount = 0;  // Resetta il conteggio dei battiti all'inizio
+        beatCount = 0;  // Resetta il conteggio dei battiti
         timeBarX = 0;   // Reset della posizione della barra del tempo
         lastBarX = 0;   // Resetta anche la posizione salvata
         performanceStartTime = performance.now();  // Reset del tempo di inizio per sincronizzare
 
-
         // Disegna la barra al punto zero immediatamente
         clearStaff();
-        drawTimeBar();  // Barra iniziale a 0
+        drawTimeBar();
 
         // Suona subito il primo colpo accentato
         playMetronomeAccent();
 
-        // Avvia il metronomo e la barra sincronizzati
+        // Avvia il metronomo
         metronomeIntervalId = setInterval(() => {
-
-            beatCount = (beatCount + 1) % (beatsPerBar * numberOfBars);
-            
-            // Suona il click del metronomo
-            if (beatCount % beatsPerBar === 0) {
-                playMetronomeAccent();  // Primo battito accentato
-                //timeBarX = 0;  // Reset della barra esattamente sul primo colpo
+            // Sincronizza il primo battito quando il canvas si azzera
+            const elapsedTime = performance.now() - performanceStartTime;
+            const totalBeatsElapsed = Math.floor(elapsedTime / beatDuration);
+            const currentBeatInCycle = totalBeatsElapsed % beatsPerBar;
+        
+            beatCount = currentBeatInCycle;
+        
+            if (beatCount === 0) {
+                playMetronomeAccent(); // Suona l'accento
             } else {
-                playMetronomeClick();  // Battiti normali
+                playMetronomeClick();  // Suona un click normale
             }
-
-
-        }, beatDuration); // Imposta l'intervallo basato sulla durata di un battito
-
+        }, beatDuration);
+        
 
         // Avvia anche la barra del tempo
         startTimeBar();
     }
 }
+
+
 
 
 function stopMetronome() {
@@ -1307,8 +1301,7 @@ function playMetronomeAccent() {
 
     oscillator.start();
     oscillator.stop(audioContext.currentTime + 0.1);  // Suono breve
-}
-
+} 
 
 //TIME SIGNATURE
 
