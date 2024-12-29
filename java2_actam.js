@@ -1177,16 +1177,20 @@ function animateTimeBar() {
     const elapsedTime = currentTime - performanceStartTime;
 
     // Calcola la posizione della barra
-    const progressInBar = (elapsedTime % (beatDuration * beatsPerBar)) / (beatDuration * beatsPerBar);
-    timeBarX = (progressInBar * barWidth) + Math.floor(elapsedTime / (beatDuration * beatsPerBar)) * barWidth;
+    const beatsElapsed = Math.floor(elapsedTime / beatDuration);
+    const progressInCurrentBeat = (elapsedTime % beatDuration) / beatDuration;
+    
+    // Calcola la posizione totale della barra sul pentagramma
+    timeBarX = (beatsElapsed % totalBeats) * barWidthPerBeat + progressInCurrentBeat * barWidthPerBeat;
+    
 
     // Sincronizza la barra e i battiti all'inizio
-    if (timeBarX >= canvas.width) {
-        timeBarX %= canvas.width;
+    if (timeBarX >= staffLength) {
+        timeBarX = 0; // Resetta la barra all'inizio del canvas
         beatCount = 0; // Resetta il conteggio dei battiti
         performanceStartTime = currentTime; // Sincronizza il tempo
-        // Rimuovi playMetronomeAccent() da qui
     }
+    
 
     drawAllNumbers(); // Ridisegna i numeri sincronizzati
     requestAnimationFrame(animateTimeBar);
@@ -1231,14 +1235,20 @@ function startMetronome() {
 
         // Avvia il metronomo
         metronomeIntervalId = setInterval(() => {
-            beatCount = (beatCount + 1) % beatsPerBar;
-
+            // Sincronizza il primo battito quando il canvas si azzera
+            const elapsedTime = performance.now() - performanceStartTime;
+            const totalBeatsElapsed = Math.floor(elapsedTime / beatDuration);
+            const currentBeatInCycle = totalBeatsElapsed % beatsPerBar;
+        
+            beatCount = currentBeatInCycle;
+        
             if (beatCount === 0) {
-                playMetronomeAccent(); // Primo battito accentato
+                playMetronomeAccent(); // Suona l'accento
             } else {
-                playMetronomeClick();  // Battiti normali
+                playMetronomeClick();  // Suona un click normale
             }
         }, beatDuration);
+        
 
         // Avvia anche la barra del tempo
         startTimeBar();
