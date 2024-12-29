@@ -1463,9 +1463,19 @@ function playTrack(trackIndex) {
         if (delay >= 0) {
             setTimeout(() => {
                 // Determina il percorso del file audio in base al tipo di input
-                const audioPath = Number.isInteger(Number(noteData.note)) && Number(noteData.note) >= 1 && Number(noteData.note) <= 9
-                    ? `sounds/pad/${noteData.note}.mp3`          // Percorso per i suoni del PAD
-                    : `sounds/${soundSets[currentSet]}/${noteData.note}.mp3`; // Percorso per i suoni della tastiera
+               // Determina il percorso del file audio in base al tipo di input
+               const audioPath = Number.isInteger(Number(noteData.note)) && Number(noteData.note) >= 1 && Number(noteData.note) <= 9
+               ? `sounds/sounds/${ambienteCorrente.nome}/Pad/suono${noteData.note}.mp3` // Percorso per i suoni del PAD
+               : `sounds/sounds/${ambienteCorrente.nome}/Timbre${setCorrente?.nome.split(' ')[1] || 1}/${noteData.note}.mp3`; // Percorso per i suoni della tastiera
+
+                // Debug per verificare il percorso
+                console.log(`Nota: ${noteData.note}`);
+                console.log(`Percorso audio generato: ${audioPath}`);
+
+                if (!audioPath || audioPath.includes('undefined')) {
+                    console.error(`Percorso audio non valido: ${audioPath}`);
+                    return;
+                }
 
                 // Creiamo una sorgente per la riproduzione della nota
                 const audio = new Audio(audioPath);
@@ -1620,6 +1630,7 @@ document.getElementById('global-play').addEventListener('click', () => {
 // Funzione per scaricare tutte le tracce come audio mixato
 document.getElementById('download-audio').addEventListener('click', () => {
     console.log('Scaricamento dell\'audio mixato');
+    downloadAllTracks();
     // Implementazione della logica per il mixaggio e download
 });
 
@@ -1687,3 +1698,135 @@ activeNumbersWithPositions.push({
     color: numberColors[number] || defaultColor // Colore iniziale
 });
 
+
+
+//DOWNLOAD 
+async function downloadAllTracks() {
+    const sampleRate = 44100; // Frequenza di campionamento standard
+    let maxDuration = 0; // Durata massima dinamica
+
+    // Calcolo della durata totale delle tracce
+    for (let trackIndex = 0; trackIndex < tracks.length; trackIndex++) {
+        const track = tracks[trackIndex];
+        if (!track.audioData.length) {
+            console.log(`Traccia ${trackIndex + 1} non contiene dati audio.`);
+            continue;
+        }
+
+        track.audioData.forEach(noteData => {
+            const noteEndTime = (noteData.startTime - track.recordStartTime) + noteData.duration;
+            console.log(`Traccia ${trackIndex + 1}, Nota: ${noteData.note}, Fine nota: ${noteEndTime}`);
+            if (noteEndTime > maxDuration) {
+                maxDuration = noteEndTime; // Aggiorna la durata massima
+            }
+        });
+    }
+
+    // Convertiamo maxDuration in secondi e impostiamo un valore minimo
+    maxDuration = Math.max(Math.ceil(maxDuration / 1000), 1); // In secondi, almeno 1 secondo
+    console.log(`Durata totale calcolata: ${maxDuration} secondi`);
+
+    // Creazione dell'OfflineAudioContext con la durata dinamica
+    const offlineContext = new OfflineAudioContext(2, sampleRate * maxDuration, sampleRate);
+    const bufferSources = [];
+
+    // Funzione per caricare i file audio
+    async function loadAudio(url) {
+        console.log(`Caricamento audio: ${url}`);
+        try {
+            const response = await fetch(url);
+            const arrayBuffer = await response.arrayBuffer();
+            return await offlineContext.decodeAudioData(arrayBuffer);
+        } catch (error) {
+            console.error(`Errore nel caricamento dell'audio: ${url}`, error);
+        }
+    }
+
+    // Caricamento e mixaggio di tutte le tracce
+    for (let trackIndex = 0; trackIndex < tracks.length; trackIndex++) {
+        const track = tracks[trackIndex];
+        if (!track.audioData.length) continue;
+
+        for (const noteData of track.audioData) {
+            const audioPath = Number.isInteger(Number(noteData.note)) && Number(noteData.note) >= 1 && Number(noteData.note) <= 9
+                ? `sounds/sounds/${ambienteCorrente.nome}/Pad/suono${noteData.note}.mp3` // Percorso per i suoni del PAD
+                : `sounds/sounds/${ambienteCorrente.nome}/Timbre${setCorrente?.nome.split(' ')[1] || 1}/${noteData.note}.mp3`; // Percorso per i suoni della tastiera
+
+            const audioBuffer = await loadAudio(audioPath);
+            if (!audioBuffer) continue;
+
+            const source = offlineContext.createBufferSource();
+            source.buffer = audioBuffer;
+
+            const startTime = (noteData.startTime - track.recordStartTime) / 1000; // In secondi
+            source.connect(offlineContext.destination);
+            source.start(startTime);
+
+            bufferSources.push(source);
+        }
+    }
+
+    console.log('Inizio rendering offline...');
+    const renderedBuffer = await offlineContext.startRendering();
+    console.log('Rendering completato, conversione in WAV...');
+
+    // Converte il buffer in un file WAV
+    const wavBlob = bufferToWav(renderedBuffer);
+    const url = URL.createObjectURL(wavBlob);
+
+    // Scarica il file
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'all-tracks.wav';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    console.log('Download completato: all-tracks.wav');
+}
+
+
+// Funzione per convertire un AudioBuffer in WAV
+function bufferToWav(buffer) {
+    const numOfChannels = buffer.numberOfChannels;
+    const length = buffer.length * numOfChannels * 2 + 44;
+    const bufferArray = new ArrayBuffer(length);
+    const view = new DataView(bufferArray);
+
+    const writeString = (view, offset, string) => {
+        for (let i = 0; i < string.length; i++) {
+            view.setUint8(offset + i, string.charCodeAt(i));
+        }
+    };
+
+    let offset = 0;
+    writeString(view, offset, 'RIFF'); offset += 4;
+    view.setUint32(offset, 36 + buffer.length * numOfChannels * 2, true); offset += 4;
+    writeString(view, offset, 'WAVE'); offset += 4;
+    writeString(view, offset, 'fmt '); offset += 4;
+    view.setUint32(offset, 16, true); offset += 4;
+    view.setUint16(offset, 1, true); offset += 2;
+    view.setUint16(offset, numOfChannels, true); offset += 2;
+    view.setUint32(offset, buffer.sampleRate, true); offset += 4;
+    view.setUint32(offset, buffer.sampleRate * numOfChannels * 2, true); offset += 4;
+    view.setUint16(offset, numOfChannels * 2, true); offset += 2;
+    view.setUint16(offset, 16, true); offset += 2;
+    writeString(view, offset, 'data'); offset += 4;
+    view.setUint32(offset, buffer.length * numOfChannels * 2, true); offset += 4;
+
+    const channels = [];
+    for (let i = 0; i < numOfChannels; i++) {
+        channels.push(buffer.getChannelData(i));
+    }
+
+    let sampleIndex = 0;
+    while (sampleIndex < buffer.length) {
+        for (let i = 0; i < numOfChannels; i++) {
+            const sample = Math.max(-1, Math.min(1, channels[i][sampleIndex]));
+            view.setInt16(offset, sample < 0 ? sample * 0x8000 : sample * 0x7FFF, true);
+            offset += 2;
+        }
+        sampleIndex++;
+    }
+
+    return new Blob([bufferArray], { type: 'audio/wav' });
+}
