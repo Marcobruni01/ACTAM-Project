@@ -762,5 +762,23 @@ label[for="timeSignature"] {
     right: 27.8%; /* Sposta leggermente a destra */
 }
 
+/* Stili per il pulsante */
+#toggleVisualizer {
+    position: absolute; /* Posiziona il pulsante in relazione al canvas */
+    top: calc(200px + 11px); /* 200px è l'altezza del canvas, 10px è lo spazio aggiuntivo */
+    right: 27.9%; /* Allinea il pulsante con il canvas */
+    z-index: 1000; /* Assicura che il pulsante sia sopra altri elementi */
+    padding: 10px 20px;
+    background-color: hwb(0 3% 97%);
+    width: 24%; /* Rendi il canvas più stretto */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
+/* Stile del pulsante al passaggio del mouse */
+#toggleVisualizer:hover {
+    background-color: #0056b3;
+}
 

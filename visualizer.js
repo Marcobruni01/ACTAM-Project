@@ -74,6 +74,11 @@ function drawVisualizer(bufferLength, dataArray, visualizerBarWidth) {
 
 // Funzione per processare il suono dal JSON
 function processNoteFromJSON(noteUrl) {
+    if (!visualizerEnabled) {
+        console.log("Il visualizer è disattivato. Nessuna nota verrà processata.");
+        return;
+    }
+
     try {
         if (!audioCtx) {
             audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -101,6 +106,7 @@ function processNoteFromJSON(noteUrl) {
     }
 }
 
+
 // Eventi per tastiera e mouse
 document.addEventListener('keydown', (event) => {
     const key = event.key.toUpperCase();
@@ -120,3 +126,43 @@ document.querySelectorAll('.tasto, .tasto-nero').forEach(keyElement => {
     });
 });
 
+let visualizerEnabled = true;
+
+function disableVisualizer() {
+    console.log("Disattivazione del visualizer...");
+    visualizerEnabled = false;
+    if (animationId) {
+        cancelAnimationFrame(animationId);
+        animationId = null;
+    }
+    fading = false;
+    visualizerCtx.clearRect(0, 0, visualizerCanvas.width, visualizerCanvas.height);
+    if (audioCtx && audioCtx.state !== 'closed') {
+        audioCtx.close().then(() => {
+            
+            audioCtx = null;
+            analyser = null;
+        }).catch(err => console.error("Errore durante la chiusura del contesto audio:", err));
+    }
+}
+
+function enableVisualizer() {
+    
+    if (!visualizerEnabled) {
+        visualizerEnabled = true;
+        initVisualizer();
+        animate();
+    }
+}
+
+document.getElementById('toggleVisualizer').addEventListener('click', function () {
+    console.log("Pulsante cliccato. Stato visualizer:", visualizerEnabled);
+    if (visualizerEnabled) {
+        this.textContent = 'Enable Visualizer';
+        disableVisualizer();
+    } else {
+        this.textContent = 'Disable Visualizer';
+        enableVisualizer();
+    }
+    
+});
