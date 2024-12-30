@@ -67,7 +67,7 @@ All audio files were processed with **Reaper** to adjust their length and qualit
   - Adjust volume.
   - Delete the track.
   - Replay the track (requires prior recording using "Copy on Track").
-- **Final Export**: Combine all recorded tracks into a single audio file to create a complete song, which can be downloaded.
+- **Final Export**: Combine all recorded tracks into a single audio file to create a complete song, which can be downloaded only in .WAV format.
 
 ---
 
