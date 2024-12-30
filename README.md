@@ -34,8 +34,6 @@ All audio files were processed with **Reaper** to adjust their length and qualit
 
 ---
 
----
-
 ### **Keyboard Features**
 - Supports octave changes, ranging from **C3 to F5**.
 - Four selectable timbres per environment.
@@ -49,7 +47,8 @@ All audio files were processed with **Reaper** to adjust their length and qualit
 ---
 
 ### **Visual Feedback and Interaction**
-- **Fourier Transform Display**: A small graphical visualization in the top black screen shows a Fourier Transform of the keyboard notes, enhancing interactivity.
+- **Fourier Transform Display**: A small graphical visualization in the top black screen shows a Fourier Transform of the keyboard notes, enhancing interactivity. There is also a button to enable or disable the visualizer, as it requires the PC's processor to handle large amounts of data simultaneously. If the user's computer is not very powerful, this feature might slow down other site functions.
+
 - **Canvas**:
   - Tracks keyboard notes (including duration) and pad presses.
   - Offers BPM selection with a metronome (can be muted).
@@ -68,7 +67,8 @@ All audio files were processed with **Reaper** to adjust their length and qualit
   - Delete the track.
   - Replay the track (requires prior recording using "Copy on Track").
 - **Final Export**: Combine all recorded tracks into a single audio file to create a complete song, which can be downloaded only in .WAV format.
-
+- **Metronome Requirement**: Recording does not start unless the metronome is active, ensuring proper synchronization.
+- **Pre-Roll**: The recording starts after 2 measures to give users time to prepare.
 ---
 
 ## How to Use
