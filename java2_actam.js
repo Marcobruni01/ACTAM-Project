@@ -986,6 +986,7 @@ function drawFixedNoteOnStaff(note, x, y, width, height, color, noLabel = false)
 
 
 // Funzione per aggiornare la larghezza del rettangolo attivo mentre il tasto è premuto
+// Sincronizzazione della larghezza dei rettangoli con il BPM
 function updateRectangle(dataKey) {
     if (!activeRectangles[dataKey]) return; // Esci se il rettangolo non è più attivo
 
@@ -993,14 +994,15 @@ function updateRectangle(dataKey) {
     const currentTime = performance.now();
     const duration = (currentTime - rectangle.startTime) / 1000; // Durata in secondi
 
-    // Calcola la larghezza basata sulla durata
-    rectangle.width = duration * 100; // Modifica il moltiplicatore se necessario
+    // Calcola la larghezza basata sul BPM
+    const pixelsPerSecond = canvas.width / (beatDuration * beatsPerBar / 1000); // Pixel al secondo
+    rectangle.width = duration * pixelsPerSecond / 4 ;
 
     // Gestione ciclica delle battute
     const maxX = staffLength; // Lunghezza totale del canvas
     if (rectangle.x + rectangle.width > maxX) {
         rectangle.width = maxX - rectangle.x; // Adatta la larghezza alla fine del canvas
-        const overflowWidth = duration * 100 - rectangle.width;
+        const overflowWidth = duration * pixelsPerSecond / 4 - rectangle.width;
 
         if (overflowWidth > 0) {
             // Aggiungi la parte "spezzata" senza label
@@ -1028,7 +1030,6 @@ function updateRectangle(dataKey) {
     // Continua l'aggiornamento finché il tasto è premuto
     requestAnimationFrame(() => updateRectangle(dataKey));
 }
-
 
 
 
