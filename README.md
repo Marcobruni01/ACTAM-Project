@@ -26,6 +26,8 @@ Each environment comes with unique soundscapes:
 Users can add their own custom environment by:
 1. Uploading a folder containing audio files.
 2. Modifying the accompanying JSON file to define the new environment.
+3. Alternatively, the folder can be added to Dropbox, and the link to the folder can be referenced in the JSON file.
+
 
 #### Sound Design
 The sounds for the various environments were sourced using two primary methods:
