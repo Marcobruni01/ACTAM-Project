@@ -4,6 +4,8 @@
 
 **Ambient Machine** is an interactive web-based synthesizer simulator, complete with a keyboard, pad, recorder, effects, and a visual interface for monitoring your music in real-time. The platform is designed to be intuitive and engaging for users of all skill levels, making it easy to explore, create, and record music inspired by various ambient environments.
 
+**Browser Recommendation**: For optimal performance, it is strongly recommended to use Mozilla Firefox. While the site may work on other browsers, Firefox ensures full compatibility and smooth operation of all features.
+
 ---
 
 ## Features
