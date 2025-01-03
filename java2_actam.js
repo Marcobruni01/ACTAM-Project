@@ -1418,6 +1418,7 @@ function startRecordingWithPreRoll(trackIndex) {
 
 // Funzione per iniziare la registrazione
 function startRecording(trackIndex) {
+    
     activeTrackIndex = trackIndex;
     const track = tracks[trackIndex];
     track.audioData = []; // Resetta i dati precedenti
@@ -1432,8 +1433,27 @@ function stopRecording(trackIndex) {
     track.isRecording = false;
     activeTrackIndex = -1;
     isGlobalRecording = false;
+
     console.log(`Registrazione terminata sulla traccia ${trackIndex + 1}`);
 }
+function finalizeRecording(trackIndex) {
+    const track = tracks[trackIndex];
+    const preRollOffset = preRollBars * beatsPerBar * beatDuration; // Durata del Pre-Roll in ms
+
+    if (!track.audioData.length) {
+        console.warn(`Nessuna nota registrata sulla traccia ${trackIndex + 1}`);
+        return;
+    }
+
+    // Normalizza i tempi delle note per rimuovere il Pre-Roll
+    track.audioData = track.audioData.map(noteData => ({
+        ...noteData,
+        startTime: noteData.startTime - track.recordStartTime - preRollOffset
+    })).filter(noteData => noteData.startTime >= 0); // Elimina eventuali note che iniziano nel Pre-Roll
+
+    console.log(`Registrazione confermata sulla traccia ${trackIndex + 1}, Pre-Roll rimosso`);
+}
+
 
 
 // Creiamo i GainNode per ogni traccia
@@ -1462,47 +1482,30 @@ function playTrack(trackIndex) {
         return;
     }
 
-    const playbackOffset = preRollBars * beatsPerBar * beatDuration; // Offset Pre-Roll
     const globalStartTime = performance.now(); // Tempo di avvio globale
 
-    console.log(`Riproduzione della traccia ${trackIndex + 1}, includendo l'offset di ${preRollBars} battute.`);
+    console.log(`Riproduzione della traccia ${trackIndex + 1}`);
 
-    // Pianifica la riproduzione delle note registrate
     track.audioData.forEach(noteData => {
-        const notePlaybackTime = globalStartTime + (noteData.startTime - track.recordStartTime) + playbackOffset;
+        const notePlaybackTime = globalStartTime + (noteData.startTime - track.recordStartTime);
         const delay = notePlaybackTime - performance.now();
 
         if (delay >= 0) {
             setTimeout(() => {
-                // Determina il percorso del file audio in base al tipo di input
-               // Determina il percorso del file audio in base al tipo di input
-               const audioPath = Number.isInteger(Number(noteData.note)) && Number(noteData.note) >= 1 && Number(noteData.note) <= 9
-               ? `sounds/sounds/${ambienteCorrente.nome}/Pad/suono${noteData.note}.mp3` // Percorso per i suoni del PAD
-               : `sounds/sounds/${ambienteCorrente.nome}/Timbre${setCorrente?.nome.split(' ')[1] || 1}/${noteData.note}.mp3`; // Percorso per i suoni della tastiera
+                const audioPath = Number.isInteger(Number(noteData.note)) && Number(noteData.note) >= 1 && Number(noteData.note) <= 9
+                    ? `sounds/sounds/${ambienteCorrente.nome}/Pad/suono${noteData.note}.mp3`
+                    : `sounds/sounds/${ambienteCorrente.nome}/Timbre${setCorrente?.nome.split(' ')[1] || 1}/${noteData.note}.mp3`;
 
-                // Debug per verificare il percorso
-                console.log(`Nota: ${noteData.note}`);
-                console.log(`Percorso audio generato: ${audioPath}`);
-
-                if (!audioPath || audioPath.includes('undefined')) {
-                    console.error(`Percorso audio non valido: ${audioPath}`);
-                    return;
-                }
-
-                // Creiamo una sorgente per la riproduzione della nota
                 const audio = new Audio(audioPath);
                 const trackSource = audioContext.createMediaElementSource(audio);
-
-                // Collegamento della sorgente al GainNode della traccia
                 trackSource.connect(track.gainNode);
 
                 audio.play().catch(error => console.error("Errore nel caricamento dell'audio: ", error));
 
-                // Ferma la nota dopo la durata specificata
                 if (noteData.duration) {
                     setTimeout(() => {
                         audio.pause();
-                        audio.currentTime = 0; // Resetta il playback
+                        audio.currentTime = 0;
                     }, noteData.duration);
                 }
             }, delay);
