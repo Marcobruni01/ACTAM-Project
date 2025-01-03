@@ -64,8 +64,6 @@ function cambiaAmbiente() {
 
 }
 
-
-
 function cambiaSetSuoni() {
     const setSuoniSelect = document.getElementById('setSuoniSelect');
     setCorrente = ambienteCorrente.setSuoni.find(set => set.nome === setSuoniSelect.value);
@@ -75,6 +73,9 @@ function cambiaSetSuoni() {
             keyMap[chiave] = setCorrente.suoni[chiave]; // Mappa nota-suono
         });
     }
+
+    // Rimuovi il focus dal selettore
+    setSuoniSelect.blur();
 }
 
 

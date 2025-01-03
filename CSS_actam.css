@@ -20,8 +20,8 @@ body {
     padding: 10px;
     border-radius: 15px;
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
-    top: 72vh;  /* Ancoraggio centrale */
-    right: 2vw;
+    top: 74vh;  /* Ancoraggio centrale */
+    right: 1vw;
 }
 
 .tasto-container {
@@ -166,7 +166,7 @@ Contenitore del pad musicale */
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Ombra intorno al pad */
     position: absolute;
     grid-column: span 1;
-    right: 2vw;
+    right: 1vw;
     top: 2vh;
     border: 3px solid #444;
 }
@@ -205,15 +205,15 @@ Contenitore del pad musicale */
 .effect-container {
     position: absolute;
     grid-column: span 1;
-    left: 40vw;
-    top: 56vh;
+    left: 36vw;
+    top: -11vh;
     transform: translateY(-50%);
-    background-color: #836ecf;
+    background-color: rgb(75, 72, 85);
     padding: 15px;
-    border-radius: 10px;
+    border-radius: 5px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
     z-index: 1;
-    width: 300px; /* Riduci la larghezza per adattare meglio i pulsanti e slider */
+    width: 290px; /* Riduci la larghezza per adattare meglio i pulsanti e slider */
     height: 150px;
     font-family: inherit; /* Forza l'uso del font del body */
     /*font-family: 'Verdana', sans-serif;*/
@@ -232,8 +232,8 @@ Contenitore del pad musicale */
     display: flex;
     flex-direction: column; /* Mantieni disposizione verticale per il testo e LED */
     align-items: center; 
-    background-color: #f9d4d4;
-    color: rgb(137, 27, 184);
+    background-color: hwb(307 69% 28%);
+    color: #1e1820;
     border: none;
     padding: 5px;
     cursor: pointer;
@@ -250,7 +250,7 @@ Contenitore del pad musicale */
 .led {
     width: 15px;
     height: 15px;
-    background-color: #c8ecf1;
+    background-color: hsl(59, 71%, 78%);
     border-radius: 50%;
     margin-top: 10px;
     border: 2px solid rgb(71, 69, 69);
@@ -296,7 +296,7 @@ Contenitore del pad musicale */
     appearance: none;
     width: 15px;
     height: 15px;
-    background-color: rgb(137, 27, 184);
+    background-color: #443776;
     border-radius: 50%;
     cursor: pointer;
     border: 2px solid #fff; /* Bordo bianco per renderlo più visibile */
@@ -305,10 +305,10 @@ Contenitore del pad musicale */
 .knobs input[type="range"]::-moz-range-thumb {
     width: 15px;
     height: 15px;
-    background-color: rgb(137, 27, 184);
+    background-color: #5f4895;
     border-radius: 50%;
     cursor: pointer;
-    border: 2px solid #fff;
+    border: 2px solid rgb(59, 60, 60);
 }
 
 
@@ -507,8 +507,8 @@ label[for="timeSignature"] {
 /* Contenitore principale del selettore */
 #bloccoJSON {
     position: absolute;
-    top: 52vh; /* Posizionamento verticale */
-    left: 75vw; /* Sposta il contenitore verso destra */
+    top: 37vh; /* Posizionamento verticale */
+    left: 52vw; /* Sposta il contenitore verso destra */
     width: 160px; /* Larghezza compatta */
     background-color: #333; /* Sfondo scuro */
     border-radius: 10px; /* Bordi arrotondati */
@@ -588,8 +588,6 @@ label[for="timeSignature"] {
 
 
 
-
-
 /*ZOOM*/
 #zoomButton {
     margin-left: 20px; /* Regola il valore per spostarlo a destra */
@@ -606,7 +604,7 @@ label[for="timeSignature"] {
     left: 1vw; /* Posizione orizzontale */
     top: 42vh; /* Posizione verticale */
     width: 60%; /* Larghezza del contenitore */
-    max-width: 500px; /* Larghezza massima */
+    max-width: 460px; /* Larghezza massima */
     z-index: 10; /* Assicurati che il contenitore sia sopra altri elementi */
     background: #222; /* Sfondo nero */
     border-radius: 10px; /* Arrotonda gli angoli */
@@ -779,6 +777,9 @@ label[for="timeSignature"] {
 
 /* Stile del pulsante al passaggio del mouse */
 #toggleVisualizer:hover {
-    background-color: #0056b3;
+    background-color: hsl(211, 14%, 29%);
 }
 
+#timbre-select {
+    display: none; /* Nasconde completamente l'elemento */
+}

@@ -36,6 +36,33 @@
 <!--keyboard-->
    
  <div class="pianola">
+        <!--EFFECTS-->
+        <div class="effect-container">
+            <div class="effect-buttons">
+                <button class="effect-btn" id="flanger-btn">Flanger
+                    <div class="led" id="flanger-led"></div>
+                </button>
+    
+                <button class="effect-btn" id="delay-btn">Delay
+                    <div class="led" id="delay-led"></div>
+                </button>
+    
+                <button class="effect-btn" id="distortion-btn">Distortion
+                    <div class="led" id="distortion-led"></div>
+                </button>
+    
+                <button class="effect-btn" id="chorus-btn">Chorus
+                    <div class="led" id="chorus-led"></div>
+                </button>
+            </div>
+    
+            <div class="knobs">
+                <input type="range" id="knob-flanger" min="0.1" max="5" step="0.1" value="0.5">
+                <input type="range" id="knob-delay" min="0" max="1" step="0.01" value="0.4">
+                <input type="range" id="knob-distortion" min="100" max="1000" step="100" value="400">
+                <input type="range" id="knob-chorus" min="0" max="1" step="0.01" value="0.5">
+            </div>
+        </div>
         <div class="tasto-container">
             <div data-note="C3" class="tasto" data-key="A"></div>
             <div data-note="Csharp3" class="tasto-nero" data-key="W"></div>
@@ -119,33 +146,7 @@
 </div>
 
 
-<!--EFFECTS-->
-<div class="effect-container">
-    <div class="effect-buttons">
-        <button class="effect-btn" id="flanger-btn">Flanger
-            <div class="led" id="flanger-led"></div>
-        </button>
 
-        <button class="effect-btn" id="delay-btn">Delay
-            <div class="led" id="delay-led"></div>
-        </button>
-
-        <button class="effect-btn" id="distortion-btn">Distortion
-            <div class="led" id="distortion-led"></div>
-        </button>
-
-        <button class="effect-btn" id="chorus-btn">Chorus
-            <div class="led" id="chorus-led"></div>
-        </button>
-    </div>
-
-    <div class="knobs">
-        <input type="range" id="knob-flanger" min="0.1" max="5" step="0.1" value="0.5">
-        <input type="range" id="knob-delay" min="0" max="1" step="0.01" value="0.4">
-        <input type="range" id="knob-distortion" min="100" max="1000" step="100" value="400">
-        <input type="range" id="knob-chorus" min="0" max="1" step="0.01" value="0.5">
-    </div>
-</div>
 
 <!-- Spartito -->
 <div class="staff-container">
@@ -194,9 +195,7 @@
                 <button class="play-btn" data-track="1">Play</button>
                 <button class="delete-btn" data-track="1">Delete</button>
                 <input type="range" class="volume-slider" data-track="1" min="0" max="3" step="0.001">
-                <button class="loop-btn" data-track="1" data-multiplier="2">x2</button>
-                <button class="loop-btn" data-track="1" data-multiplier="3">x3</button>
-                <button class="loop-btn" data-track="1" data-multiplier="4">x4</button>
+
                 <button class="copy-canvas-btn" data-track="1">Copy on Track 1</button>
             </div>
             <canvas class="track-canvas" id="track-canvas-1" width="400" height="100"></canvas>
@@ -210,9 +209,7 @@
                 <button class="play-btn" data-track="2">Play</button>
                 <button class="delete-btn" data-track="2">Delete</button>
                 <input type="range" class="volume-slider" data-track="2" min="0" max="3" step="0.001">
-                <button class="loop-btn" data-track="2" data-multiplier="2">x2</button>
-                <button class="loop-btn" data-track="2" data-multiplier="3">x3</button>
-                <button class="loop-btn" data-track="2" data-multiplier="4">x4</button>
+
                 <button class="copy-canvas-btn" data-track="2">Copy Track 2</button>
             </div>
             <canvas class="track-canvas" id="track-canvas-2" width="400" height="100"></canvas>
@@ -226,9 +223,6 @@
                 <button class="play-btn" data-track="3">Play</button>
                 <button class="delete-btn" data-track="3">Delete</button>
                 <input type="range" class="volume-slider" data-track="3" min="0" max="3" step="0.001">
-                <button class="loop-btn" data-track="3" data-multiplier="2">x2</button>
-                <button class="loop-btn" data-track="3" data-multiplier="3">x3</button>
-                <button class="loop-btn" data-track="3" data-multiplier="4">x4</button>
                 <button class="copy-canvas-btn" data-track="3">Copy Track 3</button>
             </div>
             <canvas class="track-canvas" id="track-canvas-3" width="400" height="100"></canvas>
@@ -242,9 +236,7 @@
                 <button class="play-btn" data-track="4">Play</button>
                 <button class="delete-btn" data-track="4">Delete</button>
                 <input type="range" class="volume-slider" data-track="4" min="0" max="3" step="0.001">
-                <button class="loop-btn" data-track="4" data-multiplier="2">x2</button>
-                <button class="loop-btn" data-track="4" data-multiplier="3">x3</button>
-                <button class="loop-btn" data-track="4" data-multiplier="4">x4</button>
+
                 <button class="copy-canvas-btn" data-track="4">Copy Track 4</button>
             </div>
             <canvas class="track-canvas" id="track-canvas-4" width="400" height="100"></canvas>
