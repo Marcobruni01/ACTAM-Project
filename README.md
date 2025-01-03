@@ -28,6 +28,14 @@ Users can add their own custom environment by:
 2. Modifying the accompanying JSON file to define the new environment.
 3. Alternatively, the folder can be added to Dropbox, and the link to the folder can be referenced in the JSON file.
 
+#### Example Folder Structure
+To ensure compatibility, the folder structure for an environment should follow this example:
+
+- **Keyboard Notes (Sea, Timbre 3):** `\sounds\sounds\Sea\Timbre3`
+- **Pad Sounds (Sea):** `\sounds\sounds\Sea\pad`
+
+This structure organizes sounds into subfolders for each environment and categorizes them for the keyboard and pad.
+
 
 #### Sound Design
 The sounds for the various environments were sourced using two primary methods:
