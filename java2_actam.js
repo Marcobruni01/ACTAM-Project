@@ -925,10 +925,10 @@ function playPadSound(pad) {
 
 
 
-// ----------------------- Pentagram and Time Bar:
+// --------------------  Pentagram and Time Bar:
 // The Time Bar moves across the canvas at the speed chosen by the user-modifiable bpm and time signature. 
 // It changes colour if it is in the vicinity of an accent. 
-//The Pentagram as if it were a piano roll, not with traditional notes so that even those who don't know them can play by understanding. -----------------------------
+//The Pentagram as if it were a piano roll, not with traditional notes so that even those who don't know them can play by understanding. -------------------- // 
 
 
 const canvas = document.getElementById('staffCanvas'); // Get the canvas element for the staff
@@ -1018,571 +1018,584 @@ function getYPositionForNote(note) {
 
 
 
-// Disegna il rettangolo attivo che si allarga dinamicamente
+//Draw the active rectangle that dynamically expands together with the bar at the preset speed of BPM
 function drawActiveRectangle(rectangle) {
-    ctx.fillStyle = noteColors[rectangle.note] || "black";
-    ctx.fillRect(rectangle.x, rectangle.y, rectangle.width, 10);  // Usa la posizione x dinamica
-    ctx.fillStyle = "black";
-    ctx.font = "30px Arial";
-    let displayNote = rectangle.note.includes("sharp") ? rectangle.note.replace("sharp", "#") : rectangle.note;
-    ctx.fillText(displayNote, rectangle.x + rectangle.width + 5, rectangle.y - 5);
+    ctx.fillStyle = noteColors[rectangle.note] || "black"; // Set the fill color based on the note, default to black
+    ctx.fillRect(rectangle.x, rectangle.y, rectangle.width, 10); // Draw the rectangle at the specified position with dynamic width
+    ctx.fillStyle = "black"; // Reset fill color for the note label
+    ctx.font = "30px Arial"; // Set the font for the note label
+    let displayNote = rectangle.note.includes("sharp") ? rectangle.note.replace("sharp", "#") : rectangle.note; // Replace "sharp" with "#" for cleaner display
+    ctx.fillText(displayNote, rectangle.x + rectangle.width + 5, rectangle.y - 5); // Draw the note label near the rectangle
 }
 
-// Disegna una nota fissata sul pentagramma
-function drawFixedNoteOnStaff(note, x, y, width, height, color, noLabel = false) {
-    ctx.fillStyle = color;
-    ctx.fillRect(x, y, width, height);
 
-    // Disegna la label solo se noLabel è false
+// Draw a fixed note on the staff
+function drawFixedNoteOnStaff(note, x, y, width, height, color, noLabel = false) {
+    ctx.fillStyle = color; // Set the fill color for the fixed note
+    ctx.fillRect(x, y, width, height); // Draw the fixed rectangle on the staff
+
+    // Draw the note label only if noLabel is false
     if (!noLabel) {
-        ctx.fillStyle = "black";
-        ctx.font = "17px Arial";
-        let displayNote = note.includes("sharp") ? note.replace("sharp", "#") : note;
-        ctx.fillText(displayNote, x + width + 10, y + height / 2 + 1);
+        ctx.fillStyle = "black"; // Set the color for the label
+        ctx.font = "17px Arial"; // Set the font for the note label
+        let displayNote = note.includes("sharp") ? note.replace("sharp", "#") : note; // Replace "sharp" with "#" for the label
+        ctx.fillText(displayNote, x + width + 10, y + height / 2 + 1); // Draw the label slightly to the right of the rectangle
     }
 }
 
 
 
 
-// Funzione per aggiornare la larghezza del rettangolo attivo mentre il tasto è premuto
-// Sincronizzazione della larghezza dei rettangoli con il BPM
+// Function to update the width of the active rectangle while the key is pressed
+// Synchronizes the rectangle's width with the BPM and Time Signature
 function updateRectangle(dataKey) {
-    if (!activeRectangles[dataKey]) return; // Esci se il rettangolo non è più attivo
+    if (!activeRectangles[dataKey]) return; // Exit if the rectangle is no longer active
 
     const rectangle = activeRectangles[dataKey];
     const currentTime = performance.now();
-    const duration = (currentTime - rectangle.startTime) / 1000; // Durata in secondi
+    const duration = (currentTime - rectangle.startTime) / 1000; // Duration in seconds
 
-    // Calcola la larghezza basata sul BPM
-    const pixelsPerSecond = canvas.width / (beatDuration * beatsPerBar / 1000); // Pixel al secondo
-    rectangle.width = duration * pixelsPerSecond / 4 ;
+    // Calculate the width based on the BPM
+    const pixelsPerSecond = canvas.width / (beatDuration * beatsPerBar / 1000); // Pixels per second
+    rectangle.width = duration * pixelsPerSecond / 4;
 
-    // Gestione ciclica delle battute
-    const maxX = staffLength; // Lunghezza totale del canvas
+    
+    const maxX = staffLength; // Total length of the canvas
     if (rectangle.x + rectangle.width > maxX) {
-        rectangle.width = maxX - rectangle.x; // Adatta la larghezza alla fine del canvas
+        rectangle.width = maxX - rectangle.x; // Adjust the width to fit the canvas
         const overflowWidth = duration * pixelsPerSecond / 4 - rectangle.width;
 
         if (overflowWidth > 0) {
-            // Aggiungi la parte "spezzata" senza label
+            // Add the "wrapped" portion without a label
             playedNotes.push({
                 note: rectangle.note,
-                x: 0, // Riparte da inizio canvas
+                x: 0, // Restart from the beginning of the canvas
                 y: rectangle.y,
                 width: overflowWidth,
                 height: 10,
                 color: noteColors[rectangle.note] || "black",
-                noLabel: true // Flag per evitare di disegnare la label
+                noLabel: true // Flag to avoid drawing the label
             });
         }
     }
 
-    // Ridisegna il canvas
-    clearStaff();
-    drawTimeBar(); // Ridisegna la barra del tempo
-    redrawNotes(); // Ridisegna le note fissate
+    // Redraw the canvas
+    clearStaff(); // Clear the staff
+    drawTimeBar(); // Redraw the time bar
+    redrawNotes(); // Redraw the fixed notes
     for (let key in activeRectangles) {
-        drawActiveRectangle(activeRectangles[key]); // Disegna i rettangoli attivi
+        drawActiveRectangle(activeRectangles[key]); // Draw the active rectangles
     }
-    drawAllNumbers(); // Ridisegna i numeri
+    drawAllNumbers(); // Redraw the numbers
 
-    // Continua l'aggiornamento finché il tasto è premuto
+    // Continue updating as long as the key is pressed
     requestAnimationFrame(() => updateRectangle(dataKey));
 }
 
 
 
-// Ridisegna tutte le note fissate già suonate
+// Redraw all fixed notes that have already been played
 function redrawNotes() {
     playedNotes.forEach(note => {
         drawFixedNoteOnStaff(
-            note.note,
-            note.x,
-            note.y,
-            note.width,
-            note.height,
-            note.color,
-            note.noLabel || false // Passa il flag per disegnare o meno la label
+            note.note, // Note identifier
+            note.x, // X position of the note
+            note.y, // Y position of the note
+            note.width, // Width of the note rectangle
+            note.height, // Height of the note rectangle
+            note.color, // Color of the note rectangle
+            note.noLabel || false // Pass the flag to determine whether to draw the label
         );
     });
 }
 
 
 
-// Funzione per pulire il pentagramma ma non cancellare le note
+// Function to clear the staff but preserve notes
 function clearStaff(preserveNotes = true) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the entire canvas
 
     if (preserveNotes) {
-        redrawNotes();
-        drawReferenceBars();
+        redrawNotes(); // Redraw previously played notes
+        drawReferenceBars(); // Redraw static reference bars
     }
 }
 
-
-// Funzione per cancellare tutte le note dal canvas
+// Function to clear all notes from the canvas
 function clearAllNotes() {
-    playedNotes = []; // Svuota l'array delle note suonate
-    activeNumbersWithPositions = []; // Svuota anche i numeri
-    ctx.clearRect(0, 0, canvas.width, canvas.height); // Pulisce l'intero canvas
+    playedNotes = []; // Empty the array of played notes
+    activeNumbersWithPositions = []; // Also clear the numbers
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the entire canvas
 
-    drawReferenceBars(); // Ridisegna le barre di riferimento statiche
+    drawReferenceBars(); // Redraw the static reference bars
 
-    // Ridisegna la barra se il metronomo è fermo
+    // Redraw the time bar if the metronome is not active
     if (!isTimeBarActive) {
-        drawTimeBar(); // Ridisegna la barra alla posizione corrente
+        drawTimeBar(); // Redraw the time bar at its current position
     }
 }
 
+// Add a click event listener to the "Clear Notes" button
 document.getElementById('clearNotesButton').addEventListener('click', clearAllNotes);
 
 
-// Funzione per disegnare le barre di riferimento verticali grigie
+// Function to draw vertical reference bars in gray
 function drawReferenceBars() {
-
-    // Calcola la larghezza di ciascun quarto (beat) nel canvas
+    // Calculate the width of each beat on the canvas
     const beatWidth = canvas.width / (numberOfBars * beatsPerBar);
-    ctx.strokeStyle = "gray"; // Imposta il colore grigio per le barre
+    ctx.strokeStyle = "gray"; // Set the color for the bars to gray
 
-    // Ciclo per disegnare le barre di riferimento
+    // Loop to draw the reference bars
     for (let i = 0; i < numberOfBars * beatsPerBar; i++) {
-        const xPosition = i * beatWidth;
-        // Aumenta la larghezza della prima barra di ogni battuta (accentata)
+        const xPosition = i * beatWidth; // Calculate the X position for each bar
+        // Increase the width for the first bar of each measure (accented bar)
         ctx.lineWidth = (i % beatsPerBar === 0) ? 3 : 1;
 
-        // Disegna la linea verticale
+        // Draw the vertical line
         ctx.beginPath();
-        ctx.moveTo(xPosition, 0);
-        ctx.lineTo(xPosition, canvas.height);
-        ctx.stroke();
-
+        ctx.moveTo(xPosition, 0); // Start from the top of the canvas
+        ctx.lineTo(xPosition, canvas.height); // Extend to the bottom of the canvas
+        ctx.stroke(); // Render the line
     }
-
 }
 
-drawReferenceBars();  // Ridisegna all'inizio le barre di riferimento statiche
+// Initial drawing of the static reference bars at the start
+drawReferenceBars();
 
 
 
-// Quando cambia il numero di battute
+
+// When the number of beats per minute (BPM) changes
 bpmInput.addEventListener('input', function() {
-    bpm = parseInt(this.value);
-    beatDuration = 60000 / bpm;  // Aggiorna la durata del battito
+    bpm = parseInt(this.value); // Parse the input value as an integer for the new BPM
+    beatDuration = 60000 / bpm; // Update the duration of each beat in milliseconds
 
-    // Ferma il metronomo e la barra se sono attivi
+    // Stop the metronome and the time bar if they are active
     if (metronomePlaying) {
-        clearInterval(metronomeIntervalId);
-        stopTimeBar();  // Ferma la barra
-        startMetronome();  // Riavvia il metronomo con il nuovo BPM
+        clearInterval(metronomeIntervalId); // Clear the current metronome interval
+        stopTimeBar(); // Stop the time bar animation
+        startMetronome(); // Restart the metronome with the updated BPM
     }
 });
 
 
 
 
-// -------------------- Controllo Barra del Tempo --------------------
+
+// -------------------- Focusing on Time Bar -------------------- //
 
 
-// Funzione per disegnare la barra del tempo
-
+// Function to draw the time bar
 function drawTimeBar() {
-    ctx.lineWidth = 4; // Imposta la larghezza della linea
+    ctx.lineWidth = 4; // Set the line width
     ctx.beginPath();
 
-    // Usa timeBarX se la barra è attiva, altrimenti lastBarX
+    // Use timeBarX if the bar is active, otherwise use lastBarX
     const roundedX = Math.round(isTimeBarActive ? timeBarX : lastBarX);
-    ctx.moveTo(roundedX, 0); // Inizia la linea in alto
+    ctx.moveTo(roundedX, 0); // Start the line at the top
 
-    // Imposta il colore della barra
+    // Set the color of the bar
     ctx.strokeStyle = beatCount % beatsPerBar === 0 ? "green" : "red";
 
-    ctx.lineTo(roundedX, canvas.height); // Disegna la linea fino in basso
-    ctx.stroke(); // Esegui il disegno
+    ctx.lineTo(roundedX, canvas.height); // Draw the line down to the bottom
+    ctx.stroke(); // Execute the drawing
 }
 
-
-
+// Function to start the time bar
 function startTimeBar() {
     if (!isTimeBarActive) {
         isTimeBarActive = true;
 
-        // Sincronizza il tempo di partenza con il metronomo
+        // Synchronize the starting time with the metronome
         const elapsedFromLastStop = (lastBarX / barWidth) * beatDuration * beatsPerBar;
         performanceStartTime = performance.now() - elapsedFromLastStop;
 
         timeBarX = lastBarX;
-        beatCount = 0; // Reset del conteggio dei battiti
+        beatCount = 0; // Reset the beat count
         requestAnimationFrame(animateTimeBar);
     }
 }
 
-
-
-// Funzione per fermare la barra del tempo
-
+// Function to stop the time bar
 function stopTimeBar() {
-    isTimeBarActive = false; // Ferma la barra
-    lastBarX = Math.round(timeBarX); // Salva la posizione corrente in modo preciso
+    isTimeBarActive = false; // Stop the bar
+    lastBarX = Math.round(timeBarX); // Save the current position accurately
 }
 
 
-// Funzione per animare la barra del tempo
+
+
+// Function to animate the time bar
 function animateTimeBar() {
-    if (!isTimeBarActive) return; // Esci se la barra del tempo non è attiva
+    if (!isTimeBarActive) return; // Exit if the time bar is not active
 
-    clearStaff(); // Pulisce il pentagramma
-    drawTimeBar(); // Ridisegna la barra del tempo
+    clearStaff(); // Clear the staff
+    drawTimeBar(); // Redraw the time bar
 
-    // Calcolo del tempo reale
+    // Calculate the real elapsed time
     const currentTime = performance.now();
-    const elapsedTime = currentTime - performanceStartTime; // Tempo trascorso dall'inizio della performance
+    const elapsedTime = currentTime - performanceStartTime; // Time elapsed since the performance started
 
-    // Durata totale di una battuta (in millisecondi)
+    // Total duration of one bar (in milliseconds)
     const barDuration = beatDuration * beatsPerBar;
 
-    // Calcola la posizione attuale all'interno della battuta corrente
+    // Calculate the current position within the current bar
     const progressInBar = (elapsedTime % barDuration) / barDuration;
 
-    // Calcola `timeBarX` come frazione della larghezza della battuta
+    // Calculate `timeBarX` as a fraction of the bar's width
     timeBarX = progressInBar * barWidth;
 
-    // Calcola quante barre sono passate
+    // Calculate how many bars have passed
     const barsElapsed = Math.floor(elapsedTime / barDuration);
     timeBarX += barsElapsed * barWidth;
 
-    // Allinea la posizione della barra alla larghezza del canvas
+    // Align the bar's position with the canvas width
     if (timeBarX >= canvas.width) {
-        timeBarX %= canvas.width; // Torna all'inizio ma continua in modo fluido
-        beatCount = 0; // Resetta il conteggio dei battiti
-        performanceStartTime = currentTime; // Sincronizza il tempo
+        timeBarX %= canvas.width; // Reset to the beginning while continuing smoothly
+        beatCount = 0; // Reset the beat count
+        performanceStartTime = currentTime; // Synchronize the starting time
     }
 
-    // Aggiorna `beatCount` basato su `elapsedTime`
+    // Update `beatCount` based on `elapsedTime`
     beatCount = Math.floor((elapsedTime / beatDuration) % beatsPerBar);
 
-    drawAllNumbers(); // Ridisegna i numeri sincronizzati
-    requestAnimationFrame(animateTimeBar); // Continua l'animazione
+    drawAllNumbers(); // Redraw the synchronized numbers
+    requestAnimationFrame(animateTimeBar); // Continue the animation
 }
 
 
 
-// -------------------- Controllo Barra del Tempo e Metronomo Sincronizzati --------------------
+// -------------------- Tempo Bar and Metronome Control Synchronisation -------------------- //
 
-const startMetronomeButton = document.getElementById('startMetronomeButton');
-const stopMetronomeButton = document.getElementById('stopMetronomeButton');
-const muteMetronomeButton = document.getElementById('muteMetronomeButton');  // Bottone per mutare il metronomo
+const startMetronomeButton = document.getElementById('startMetronomeButton'); // Get the button to start the metronome
+const stopMetronomeButton = document.getElementById('stopMetronomeButton'); // Get the button to stop the metronome
+const muteMetronomeButton = document.getElementById('muteMetronomeButton'); // Get the button to mute the metronome
 
-startMetronomeButton.addEventListener('click', startMetronome);
-stopMetronomeButton.addEventListener('click', stopMetronome);
-muteMetronomeButton.addEventListener('click', toggleMetronomeMute);  // Evento per il bottone mute
+startMetronomeButton.addEventListener('click', startMetronome); // Add a click event listener to start the metronome
+stopMetronomeButton.addEventListener('click', stopMetronome); // Add a click event listener to stop the metronome
+muteMetronomeButton.addEventListener('click', toggleMetronomeMute); // Add a click event listener to mute/unmute the metronome
 
 
 
-// Funzione per attivare/disattivare il mute del metronomo
-
+// Function to toggle the mute state of the metronome
 function toggleMetronomeMute() {
-    metronomeMuted = !metronomeMuted;
-    muteMetronomeButton.innerText = metronomeMuted ? "Unmute Metronome" : "Mute Metronome";  // Cambia il testo del bottone
+    metronomeMuted = !metronomeMuted; // Toggle the mute state (true -> false, false -> true)
+    muteMetronomeButton.innerText = metronomeMuted ? "Unmute Metronome" : "Mute Metronome"; // Update the button text based on the mute state
 }
 
+
+// Function to start the metronome
 function startMetronome() {
-    if (!metronomePlaying) {
+    if (!metronomePlaying) { // Only proceed if the metronome is not already playing
 
-        metronomePlaying = true;
-        beatCount = 0;  // Resetta il conteggio dei battiti all'inizio
-        timeBarX = 0;   // Reset della posizione della barra del tempo
-        lastBarX = 0;   // Resetta anche la posizione salvata
-        performanceStartTime = performance.now();  // Reset del tempo di inizio per sincronizzare
+        metronomePlaying = true; // Set the metronome state to playing
+        beatCount = 0; // Reset the beat counter to the start
+        timeBarX = 0; // Reset the time bar position to the beginning
+        lastBarX = 0; // Reset the saved time bar position
+        performanceStartTime = performance.now(); // Record the current time to synchronize the metronome and time bar
 
+        // Draw the time bar at position 0 immediately
+        clearStaff(); // Clear the staff
+        drawTimeBar(); // Draw the initial time bar at the start
 
-        // Disegna la barra al punto zero immediatamente
-        clearStaff();
-        drawTimeBar();  // Barra iniziale a 0
-
-        // Suona subito il primo colpo accentato
+        // Play the first accented beat immediately
         playMetronomeAccent();
 
-        // Avvia il metronomo e la barra sincronizzati
+        // Start the metronome and synchronize it with the time bar
         metronomeIntervalId = setInterval(() => {
+            beatCount = (beatCount + 1) % (beatsPerBar * numberOfBars); // Increment the beat count, resetting after all bars are completed
 
-            beatCount = (beatCount + 1) % (beatsPerBar * numberOfBars);
-            
-            // Suona il click del metronomo
-            if (beatCount % beatsPerBar === 0) {
-                playMetronomeAccent();  // Primo battito accentato
-                //timeBarX = 0;  // Reset della barra esattamente sul primo colpo
+            // Play the metronome sound
+            if (beatCount % beatsPerBar === 0) { // If it's the first beat of a bar
+                playMetronomeAccent(); // Play the accented metronome sound
+                // timeBarX = 0; // Optionally reset the time bar to the start of the bar (commented out)
             } else {
-                playMetronomeClick();  // Battiti normali
+                playMetronomeClick(); // Play the regular metronome click
             }
 
+        }, beatDuration); // Set the interval to match the duration of one beat
 
-        }, beatDuration); // Imposta l'intervallo basato sulla durata di un battito
-
-
-        // Avvia anche la barra del tempo
+        // Also start the time bar animation
         startTimeBar();
     }
 }
 
 
-
-
-
+// Function to stop the metronome
 function stopMetronome() {
-    clearInterval(metronomeIntervalId);
-    metronomePlaying = false;
-    stopTimeBar();  // Ferma la barra del tempo
+    clearInterval(metronomeIntervalId); // Clear the interval to stop the metronome
+    metronomePlaying = false; // Set the metronome state to stopped
+    stopTimeBar(); // Stop the time bar animation
 }
 
 
-// Funzione per il click normale del metronomo
+// Function for the regular metronome click
 function playMetronomeClick() {
 
-    if (metronomeMuted) return;  // Esce subito se il metronomo è mutato
+    if (metronomeMuted) return; // Exit immediately if the metronome is muted
 
-    const oscillator = audioContext.createOscillator();  // Crea un oscillatore
-    const gainNode = audioContext.createGain();  // Crea un nodo per controllare il volume
+    const oscillator = audioContext.createOscillator(); // Create an oscillator for the sound
+    const gainNode = audioContext.createGain(); // Create a gain node to control the volume
 
-    oscillator.type = 'square';  // Tipo di onda
-    oscillator.frequency.setValueAtTime(metronomeClickFrequency, audioContext.currentTime);  // Frequenza del click (500 Hz)
+    oscillator.type = 'square'; // Set the oscillator wave type to square
+    oscillator.frequency.setValueAtTime(metronomeClickFrequency, audioContext.currentTime); // Set the frequency for the click (500 Hz)
 
-    gainNode.gain.setValueAtTime(1, audioContext.currentTime);  // Volume iniziale
-    gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);  // Calo rapido del volume
+    gainNode.gain.setValueAtTime(1, audioContext.currentTime); // Set the initial volume to maximum
+    gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1); // Quickly decrease the volume for a short click
 
-    oscillator.connect(gainNode);  // Collega l'oscillatore al gain
-    gainNode.connect(audioContext.destination);  // Collega il gain al contesto audio (output)
+    oscillator.connect(gainNode); // Connect the oscillator to the gain node
+    gainNode.connect(audioContext.destination); // Connect the gain node to the audio context output (speakers)
 
-    oscillator.start();  // Avvia l'oscillatore
-    oscillator.stop(audioContext.currentTime + 0.1);  // Ferma l'oscillatore dopo 100ms (breve click)
+    oscillator.start(); // Start the oscillator
+    oscillator.stop(audioContext.currentTime + 0.1); // Stop the oscillator after 100ms to create a short click
 }
 
-// Funzione per il click accentato (primo battito)
+
+
+// Function for the metronome accent click (first beat)
 function playMetronomeAccent() {
 
-    if (metronomeMuted) return;  // Esce subito se il metronomo è mutato
+    if (metronomeMuted) return; // Exit immediately if the metronome is muted
 
-    const oscillator = audioContext.createOscillator();
-    const gainNode = audioContext.createGain();
+    const oscillator = audioContext.createOscillator(); // Create an oscillator for the sound
+    const gainNode = audioContext.createGain(); // Create a gain node to control the volume
 
-    oscillator.type = 'square';  // Tipo di onda
-    oscillator.frequency.setValueAtTime(metronomeAccentFrequency, audioContext.currentTime);  // Frequenza più alta per l'accento
+    oscillator.type = 'square'; // Set the oscillator wave type to square
+    oscillator.frequency.setValueAtTime(metronomeAccentFrequency, audioContext.currentTime); // Set a higher frequency for the accented click (800 Hz)
 
-    gainNode.gain.setValueAtTime(1, audioContext.currentTime);  // Volume iniziale
-    gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);  // Rapido calo del volume
+    gainNode.gain.setValueAtTime(1, audioContext.currentTime); // Set the initial volume to maximum
+    gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1); // Quickly decrease the volume for a short accent sound
 
-    oscillator.connect(gainNode);
-    gainNode.connect(audioContext.destination);
+    oscillator.connect(gainNode); // Connect the oscillator to the gain node
+    gainNode.connect(audioContext.destination); // Connect the gain node to the audio context output (speakers)
 
-    oscillator.start();
-    oscillator.stop(audioContext.currentTime + 0.1);  // Suono breve
-} 
+    oscillator.start(); // Start the oscillator
+    oscillator.stop(audioContext.currentTime + 0.1); // Stop the oscillator after 100ms to create a short accent sound
+}
 
-//TIME SIGNATURE
 
-const timeSignatureSelect = document.getElementById('timeSignature');
+
+
+// -------------------- TIME SIGNATURE -------------------- //
+
+const timeSignatureSelect = document.getElementById('timeSignature'); // Get the dropdown element for time signature selection
 
 timeSignatureSelect.addEventListener('change', function() {
-    const [beats, noteValue] = this.value.split('/').map(Number);
+    const [beats, noteValue] = this.value.split('/').map(Number); // Parse the selected time signature into beats and note value
 
-    // Aggiorna beatsPerBar in base al ritmo selezionato
+    // Update beatsPerBar based on the selected time signature
     beatsPerBar = beats;
 
-    // Regola beatDuration a seconda che il ritmo sia in quarti o ottavi
+    // Adjust beatDuration depending on whether the note value is quarters, eighths, etc.
     beatDuration = (60000 / bpm) * (4 / noteValue);
 
-     // Aggiorna la lunghezza dello spartito
-     staffLength = numberOfBars * barWidth;
-     canvas.width = staffLength;
- 
-     // Pulisce e ridisegna il canvas con la nuova configurazione del ritmo
-     clearStaff();
-     drawReferenceBars();
- 
-     // Riavvia il metronomo se è già in esecuzione
-     if (metronomePlaying) {
-         stopMetronome();
-         startMetronome();
-     }
+    // Update the staff length based on the new time signature
+    staffLength = numberOfBars * barWidth;
+    canvas.width = staffLength; // Update the canvas width to match the staff length
+
+    // Clear and redraw the canvas with the new time signature configuration
+    clearStaff();
+    drawReferenceBars();
+
+    // Restart the metronome if it is currently running
+    if (metronomePlaying) {
+        stopMetronome(); // Stop the current metronome
+        startMetronome(); // Restart the metronome with the updated settings
+    }
 });
 
 
 
-//----------------ZOOOOOOOOOOOOOOOOOOOOOOOOOOOOM--------------------------//
 
-let isZoomedIn = false;  // Variabile per tenere traccia dello stato di zoom
-let originalCanvasWidth = canvas.width;  // Salva la larghezza originale del canvas in pixel
-let originalCanvasStyleWidth = canvas.style.width;  // Salva lo stile originale in CSS
+// -------------------- ZOOM -------------------- //
+
+let isZoomedIn = false; // Variable to track the zoom state
+let originalCanvasWidth = canvas.width; // Store the original width of the canvas in pixels
+let originalCanvasStyleWidth = canvas.style.width; // Store the original CSS style width of the canvas
 
 function toggleZoom() {
-    const zoomFactor = 1.1; // Fattore di ingrandimento per la larghezza visualizzata
-    const zoomButton = document.getElementById('zoomButton');
+    const zoomFactor = 1.1; // Zoom factor for the displayed width
+    const zoomButton = document.getElementById('zoomButton'); // Get the zoom button element
 
     if (!isZoomedIn) {
-        // Ingrandisci solo visivamente la larghezza del canvas usando style.width
-        canvas.style.width = `${originalCanvasWidth * zoomFactor}px`; // Applica lo zoom alla larghezza
-        zoomButton.textContent = '🔍 -'; // Cambia icona del bottone
+        // Visually enlarge the canvas width using style.width
+        canvas.style.width = `${originalCanvasWidth * zoomFactor}px`; // Apply zoom to the visual width
+        zoomButton.textContent = '🔍 -'; // Change the button icon to indicate zoom out
     } else {
-        // Torna alla larghezza visiva originale senza modificare canvas.width
-        canvas.style.width = originalCanvasStyleWidth;
-        zoomButton.textContent = '🔍 +';
+        // Restore the original visual width without modifying canvas.width
+        canvas.style.width = originalCanvasStyleWidth; // Reset to the original visual width
+        zoomButton.textContent = '🔍 +'; // Change the button icon to indicate zoom in
     }
 
-    isZoomedIn = !isZoomedIn; // Cambia lo stato dello zoom
+    isZoomedIn = !isZoomedIn; // Toggle the zoom state
 
-    // Aggiorna e ridisegna gli elementi sul canvas
-    clearStaff(); // Cancella il contenuto del canvas
-    drawReferenceBars(); // Ridisegna le barre di riferimento
-    redrawNotes(); // Ridisegna le note della tastiera
-    drawAllNumbers(); // Ridisegna anche i numeri del pad
+    // Update and redraw the elements on the canvas
+    clearStaff(); // Clear the canvas content
+    drawReferenceBars(); // Redraw the reference bars
+    redrawNotes(); // Redraw the keyboard notes
+    drawAllNumbers(); // Redraw the pad numbers
 }
 
 
 
 
-// ---------------- REGISTRATORE MULTITRACCIA --------------------------//
+
+// -------------------- MULTITRACK RECORDER: recording and playback of the recording on four separate tracks, 
+// without the possibility of playing back with the metronome. 
+// Possibility of recording PAD and keyboard indifferently and also together.  -------------------- //
 
 
-// Variabili globali per la registrazione e il Pre-Roll
-let activeTrackIndex = -1; // Indice della traccia attualmente in registrazione
-let isGlobalRecording = false; // Stato della registrazione globale
-const preRollBars = 2; // Numero di battute per il Pre-Roll (configurabile)
-let isPreRollActive = false; // Flag per verificare se il Pre-Roll è attivo
+
+// Global variables for recording and Pre-Roll
+let activeTrackIndex = -1; // Index of the currently active track for recording
+let isGlobalRecording = false; // State of global recording
+const preRollBars = 2; // Number of bars for Pre-Roll (configurable)
+let isPreRollActive = false; // Flag to check if Pre-Roll is active
 
 const tracks = Array(4).fill(null).map(() => ({
-    audioData: [], // Array per memorizzare le note registrate
-    isRecording: false,
-    recordStartTime: null, // Tempo d'inizio reale della registrazione
+    audioData: [], // Array to store recorded notes
+    isRecording: false, // Indicates if the track is currently recording
+    recordStartTime: null, // Real start time of the recording
 }));
 
 
-// Funzione per avviare la registrazione con Pre-Roll
+// Function to start recording with Pre-Roll to prepare the user for record
 function startRecordingWithPreRoll(trackIndex) {
-    if (isGlobalRecording || isPreRollActive) return; // Evita conflitti
+    if (isGlobalRecording || isPreRollActive) return; // Avoid conflicts if recording or Pre-Roll is already active
 
-    isPreRollActive = true;
-    const totalPreRollDuration = preRollBars * beatsPerBar * beatDuration; // Durata totale del Pre-Roll in ms
+    isPreRollActive = true; // Set Pre-Roll as active
+    const totalPreRollDuration = preRollBars * beatsPerBar * beatDuration; // Total duration of the Pre-Roll in milliseconds
 
-    console.log(`Inizio Pre-Roll di ${preRollBars} battute (${totalPreRollDuration} ms)`);
+    console.log(`Starting Pre-Roll of ${preRollBars} bars (${totalPreRollDuration} ms)`);
 
-    // Dopo il Pre-Roll, avvia la registrazione
+    // After the Pre-Roll duration, start recording
     setTimeout(() => {
-        isPreRollActive = false;
-        startRecording(trackIndex);
-        tracks[trackIndex].recordStartTime = performance.now();
-        console.log(`Registrazione iniziata sulla traccia ${trackIndex + 1}`);
+        isPreRollActive = false; // Deactivate Pre-Roll
+        startRecording(trackIndex); // Start the recording process
+        tracks[trackIndex].recordStartTime = performance.now(); // Save the actual start time of the recording
+        console.log(`Recording started on track ${trackIndex + 1}`);
     }, totalPreRollDuration);
 }
 
 
-// Funzione per iniziare la registrazione
+
+// Function to start recording
 function startRecording(trackIndex) {
-    
-    activeTrackIndex = trackIndex;
+    activeTrackIndex = trackIndex; // Set the active track index
     const track = tracks[trackIndex];
-    track.audioData = []; // Resetta i dati precedenti
-    track.isRecording = true;
-    isGlobalRecording = true; // Segna che una registrazione è in corso
-    console.log(`Registrazione attiva sulla traccia ${trackIndex + 1}`);
+    track.audioData = []; // Reset any previous audio data
+    track.isRecording = true; // Mark the track as recording
+    isGlobalRecording = true; // Indicate that a recording is in progress
+    console.log(`Recording started on track ${trackIndex + 1}`); // Log the start of recording
 }
 
-// Funzione per terminare la registrazione
+
+// Function to stop recording
 function stopRecording(trackIndex) {
     const track = tracks[trackIndex];
-    track.isRecording = false;
-    activeTrackIndex = -1;
-    isGlobalRecording = false;
-
-    console.log(`Registrazione terminata sulla traccia ${trackIndex + 1}`);
+    track.isRecording = false; // Mark the track as no longer recording
+    activeTrackIndex = -1; // Reset the active track index
+    isGlobalRecording = false; // Indicate that no recording is in progress
+    console.log(`Recording stopped on track ${trackIndex + 1}`); // Log the end of recording
 }
+
+
+// Function to finalize the recording
 function finalizeRecording(trackIndex) {
     const track = tracks[trackIndex];
-    const preRollOffset = preRollBars * beatsPerBar * beatDuration; // Durata del Pre-Roll in ms
+    const preRollOffset = preRollBars * beatsPerBar * beatDuration; // Calculate the Pre-Roll duration in milliseconds
 
     if (!track.audioData.length) {
-        console.warn(`Nessuna nota registrata sulla traccia ${trackIndex + 1}`);
-        return;
+        console.warn(`No notes recorded on track ${trackIndex + 1}`); // Log a warning if no notes were recorded
+        return; // Exit if there is no audio data
     }
 
-    // Normalizza i tempi delle note per rimuovere il Pre-Roll
+    // Normalize the note timings to remove the Pre-Roll offset
     track.audioData = track.audioData.map(noteData => ({
         ...noteData,
-        startTime: noteData.startTime - track.recordStartTime - preRollOffset
-    })).filter(noteData => noteData.startTime >= 0); // Elimina eventuali note che iniziano nel Pre-Roll
+        startTime: noteData.startTime - track.recordStartTime - preRollOffset // Adjust start times to exclude Pre-Roll
+    })).filter(noteData => noteData.startTime >= 0); // Remove any notes that start during the Pre-Roll
 
-    console.log(`Registrazione confermata sulla traccia ${trackIndex + 1}, Pre-Roll rimosso`);
+    console.log(`Recording finalized on track ${trackIndex + 1}, Pre-Roll removed`); // Log the finalized recording
 }
 
 
 
-// Creiamo i GainNode per ogni traccia
+// Create GainNodes for each track to dynamically adjust the volume in real-time during playback
 tracks.forEach((track, index) => {
-    track.gainNode = audioContext.createGain(); // Creazione del GainNode
-    track.gainNode.gain.value = 1; // Volume iniziale (100%)
-    track.gainNode.connect(audioContext.destination); // Collegamento alla destinazione
+    track.gainNode = audioContext.createGain(); // Create a GainNode for the track
+    track.gainNode.gain.value = 1; // Set the initial volume to 100%
+    track.gainNode.connect(audioContext.destination); // Connect the GainNode to the audio destination (output)
 });
 
 
-// Funzione per aggiornare il volume di una traccia
+
+// Function to update the volume of a track
 function updateVolume(trackIndex, volume) {
-    if (trackIndex >= 0 && trackIndex < tracks.length) {
+    if (trackIndex >= 0 && trackIndex < tracks.length) { // Check if the track index is valid
         const track = tracks[trackIndex];
-        track.gainNode.gain.value = volume; // Aggiorna il valore di guadagno
-        console.log(`Volume della traccia ${trackIndex + 1} aggiornato a ${volume}`);
+        track.gainNode.gain.value = volume; // Update the gain value (volume) of the track
+        console.log(`Volume of track ${trackIndex + 1} updated to ${volume}`); // Log the updated volume
     }
 }
 
 
-// Funzione per riprodurre una traccia con il controllo del volume
+
+// Function to play a track with volume control
 function playTrack(trackIndex) {
     const track = tracks[trackIndex];
     if (!track.audioData.length) {
-        console.log(`Nessuna nota registrata sulla traccia ${trackIndex + 1}`);
-        return;
+        console.log(`No notes recorded on track ${trackIndex + 1}`); // Log if there are no notes in the track
+        return; // Exit if the track has no recorded notes
     }
 
-    const globalStartTime = performance.now(); // Tempo di avvio globale
+    const globalStartTime = performance.now(); // Record the global start time of playback
 
-    console.log(`Riproduzione della traccia ${trackIndex + 1}`);
+    console.log(`Playing track ${trackIndex + 1}`); // Log the track being played
 
+
+    // Iterate through the recorded notes in the track
     track.audioData.forEach(noteData => {
-        const notePlaybackTime = globalStartTime + (noteData.startTime - track.recordStartTime);
-        const delay = notePlaybackTime - performance.now();
+        const notePlaybackTime = globalStartTime + (noteData.startTime - track.recordStartTime); // Calculate when the note should play
+        const delay = notePlaybackTime - performance.now(); // Calculate the delay before playing the note
 
-        if (delay >= 0) {
+        if (delay >= 0) { // Play the note only if the delay is non-negative
             setTimeout(() => {
+
+
+                // Determine the audio file path based on the note type
                 const audioPath = Number.isInteger(Number(noteData.note)) && Number(noteData.note) >= 1 && Number(noteData.note) <= 9
-                    ? `sounds/sounds/${ambienteCorrente.nome}/Pad/suono${noteData.note}.mp3`
-                    : `sounds/sounds/${ambienteCorrente.nome}/Timbre${setCorrente?.nome.split(' ')[1] || 1}/${noteData.note}.mp3`;
+                    ? `sounds/sounds/${ambienteCorrente.nome}/Pad/suono${noteData.note}.mp3` // Path for pad sounds
+                    : `sounds/sounds/${ambienteCorrente.nome}/Timbre${setCorrente?.nome.split(' ')[1] || 1}/${noteData.note}.mp3`; // Path for timbre sounds
 
-                const audio = new Audio(audioPath);
-                const trackSource = audioContext.createMediaElementSource(audio);
-                trackSource.connect(track.gainNode);
 
-                audio.play().catch(error => console.error("Errore nel caricamento dell'audio: ", error));
+                const audio = new Audio(audioPath); // Create an audio object for the sound
+                const trackSource = audioContext.createMediaElementSource(audio); // Create a media element source
+                trackSource.connect(track.gainNode); // Connect the track's GainNode for volume control
 
+
+                audio.play().catch(error => console.error("Error loading audio: ", error)); // Play the audio or log an error if it fails
+
+                // Stop the audio after its duration if specified
                 if (noteData.duration) {
                     setTimeout(() => {
-                        audio.pause();
-                        audio.currentTime = 0;
+                        audio.pause(); // Pause the audio
+                        audio.currentTime = 0; // Reset the playback position
                     }, noteData.duration);
                 }
-            }, delay);
+
+            }, delay); // Play the note after the calculated delay
         }
     });
 }
 
 
-
-
-// Funzione per evidenziare il canvas durante la registrazione
+// Function to highlight the canvas during recording
 function highlightTrackCanvas(trackIndex, isRecording) {
-    const canvas = document.getElementById(`track-canvas-${trackIndex + 1}`);
-    canvas.style.border = isRecording ? "2px solid red" : "1px solid #555";
+    const canvas = document.getElementById(`track-canvas-${trackIndex + 1}`); // Get the canvas for the specified track
+    canvas.style.border = isRecording ? "2px solid red" : "1px solid #555"; // Change the border color based on recording state
 }
 
-
-//TOLTE FUNZIONI DI DRAW E SAVE
 
 
 // Funzione per disegnare i rettangoli su una traccia (per visualizzazione)
