@@ -16,6 +16,8 @@ let ambienteCorrente;
 let setCorrente;
 let paddone;
 
+
+// Fetch the 'Enviroments.json' file
 fetch('Enviroments.json')
   .then(response => response.json())
   .then(data => {
@@ -24,6 +26,7 @@ fetch('Enviroments.json')
   })
   .catch(error => console.error('Errore nel caricamento del JSON:', error));
 
+  // Function to populate the environment menu with options
 function popolaMenuAmbienti(ambienti) {
   const ambienteSelect = document.getElementById('ambienteSelect');
   ambienti.forEach(ambiente => {
@@ -34,6 +37,7 @@ function popolaMenuAmbienti(ambienti) {
   });
 }
 
+// Function to handle changing the environment
 function cambiaAmbiente() {
   const ambienteSelect = document.getElementById('ambienteSelect');
   const setSuoniSelect = document.getElementById('setSuoniSelect');
@@ -60,10 +64,7 @@ function cambiaAmbiente() {
   if (ambienteCorrente) {
     paddone = ambienteCorrente.soundPad[0];
   }
-
-
 }
-
 
 
 // Updates the current sound set and key-to-sound mapping based on user selection.
@@ -85,14 +86,12 @@ function cambiaSetSuoni() {
 
 
 // Updates the audio player's source to the provided URL.
- 
 function cambiaSuono(url) {
     const audioPlayer = document.getElementById('audioPlayer');
     audioPlayer.src = url; // Set the new audio source
 }
 
 // Changes the webpage background to the specified image URL.
-
 function cambiaSfondo(url) {
     document.body.style.backgroundImage = `url(${url})`; // Set the background image
     document.body.style.backgroundSize = 'cover'; // Ensure the image covers the entire background
@@ -100,9 +99,6 @@ function cambiaSfondo(url) {
     document.body.style.backgroundRepeat = 'no-repeat'; // Prevent the image from repeating
 }
 
-
-
-  
 
   
 
@@ -150,7 +146,6 @@ window.keyMapOctave2 = {
 
 
 
-
 // Initialize Web Audio API
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
@@ -168,7 +163,6 @@ document.getElementById('timbre-select').value = currentSet;
 
 
 
-
 //----------------------- EFFECTS: Flanger, Delay, Distortion, Chorus -----------------------//
 
 
@@ -178,7 +172,6 @@ let effectNodes = {
     delay: null,
     distortion: null,
     chorus: null 
-    
 };
 
 // To track the activation state of each effect (on or off)
@@ -279,17 +272,17 @@ function playNote(note) {
 
 
 
-// Funzione per applicare gli effetti attivi in catena
+// Function to apply active effects in a chain
 function applyActiveEffects(track) {
-    let lastNode = track;
+    let lastNode = track;// Start with the input track as the first node in the chain
 
     // Flanger
-    if (activeEffects.flanger) {
-        if (!effectNodes.flanger) {
+    if (activeEffects.flanger) {// Check if the flanger effect is active
+        if (!effectNodes.flanger) {  // If the flanger node doesn't exist, create it
             effectNodes.flanger = createFlanger(flangerKnob.value);
         }
-        lastNode.connect(effectNodes.flanger);
-        lastNode = effectNodes.flanger;
+        lastNode.connect(effectNodes.flanger);// Connect the previous node to the flanger
+        lastNode = effectNodes.flanger;// Update the last node to the flanger
     }
 
     // Delay
@@ -319,14 +312,14 @@ function applyActiveEffects(track) {
         lastNode = effectNodes.chorus;
     }
 
-    // Collega l'ultimo nodo alla destinazione finale
+    // Connect the final node to the audio destination
     lastNode.connect(audioContext.destination);
 }
 
 
-// Gestione dei pulsanti effetto e LED
+// Handling effect buttons and LEDs
 document.getElementById('flanger-btn').addEventListener('click', () => {
-    toggleEffect('flanger');
+    toggleEffect('flanger');// Toggle the flanger effect when its button is clicked
 });
 
 document.getElementById('delay-btn').addEventListener('click', () => {
@@ -341,21 +334,23 @@ document.getElementById('chorus-btn').addEventListener('click', () => {
     toggleEffect('chorus');
 });
 
-// Funzione per attivare o disattivare un effetto
+
+// Function to activate or deactivate an effect
 function toggleEffect(effect) {
-    activeEffects[effect] = !activeEffects[effect];  // Attiva/disattiva l'effetto
+    activeEffects[effect] = !activeEffects[effect];  // Toggle the state of the effect (on/off)
     if (activeEffects[effect]) {
-        // Se l'effetto è attivo, crea il nodo per l'effetto
-        effectNodes[effect] = createEffectNode(effect);
+        // If the effect is active, create the corresponding effect node
+        effectNodes[effect] = createEffectNode(effect);// Create the node using a function specific to the effect
     } else {
-        // Se l'effetto non è attivo, disconnetti il nodo
+        // If the effect is inactive, disconnect its node
         if (effectNodes[effect]) {
-            effectNodes[effect].disconnect();
-            effectNodes[effect] = null; // Resetta il nodo per quell'effetto
+            effectNodes[effect].disconnect();// Disconnect the node from the audio graph
+            effectNodes[effect] = null;  // Reset the node for this effect to null
         }
     }
-    updateLEDs(); // Aggiorna gli LED per riflettere lo stato degli effetti
+    updateLEDs(); // Update the LEDs to reflect the current state of effects
 }
+
 
 // Funzione per creare un nodo per l'effetto
 function createEffectNode(effect) {
@@ -373,8 +368,9 @@ function createEffectNode(effect) {
     }
 }
 
-// Funzione per aggiornare gli LED
+// Function to update the LEDs
 function updateLEDs() {
+    // Set the background color of each LED based on the state of the corresponding effect
     flangerLed.style.backgroundColor = activeEffects.flanger ? 'green' : 'red';
     delayLed.style.backgroundColor = activeEffects.delay ? 'green' : 'red';
     distortionLed.style.backgroundColor = activeEffects.distortion ? 'green' : 'red';
@@ -382,110 +378,114 @@ function updateLEDs() {
 }
 
 
-// Aggiorna lo stato dei LED in base agli effetti attivi
+// Update the state of the LEDs based on active effects
 function updateLEDs() {
+    // Add or remove the 'active' class for each LED based on the effect's state
     flangerLed.classList.toggle('active', activeEffects.flanger);
     delayLed.classList.toggle('active', activeEffects.delay);
     distortionLed.classList.toggle('active', activeEffects.distortion);
     chorusLed.classList.toggle('active', activeEffects.chorus); 
 }
 
-// Funzioni per creare gli effetti con i knobs
 
+//--------------------------- Functions to create effects using knobs-----------------------
+// Function to create the Flanger effect
 function createFlanger(rate) {
     const delay = audioContext.createDelay();
-    const osc = audioContext.createOscillator();
-    const gain = audioContext.createGain();
+    const osc = audioContext.createOscillator();// Create an oscillator for modulation
+    const gain = audioContext.createGain();// Create a gain node for modulation depth
 
     delay.delayTime.value = 0.005;
-    osc.frequency.value = rate;  // Usa il valore del knob
+    osc.frequency.value = rate; // Use the knob value for the oscillator frequency
     gain.gain.value = 0.002;
 
-    osc.connect(gain);
-    gain.connect(delay.delayTime);
+    osc.connect(gain); // Connect oscillator output to gain
+    gain.connect(delay.delayTime);// Modulate the delay time with the gain
     osc.start();
 
     return delay;
 }
 
+// Function to create the Delay effect
 function createDelay(time) {
     const delay = audioContext.createDelay();
-    delay.delayTime.value = time;  // Usa il valore del knob
+    delay.delayTime.value = time;  // Use the knob value for the delay time
 
     const feedback = audioContext.createGain();
     feedback.gain.value = 0.5;
 
-    delay.connect(feedback);
-    feedback.connect(delay);
+    delay.connect(feedback);// Use the knob value for the delay time
+    feedback.connect(delay);// Connect feedback back into the delay for looping
 
     return delay;
 }
 
+// Function to create the Distortion effect
 function createDistortion(amount) {
-    const distortion = audioContext.createWaveShaper();
-    distortion.curve = makeDistortionCurve(amount);  // Usa il valore del knob
-    distortion.oversample = '4x';
+    const distortion = audioContext.createWaveShaper();// Create a wave shaper node
+    distortion.curve = makeDistortionCurve(amount);  // Generate a curve based on the knob value
+    distortion.oversample = '4x';// Set oversampling for smoother sound
     return distortion;
 }
 
+// Function to generate a distortion curve
 function makeDistortionCurve(amount) {
-    const n_samples = 44100;
-    const curve = new Float32Array(n_samples);
-    const deg = Math.PI / 180;
+    const n_samples = 44100;// Number of samples for the curve
+    const curve = new Float32Array(n_samples);// Create an array to hold the curve
+    const deg = Math.PI / 180;// Conversion factor for degrees to radians
     for (let i = 0; i < n_samples; ++i) {
         const x = i * 2 / n_samples - 1;
-        // Diminuisce il fattore di moltiplicazione per un effetto di distorsione meno aggressivo
+        // Generate a distortion curve with reduced aggression
         curve[i] = ((3 + (amount * 0.5)) * x * 20 * deg) / (Math.PI + (amount * 0.5) * Math.abs(x));
     }
     return curve;
 }
 
-// Funzione per creare il Chorus
+// Function to create the Chorus effect
 function createChorus(depth) {
     const delay = audioContext.createDelay();
     const lfo = audioContext.createOscillator();
     const lfoGain = audioContext.createGain();
 
-    // Imposta un leggero ritardo per simulare il chorus
-    delay.delayTime.value = 0.04;  // Tempo di ritardo fisso
+    // Set a slight base delay time to simulate chorus
+    delay.delayTime.value = 0.04;  
 
-    // Oscillatore a bassa frequenza (LFO) per modulare il delay time
-    lfo.frequency.value = 0.6;  // Frequenza del chorus
+    // Set the LFO frequency for modulation
+    lfo.frequency.value = 0.6;  
     lfoGain.gain.value = depth * 0.003;  // Profondità della modulazione (usando il valore del knob)
 
-    // Collegamento del LFO al delay per modulare il tempo di ritardo
     lfo.connect(lfoGain);
-    lfoGain.connect(delay.delayTime);  // Modula il delay time
+    lfoGain.connect(delay.delayTime); // Modulate delay time with LFO output
 
-    // Inizia l'oscillatore
     lfo.start();
 
-    return delay;  // Restituisce il nodo di delay
+    return delay; 
 }
 
 
-// ----------------------- Pianola: Ascolto eventi -----------------------------
+// ---------------------------------------- Pianola: Event Listener Setup ---------------------------------------------------
 
-// Inizialmente settiamo la keyMap alla prima ottava
+// Initially, set the keyMap to the first octave
 let keyMap = keyMapOctave1;
-let pressedKeys = {};
+let pressedKeys = {};// Object to track the currently pressed keys
 
-updateKeyLabels();
+updateKeyLabels();// Update the key labels on the keyboard to reflect the current octave
 
-// Funzione per cambiare ottava
+// Function to switch between octaves
 document.getElementById('switch-octave').addEventListener('click', () => {
-    pressedKeys = {}; // Reimposta stato tasti
+    pressedKeys = {}; // Reset the state of pressed keys when switching octaves
     if (currentOctave === 3) {
-        keyMap = keyMapOctave2; // Passa alla seconda ottava
+        keyMap = keyMapOctave2; // Switch to the second octave
         currentOctave = 4;
     } else {
-        keyMap = keyMapOctave1; // Torna alla prima ottava
+        keyMap = keyMapOctave1;  // Switch back to the first octave
         currentOctave = 3;
     }
-    updateKeyLabels(); // Aggiorna le etichette delle note sulla tastiera
+    updateKeyLabels(); // Update the labels on the keyboard to reflect the new octave
 });
 
 
+// Updates the labels of keyboard keys based on the current octave mapping
 function updateKeyLabels() {
     document.querySelectorAll('.tasto, .tasto-nero').forEach((key) => {
         const dataKey = key.getAttribute('data-key').toUpperCase();
@@ -494,14 +494,14 @@ function updateKeyLabels() {
         if (note) {
             key.setAttribute('data-note', note);
 
-            // Mostra la nota solo sui tasti bianchi
+            // Display the note only on white keys
             if (key.classList.contains('tasto')) {
                 key.textContent = note;
             } else {
-                key.textContent = ''; // Lascia vuoti i tasti neri
+                key.textContent = ''; // Keep black keys empty
             }
         } else {
-            // Rimuove il contenuto se il tasto non è mappato per questa ottava
+            // If the key is not mapped in the current octave, clear its attributes and content
             key.removeAttribute('data-note');
             key.textContent = '';
         }
@@ -510,24 +510,21 @@ function updateKeyLabels() {
 
 
 
-
-// Funzione per fermare il suono della nota
+// Stops the sound of a specific note, managing multiple active instances if necessary
 function stopNote(note) {
     if (activeNotes[note] && activeNotes[note].length > 0) {
         console.log(`Stop nota: ${note}, istanze attive: ${activeNotes[note].length}`);
 
-        // Ferma solo una istanza alla volta
-        const audio = activeNotes[note].shift(); // Rimuove la prima istanza dal fronte dell'array
+        // Stops only one instance at a time
+        const audio = activeNotes[note].shift(); // Remove the first instance from the array
         if (audio) {
             audio.pause();
             audio.currentTime = 0;
-            console.log(`Una istanza di ${note} fermata. Rimangono ${activeNotes[note].length} istanze.`);
         }
 
-        // Se l'array è vuoto, elimina la chiave
+        // If the array is empty, remove the key from activeNotes
         if (activeNotes[note].length === 0) {
             delete activeNotes[note];
-            console.log(`Tutte le istanze di ${note} sono state fermate e cancellate.`);
         }
     } else {
         console.warn(`Nota ${note} non trovata o già fermata.`);
@@ -535,46 +532,47 @@ function stopNote(note) {
 }
 
 
-// Funzione per attivare una nota (sia da tastiera che da mouse)
+// Activates a note (via keyboard or mouse), plays the sound, highlights the key, and handles visual and recording logic.
 function activateNote(note, source, startTime = performance.now()) {
-    if (!note || pressedKeys[note]) return;
+    if (!note || pressedKeys[note]) return;// Exit if the note is invalid or already pressed
 
-    playNote(note); // Riproduci il suono della nota
-    highlightKey(note); // Evidenzia il tasto
-    pressedKeys[note] = true;
+    playNote(note); // Play the sound of the note
+    highlightKey(note);// Highlight the key visually
+    pressedKeys[note] = true;// Mark the note as pressed
 
     console.log(`Nota attivata da ${source}: ${note}`);
 
-    // Inizializza il rettangolo per la nota attiva
+      // Initialize the rectangle for the active note
     activeRectangles[note] = {
         note: note,
-        x: timeBarX,  // Posizione iniziale basata su timeBarX
-        y: getYPositionForNote(note), // Calcola la posizione verticale
-        width: 0,  // Partiamo con larghezza 0
+        x: timeBarX, // Initial horizontal position based on timeBarX
+        y: getYPositionForNote(note), // Calculate the vertical position based on the note
+        width: 0, 
         startTime: startTime
     };
 
-    // Disegna i rettangoli attivi sul canvas
+     // Draw all active rectangles on the canvas
     for (let key in activeRectangles) {
         drawActiveRectangle(activeRectangles[key]);
     }
 
-    // Se una traccia è in registrazione, registra l'evento
+    // If a track is actively recording, save the note event
     if (activeTrackIndex !== -1 && tracks[activeTrackIndex].isRecording) {
         const noteData = {
             note: note,
             startTime: startTime,
-            duration: null // Durata sarà calcolata al rilascio del tasto
+            duration: null // Duration will be calculated when the note is released
         };
 
-        // Salva la nota nella traccia attiva
+         // Append the note data to the audio data of the active track
         tracks[activeTrackIndex].audioData.push(noteData);
         console.log(`Registrata nota ${note} sulla traccia ${activeTrackIndex + 1}`, noteData);
     }
 
-    // Inizia ad aggiornare il rettangolo
+    // Start updating the rectangle's visual representation
     requestAnimationFrame(() => updateRectangle(note));
 }
+
 
 // Gestione pressione tasti da tastiera
 document.addEventListener('keydown', function(event) {
@@ -762,38 +760,40 @@ pads.forEach(pad => {
             pad.classList.add('key-active');
             pad.classList.add('active-text');
             pressedPads[key] = true;
-
+    
+            // Aggiungi questa parte per aggiornare il canvas
+            if (number >= 1 && number <= 9) {
+                const x = metronomePlaying ? timeBarX : lastBarX; // Usa la posizione corrente
+                let color = "black"; // Default nero
+    
+                // Cambia colore solo se il metronomo è fermo
+                if (!metronomePlaying && activeNumbersWithPositions.some(n => n.number === number)) {
+                    color = `#${Math.floor(Math.random() * 16777215).toString(16)}`; // Colore casuale
+                }
+    
+                activeNumbersWithPositions.push({ number, x, color }); // Salva numero con posizione e colore
+                drawAllNumbers(); // Ridisegna i numeri sul canvas
+            }
+    
+            // Registrazione globale
             if (isGlobalRecording && activeTrackIndex !== -1) {
                 console.log(`Registrazione attiva sulla traccia ${activeTrackIndex + 1}`);
                 const track = tracks[activeTrackIndex];
                 const startTime = performance.now(); // Tempo di inizio della nota
-
+    
                 // Salva i dati audio e visivi per il PAD
                 track.audioData.push({
                     note: pad.getAttribute('data-sound'), // Nome del file audio del pad
                     startTime    // Tempo di inizio della nota
                 });
-
+    
                 console.log(`Registrato suono del pad (${pad.getAttribute('data-sound')}) sulla traccia ${activeTrackIndex + 1}`);
-
-                // Disegna il numero associato al PAD sul canvas principale
-                if (number >= 1 && number <= 9) {
-                    const x = metronomePlaying ? timeBarX : lastBarX; // Usa la posizione corrente
-                    let color = "black"; // Default nero
-
-                    // Cambia colore solo se il metronomo è fermo
-                    if (!metronomePlaying && activeNumbersWithPositions.some(n => n.number === number)) {
-                        color = `#${Math.floor(Math.random() * 16777215).toString(16)}`; // Colore casuale
-                    }
-
-                    activeNumbersWithPositions.push({ number, x, color }); // Salva numero con posizione e colore
-                    drawAllNumbers(); // Ridisegna i numeri
-                }
             } else {
                 console.log("Registrazione non attiva o nessuna traccia selezionata.");
             }
         }
     });
+    
 
     pad.addEventListener('mouseup', () => {
         const key = pad.getAttribute('data-key');
