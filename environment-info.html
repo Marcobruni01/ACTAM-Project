@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>How to Create a New Environment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        ol {
+            padding-left: 20px;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>How to Create a New Environment</h1>
+    <p>Follow these steps to add a new environment:</p>
+    <ol>
+        <li>Add a new entry in the JSON file under the "ambienti" section.</li>
+        <li>Specify the environment name and the path to the background image.</li>
+        <li>Create a sound set organized by timbres and notes (e.g., C3, D3, etc.).</li>
+        <li>Upload the audio files into the appropriate folder structure.</li>
+        <li>Ensure all paths are correct and validate functionality before saving changes.</li>
+    </ol>
+    <p>Example JSON Structure:</p>
+    <pre>
+{
+  "nome": "My Environment",
+  "sfondo": "path/to/background.jpg",
+  "setSuoni": [
+    {
+      "nome": "Timbre 1",
+      "suoni": {
+        "C3": "path/to/C3.mp3",
+        "D3": "path/to/D3.mp3"
+      }
+    }
+  ]
+}
+    </pre>
+    <p>Save the JSON file and refresh the application to load the new environment.</p>
+    <button onclick="window.close()">Close</button>
+</body>
+</html>
