@@ -206,7 +206,7 @@ Contenitore del pad musicale */
     position: absolute;
     grid-column: span 1;
     left: 36vw;
-    top: -11vh;
+    top: -16vh;
     transform: translateY(-50%);
     background-color: rgb(75, 72, 85);
     padding: 15px;
@@ -602,7 +602,7 @@ label[for="timeSignature"] {
 #multitrack-recorder-wrapper {
     position: absolute;
     left: 1vw; /* Posizione orizzontale */
-    top: 42vh; /* Posizione verticale */
+    top: 43.5vh; /* Posizione verticale */
     width: 60%; /* Larghezza del contenitore */
     max-width: 460px; /* Larghezza massima */
     z-index: 10; /* Assicurati che il contenitore sia sopra altri elementi */

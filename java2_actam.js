@@ -1,7 +1,7 @@
-let currentOctave = 3; // Ottava corrente, parte da C3-F4
-let currentSet = 1; // Set di timbri corrente
+let currentOctave = 3; // Three current octave
+let currentSet = 1; // Current timbre
 
-// Definisci i nomi dei timbri per i 4 set
+// Four timbre set
 const soundSets = {
     1: 'keyboard/timbro1',
     2: 'keyboard/timbro2',
@@ -11,7 +11,7 @@ const soundSets = {
 
 
 // Getting files for the different ambients
-let dati; // Variabile per salvare i dati JSON
+let dati; // Variable for saving JSON data
 let ambienteCorrente;
 let setCorrente;
 let paddone;
@@ -40,7 +40,7 @@ function cambiaAmbiente() {
   const suoniContainer = document.getElementById('suoniContainer');
   
   suoniContainer.innerHTML = ''; // Reset
-  setSuoniSelect.style.display = 'none'; // Nascondi finché non c'è un ambiente selezionato
+  setSuoniSelect.style.display = 'none'; // No sound until an environment is selected
 
   ambienteCorrente = dati.ambienti.find(a => a.nome === ambienteSelect.value);
 
@@ -52,10 +52,10 @@ function cambiaAmbiente() {
       option.textContent = set.nome;
       setSuoniSelect.appendChild(option);
     });
-    setSuoniSelect.style.display = 'block'; // Mostra menu set di suoni
+    setSuoniSelect.style.display = 'block'; // Show sound set menu
   }
 
-  cambiaSfondo(ambienteCorrente.sfondo);
+  cambiaSfondo(ambienteCorrente.sfondo); // Change wallpaper
 
   if (ambienteCorrente) {
     paddone = ambienteCorrente.soundPad[0];
@@ -64,33 +64,42 @@ function cambiaAmbiente() {
 
 }
 
+
+
+// Updates the current sound set and key-to-sound mapping based on user selection.
 function cambiaSetSuoni() {
     const setSuoniSelect = document.getElementById('setSuoniSelect');
+    // Find and set the selected sound set
     setCorrente = ambienteCorrente.setSuoni.find(set => set.nome === setSuoniSelect.value);
 
     if (setCorrente) {
+        // Update the key-to-sound mapping
         Object.keys(setCorrente.suoni).forEach(chiave => {
-            keyMap[chiave] = setCorrente.suoni[chiave]; // Mappa nota-suono
+            keyMap[chiave] = setCorrente.suoni[chiave];
         });
     }
 
-    // Rimuovi il focus dal selettore
+    // Remove focus from the selector
     setSuoniSelect.blur();
 }
 
 
+// Updates the audio player's source to the provided URL.
+ 
 function cambiaSuono(url) {
-  const audioPlayer = document.getElementById('audioPlayer');
-  audioPlayer.src = url;
-  
+    const audioPlayer = document.getElementById('audioPlayer');
+    audioPlayer.src = url; // Set the new audio source
 }
 
+// Changes the webpage background to the specified image URL.
+
 function cambiaSfondo(url) {
-    document.body.style.backgroundImage = `url(${url})`;
-    document.body.style.backgroundSize = 'cover';
-    document.body.style.backgroundPosition = 'center';
-    document.body.style.backgroundRepeat = 'no-repeat';
-  }
+    document.body.style.backgroundImage = `url(${url})`; // Set the background image
+    document.body.style.backgroundSize = 'cover'; // Ensure the image covers the entire background
+    document.body.style.backgroundPosition = 'center'; // Center the background image
+    document.body.style.backgroundRepeat = 'no-repeat'; // Prevent the image from repeating
+}
+
 
 
   
@@ -98,64 +107,72 @@ function cambiaSfondo(url) {
   
 
 window.keyMapOctave1 = {
-    'A': 'C3',      // Do
-    'W': 'Csharp3', // Do diesis
-    'S': 'D3',      // Re
-    'E': 'Dsharp3', // Re diesis
-    'D': 'E3',      // Mi
-    'F': 'F3',      // Fa
-    'T': 'Fsharp3', // Fa diesis
-    'G': 'G3',      // Sol
-    'Y': 'Gsharp3', // Sol diesis
-    'H': 'A3',      // La
-    'U': 'Asharp3', // La diesis
-    'J': 'B3',      // Si
-    'K': 'C4',      // Do (ottava superiore)
-    'O': 'Csharp4', // Do diesis (ottava superiore)
-    'L': 'D4',      // Re (ottava superiore)
-    'P': 'Dsharp4', // Re diesis (ottava superiore)
-    'Ò': 'E4',      // Mi (ottava superiore)
-    'À': 'F4'       // Fa (ottava superiore)
+    'A': 'C3',
+    'W': 'Csharp3',
+    'S': 'D3',
+    'E': 'Dsharp3',
+    'D': 'E3',
+    'F': 'F3',
+    'T': 'Fsharp3',
+    'G': 'G3',
+    'Y': 'Gsharp3',
+    'H': 'A3',
+    'U': 'Asharp3',
+    'J': 'B3',
+    'K': 'C4',
+    'O': 'Csharp4',
+    'L': 'D4',
+    'P': 'Dsharp4',
+    'Ò': 'E4',
+    'À': 'F4'
 };
 
 window.keyMapOctave2 = {
-    'A': 'C4',      // Do
-    'W': 'Csharp4', // Do diesis
-    'S': 'D4',      // Re
-    'E': 'Dsharp4', // Re diesis
-    'D': 'E4',      // Mi
-    'F': 'F4',      // Fa
-    'T': 'Fsharp4', // Fa diesis
-    'G': 'G4',      // Sol
-    'Y': 'Gsharp4', // Sol diesis
-    'H': 'A4',      // La
-    'U': 'Asharp4', // La diesis
-    'J': 'B4',      // Si
-    'K': 'C5',      // Do (ottava superiore)
-    'O': 'Csharp5', // Do diesis (ottava superiore)
-    'L': 'D5',      // Re (ottava superiore)
-    'P': 'Dsharp5', // Re diesis (ottava superiore)
-    'Ò': 'E5',      // Mi (ottava superiore)
-    'À': 'F5'       // Fa (ottava superiore)
+    'A': 'C4',
+    'W': 'Csharp4',
+    'S': 'D4',
+    'E': 'Dsharp4',
+    'D': 'E4',
+    'F': 'F4',
+    'T': 'Fsharp4',
+    'G': 'G4',
+    'Y': 'Gsharp4',
+    'H': 'A4',
+    'U': 'Asharp4',
+    'J': 'B4',
+    'K': 'C5',
+    'O': 'Csharp5',
+    'L': 'D5',
+    'P': 'Dsharp5',
+    'Ò': 'E5',
+    'À': 'F5'
 };
 
 
 
-// Inizializzazione Web Audio API
+
+// Initialize Web Audio API
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
-// Garantisce che il tuo AudioContext sia pronto per funzionare senza blocchi
+// Ensures the AudioContext is ready to function without interruptions
 document.addEventListener('click', () => {
     if (audioContext.state === 'suspended') {
         audioContext.resume().then(() => {
-            console.log("AudioContext avviato dopo il clic dell'utente.");
+            console.log("AudioContext started after user interaction.");
         });
     }
 });
 
-
+// Set the default value of the timbre selector to the current sound set
 document.getElementById('timbre-select').value = currentSet;
 
+
+
+
+//----------------------- EFFECTS: Flanger, Delay, Distortion, Chorus -----------------------//
+
+
+// To store the effect nodes for active audio processing effects (initialized as null)
 let effectNodes = {
     flanger: null,
     delay: null,
@@ -164,7 +181,7 @@ let effectNodes = {
     
 };
 
-// Variabili per tenere traccia degli effetti attivi
+// To track the activation state of each effect (on or off)
 let activeEffects = {
     flanger: false,
     delay: false,
@@ -184,7 +201,7 @@ const delayKnob = document.getElementById('knob-delay');
 const distortionKnob = document.getElementById('knob-distortion');
 const chorusKnob = document.getElementById('knob-chorus');
 
-// Event listeners per i knobs
+// Knobs listeners 
 flangerKnob.addEventListener('input', () => {
     if (activeEffects.flanger) {
         effectNodes.flanger = createFlanger(flangerKnob.value);
@@ -213,52 +230,53 @@ chorusKnob.addEventListener('input', () => {
     }
 });
 
-// Oggetto per tracciare i suoni attivi per ogni nota
+// To track active sounds for each note
 const activeNotes = {};
 
-// Funzione per riprodurre il suono della nota con effetti e selezione del timbro
+// Function to play the sound of a note with effects and timbre selection
 function playNote(note) {
 
-    // Attiva l'audioContext se è sospeso, ogni volta che viene chiamato playNote
+    // Activates the AudioContext if it is suspended, each time playNote is called
     if (audioContext.state === 'suspended') {
         audioContext.resume();
     }
-    // Costruisce il percorso del file audio in base al set di timbri attuale
+    // Builds the audio file path based on the current timbre set
     const sound = setCorrente.suoni[note];
     
     const audio = new Audio(sound);
     
-    // Crea una sorgente audio nel contesto audio
+    // Creates an audio source in the AudioContext
     const track = audioContext.createMediaElementSource(audio);
 
-    // Applica gli effetti attivi in catena
+    // Applies active effects in the processing chain
     applyActiveEffects(track);
 
-    // Memorizza l'oggetto audio attivo per questa nota
+    // Stores the active audio object for this note
     if (!activeNotes[note]) {
         activeNotes[note] = [];
     }
 
-    // Memorizza l'istanza audio nella lista
+    // Stores the audio instance in the list
     activeNotes[note].push(audio);
 
-    // Connetti alla destinazione
+    // Connects to the destination (speakers or output device)
     track.connect(audioContext.destination);
 
-    console.log(`Riproduzione nota: ${note}, istanze attive: ${activeNotes[note].length}`);
+    console.log(`Playing note: ${note}, active instances: ${activeNotes[note].length}`);
 
-    // Avvia la riproduzione
-    audio.play().catch(error => console.error("Errore nel caricamento dell'audio: ", error));
+    // Starts playback
+    audio.play().catch(error => console.error("Error loading audio: ", error));
 
-     // Event listener per rimuovere l'istanza audio una volta terminata
+     // Event listener to remove the audio instance once playback ends
      audio.addEventListener('ended', () => {
         const index = activeNotes[note].indexOf(audio);
         if (index > -1) {
             activeNotes[note].splice(index, 1);
         }
-        console.log(`Nota ${note} terminata, rimosso audio. Istanze rimanenti: ${activeNotes[note].length}`);
+        console.log(`Note ${note} ended, audio removed. Remaining instances: ${activeNotes[note].length}`);
     });
 }
+
 
 
 // Funzione per applicare gli effetti attivi in catena
