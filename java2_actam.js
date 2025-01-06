@@ -463,13 +463,18 @@ function createChorus(depth) {
 }
 
 
-// ---------------------------------------- Pianola: Event Listener Setup ---------------------------------------------------
+
+// ---------------------------------------- KEYBOARD: Event Listener Setup ---------------------------------------------------
+
+
 
 // Initially, set the keyMap to the first octave
 let keyMap = keyMapOctave1;
 let pressedKeys = {};// Object to track the currently pressed keys
 
+
 updateKeyLabels();// Update the key labels on the keyboard to reflect the current octave
+
 
 // Function to switch between octaves
 document.getElementById('switch-octave').addEventListener('click', () => {
@@ -513,7 +518,7 @@ function updateKeyLabels() {
 // Stops the sound of a specific note, managing multiple active instances if necessary
 function stopNote(note) {
     if (activeNotes[note] && activeNotes[note].length > 0) {
-        console.log(`Stop nota: ${note}, istanze attive: ${activeNotes[note].length}`);
+        console.log(`Stop note: ${note}, active issues: ${activeNotes[note].length}`);
 
         // Stops only one instance at a time
         const audio = activeNotes[note].shift(); // Remove the first instance from the array
@@ -527,7 +532,7 @@ function stopNote(note) {
             delete activeNotes[note];
         }
     } else {
-        console.warn(`Nota ${note} non trovata o già fermata.`);
+        console.warn(`Not found Note ${note} or already stopped.`);
     }
 }
 
@@ -540,7 +545,7 @@ function activateNote(note, source, startTime = performance.now()) {
     highlightKey(note);// Highlight the key visually
     pressedKeys[note] = true;// Mark the note as pressed
 
-    console.log(`Nota attivata da ${source}: ${note}`);
+    console.log(`Note activated by ${source}: ${note}`);
 
       // Initialize the rectangle for the active note
     activeRectangles[note] = {
@@ -566,7 +571,7 @@ function activateNote(note, source, startTime = performance.now()) {
 
          // Append the note data to the audio data of the active track
         tracks[activeTrackIndex].audioData.push(noteData);
-        console.log(`Registrata nota ${note} sulla traccia ${activeTrackIndex + 1}`, noteData);
+        console.log(`Recorded note ${note} on track ${activeTrackIndex + 1}`, noteData);
     }
 
     // Start updating the rectangle's visual representation
@@ -574,99 +579,117 @@ function activateNote(note, source, startTime = performance.now()) {
 }
 
 
-// Gestione pressione tasti da tastiera
+/// Handle key press events from the keyboard
 document.addEventListener('keydown', function(event) {
-    const dataKey = event.key.toUpperCase();
-    const note = keyMap[dataKey];
+    const dataKey = event.key.toUpperCase(); // Get the pressed key and convert it to uppercase
+    const note = keyMap[dataKey]; // Map the key to a note using the keyMap
     if (note) {
-        activateNote(note, "tastiera");
+        activateNote(note, "keyboard"); // Activate the note if it exists in the keyMap
     }
 });
 
-// Gestione rilascio tasti da tastiera
+// Handle key release events from the keyboard
 document.addEventListener('keyup', function(event) {
-    const dataKey = event.key.toUpperCase();
-    const note = keyMap[dataKey];
+    const dataKey = event.key.toUpperCase(); // Get the released key and convert it to uppercase
+    const note = keyMap[dataKey]; // Map the key to a note using the keyMap
     if (note) {
-        unhighlightKey(note);
-        stopNote(note);
-        pressedKeys[note] = false;
+        unhighlightKey(note); // Remove the visual highlight from the key
+        stopNote(note); // Stop the sound of the note
+        pressedKeys[note] = false; // Mark the note as no longer pressed
 
-        // Fissa la larghezza finale e aggiungi il rettangolo a `playedNotes`
+        // Fix the final width and add the rectangle to `playedNotes`
         const rectangle = activeRectangles[note];
         if (rectangle) {
             playedNotes.push({
-                note: rectangle.note,
-                x: rectangle.x,
-                y: rectangle.y,
-                width: rectangle.width,
-                height: 10,
-                color: noteColors[rectangle.note] || "black"
+                note: rectangle.note, // Note name
+                x: rectangle.x, // Starting X position
+                y: rectangle.y, // Vertical position
+                width: rectangle.width, // Final width of the rectangle
+                height: 10, // Height of the rectangle
+                color: noteColors[rectangle.note] || "black" // Color for the note
             });
 
-            // Disegna la nota fissata
-            drawFixedNoteOnStaff(rectangle.note, rectangle.x, rectangle.y, rectangle.width, 10, noteColors[rectangle.note] || "black");
+            // Draw the fixed note on the staff
+            drawFixedNoteOnStaff(
+                rectangle.note,
+                rectangle.x,
+                rectangle.y,
+                rectangle.width,
+                10,
+                noteColors[rectangle.note] || "black"
+            );
 
-            // Rimuovi il rettangolo dall’oggetto `activeRectangles`
+            // Remove the rectangle from the `activeRectangles` object
             delete activeRectangles[note];
         }
 
-        // Aggiorna la durata della nota nella traccia attiva (se presente)
+        // Update the note's duration in the active track (if any)
         if (activeTrackIndex !== -1 && tracks[activeTrackIndex].isRecording) {
             const track = tracks[activeTrackIndex];
-            const noteEvent = track.audioData.find((n) => n.note === note && n.duration === null);
+            const noteEvent = track.audioData.find(
+                (n) => n.note === note && n.duration === null // Find the active note event with no duration
+            );
             if (noteEvent) {
-                noteEvent.duration = performance.now() - noteEvent.startTime;
-                console.log(`Rilasciata nota ${note}, durata: ${noteEvent.duration}ms sulla traccia ${activeTrackIndex + 1}`);
+                noteEvent.duration = performance.now() - noteEvent.startTime; // Calculate the note's duration
+                console.log(
+                    `Released note ${note}, duration: ${noteEvent.duration}ms on track ${activeTrackIndex + 1}`
+                );
             }
         }
     }
 });
 
-// Aggiungi ascoltatori per il clic sui tasti della pianola
-const keys = document.querySelectorAll('.tasto, .tasto-nero'); // Seleziona sia i tasti bianchi che quelli neri
+// Add listeners for clicks on the piano keys
+const keys = document.querySelectorAll('.tasto, .tasto-nero'); // Select both the white and black keys
 keys.forEach(key => {
     key.addEventListener('mousedown', function(event) {
-        event.stopPropagation(); // Evita che il clic passi al canvas
+        event.stopPropagation(); // Prevent the click from propagating to the canvas
         const note = this.getAttribute('data-note');
         if (note) {
-            activateNote(note, "mouse");
+            activateNote(note, "mouse"); // Activate the note when clicked with the mouse
         }
     });
 
     key.addEventListener('mouseup', function() {
         const note = this.getAttribute('data-note');
         if (note) {
-            unhighlightKey(note);
-            stopNote(note);
-            pressedKeys[note] = false;
+            unhighlightKey(note); // Remove the visual highlight from the key
+            stopNote(note); // Stop the note sound
+            pressedKeys[note] = false; // Mark the key as released
 
-            // Fissa la larghezza finale e aggiungi il rettangolo a `playedNotes`
+            // Fix the final width and add the rectangle to `playedNotes`
             const rectangle = activeRectangles[note];
             if (rectangle) {
                 playedNotes.push({
-                    note: rectangle.note,
-                    x: rectangle.x,
-                    y: rectangle.y,
-                    width: rectangle.width,
-                    height: 10,
-                    color: noteColors[rectangle.note] || "black"
+                    note: rectangle.note, // Note identifier
+                    x: rectangle.x, // Starting X position
+                    y: rectangle.y, // Vertical position
+                    width: rectangle.width, // Final rectangle width
+                    height: 10, // Rectangle height
+                    color: noteColors[rectangle.note] || "black" // Rectangle color, defaulting to black
                 });
 
-                // Disegna la nota fissata
-                drawFixedNoteOnStaff(rectangle.note, rectangle.x, rectangle.y, rectangle.width, 10, noteColors[rectangle.note] || "black");
+                // Draw the fixed note on the staff
+                drawFixedNoteOnStaff(
+                    rectangle.note,
+                    rectangle.x,
+                    rectangle.y,
+                    rectangle.width,
+                    10,
+                    noteColors[rectangle.note] || "black"
+                );
 
-                // Rimuovi il rettangolo dall’oggetto `activeRectangles`
+                // Remove the rectangle from the `activeRectangles` object
                 delete activeRectangles[note];
             }
 
-            // Aggiorna la durata della nota nella traccia attiva (se presente)
+            // Update the note's duration in the active track (if any)
             if (activeTrackIndex !== -1 && tracks[activeTrackIndex].isRecording) {
                 const track = tracks[activeTrackIndex];
                 const noteEvent = track.audioData.find((n) => n.note === note && n.duration === null);
                 if (noteEvent) {
                     noteEvent.duration = performance.now() - noteEvent.startTime;
-                    console.log(`Rilasciata nota ${note}, durata: ${noteEvent.duration}ms sulla traccia ${activeTrackIndex + 1}`);
+                    console.log(`Released note ${note}, duration: ${noteEvent.duration}ms on track ${activeTrackIndex + 1}`);
                 }
             }
         }
@@ -675,23 +698,33 @@ keys.forEach(key => {
     key.addEventListener('mouseleave', function() {
         const note = this.getAttribute('data-note');
         if (note) {
-            unhighlightKey(note);
-            stopNote(note);
-            pressedKeys[note] = false;
+            unhighlightKey(note); // Remove the visual highlight if the mouse leaves the key
+            stopNote(note); // Stop the note sound
+            pressedKeys[note] = false; // Mark the key as released
 
-            // Se il mouse esce dal tasto, chiudiamo il rettangolo attivo
+            // If the mouse leaves the key, finalize the active rectangle
             const rectangle = activeRectangles[note];
             if (rectangle) {
                 playedNotes.push({
-                    note: rectangle.note,
-                    x: rectangle.x,
-                    y: rectangle.y,
-                    width: rectangle.width,
-                    height: 10,
-                    color: noteColors[rectangle.note] || "black"
+                    note: rectangle.note, // Note identifier
+                    x: rectangle.x, // Starting X position
+                    y: rectangle.y, // Vertical position
+                    width: rectangle.width, // Final rectangle width
+                    height: 10, // Rectangle height
+                    color: noteColors[rectangle.note] || "black" // Rectangle color, defaulting to black
                 });
 
-                drawFixedNoteOnStaff(rectangle.note, rectangle.x, rectangle.y, rectangle.width, 10, noteColors[rectangle.note] || "black");
+                // Draw the finalized note on the staff
+                drawFixedNoteOnStaff(
+                    rectangle.note,
+                    rectangle.x,
+                    rectangle.y,
+                    rectangle.width,
+                    10,
+                    noteColors[rectangle.note] || "black"
+                );
+
+                // Remove the rectangle from the `activeRectangles` object
                 delete activeRectangles[note];
             }
         }
@@ -699,26 +732,28 @@ keys.forEach(key => {
 });
 
 
+// Function to visually highlight a key when activated
 function highlightKey(note) {
     const tasto = document.querySelector(`[data-note="${note}"]`);
     if (tasto) {
-        tasto.classList.add('active');
+        tasto.classList.add('active'); // Add the "active" class for visual feedback
         
-        // Visualizza "#" invece di "sharp" sui tasti neri durante la pressione
+        // Display "#" instead of "sharp" on black keys when pressed
         if (tasto.classList.contains('tasto-nero')) {
-            const noteLabel = note.replace("sharp", "#"); // Sostituisce "sharp" con "#"
+            const noteLabel = note.replace("sharp", "#"); // Replace "sharp" with "#"
             tasto.textContent = noteLabel;
         }
     }
 }
 
 
+// Function to remove the visual highlight from a key
 function unhighlightKey(note) {
     const tasto = document.querySelector(`[data-note="${note}"]`);
     if (tasto) {
-        tasto.classList.remove('active');
+        tasto.classList.remove('active'); // Remove the "active" class
         
-        // Rimuove il testo dai tasti neri al rilascio
+        // Clear the text on black keys when released
         if (tasto.classList.contains('tasto-nero')) {
             tasto.textContent = '';
         }
@@ -728,227 +763,235 @@ function unhighlightKey(note) {
 
 
 
-// SELECTOR
+// TIMBRE SELECTOR
 document.getElementById('timbre-select').addEventListener('change', function() {
-    currentSet = parseInt(this.value);  // Aggiorna il set corrente
+    currentSet = parseInt(this.value);  // Update the current sound set
 
-    // Resetta l'ottava alla terza
-    keyMap = keyMapOctave1;  // Imposta la mappa delle note alla prima ottava
-    currentOctave = 3;       // Imposta l'ottava corrente a 3
-    updateKeyLabels();       // Aggiorna le etichette delle note sulla tastiera
+    // Reset the octave to the third
+    keyMap = keyMapOctave1;  // Set the key mapping to the first octave
+    currentOctave = 3;       // Set the current octave to 3
+    updateKeyLabels();       // Update the note labels on the keyboard
 });
 
 
 
 
-// ----------------------  PAD  ----------------------
 
-// Mappa per tenere traccia dello stato dei tasti del pad premuti
+// ----------------------  PAD: premible with keys 1 to 9 or with the mouse in the GUI   ----------------------
+
+// Map to track the state of pressed pad keys
 let pressedPads = {};
 
-// Seleziona tutti i tasti del pad
+// Select all pad keys
 const pads = document.querySelectorAll('.pad');
 
-// Aggiungi evento click ai tasti del pad
-// Evento mousedown per numeri del pad
+
+// Activates a PAD note (via keyboard or mouse), plays the sound, highlights the key, and handles visual and recording logic.
 pads.forEach(pad => {
+    // Add an event listener for the mousedown event on each pad
     pad.addEventListener('mousedown', () => {
-        const key = pad.getAttribute('data-key');
+        const key = pad.getAttribute('data-key'); // Retrieve the key identifier for the pad
+        
+        // Check if the pad key is not already pressed
         if (!pressedPads[key]) {
-            const number = parseInt(pad.textContent.trim());
-            playPadSound(pad);
-            pad.classList.add('key-active');
-            pad.classList.add('active-text');
-            pressedPads[key] = true;
+            const number = parseInt(pad.textContent.trim()); // Extract the number displayed on the pad
+            playPadSound(pad); // Play the sound associated with the pad
+            pad.classList.add('key-active'); // Add a class to visually highlight the pad
+            pad.classList.add('active-text'); // Add another class for active text styling
+            pressedPads[key] = true; // Mark the pad as pressed in the tracking map
     
-            // Aggiungi questa parte per aggiornare il canvas
-            if (number >= 1 && number <= 9) {
-                const x = metronomePlaying ? timeBarX : lastBarX; // Usa la posizione corrente
-                let color = "black"; // Default nero
+            // Update the canvas with the pad's number, position, and color
+            if (number >= 1 && number <= 9) { // Only process numbers in the valid range
+                const x = metronomePlaying ? timeBarX : lastBarX; // Determine the X position based on the metronome state
+                let color = "black"; // Default color is black
     
-                // Cambia colore solo se il metronomo è fermo
-                if (!metronomePlaying && activeNumbersWithPositions.some(n => n.number === number)) {
-                    color = `#${Math.floor(Math.random() * 16777215).toString(16)}`; // Colore casuale
-                }
-    
-                activeNumbersWithPositions.push({ number, x, color }); // Salva numero con posizione e colore
-                drawAllNumbers(); // Ridisegna i numeri sul canvas
+                activeNumbersWithPositions.push({ number, x, color }); // Save the pad number with its position and color
+                drawAllNumbers(); // Redraw all active numbers on the canvas
             }
     
-            // Registrazione globale
-            if (isGlobalRecording && activeTrackIndex !== -1) {
-                console.log(`Registrazione attiva sulla traccia ${activeTrackIndex + 1}`);
+            // Handle global recording logic
+            if (isGlobalRecording && activeTrackIndex !== -1) { // Check if recording is active and a track is selected
+                console.log(`Recording active on track ${activeTrackIndex + 1}`); // Log the active track
                 const track = tracks[activeTrackIndex];
-                const startTime = performance.now(); // Tempo di inizio della nota
+                const startTime = performance.now(); // Capture the note's start time
     
-                // Salva i dati audio e visivi per il PAD
+                // Save the audio data and pad details to the current track
                 track.audioData.push({
-                    note: pad.getAttribute('data-sound'), // Nome del file audio del pad
-                    startTime    // Tempo di inizio della nota
+                    note: pad.getAttribute('data-sound'), // Get the name of the pad's associated sound file
+                    startTime    // Store the start time of the note
                 });
     
-                console.log(`Registrato suono del pad (${pad.getAttribute('data-sound')}) sulla traccia ${activeTrackIndex + 1}`);
+                console.log(`Recorded pad sound (${pad.getAttribute('data-sound')}) on track ${activeTrackIndex + 1}`); // Log the recording
             } else {
-                console.log("Registrazione non attiva o nessuna traccia selezionata.");
+                console.log("Recording not active or no track selected."); // Log if recording is inactive
             }
         }
     });
-    
 
-    pad.addEventListener('mouseup', () => {
-        const key = pad.getAttribute('data-key');
-        pad.classList.remove('key-active');
-        pad.classList.remove('active-text');
-        pressedPads[key] = false;
-    });
 
-    pad.addEventListener('mouseleave', () => {
-        const key = pad.getAttribute('data-key');
-        pad.classList.remove('key-active');
-        pad.classList.remove('active-text');
-        pressedPads[key] = false;
-    });
+
+    // Add an event listener for the mouseup event on each pad
+pad.addEventListener('mouseup', () => {
+    const key = pad.getAttribute('data-key'); // Retrieve the key identifier for the pad
+    pad.classList.remove('key-active'); // Remove the visual highlight from the pad
+    pad.classList.remove('active-text'); // Remove the active text styling from the pad
+    pressedPads[key] = false; // Mark the pad as no longer pressed in the tracking map
+});
+
+// Add an event listener for the mouseleave event on each pad
+pad.addEventListener('mouseleave', () => {
+    const key = pad.getAttribute('data-key'); // Retrieve the key identifier for the pad
+    pad.classList.remove('key-active'); // Remove the visual highlight from the pad
+    pad.classList.remove('active-text'); // Remove the active text styling from the pad
+    pressedPads[key] = false; // Mark the pad as no longer pressed in the tracking map
+});
+
 });
 
 
+// Handle keyboard keydown events
 document.addEventListener('keydown', (e) => {
-    const key = e.keyCode;
-    const pad = document.querySelector(`.pad[data-key="${key}"]`);
-    if (pad && !pressedPads[key]) {
-        playPadSound(pad);
-        pad.classList.add('key-active');
-        pad.classList.add('active-text');
-        pressedPads[key] = true;
+    const key = e.keyCode; // Get the keycode of the pressed key
+    const pad = document.querySelector(`.pad[data-key="${key}"]`); // Find the corresponding pad by data-key attribute
+    if (pad && !pressedPads[key]) { // Check if the pad exists and is not already pressed
+        playPadSound(pad); // Play the sound associated with the pad
+        pad.classList.add('key-active'); // Add a visual highlight to the pad
+        pad.classList.add('active-text'); // Add a text-active style to the pad
+        pressedPads[key] = true; // Mark the pad as pressed in the tracking map
 
-        const number = parseInt(pad.textContent.trim());
+        const number = parseInt(pad.textContent.trim()); // Get the number displayed on the pad
 
-        // Disegna il numero associato al PAD sul canvas principale
-        if (number >= 1 && number <= 9) {
-            const x = metronomePlaying ? timeBarX : lastBarX; // Usa la posizione corrente
-            let color = "black"; // Default nero
+        // Draw the number associated with the pad on the main canvas
+        if (number >= 1 && number <= 9) { // Only handle numbers within the valid range
+            const x = metronomePlaying ? timeBarX : lastBarX; // Use the current position on the canvas
+            let color = "black"; // Default color is black
 
-            // Cambia colore solo se il metronomo è fermo
+            // Change the color only if the metronome is stopped
             if (!metronomePlaying && activeNumbersWithPositions.some(n => n.number === number)) {
-                color = `#${Math.floor(Math.random() * 16777215).toString(16)}`; // Colore casuale
+                color = `#${Math.floor(Math.random() * 16777215).toString(16)}`; // Generate a random color
             }
 
-            activeNumbersWithPositions.push({ number, x, color }); // Salva numero con posizione e colore
-            drawAllNumbers(); // Ridisegna i numeri
+            // Save the number with its position and color to the active list
+            activeNumbersWithPositions.push({ number, x, color }); 
+            drawAllNumbers(); // Redraw all numbers on the canvas
         }
 
-        if (isGlobalRecording && activeTrackIndex !== -1) {
-            console.log(`Registrazione attiva sulla traccia ${activeTrackIndex + 1}`);
+        // Recording logic
+        if (isGlobalRecording && activeTrackIndex !== -1) { // Check if global recording is active and a track is selected
+            console.log(`Recording active on track ${activeTrackIndex + 1}`);
             const track = tracks[activeTrackIndex];
-            const startTime = performance.now(); // Tempo di inizio della nota
+            const startTime = performance.now(); // Capture the start time of the note
 
-            // Salva i dati audio per il PAD durante la registrazione
+            // Save audio data for the pad during recording
             track.audioData.push({
-                note: pad.getAttribute('data-sound'), // Nome del file audio del pad
-                startTime    // Tempo di inizio della nota
+                note: pad.getAttribute('data-sound'), // Get the sound file name for the pad
+                startTime // Store the start time of the note
             });
 
-            console.log(`Registrato suono del pad (${pad.getAttribute('data-sound')}) sulla traccia ${activeTrackIndex + 1}`);
+            console.log(`Recorded pad sound (${pad.getAttribute('data-sound')}) on track ${activeTrackIndex + 1}`);
         } else {
-            console.log("Registrazione non attiva o nessuna traccia selezionata.");
+            console.log("Recording not active or no track selected."); // Log if no recording is active
         }
     }
 });
 
 
+// Handle keyboard keyup events
 document.addEventListener('keyup', (e) => {
-    const key = e.keyCode;
-    const pad = document.querySelector(`.pad[data-key="${key}"]`);
-    if (pad) {
-        pad.classList.remove('key-active');
-        pad.classList.remove('active-text');
-        pressedPads[key] = false;
+    const key = e.keyCode; // Get the keycode of the released key
+    const pad = document.querySelector(`.pad[data-key="${key}"]`); // Find the corresponding pad by data-key attribute
+    if (pad) { // Check if the pad exists
+        pad.classList.remove('key-active'); // Remove the visual highlight from the pad
+        pad.classList.remove('active-text'); // Remove the active text style from the pad
+        pressedPads[key] = false; // Mark the pad as no longer pressed in the tracking map
     }
 });
 
 
 
 
-// Funzione per riprodurre i suoni del pad
+// Function to play pad sounds
 function playPadSound(pad) {
-    const key = pad.getAttribute('data-sound');
-    const sound = paddone[`suono${key}`];
+    const key = pad.getAttribute('data-sound'); // Get the sound identifier from the pad
+    const sound = paddone[`suono${key}`]; // Retrieve the corresponding sound from the paddone object
     
     if (sound) {
-      const audio = new Audio(sound);
-      audio.play().catch(error => console.error("Errore nel caricamento dell'audio PAD:", error));
+        const audio = new Audio(sound); // Create a new audio instance for the sound
+        audio.play().catch(error => console.error("Error loading PAD audio:", error)); // Play the sound or log an error if it fails
     } else {
-      console.warn(`Nessun suono trovato per il tasto ${key}`);
+        console.warn(`No sound found for pad key ${key}`); // Warn if no sound is mapped to the key
     }
-  }
+}
 
 
 
-// ----------------------- Pentagramma e Barra del Tempo -----------------------------
+// ----------------------- Pentagram and Time Bar:
+// The Time Bar moves across the canvas at the speed chosen by the user-modifiable bpm and time signature. 
+// It changes colour if it is in the vicinity of an accent. 
+//The Pentagram as if it were a piano roll, not with traditional notes so that even those who don't know them can play by understanding. -----------------------------
 
-const canvas = document.getElementById('staffCanvas');
-const ctx = canvas.getContext('2d');
-let currentXPosition = 0;
-let timeBarX = 0;
-let isPlaying = false;
-let timeBarIntervalId;  // Identificatore per la barra del tempo
-let metronomeIntervalId;  // Identificatore per il metronomo
-let bpm = 120;  // Default BPM
-let beatDuration = 60000 / bpm;  // Durata di un battito in millisecondi
-let numberOfBars = 4;  // Default battute
-let beatsPerBar = 4;  // Numero di battiti per battuta, con let è modificabile 
-let barWidth = 200;  // Larghezza per ogni battuta
-let staffLength = numberOfBars * barWidth;  // Lunghezza totale del pentagramma
-let beatCount = 0;  // Contatore per i battiti
-let isTimeBarActive = false;  // Variabile per tracciare lo stato della barra del tempo
-const metronomeAccentFrequency = 800;  // Frequenza per l'accento del metronomo
-const metronomeClickFrequency = 500;  // Frequenza per il click normale
-let metronomeMuted = false;  // Stato di mute per il metronomo
-let metronomePlaying = false;
 
-// Imposta la larghezza del canvas basata sul numero di battute
+const canvas = document.getElementById('staffCanvas'); // Get the canvas element for the staff
+const ctx = canvas.getContext('2d'); // Get the 2D drawing context for the canvas
+let currentXPosition = 0; // Tracks the current X position for drawing notes
+let timeBarX = 0; // Tracks the current X position of the time bar
+let isPlaying = false; // Tracks whether the playback is active
+let timeBarIntervalId; // Identifier for the time bar interval timer
+let metronomeIntervalId; // Identifier for the metronome interval timer
+let bpm = 120; // Default beats per minute (BPM)
+let beatDuration = 60000 / bpm; // Duration of one beat in milliseconds, calculated from BPM
+let numberOfBars = 4; // Default number of bars
+let beatsPerBar = 4; // Number of beats per bar, modifiable with `let`
+let barWidth = 200; // Width of each bar in the staff
+let staffLength = numberOfBars * barWidth; // Total length of the staff in pixels
+let beatCount = 0; // Counter for the beats
+let isTimeBarActive = false; // Tracks whether the time bar is active
+const metronomeAccentFrequency = 800; // Frequency for the metronome's accented click (e.g., first beat)
+const metronomeClickFrequency = 500; // Frequency for the regular metronome click
+let metronomeMuted = false; // Tracks whether the metronome is muted
+let metronomePlaying = false; // Tracks whether the metronome is currently playing
+
+// Set the canvas width based on the total length of the staff
 canvas.width = staffLength;
 
-// Input per il BPM
-const bpmInput = document.getElementById('bpm');
+// Input element for adjusting the BPM
+const bpmInput = document.getElementById('bpm'); // Assume an HTML input element with id 'bpm'
 bpmInput.addEventListener('input', function() {
-    bpm = parseInt(this.value);
-    beatDuration = 60000 / bpm;  // Aggiorna la durata del battito
+    bpm = parseInt(this.value); // Parse the input value as an integer
+    beatDuration = 60000 / bpm; // Update the beat duration based on the new BPM
     if (metronomePlaying) {
-        clearInterval(metronomeIntervalId);  // Ferma l'intervallo precedente
-        startMetronome();  // Riavvia il metronomo con il nuovo BPM
+        clearInterval(metronomeIntervalId); // Stop the previous metronome interval
+        startMetronome(); // Restart the metronome with the updated BPM
     }
 });
 
-// Input per il numero di battute
-const barsInput = document.getElementById('bars');  // Presuppone un input HTML con id 'bars'
+// Input element for adjusting the number of bars
+const barsInput = document.getElementById('bars'); // Assume an HTML input element with id 'bars'
 barsInput.addEventListener('input', function() {
-    numberOfBars = parseInt(this.value);
-    staffLength = numberOfBars * barWidth;  // Ricalcola la lunghezza totale del pentagramma
-    canvas.width = staffLength;  // Aggiorna la larghezza del canvas
-    currentXPosition = 0;  // Reset posizione corrente delle note
-    //clearStaff();  // Pulisce il pentagramma
-    //drawStaffLines();  // Ridisegna le linee del pentagramma
-    timeBarX = 0;  // Reset della posizione della barra
+    numberOfBars = parseInt(this.value); // Parse the input value as an integer
+    staffLength = numberOfBars * barWidth; // Recalculate the total staff length
+    canvas.width = staffLength; // Update the canvas width to match the new staff length
+    currentXPosition = 0; // Reset the current X position for drawing notes
+    timeBarX = 0; // Reset the time bar position
 });
 
 
 
-let playedNotes = [];  // Array per memorizzare le note già suonate
-let performanceStartTime = performance.now();  // Momento in cui la performance inizia
-let lastNoteTime = performanceStartTime;  // Tempo dell'ultima nota suonata
-let totalBeats = numberOfBars * beatsPerBar;  // Numero totale di battiti
-const barWidthPerBeat = canvas.width / totalBeats; // Quantità di pixel di spostamento per ogni battito
-//let canvasWidthPerBeat = canvas.width / totalBeats;  // Spazio che ogni battito deve occupare nel canvas
-const toleranceWindow = barWidthPerBeat * 0.2;  // Finestra di tolleranza per allineare la nota alla barra
-// Variabile per tracciare i tempi di inizio della pressione dei tasti
+let playedNotes = [];  // Array to store the notes that have already been played
+let performanceStartTime = performance.now();  // The time when the performance begins
+let lastNoteTime = performanceStartTime;  // Time of the last note played
+let totalBeats = numberOfBars * beatsPerBar;  // Total number of beats in the composition
+const barWidthPerBeat = canvas.width / totalBeats; // The number of pixels allocated for each beat on the canvas
+
+
+// Variable to track the start times of key presses
 let keyDownTimes = {};
-let activeRectangles = {};  // Oggetto per memorizzare i rettangoli attivi e i tempi di pressione
-let canvasReset = false;  // Nuova variabile per tracciare se il canvas è stato rigenerato
+let activeRectangles = {};  // Object to store active rectangles and their press times
+let canvasReset = false;  // New variable to track whether the canvas has been reset
 
 
 
-// Mappa dei colori per le note
-
+// Map of colors assigned to each note
 const noteColors = {
     "C3": "#FF5733", "Csharp3": "#C70039", "D3": "#900C3F", "Dsharp3": "#581845", "E3": "#FF33FF",
     "F3": "#33FF57", "Fsharp3": "#33FFF3", "G3": "#33AFFF", "Gsharp3": "#5733FF", "A3": "#FF335E",
@@ -959,11 +1002,8 @@ const noteColors = {
 };
 
 
-
-// Funzione per ottenere la posizione verticale della nota (aggiornata per due ottave)
-
+// Function to get the vertical position of a note (updated for two octaves)
 function getYPositionForNote(note) {
-
     const positions = {
         "C3": 378, "Csharp3": 365, "D3": 352, "Dsharp3": 339, "E3": 326,
         "F3": 313, "Fsharp3": 300, "G3": 287, "Gsharp3": 274, "A3": 261,
@@ -973,9 +1013,10 @@ function getYPositionForNote(note) {
         "Csharp5": 53, "D5": 40, "Dsharp5": 27, "E5": 14, "F5": 1
     };
 
-    return positions[note];
-
+    return positions[note]; // Return the Y position of the given note
 }
+
+
 
 // Disegna il rettangolo attivo che si allarga dinamicamente
 function drawActiveRectangle(rectangle) {
