@@ -509,7 +509,7 @@ label[for="timeSignature"] {
     position: absolute;
     top: 37vh; /* Posizionamento verticale */
     left: 52vw; /* Sposta il contenitore verso destra */
-    width: 160px; /* Larghezza compatta */
+    width: 198px; /* Aumenta la larghezza per evitare il troncamento */
     background-color: #333; /* Sfondo scuro */
     border-radius: 10px; /* Bordi arrotondati */
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* Ombra elegante */
@@ -519,6 +519,7 @@ label[for="timeSignature"] {
     font-size: 14px; /* Dimensione testo ottimale */
     text-align: center; /* Centra il testo */
 }
+
 
 /* Stile del menu a tendina */
 #bloccoJSON select {
@@ -785,29 +786,51 @@ label[for="timeSignature"] {
 }
 
 
-#infoContainer {
+#environmentContainer {
     display: flex;
-    justify-content: center; /* Centra orizzontalmente */
-    align-items: center; /* Centra verticalmente */
-    height: 100vh; /* Altezza uguale al 100% della finestra */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%; /* Occupa l'intera larghezza */
+    align-items: center; /* Allinea l'icona e il pulsante verticalmente */
+    gap: 8px; /* Spazio tra l'icona "i" e il pulsante */
+    width: 100%; /* Occupa tutta la larghezza disponibile */
+    justify-content: space-between; /* Spaziatura uniforme tra elementi */
 }
 
-#infoButton {
+
+/* Stile per l'icona "i" cerchiata */
+.info-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px; /* Larghezza */
+    height: 24px; /* Altezza identica per mantenere il cerchio */
+    border: 2px solid hsl(210, 7%, 11%); /* Colore del bordo */
+    border-radius: 50%; /* Forma circolare */
+    font-size: 14px; /* Dimensione del testo */
+    color: hsl(210, 7%, 11%); /* Colore del testo */
+    font-weight: bold; /* Testo in grassetto */
+    cursor: pointer; /* Cambia il cursore al passaggio del mouse */
+    background-color: white; /* Sfondo bianco */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Effetto hover per l'icona */
+.info-icon:hover {
+    background-color: hsl(212, 15%, 33%);
+    color: white;
+}
+
+
+/* Effetto hover per l'icona */
+.info-icon:hover {
+    background-color: hsl(212, 15%, 33%);
+    color: white;
+}
+
+/* Stile per il menu a tendina */
+#ambienteSelect {
     padding: 10px 20px;
     font-size: 16px;
-    border: none;
-    background-color: hsl(210, 7%, 11%);
-    color: white;
+    border: 1px solid hsl(210, 7%, 11%);
     border-radius: 5px;
+    background-color: white;
     cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
-}
-
-#infoButton:hover {
-    background-color: hsl(212, 15%, 33%);
 }

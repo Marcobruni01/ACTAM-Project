@@ -11,26 +11,28 @@
 
    
    
-<div id="bloccoJSON">
-    <select id="ambienteSelect" onchange="cambiaAmbiente()">
-        <option value="">Select an Environment</option>
-    </select>
+    <div id="bloccoJSON">
+        <div id="environmentContainer">
+            <div class="info-icon" onclick="window.open('environment-info.html', '_blank')">
+                i
+            </div>
+            <select id="ambienteSelect" onchange="cambiaAmbiente()">
+                <option value="">Select an Environment</option>
+            </select>
+        </div>
+        
+        <select id="setSuoniSelect" onchange="cambiaSetSuoni()" style="display: none;">
+            <option value="">Select a Sound Set</option>
+        </select>
+        
+        <div id="suoniContainer" style="display: none;"></div>
+        
+        <audio id="audioPlayer" controls style="display: none;">
+            <source src="" type="audio/wav">
+            Il tuo browser non supporta l'elemento audio.
+        </audio>
+    </div>
     
-    <select id="setSuoniSelect" onchange="cambiaSetSuoni()" style="display: none;">
-        <option value="">Select a Sound Set</option>
-    </select>
-    
-    <div id="suoniContainer" style="display: none;"></div>
-    
-    <audio id="audioPlayer" controls style="display: none;">
-        <source src="" type="audio/wav">
-        Il tuo browser non supporta l'elemento audio.
-    </audio>
-</div>
-    
-     
-<button id="infoButton" onclick="window.open('environment-info.html', '_blank')">Environment Info</button>    
-
 
 
 <!--keyboard-->
