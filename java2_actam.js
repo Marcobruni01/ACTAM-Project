@@ -822,8 +822,11 @@ pads.forEach(pad => {
                 // Save the audio data and pad details to the current track
                 track.audioData.push({
                     note: pad.getAttribute('data-sound'), // Get the name of the pad's associated sound file
-                    startTime    // Store the start time of the note
+                    startTime, // Store the start time of the note
+                    ambiente: ambienteCorrente?.nome || 'default-environment', // Current environment
+                    timbro: setCorrente?.nome || 'default-timbre' // Current timbre
                 });
+                
     
                 console.log(`Recorded pad sound (${pad.getAttribute('data-sound')}) on track ${activeTrackIndex + 1}`); // Log the recording
             } else {
@@ -887,9 +890,12 @@ document.addEventListener('keydown', (e) => {
 
             // Save audio data for the pad during recording
             track.audioData.push({
-                note: pad.getAttribute('data-sound'), // Get the sound file name for the pad
-                startTime // Store the start time of the note
+                note: pad.getAttribute('data-sound'), // Get the name of the pad's associated sound file
+                startTime, // Store the start time of the note
+                ambiente: ambienteCorrente?.nome || 'default-environment', // Current environment
+                timbro: setCorrente?.nome || 'default-timbre' // Current timbre
             });
+            
 
             console.log(`Recorded pad sound (${pad.getAttribute('data-sound')}) on track ${activeTrackIndex + 1}`);
         } else {
@@ -1572,7 +1578,8 @@ function playTrack(trackIndex) {
                 // Determine the audio file path based on the note type
                 const audioPath = Number.isInteger(Number(noteData.note)) && Number(noteData.note) >= 1 && Number(noteData.note) <= 9
                 ? `sounds/sounds/${noteData.ambiente}/Pad/suono${noteData.note}.mp3` 
-                : `sounds/sounds/${noteData.ambiente}/Timbre${noteData.timbro.split(' ')[1] || 1}/${noteData.note}.mp3`;
+                : `sounds/sounds/${noteData.ambiente}/Timbre${noteData.timbro.split(' ')[1] || 1}/${noteData.note}.mp3`; 
+            
             
 
                 const audio = new Audio(audioPath); // Create an audio object for the sound
