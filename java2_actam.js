@@ -388,7 +388,8 @@ function updateLEDs() {
 }
 
 
-//--------------------------- Functions to create effects using knobs-----------------------
+//--------------------------- Functions to create effects using knobs-----------------------------------
+
 // Function to create the Flanger effect
 function createFlanger(rate) {
     const delay = audioContext.createDelay();
@@ -456,7 +457,6 @@ function createChorus(depth) {
 
     lfo.connect(lfoGain);
     lfoGain.connect(delay.delayTime); // Modulate delay time with LFO output
-
     lfo.start();
 
     return delay; 
@@ -465,8 +465,6 @@ function createChorus(depth) {
 
 
 // ---------------------------------------- KEYBOARD: Event Listener Setup ---------------------------------------------------
-
-
 
 // Initially, set the keyMap to the first octave
 let keyMap = keyMapOctave1;
@@ -639,6 +637,7 @@ document.addEventListener('keyup', function(event) {
     }
 });
 
+
 // Add listeners for clicks on the piano keys
 const keys = document.querySelectorAll('.tasto, .tasto-nero'); // Select both the white and black keys
 keys.forEach(key => {
@@ -732,6 +731,7 @@ keys.forEach(key => {
 });
 
 
+
 // Function to visually highlight a key when activated
 function highlightKey(note) {
     const tasto = document.querySelector(`[data-note="${note}"]`);
@@ -745,6 +745,7 @@ function highlightKey(note) {
         }
     }
 }
+
 
 
 // Function to remove the visual highlight from a key
@@ -784,7 +785,6 @@ let pressedPads = {};
 
 // Select all pad keys
 const pads = document.querySelectorAll('.pad');
-
 
 // Activates a PAD note (via keyboard or mouse), plays the sound, highlights the key, and handles visual and recording logic.
 pads.forEach(pad => {
@@ -845,7 +845,6 @@ pad.addEventListener('mouseleave', () => {
     pad.classList.remove('active-text'); // Remove the active text styling from the pad
     pressedPads[key] = false; // Mark the pad as no longer pressed in the tracking map
 });
-
 });
 
 
@@ -1045,7 +1044,6 @@ function drawFixedNoteOnStaff(note, x, y, width, height, color, noLabel = false)
 
 
 
-
 // Function to update the width of the active rectangle while the key is pressed
 // Synchronizes the rectangle's width with the BPM and Time Signature
 function updateRectangle(dataKey) {
@@ -1121,6 +1119,7 @@ function clearStaff(preserveNotes = true) {
     }
 }
 
+
 // Function to clear all notes from the canvas
 function clearAllNotes() {
     playedNotes = []; // Empty the array of played notes
@@ -1134,6 +1133,7 @@ function clearAllNotes() {
         drawTimeBar(); // Redraw the time bar at its current position
     }
 }
+
 
 // Add a click event listener to the "Clear Notes" button
 document.getElementById('clearNotesButton').addEventListener('click', clearAllNotes);
@@ -1164,7 +1164,6 @@ drawReferenceBars();
 
 
 
-
 // When the number of beats per minute (BPM) changes
 bpmInput.addEventListener('input', function() {
     bpm = parseInt(this.value); // Parse the input value as an integer for the new BPM
@@ -1181,9 +1180,7 @@ bpmInput.addEventListener('input', function() {
 
 
 
-
 // -------------------- Focusing on Time Bar -------------------- //
-
 
 // Function to draw the time bar
 function drawTimeBar() {
@@ -1201,6 +1198,7 @@ function drawTimeBar() {
     ctx.stroke(); // Execute the drawing
 }
 
+
 // Function to start the time bar
 function startTimeBar() {
     if (!isTimeBarActive) {
@@ -1216,12 +1214,12 @@ function startTimeBar() {
     }
 }
 
+
 // Function to stop the time bar
 function stopTimeBar() {
     isTimeBarActive = false; // Stop the bar
     lastBarX = Math.round(timeBarX); // Save the current position accurately
 }
-
 
 
 
@@ -1266,7 +1264,6 @@ function animateTimeBar() {
 
 
 // -------------------- Tempo Bar and Metronome Control Synchronisation -------------------- //
-
 const startMetronomeButton = document.getElementById('startMetronomeButton'); // Get the button to start the metronome
 const stopMetronomeButton = document.getElementById('stopMetronomeButton'); // Get the button to stop the metronome
 const muteMetronomeButton = document.getElementById('muteMetronomeButton'); // Get the button to mute the metronome
@@ -1274,7 +1271,6 @@ const muteMetronomeButton = document.getElementById('muteMetronomeButton'); // G
 startMetronomeButton.addEventListener('click', startMetronome); // Add a click event listener to start the metronome
 stopMetronomeButton.addEventListener('click', stopMetronome); // Add a click event listener to stop the metronome
 muteMetronomeButton.addEventListener('click', toggleMetronomeMute); // Add a click event listener to mute/unmute the metronome
-
 
 
 // Function to toggle the mute state of the metronome
@@ -1312,7 +1308,6 @@ function startMetronome() {
             } else {
                 playMetronomeClick(); // Play the regular metronome click
             }
-
         }, beatDuration); // Set the interval to match the duration of one beat
 
         // Also start the time bar animation
@@ -1445,7 +1440,6 @@ function toggleZoom() {
 // Possibility of recording PAD and keyboard indifferently and also together.  -------------------- //
 
 
-
 // Global variables for recording and Pre-Roll
 let activeTrackIndex = -1; // Index of the currently active track for recording
 let isGlobalRecording = false; // State of global recording
@@ -1462,10 +1456,8 @@ const tracks = Array(4).fill(null).map(() => ({
 // Function to start recording with Pre-Roll to prepare the user for record
 function startRecordingWithPreRoll(trackIndex) {
     if (isGlobalRecording || isPreRollActive) return; // Avoid conflicts if recording or Pre-Roll is already active
-
     isPreRollActive = true; // Set Pre-Roll as active
     const totalPreRollDuration = preRollBars * beatsPerBar * beatDuration; // Total duration of the Pre-Roll in milliseconds
-
     console.log(`Starting Pre-Roll of ${preRollBars} bars (${totalPreRollDuration} ms)`);
 
     // After the Pre-Roll duration, start recording
@@ -1473,7 +1465,6 @@ function startRecordingWithPreRoll(trackIndex) {
         isPreRollActive = false; // Deactivate Pre-Roll
         startRecording(trackIndex); // Start the recording process
         tracks[trackIndex].recordStartTime = performance.now(); // Save the actual start time of the recording
-        console.log(`Recording started on track ${trackIndex + 1}`);
     }, totalPreRollDuration);
 }
 
@@ -1486,7 +1477,6 @@ function startRecording(trackIndex) {
     track.audioData = []; // Reset any previous audio data
     track.isRecording = true; // Mark the track as recording
     isGlobalRecording = true; // Indicate that a recording is in progress
-    console.log(`Recording started on track ${trackIndex + 1}`); // Log the start of recording
 }
 
 
@@ -1496,7 +1486,6 @@ function stopRecording(trackIndex) {
     track.isRecording = false; // Mark the track as no longer recording
     activeTrackIndex = -1; // Reset the active track index
     isGlobalRecording = false; // Indicate that no recording is in progress
-    console.log(`Recording stopped on track ${trackIndex + 1}`); // Log the end of recording
 }
 
 
@@ -1535,7 +1524,6 @@ function updateVolume(trackIndex, volume) {
     if (trackIndex >= 0 && trackIndex < tracks.length) { // Check if the track index is valid
         const track = tracks[trackIndex];
         track.gainNode.gain.value = volume; // Update the gain value (volume) of the track
-        console.log(`Volume of track ${trackIndex + 1} updated to ${volume}`); // Log the updated volume
     }
 }
 
@@ -1598,127 +1586,122 @@ function highlightTrackCanvas(trackIndex, isRecording) {
 
 
 
-// Funzione per disegnare i rettangoli su una traccia (per visualizzazione)
-// Elemento canvas principale
+// Function to draw rectangles on a track (for visualization purposes)
+// Main canvas element
 const mainCanvas = document.getElementById('staffCanvas');
 
-// Funzione per copiare il contenuto del canvas principale al canvas di una traccia
+// Function to copy the content of the main canvas to the canvas of a specific track
 function copyCanvasToTrack(trackIndex) {
     const trackCanvas = document.getElementById(`track-canvas-${trackIndex}`);
     const trackCtx = trackCanvas.getContext('2d');
 
-    // Ottieni l'immagine dal canvas principale
+      // Get the image data from the main canvas
     const imageData = mainCanvas.toDataURL();
 
-    // Crea un oggetto immagine
+    // Create a new image object
     const image = new Image();
     image.onload = function () {
-        // Ridimensiona il canvas della traccia
+       // Resize the track canvas to match the dimensions of the main canvas
         trackCanvas.width = mainCanvas.width;
         trackCanvas.height = mainCanvas.height;
 
-        // Disegna l'immagine
+        // Draw the image onto the track canvas
         trackCtx.clearRect(0, 0, trackCanvas.width, trackCanvas.height);
         trackCtx.drawImage(image, 0, 0);
     };
 
-    image.src = imageData; // Imposta la sorgente dell'immagine
+    image.src = imageData; // Set the source of the image to the data URL from the main canvas
 }
 
 
 
 
-
-// Funzione per cancellare una traccia (audio e contenuto visivo del canvas)
+// Function to delete a track (audio and visual content from the canvas)
 function deleteTrack(trackIndex) {
-    // Cancella i dati audio della traccia
+     // Clear the audio data for the specified track
     tracks[trackIndex].audioData = [];
     
-    // Ottieni il canvas della traccia corrispondente
+    // Get the canvas corresponding to the track
     const trackCanvas = document.getElementById(`track-canvas-${trackIndex + 1}`);
     if (trackCanvas) {
         const trackCtx = trackCanvas.getContext('2d');
         
-        // Cancella il contenuto del canvas
+        // Clear the content of the canvas
         trackCtx.clearRect(0, 0, trackCanvas.width, trackCanvas.height);
-        console.log(`Cancellato contenuto visivo del canvas per la traccia ${trackIndex + 1}`);
     } else {
         console.warn(`Canvas per la traccia ${trackIndex + 1} non trovato.`);
     }
-
-    console.log(`Cancellata traccia ${trackIndex + 1}`);
 }
 
 
 
 
-
-// Event listeners per i pulsanti di registrazione
+// Event listeners for the record buttons
 document.querySelectorAll('.record-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
         const trackIndex = parseInt(btn.dataset.track, 10) - 1;
 
         if (tracks[trackIndex].isRecording) {
-            // Ferma la registrazione
+           // Stop the recording if it is currently active
             stopRecording(trackIndex);
-            btn.textContent = 'Rec'; // Cambia il testo del pulsante
+            btn.textContent = 'Rec'; // Change the button text to "Rec"
         } else {
-            // Avvia la registrazione con Pre-Roll
+            // Start recording with Pre-Roll if it is not currently active
             startRecordingWithPreRoll(trackIndex);
-            btn.textContent = 'Stop'; // Cambia il testo del pulsante
+            btn.textContent = 'Stop'; // Change the button text to "Stop"
         }
     });
 });
 
 
 
-// Event listeners per i pulsanti di riproduzione
+// Event listeners for the play buttons
 document.querySelectorAll('.play-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
-        const trackIndex = parseInt(btn.dataset.track, 10) - 1;
-        playTrack(trackIndex); // Riproduce la traccia
+        const trackIndex = parseInt(btn.dataset.track, 10) - 1;// Get the track index from the button's data attribute
+        playTrack(trackIndex); // Play the track
         console.log(`Riproduzione traccia ${trackIndex + 1}`);
     });
 });
 
 
+// Event listeners for the delete buttons
 document.querySelectorAll('.delete-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
         const trackIndex = parseInt(btn.dataset.track) - 1;
-        deleteTrack(trackIndex);
+        deleteTrack(trackIndex);// Delete the track
     });
 });
 
-// Collegamento degli slider al controllo del volume
+
+// Link volume sliders to volume control
 document.querySelectorAll('.volume-slider').forEach((slider) => {
     slider.addEventListener('input', () => {
-        const trackIndex = parseInt(slider.dataset.track) - 1; // Ottieni l'indice della traccia
-        const value = parseFloat(slider.value); // Valore tra 0 e 1
-        updateVolume(trackIndex, value); // Aggiorna il volume
+        const trackIndex = parseInt(slider.dataset.track) - 1; // Get the track index from the slider's data attribute
+        const value = parseFloat(slider.value); // Get the slider value as a float (0 to 1)
+        updateVolume(trackIndex, value); // Update the track's volume
     });
 });
 
-// Event listener per i pulsanti "Copy Canvas"
+
+// Event listeners for the "Copy Canvas" buttons
 document.querySelectorAll('.copy-canvas-btn').forEach((button) => {
     button.addEventListener('click', () => {
-        const trackIndex = button.dataset.track; // Ottieni l'indice della traccia
-        copyCanvasToTrack(trackIndex); // Copia il contenuto
-        console.log(`Canvas principale copiato nella traccia ${trackIndex}`);
+        const trackIndex = button.dataset.track;// Get the track index from the button's data attribute
+        copyCanvasToTrack(trackIndex); // Copy the main canvas content to the track canvas
     });
 });
 
 
-// Funzione per riprodurre tutte le tracce insieme
+// Function to play all tracks simultaneously
 document.getElementById('global-play').addEventListener('click', () => {
-    console.log('Riproduzione di tutte le tracce');
-    tracks.forEach((track, index) => playTrack(index));
+    tracks.forEach((track, index) => playTrack(index));// Play each track
 });
 
-// Funzione per scaricare tutte le tracce come audio mixato
+
+// Function to download all tracks as a mixed audio file
 document.getElementById('download-audio').addEventListener('click', () => {
-    console.log('Scaricamento dell\'audio mixato');
-    downloadAllTracks();
-    // Implementazione della logica per il mixaggio e download
+    downloadAllTracks();// Implement logic for mixing and downloading tracks
 });
 
 
@@ -1726,28 +1709,29 @@ document.getElementById('download-audio').addEventListener('click', () => {
 
 ///--------------------------------------------------------------NUMBERS ON CANVAS--------------------------------------------------
 
-let activeNumbersWithPositions = []; // Array di numeri con posizioni { number, x }
-let activeNumbers = []; // Array per i numeri attivi nel canvas
-const maxNumbersOnCanvas = 9; // Numero massimo di numeri nel canvas
-let numberColors = {}; // Mappa per tracciare i colori dei numeri
-const defaultColor = "black"; // Colore di default
-let lastBarX = 0;
+let activeNumbersWithPositions = []; // Array to store numbers with positions { number, x }
+let activeNumbers = []; // Array to track active numbers on the canvas
+const maxNumbersOnCanvas = 9; // Maximum number of numbers allowed on the canvas
+let numberColors = {}; // Map to store colors associated with numbers
+const defaultColor = "black"; // Default color for numbers
+let lastBarX = 0; // Tracks the last X position of the bar
 
 
-// Funzione per ottenere la posizione verticale di un numero nel canvas
+// Function to calculate the vertical position of a number on the canvas
 function getYPositionForNumber(number) {
     const canvasHeight = canvas.height;
     const step = canvasHeight / maxNumbersOnCanvas;
-    return canvasHeight - step * number + step / 2; // Calcola posizione basata su canvas
+    return canvasHeight - step * number + step / 2; // Calculate the vertical position based on the canvas
 }
 
+
 function drawNumberOnCanvas(number, x, color) {
-    const y = getYPositionForNumber(number); // Ottieni la posizione verticale
-    const rectWidth = 35; // Larghezza del rettangolo
-    const rectHeight = 30; // Altezza del rettangolo
+    const y = getYPositionForNumber(number); // Get the vertical position of the number
+    const rectWidth = 35; // Width of the rectangle
+    const rectHeight = 30; // Height of the rectangle
     const cornerRadius = 5; // Raggio degli angoli arrotondati
 
-    // Disegna il rettangolo nero con angoli smussati
+    // Draw the black rectangle with rounded corners
     ctx.beginPath();
     ctx.moveTo(x + cornerRadius, y - rectHeight / 2);
     ctx.lineTo(x + rectWidth - cornerRadius, y - rectHeight / 2);
@@ -1759,40 +1743,42 @@ function drawNumberOnCanvas(number, x, color) {
     ctx.lineTo(x, y - rectHeight / 2 + cornerRadius);
     ctx.arcTo(x, y - rectHeight / 2, x + cornerRadius, y - rectHeight / 2, cornerRadius);
     ctx.closePath();
-    ctx.fillStyle = "black"; // Colore del rettangolo
+    ctx.fillStyle = "black"; // Set the rectangle color to black
     ctx.fill();
 
-    // Disegna il numero bianco
-    ctx.fillStyle = "white"; // Colore del numero
+    // Draw the white number inside the rectangle
+    ctx.fillStyle = "white";  // Set the text color to white
     ctx.font = "16px Arial";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.fillText(number, x + rectWidth / 2, y); // Posiziona il numero al centro del rettangolo
+    ctx.fillText(number, x + rectWidth / 2, y); // Position the number in the center of the rectangle
 }
 
 
-
+// Function to draw all numbers currently active on the canvas
 function drawAllNumbers() {
     activeNumbersWithPositions.forEach(({ number, x, color }) => {
-        drawNumberOnCanvas(number, x, color); // Usa il colore specifico di questa istanza
+        drawNumberOnCanvas(number, x, color); // Use the specific color for each instance
     });
 }
 
-
+// Example of adding a number with a position and color to the active list
 activeNumbersWithPositions.push({
     number,
     x,
-    color: numberColors[number] || defaultColor // Colore iniziale
+    color: numberColors[number] || defaultColor // Initial color for the number
 });
+
+
 
 
 
 //DOWNLOAD 
 async function downloadAllTracks() {
-    const sampleRate = 44100; // Frequenza di campionamento standard
-    let maxDuration = 0; // Durata massima dinamica
+    const sampleRate = 44100; // Standard sampling frequency
+    let maxDuration = 0; // Dynamic maximum duration
 
-    // Calcolo della durata totale delle tracce
+     // Calculate the total duration of all tracks
     for (let trackIndex = 0; trackIndex < tracks.length; trackIndex++) {
         const track = tracks[trackIndex];
         if (!track.audioData.length) {
@@ -1804,22 +1790,20 @@ async function downloadAllTracks() {
             const noteEndTime = (noteData.startTime - track.recordStartTime) + noteData.duration;
             console.log(`Traccia ${trackIndex + 1}, Nota: ${noteData.note}, Fine nota: ${noteEndTime}`);
             if (noteEndTime > maxDuration) {
-                maxDuration = noteEndTime; // Aggiorna la durata massima
+                maxDuration = noteEndTime; // Update the maximum duration
             }
         });
     }
 
-    // Convertiamo maxDuration in secondi e impostiamo un valore minimo
-    maxDuration = Math.max(Math.ceil(maxDuration / 1000), 1); // In secondi, almeno 1 secondo
-    console.log(`Durata totale calcolata: ${maxDuration} secondi`);
+     // Convert `maxDuration` to seconds and set a minimum value
+    maxDuration = Math.max(Math.ceil(maxDuration / 1000), 1); // In seconds, at least 1 second
 
-    // Creazione dell'OfflineAudioContext con la durata dinamica
+    // Create an OfflineAudioContext with the dynamic duration
     const offlineContext = new OfflineAudioContext(2, sampleRate * maxDuration, sampleRate);
     const bufferSources = [];
 
-    // Funzione per caricare i file audio
+    // Function to load audio files
     async function loadAudio(url) {
-        console.log(`Caricamento audio: ${url}`);
         try {
             const response = await fetch(url);
             const arrayBuffer = await response.arrayBuffer();
@@ -1829,15 +1813,15 @@ async function downloadAllTracks() {
         }
     }
 
-    // Caricamento e mixaggio di tutte le tracce
+     // Load and mix all tracks
     for (let trackIndex = 0; trackIndex < tracks.length; trackIndex++) {
         const track = tracks[trackIndex];
         if (!track.audioData.length) continue;
 
         for (const noteData of track.audioData) {
             const audioPath = Number.isInteger(Number(noteData.note)) && Number(noteData.note) >= 1 && Number(noteData.note) <= 9
-                ? `sounds/sounds/${ambienteCorrente.nome}/Pad/suono${noteData.note}.mp3` // Percorso per i suoni del PAD
-                : `sounds/sounds/${ambienteCorrente.nome}/Timbre${setCorrente?.nome.split(' ')[1] || 1}/${noteData.note}.mp3`; // Percorso per i suoni della tastiera
+                ? `sounds/sounds/${ambienteCorrente.nome}/Pad/suono${noteData.note}.mp3` // Path for PAD sounds
+                : `sounds/sounds/${ambienteCorrente.nome}/Timbre${setCorrente?.nome.split(' ')[1] || 1}/${noteData.note}.mp3`; // Path for keyboard sounds
 
             const audioBuffer = await loadAudio(audioPath);
             if (!audioBuffer) continue;
@@ -1845,7 +1829,7 @@ async function downloadAllTracks() {
             const source = offlineContext.createBufferSource();
             source.buffer = audioBuffer;
 
-            const startTime = (noteData.startTime - track.recordStartTime) / 1000; // In secondi
+            const startTime = (noteData.startTime - track.recordStartTime) / 1000; // In seconds
             source.connect(offlineContext.destination);
             source.start(startTime);
 
@@ -1853,32 +1837,32 @@ async function downloadAllTracks() {
         }
     }
 
-    console.log('Inizio rendering offline...');
     const renderedBuffer = await offlineContext.startRendering();
-    console.log('Rendering completato, conversione in WAV...');
 
-    // Converte il buffer in un file WAV
+    // Convert the buffer to a WAV file
     const wavBlob = bufferToWav(renderedBuffer);
     const url = URL.createObjectURL(wavBlob);
 
-    // Scarica il file
+   // Create the filename based on the current environment
+    const ambienteName = ambienteCorrente?.nome || 'default-environment'; // Use the environment name or a default value
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'all-tracks.wav';
+    a.download = `${ambienteName}-all-tracks.wav`; // Customized file name
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    console.log('Download completato: all-tracks.wav');
+    console.log(`Download completato: ${ambienteName}-all-tracks.wav`);
 }
 
 
-// Funzione per convertire un AudioBuffer in WAV
+
+// Function to convert an AudioBuffer to a WAV file
 function bufferToWav(buffer) {
     const numOfChannels = buffer.numberOfChannels;
     const length = buffer.length * numOfChannels * 2 + 44;
     const bufferArray = new ArrayBuffer(length);
     const view = new DataView(bufferArray);
-
+// Helper function to write a string into the DataView
     const writeString = (view, offset, string) => {
         for (let i = 0; i < string.length; i++) {
             view.setUint8(offset + i, string.charCodeAt(i));
@@ -1886,6 +1870,8 @@ function bufferToWav(buffer) {
     };
 
     let offset = 0;
+
+    // Write the WAV file header
     writeString(view, offset, 'RIFF'); offset += 4;
     view.setUint32(offset, 36 + buffer.length * numOfChannels * 2, true); offset += 4;
     writeString(view, offset, 'WAVE'); offset += 4;
@@ -1900,11 +1886,13 @@ function bufferToWav(buffer) {
     writeString(view, offset, 'data'); offset += 4;
     view.setUint32(offset, buffer.length * numOfChannels * 2, true); offset += 4;
 
+    // Retrieve the audio data for each channel
     const channels = [];
     for (let i = 0; i < numOfChannels; i++) {
         channels.push(buffer.getChannelData(i));
     }
 
+    // Write the audio data samples
     let sampleIndex = 0;
     while (sampleIndex < buffer.length) {
         for (let i = 0; i < numOfChannels; i++) {
@@ -1914,6 +1902,6 @@ function bufferToWav(buffer) {
         }
         sampleIndex++;
     }
-
+    // Return the WAV file as a Blob
     return new Blob([bufferArray], { type: 'audio/wav' });
 }

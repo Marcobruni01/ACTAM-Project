@@ -1,11 +1,11 @@
-// Impostazioni del canvas
+// Canvas settings
 console.log("visualizer.js è stato caricato correttamente");
 const visualizerCanvas = document.getElementById('canvas1');
 visualizerCanvas.width = window.innerWidth;
 visualizerCanvas.height = 300;
-const visualizerCtx = visualizerCanvas.getContext('2d');
+const visualizerCtx = visualizerCanvas.getContext('2d');// Get the 2D rendering context for the canvas
 
-// Variabili per l'audio e il visualizzatore
+// Variables for audio and the visualizer
 let audioCtx;
 let analyser;
 let bufferLength;
@@ -13,10 +13,10 @@ let dataArray;
 let visualizerBarWidth;
 let animationId;
 
-// Variabile per la dissolvenza
+// Variable for fading
 let fading = false;
 
-// Funzione di inizializzazione del visualizzatore
+// Function to initialize the visualizer
 function initVisualizer() {
     if (!audioCtx) {
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -33,7 +33,8 @@ function initVisualizer() {
     }
 }
 
-// Funzione di animazione
+
+// Animation function
 function animate() {
     visualizerCtx.clearRect(0, 0, visualizerCanvas.width, visualizerCanvas.height);
 
@@ -46,13 +47,14 @@ function animate() {
             return;
         }
     } else {
-        analyser.getByteFrequencyData(dataArray);
+        analyser.getByteFrequencyData(dataArray);// Get frequency data from the analyser
     }
 
-    drawVisualizer(bufferLength, dataArray, visualizerBarWidth);
+    drawVisualizer(bufferLength, dataArray, visualizerBarWidth);// Draw the visualizer
     animationId = requestAnimationFrame(animate);
 }
 
+//Draws the visualizer bars on the canvas. Bars are arranged in a circular pattern with their height and color determined by frequency data.
 function drawVisualizer(bufferLength, dataArray, visualizerBarWidth) {
     let maxBarHeight = Math.min(visualizerCanvas.width, visualizerCanvas.height) / 2 - 10;
     let x = 0;
@@ -60,19 +62,19 @@ function drawVisualizer(bufferLength, dataArray, visualizerBarWidth) {
     for (let i = 0; i < bufferLength; i++) {
         let barHeight = Math.min(dataArray[i] * 1.3, maxBarHeight);
         visualizerCtx.save();
-        visualizerCtx.translate(visualizerCanvas.width / 2, visualizerCanvas.height / 2);
-        visualizerCtx.rotate(i * Math.PI * 10 / bufferLength);
+        visualizerCtx.translate(visualizerCanvas.width / 2, visualizerCanvas.height / 2); // Center the bars
+        visualizerCtx.rotate(i * Math.PI * 10 / bufferLength); // Arrange bars in a circular pattern
 
-        const hue = i * 0.3;
-        visualizerCtx.fillStyle = `hsl(${hue}, 100%, ${barHeight / 3}%)`;
-
-        visualizerCtx.fillRect(0, -barHeight, visualizerBarWidth, barHeight);
+        const hue = i * 0.3;// Generate a unique hue for each bar
+        visualizerCtx.fillStyle = `hsl(${hue}, 100%, ${barHeight / 3}%)`;// Set bar color
+        visualizerCtx.fillRect(0, -barHeight, visualizerBarWidth, barHeight); // Draw the bar
         visualizerCtx.restore();
-        x += visualizerBarWidth;
+        x += visualizerBarWidth;// Increment x position for the next bar
     }
 }
 
-// Funzione per processare il suono dal JSON
+
+//Processes a note provided via a JSON URL by decoding its audio data, playing it, and triggering the visualizer animation.
 function processNoteFromJSON(noteUrl) {
     if (!visualizerEnabled) {
         console.log("Il visualizer è disattivato. Nessuna nota verrà processata.");
@@ -90,14 +92,14 @@ function processNoteFromJSON(noteUrl) {
         initVisualizer();
 
         fetch(noteUrl)
-            .then(response => response.arrayBuffer())
-            .then(buffer => audioCtx.decodeAudioData(buffer))
+            .then(response => response.arrayBuffer())// Fetch audio data as an array buffer
+            .then(buffer => audioCtx.decodeAudioData(buffer))// Decode the audio data
             .then(decodedData => {
-                const source = audioCtx.createBufferSource();
+                const source = audioCtx.createBufferSource();// Create an audio source
                 source.buffer = decodedData;
-                source.connect(analyser);
-                analyser.connect(audioCtx.destination);
-                source.start(0);
+                source.connect(analyser);// Connect the source to the analyser
+                analyser.connect(audioCtx.destination); // Connect the analyser to the output
+                source.start(0);// Start playing the audio
                 animate();
             })
             .catch(error => console.error("Errore nel processamento della nota:", error));
@@ -107,13 +109,13 @@ function processNoteFromJSON(noteUrl) {
 }
 
 
-// Eventi per tastiera e mouse
+// Keyboard and mouse events for triggering notes
 document.addEventListener('keydown', (event) => {
     const key = event.key.toUpperCase();
     const note = keyMap[key];
 
     if (note && setCorrente && setCorrente.suoni[note]) {
-        processNoteFromJSON(setCorrente.suoni[note]);
+        processNoteFromJSON(setCorrente.suoni[note]);// Process the note
     }
 });
 
@@ -126,17 +128,18 @@ document.querySelectorAll('.tasto, .tasto-nero').forEach(keyElement => {
     });
 });
 
-let visualizerEnabled = true;
+let visualizerEnabled = true; // Flag to control visualizer state
 
+//Disables the visualizer by stopping animations, clearing the canvas, and closing the audio context.
 function disableVisualizer() {
     console.log("Disattivazione del visualizer...");
     visualizerEnabled = false;
     if (animationId) {
-        cancelAnimationFrame(animationId);
+        cancelAnimationFrame(animationId);// Stop animations
         animationId = null;
     }
     fading = false;
-    visualizerCtx.clearRect(0, 0, visualizerCanvas.width, visualizerCanvas.height);
+    visualizerCtx.clearRect(0, 0, visualizerCanvas.width, visualizerCanvas.height);// Clear the canvas
     if (audioCtx && audioCtx.state !== 'closed') {
         audioCtx.close().then(() => {
             
@@ -146,8 +149,9 @@ function disableVisualizer() {
     }
 }
 
+
+//Enables the visualizer by initializing it and restarting the animation.
 function enableVisualizer() {
-    
     if (!visualizerEnabled) {
         visualizerEnabled = true;
         initVisualizer();
@@ -155,6 +159,7 @@ function enableVisualizer() {
     }
 }
 
+// Toggle visualizer on button click
 document.getElementById('toggleVisualizer').addEventListener('click', function () {
     console.log("Pulsante cliccato. Stato visualizer:", visualizerEnabled);
     if (visualizerEnabled) {
@@ -164,5 +169,4 @@ document.getElementById('toggleVisualizer').addEventListener('click', function (
         this.textContent = 'Disable Visualizer';
         enableVisualizer();
     }
-    
 });
