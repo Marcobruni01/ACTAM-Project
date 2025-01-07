@@ -1053,15 +1053,30 @@ function updateRectangle(dataKey) {
     const currentTime = performance.now();
     const duration = (currentTime - rectangle.startTime) / 1000; // Duration in seconds
 
-    // Calculate the width based on the BPM
+    // Calculate the width based on the number of bars selected
     const pixelsPerSecond = canvas.width / (beatDuration * beatsPerBar / 1000); // Pixels per second
-    rectangle.width = duration * pixelsPerSecond / 4;
 
-    
+    switch (numberOfBars) {
+        case 4:
+            rectangle.width = duration * pixelsPerSecond / 4;
+            break;
+        case 8:
+            rectangle.width = duration * pixelsPerSecond / 8;
+            break;
+        case 12:
+            rectangle.width = duration * pixelsPerSecond / 12;
+            break;
+        case 16:
+            rectangle.width = duration * pixelsPerSecond / 16;
+            break;
+        default:
+            
+    }
+
     const maxX = staffLength; // Total length of the canvas
     if (rectangle.x + rectangle.width > maxX) {
         rectangle.width = maxX - rectangle.x; // Adjust the width to fit the canvas
-        const overflowWidth = duration * pixelsPerSecond / 4 - rectangle.width;
+        const overflowWidth = duration * pixelsPerSecond / numberOfBars - rectangle.width;
 
         if (overflowWidth > 0) {
             // Add the "wrapped" portion without a label
@@ -1089,6 +1104,7 @@ function updateRectangle(dataKey) {
     // Continue updating as long as the key is pressed
     requestAnimationFrame(() => updateRectangle(dataKey));
 }
+
 
 
 
@@ -1707,7 +1723,7 @@ document.getElementById('download-audio').addEventListener('click', () => {
 
 
 
-///--------------------------------------------------------------NUMBERS ON CANVAS--------------------------------------------------
+//-------------------- NUMBER ON CANVAS -------------------- //
 
 let activeNumbersWithPositions = []; // Array to store numbers with positions { number, x }
 let activeNumbers = []; // Array to track active numbers on the canvas
@@ -1773,7 +1789,7 @@ activeNumbersWithPositions.push({
 
 
 
-//DOWNLOAD 
+// -------------------- DOWNLOAD -------------------- // 
 async function downloadAllTracks() {
     const sampleRate = 44100; // Standard sampling frequency
     let maxDuration = 0; // Dynamic maximum duration
