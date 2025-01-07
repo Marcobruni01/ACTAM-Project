@@ -4,24 +4,22 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;  /* Altezza totale della pagina */
+    min-height: 100vh;  /* Full-page height */
     margin: 0;
-    background: linear-gradient(rgb(47, 0, 255), rgb(0, 89, 255), rgb(0, 208, 255));
+    background: linear-gradient(rgb(47, 0, 255), rgb(0, 89, 255), rgb(0, 208, 255)); /* Gradient background */
 }
 
-/* Contenitore centrale principale */
-
-
+/* Main central container */
 .pianola {
     position: absolute;
     display: flex;
     justify-content: center;
-    background-color: #333;
-    padding: 10px;
-    border-radius: 15px;
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
-    top: 74vh;  /* Ancoraggio centrale */
-    right: 1vw;
+    background-color: #333; /* Dark gray background */
+    padding: 10px; /* Spacing inside the container */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    top: 74vh;  /* Positioned at 74% of the viewport height */
+    right: 1vw; /* Positioned slightly from the right viewport edge */
 }
 
 .tasto-container {
@@ -30,140 +28,133 @@ body {
 }
 
 .tasto {
-    width: 70px;
-    height: 120px;
-    margin: 0 2px;
-    background-color: white;
-    border: 1px solid #000;
-    border-radius: 0 0 5px 5px;
+    width: 70px; /* Key width */
+    height: 120px; /* Key height */
+    margin: 0 2px; /* Spacing between keys */
+    background-color: white; /* White key color */
+    border: 1px solid #000; /* Black border */
+    border-radius: 0 0 5px 5px; /* Rounded bottom corners */
     display: flex;
     justify-content: center;
-    align-items: flex-end;  /* Testo esistente in fondo */
+    align-items: flex-end;  /* Text aligned at the bottom */
     font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.2s, box-shadow 0.2s;
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.2s, box-shadow 0.2s; /* Smooth transition effects */
     position: relative;
-    z-index: 1;
-    color: hsl(0, 1%, 32%);
-    padding-bottom: 50px; /* Testo in basso */
+    z-index: 1; /* Above other elements */
+    color: hsl(0, 1%, 32%); /* Text color */
+    padding-bottom: 50px; /* Space for bottom text */
 }
 
 .tasto::before {
-    content: attr(data-note); /* Prende il valore dell'attributo data-note */
+    content: attr(data-note); /* Uses the value of the data-note attribute */
     position: absolute;
-    top: 140px; /* Posiziona il testo in alto */
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 12px; /* Dimensione del testo delle note */
-    font-family: inherit; /* Forza l'uso del font del body */
-    color: hsl(0, 1%, 32%); /* Colore delle note */
+    top: 140px; /* Position text above the key */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust horizontal alignment */
+    font-size: 12px; /* Note text size */
+    font-family: inherit; /* Use the font-family of the body */
+    color: hsl(0, 1%, 32%); /* Note text color */
 }
 
-
-
 .tasto::before {
-    content: attr(data-key);  /* Usa l'attributo data-key per mostrare la lettera */
+    content: attr(data-key);  /* Uses the data-key attribute for text */
     position: absolute;
-    bottom: -20px;  /* Sposta la lettera in basso */
-    left: 50%;
+    bottom: -20px;  /* Position text below the key */
+    left: 50%; /* Center horizontally */
     transform: translateX(-50%);
     font-size: 20px;
-    color: rgb(0, 0, 0);
+    color: rgb(0, 0, 0); /* Black text color */
 }
 
 .tasto-nero::before {
-    content: attr(data-key);  /* Mostra la lettera per i tasti neri */
+    content: attr(data-key);  /* Show key label for black keys */
     position: absolute;
-    bottom: 5px;  /* Sposta la lettera in basso */
-    left: 50%;
+    bottom: 5px;  /* Position text slightly above the key bottom */
+    left: 50%; /* Center horizontally */
     transform: translateX(-50%);
     font-size: 18px;
-    color: white;  /* Colore bianco per il testo */
+    color: white;  /* White text for better contrast */
 }
-
-
 
 .tasto-nero {
     position: absolute;
-    width: 50px;  /* Aumenta la larghezza dei tasti neri */
-    height: 100px; /* Riduci l'altezza dei tasti neri */
-    background-color: black;
-    border-radius: 0 0 3px 3px;
-    left: 0%; /* Posiziona il tasto nero al centro del tasto bianco */
-    transform: translateX(30%); /* Centra il tasto nero tra due tasti bianchi */
-    z-index: 2;
-    left: 35px;
-    top: -2px;
+    width: 50px;  /* Width of black keys */
+    height: 100px; /* Height of black keys */
+    background-color: black; /* Black key color */
+    border-radius: 0 0 3px 3px; /* Rounded bottom corners */
+    left: 0%; /* Initially positioned at the center of white key */
+    transform: translateX(30%); /* Center the black key between white keys */
+    z-index: 2; /* Above white keys */
+    left: 35px; /* Fine-tuned horizontal positioning */
+    top: -2px; /* Fine-tuned vertical positioning */
     color: hsl(0, 1%, 33%);
     font-size: 14px;
-    text-align: center; /* Centra il testo orizzontalmente */
+    text-align: center; /* Center-align the text */
     line-height: 30px; 
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
-    transition: background-color 0.2s, box-shadow 0.2s;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5); /* Shadow effect for black keys */
+    transition: background-color 0.2s, box-shadow 0.2s; /* Smooth transitions */
 }
 
 .tasto-nero:active {
-    background-color: #555;
-    box-shadow: inset 0px 3px 10px rgba(0, 0, 0, 0.2);
+    background-color: #555; /* Darker color when pressed */
+    box-shadow: inset 0px 3px 10px rgba(0, 0, 0, 0.2); /* Inner shadow when pressed */
 }
 
 .tasto.active {
-    background-color: lightgray;
+    background-color: lightgray; /* Highlight color for active white keys */
     transition: background-color 0.2s;
 }
 
 .tasto-nero.active {
-    background-color: lightgray;
-    box-shadow: inset 0px 5px 15px rgba(0, 0, 0, 0.2);
+    background-color: lightgray; /* Highlight color for active black keys */
+    box-shadow: inset 0px 5px 15px rgba(0, 0, 0, 0.2); /* Inner shadow for active state */
 }
 
-
-/* Modifica del pulsante Octave per integrarlo nel bordo in alto a destra */
+/* Style for the octave switch button integrated into the top-right corner of the keyboard */
 #switch-octave {
-    background-color: #333; /* Stesso colore del bordo della pianola */
-    color: #fff; /* Colore del testo */
-    border: none; /* Rimuove i bordi */
-    border-radius: 2px; /* Arrotondato per uniformità */
-    padding: 8px 16px; /* Dimensione contenuta del pulsante */
-    font-family: inherit; /* Coerenza con il font generale */
-    font-size: 14px; /* Testo di dimensione media */
-    cursor: pointer; /* Cambia il cursore quando sopra */
-    position: absolute; /* Posizionamento assoluto per integrazione precisa */
-    right: 0px; /* Posizionato vicino al bordo destro */
-    top: -22px; /* Posizionato vicino al bordo superiore */
-    box-shadow: none; /* Rimuove l'ombra per integrare completamente */
-    z-index: 2; /* Sopra gli elementi della pianola */
-    transition: background-color 0.2s ease, color 0.2s ease; /* Effetti di transizione */
+    background-color: #333; /* Matches the keyboard border color */
+    color: #fff; /* White text color */
+    border: none; /* Removes borders */
+    border-radius: 2px; /* Slightly rounded corners */
+    padding: 8px 16px; /* Compact button size */
+    font-family: inherit; /* Consistent font-family */
+    font-size: 14px; /* Medium text size */
+    cursor: pointer; /* Pointer cursor on hover */
+    position: absolute; /* Precise positioning */
+    right: 0px; /* Aligned with the right edge */
+    top: -22px; /* Positioned above the keyboard border */
+    box-shadow: none; /* No shadow for seamless integration */
+    z-index: 2; /* Above keyboard elements */
+    transition: background-color 0.2s ease, color 0.2s ease; /* Smooth hover effects */
 }
 
-/* Hover del pulsante */
+/* Hover effect for the octave switch button */
 #switch-octave:hover {
-    background-color: #444; /* Colore leggermente più chiaro per l'interazione */
-    color: #ddd; /* Colore testo più chiaro */
+    background-color: #444; /* Slightly lighter background color */
+    color: #ddd; /* Lighter text color for hover */
 }
 
-/* Stato attivo */
+/* Active (pressed) state for the octave switch button */
 #switch-octave:active {
-    background-color: #555; /* Colore più scuro quando cliccato */
-    transform: scale(0.98); /* Leggero effetto di compressione */
+    background-color: #555; /* Darker background when pressed */
+    transform: scale(0.98); /* Slight compression effect */
 }
 
 
 
 
-
-
-/* PAD
-Contenitore del pad musicale */
+/* ----------------------------------------------------------PAD---------------------------------------------------------
+Musical pad container */
 .pad-container {
     display: grid;
     grid-template-columns: repeat(3, 80px);
     grid-template-rows: repeat(3, 80px);
     gap: 15px;
     padding: 20px;
-    background-color: #333;  /* Colore di sfondo del contenitore */
+    background-color: #333;  /* Background color of the pad container */
     border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Ombra intorno al pad */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Shadow around the pad */
     position: absolute;
     grid-column: span 1;
     right: 1vw;
@@ -172,7 +163,7 @@ Contenitore del pad musicale */
 }
 
 .pad {
-    background: linear-gradient(145deg, #e6e6e6, #cccccc); /* Effetto 3D leggero */
+    background: linear-gradient(145deg, #e6e6e6, #cccccc); /* Slight 3D effect */
     border: 2px solid #b8b4b4;
     border-radius: 10px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
@@ -181,27 +172,27 @@ Contenitore del pad musicale */
     align-items: center;
     font-size: 20px;
     font-weight: bold;
-    color: #575656; /* Colore del testo iniziale */
+    color: #575656; /* Initial text color */
     cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.1s, color 0.2s; /* Aggiunto color */
+    transition: background-color 0.2s ease, transform 0.1s, color 0.2s; /* Added color transition */
 }
 
-/* Effetto al click o alla pressione del tasto */
+/* Click or key press effect */
 .pad:active,
 .pad.key-active {
-    background-color: #ff4d4d !important;  /* Colore rosso */
-    transform: translateY(4px);  /* Effetto di "pressione" 3D */
-    box-shadow: inset 0 0 20px rgba(255, 66, 66, 0.5); /* Ombra interna per evidenziare */
+    background-color: #ff4d4d !important;  /* Red color */
+    transform: translateY(4px);  /* 3D "press" effect */
+    box-shadow: inset 0 0 20px rgba(255, 66, 66, 0.5); /* Inner shadow for emphasis */
 }
 
-/* Colore del testo attivo */
+/* Active text color */
 .active-text {
-    color: hsl(0, 60%, 53%); /* Cambia il colore del testo quando il pad è attivo */
+    color: hsl(0, 60%, 53%); /* Changes the text color when the pad is active */
 }
 
 
-/*EFFECTS
-/* Contenitore degli effetti */
+/* -----------------------------------------EFFECTS-----------------------------------------------------
+/* Effects container */
 .effect-container {
     position: absolute;
     grid-column: span 1;
@@ -213,24 +204,24 @@ Contenitore del pad musicale */
     border-radius: 5px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
     z-index: 1;
-    width: 290px; /* Riduci la larghezza per adattare meglio i pulsanti e slider */
+    width: 290px; /* Reduced width for better alignment of buttons and sliders */
     height: 150px;
-    font-family: inherit; /* Forza l'uso del font del body */
+    font-family: inherit; /* Enforces the use of the body's font */
     /*font-family: 'Verdana', sans-serif;*/
 }
 
-/* Griglia per pulsanti ed effetti */
+/* Grid for buttons and effects */
 .effect-buttons {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 colonne: una per ogni effetto */
-    gap: 10px; /* Spazio tra le colonne */
-    margin-bottom: 20px; /* Spazio sotto la griglia */
+    grid-template-columns: repeat(4, 1fr); /* 4 columns: one for each effect */
+    gap: 10px; /* Space between columns */
+    margin-bottom: 20px; /* Space below the grid */
 }
 
-/* Stile dei pulsanti */
+/* Style for buttons */
 .effect-btn {
     display: flex;
-    flex-direction: column; /* Mantieni disposizione verticale per il testo e LED */
+    flex-direction: column; /* Keep vertical layout for text and LED */
     align-items: center; 
     background-color: hwb(307 69% 28%);
     color: #1e1820;
@@ -239,14 +230,14 @@ Contenitore del pad musicale */
     cursor: pointer;
     border-radius: 10px;
     font-size: 12px;
-    font-family: inherit; /* Forza l'uso del font del body */
+    font-family: inherit; /* Enforces the use of the body's font */
     width: 60px;
     height: 60px;
     position: relative;
     box-sizing: border-box;
 }
 
-/* LED per indicare l'effetto selezionato */
+/* LED to indicate the selected effect */
 .led {
     width: 15px;
     height: 15px;
@@ -257,41 +248,40 @@ Contenitore del pad musicale */
 }
 
 .led.active {
-    background-color: #ff0000;
+    background-color: #ff0000; /* Active LED color */
 }
 
-/* Layout per ogni controllo (pulsante + slider) */
+/* Layout for each control (button + slider) */
 .knobs {
-    display: flex; /* Usa flexbox per la disposizione orizzontale */
-    justify-content: flex-start; /* Allinea gli slider a sinistra */
-    align-items: flex-start; /* Allinea gli elementi dall'alto */
-    gap: 88px; /* Spazio tra gli slider */
-    padding: 20px; /* Padding intorno */
-    margin-left: 15px; /* Sposta tutto leggermente a sinistra, regolabile */
+    display: flex; /* Use flexbox for horizontal alignment */
+    justify-content: flex-start; /* Align sliders to the left */
+    align-items: flex-start; /* Align elements from the top */
+    gap: 88px; /* Space between sliders */
+    padding: 20px; /* Padding around the container */
+    margin-left: 15px; /* Slightly shift everything to the left, adjustable */
 }
 
-/* Contenitore per ogni gruppo LED + Slider */
+/* Container for each LED + Slider group */
 .knobs .control-group {
     display: flex;
-    flex-direction: column; /* Disposizione verticale per ogni LED + slider */
-    align-items: center; /* Centra il LED e lo slider */
-   
+    flex-direction: column; /* Vertical layout for each LED + slider */
+    align-items: center; /* Center the LED and slider */
 }
 
-/* Slider stile */
+/* Slider style */
 .knobs input[type="range"] {
-    position: relative; /* Rendi l'elemento posizionabile */
-    top: 55px; /* Regola questo valore per abbassare gli slider */
-    width: 90px; /* Aumentata la lunghezza dello slider */
-    height: 10px; /* Altezza per uno slider più visibile */
-    transform: rotate(270deg); /* Mantieni gli slider verticali */
-    appearance: none; /* Rimuove lo stile predefinito per personalizzazione */
-    background-color: #ddd; /* Colore del background dello slider */
-    border-radius: 5px; /* Angoli arrotondati */
-    margin: -50px; /* Rimuove il margine extra */
+    position: relative; /* Make the element positionable */
+    top: 55px; /* Adjust this value to lower the sliders */
+    width: 90px; /* Increased slider length */
+    height: 10px; /* Height for a more visible slider */
+    transform: rotate(270deg); /* Keep the sliders vertical */
+    appearance: none; /* Removes default styling for customization */
+    background-color: #ddd; /* Slider background color */
+    border-radius: 5px; /* Rounded corners */
+    margin: -50px; /* Removes extra margin */
 }
 
-/* Stile del pollice dello slider */
+/* Slider thumb style */
 .knobs input[type="range"]::-webkit-slider-thumb {
     appearance: none;
     width: 15px;
@@ -299,7 +289,7 @@ Contenitore del pad musicale */
     background-color: #443776;
     border-radius: 50%;
     cursor: pointer;
-    border: 2px solid #fff; /* Bordo bianco per renderlo più visibile */
+    border: 2px solid #fff; /* White border for better visibility */
 }
 
 .knobs input[type="range"]::-moz-range-thumb {
@@ -314,10 +304,10 @@ Contenitore del pad musicale */
 
 
 
-/* SPARTITO*/
+/* ---------------------------------------------------STAFF----------------------------------------------- */
 .staff-container {
     position: absolute;
-    left: 1vw; /* Distanza dal bordo sinistro */
+    left: 1vw; /* Distance from the left edge */
     top: 1vh; 
     background-color: white;
     padding: 10px;
@@ -332,16 +322,15 @@ canvas {
     border: 2px solid #333;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;  /* Adatta la larghezza al contenitore */
-    height: 185px; /* Imposta l'altezza desiderata del pentagramma */
+    width: 100%;  /* Adapts the width to the container */
+    height: 185px; /* Sets the desired height for the staff */
 }
 
-
-/* Pulsante Mute Metronome */
+/* Mute Metronome Button */
 #muteMetronomeButton {
     padding: 10px 20px;
     font-size: 16px;
-    font-family: inherit; /* Forza l'uso del font del body */
+    font-family: inherit; /* Enforces the use of the body's font */
     cursor: pointer;
     background-color: #008CBA;
     color: white;
@@ -358,11 +347,11 @@ canvas {
     transform: scale(1.05);
 }
 
-/* Pulsante Start Metronomo */
+/* Start Metronome Button */
 #startMetronomeButton {
     padding: 10px 25px;
     font-size: 16px;
-    font-family: inherit; /* Forza l'uso del font del body */
+    font-family: inherit; /* Enforces the use of the body's font */
     cursor: pointer;
     background-color: #4CAF50;
     color: white;
@@ -379,11 +368,11 @@ canvas {
     transform: scale(1.05);
 }
 
-/* Pulsante Stop Metronomo */
+/* Stop Metronome Button */
 #stopMetronomeButton {
     padding: 10px 25px;
     font-size: 16px;
-    font-family: inherit; /* Forza l'uso del font del body */
+    font-family: inherit; /* Enforces the use of the body's font */
     cursor: pointer;
     background-color: #FF5722;
     color: white;
@@ -400,11 +389,11 @@ canvas {
     transform: scale(1.05);
 }
 
-/* Pulsante Clear Notes */
+/* Clear Notes Button */
 #clearNotesButton {
     padding: 8px 10px;
     font-size: 16px;
-    font-family: inherit; /* Forza l'uso del font del body */
+    font-family: inherit; /* Enforces the use of the body's font */
     cursor: pointer;
     background-color: #9fa934;
     color: white;
@@ -421,11 +410,10 @@ canvas {
     transform: scale(1.05);
 }
 
-
-/* Stile per l'input del BPM */
+/* Style for BPM Input */
 #bpm {
     font-size: 16px;
-    font-family: inherit; /* Forza l'uso del font del body */
+    font-family: inherit; /* Enforces the use of the body's font */
     width: 60px;
     padding: 5px;
     margin-left: -10px;
@@ -442,17 +430,16 @@ canvas {
 label[for="bpm"] {
     /*font-family: 'Lucida Console', Monaco, monospace;*/
     font-size: 16px;
-    font-family: inherit; /* Forza l'uso del font del body */
+    font-family: inherit; /* Enforces the use of the body's font */
     color: #333;
     margin-right: 10px;
 }
 
-
-/* Stile per il menu a tendina del ritmo */
+/* Style for Time Signature Dropdown Menu */
 #timeSignature {
     font-size: 15px;
-    font-family: inherit; /* Forza l'uso del font del body */
-    width: 50px;  /* Larghezza del selettore */
+    font-family: inherit; /* Enforces the use of the body's font */
+    width: 50px;  /* Width of the dropdown */
     padding: 5px;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -462,29 +449,29 @@ label[for="bpm"] {
     transition: border-color 0.3s;
     appearance: none;
     position: absolute;
-    top: 240px; /* Allineato verticalmente con #clearNotesButton */
-    left: 235px; /* Posizionato alla destra di #clearNotesButton */
+    top: 240px; /* Vertically aligned with #clearNotesButton */
+    left: 235px; /* Positioned to the right of #clearNotesButton */
 }
 
 #timeSignature:focus {
     border-color: #e21b9c;
 }
 
-/* Stile dell'etichetta del selettore */
+/* Label for Time Signature Selector */
 label[for="timeSignature"] {
     /*font-family: 'Lucida Console', Monaco, monospace;*/
     font-size: 18px;
-    font-family: inherit; /* Forza l'uso del font del body */
+    font-family: inherit; /* Enforces the use of the body's font */
     color: #333;
     position: absolute;
-    top: 245px; /* Allineato leggermente sopra il menu a tendina */
-    left: 150px; /* Posizionato accanto a #timeSignature */
+    top: 245px; /* Slightly above the dropdown */
+    left: 150px; /* Positioned next to #timeSignature */
 }
 
-/* Stile per il menu a tendina del numero di battute */
+/* Style for Bars Dropdown Menu */
 #bars {
     font-size: 15px;
-    width: 40px;  /* Larghezza del selettore */
+    width: 40px;  /* Width of the dropdown */
     padding: 5px;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -494,8 +481,8 @@ label[for="timeSignature"] {
     transition: border-color 0.3s;
     appearance: none;
     position: absolute;
-    top: 202px; /* Allineato con il pulsante Clear Notes */
-    left: 275px; /* Posizionato a destra di #clearNotesButton */
+    top: 202px; /* Aligned with the Clear Notes button */
+    left: 275px; /* Positioned to the right of #clearNotesButton */
 }
 
 #bars:focus {
@@ -504,128 +491,121 @@ label[for="timeSignature"] {
 
 
 
-/* Contenitore principale del selettore */
+/* ----------------------------------------------------JSON------------------------------------------------------
+/* Main container for the selector */
 #bloccoJSON {
     position: absolute;
-    top: 37vh; /* Posizionamento verticale */
-    left: 52vw; /* Sposta il contenitore verso destra */
-    width: 198px; /* Aumenta la larghezza per evitare il troncamento */
-    background-color: #333; /* Sfondo scuro */
-    border-radius: 10px; /* Bordi arrotondati */
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* Ombra elegante */
-    padding: 10px; /* Spaziatura interna */
-    color: #fff; /* Testo bianco */
-    font-family: Arial, sans-serif; /* Font leggibile */
-    font-size: 14px; /* Dimensione testo ottimale */
-    text-align: center; /* Centra il testo */
+    top: 37vh; /* Vertical positioning */
+    left: 51vw; /* Move the container to the right */
+    width: 198px; /* Increased width to prevent truncation */
+    background-color: #333; /* Dark background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* Elegant shadow */
+    padding: 10px; /* Internal spacing */
+    color: #fff; /* White text */
+    font-family: Arial, sans-serif; /* Readable font */
+    font-size: 14px; /* Optimal text size */
+    text-align: center; /* Center-align text */
 }
 
-
-/* Stile del menu a tendina */
+/* Style for the dropdown menu */
 #bloccoJSON select {
-    width: 100%; /* Larghezza completa del contenitore */
-    padding: 6px 8px; /* Spaziatura ridotta */
-    border: 1px solid #555; /* Bordo scuro */
-    border-radius: 5px; /* Bordi arrotondati */
-    background-color: #444; /* Sfondo scuro per il menu a tendina */
-    color: #fff; /* Colore del testo */
-    font-family: inherit; /* Mantiene lo stesso font */
-    font-size: 14px; /* Dimensione testo */
-    appearance: none; /* Rimuove lo stile predefinito */
-    cursor: pointer; /* Cambia il cursore a mano */
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); /* Aggiunge un'ombra leggera */
-    margin: 0; /* Rimuove margini extra */
-    height: auto; /* Altezza dinamica */
-    line-height: 1.5; /* Spaziatura tra le righe */
+    width: 100%; /* Full width of the container */
+    padding: 6px 8px; /* Reduced padding */
+    border: 1px solid #555; /* Dark border */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #444; /* Dark background for the dropdown */
+    color: #fff; /* Text color */
+    font-family: inherit; /* Keeps the same font */
+    font-size: 14px; /* Text size */
+    appearance: none; /* Removes default browser styling */
+    cursor: pointer; /* Changes cursor to pointer */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); /* Adds a light shadow */
+    margin: 0; /* Removes extra margins */
+    height: auto; /* Dynamic height */
+    line-height: 1.5; /* Line spacing */
 }
 
-/* Rimuove lo spazio vuoto nelle opzioni */
+/* Removes extra spacing in options */
 #bloccoJSON select option {
-    padding: 0; /* Rimuove padding interno delle opzioni */
-    margin: 0; /* Rimuove margini */
-    background-color: #444; /* Sfondo delle opzioni */
-    color: #fff; /* Testo delle opzioni */
-    font-family: inherit; /* Mantiene lo stesso font */
-    font-size: 14px; /* Dimensione testo */
-    line-height: 1.5; /* Altezza di riga uniforme */
+    padding: 0; /* Removes internal padding of options */
+    margin: 0; /* Removes margins */
+    background-color: #444; /* Background color for options */
+    color: #fff; /* Text color for options */
+    font-family: inherit; /* Keeps the same font */
+    font-size: 14px; /* Text size */
+    line-height: 1.5; /* Uniform line height */
 }
 
-/* Stile del menu a tendina quando in focus */
+/* Style for the dropdown menu when focused */
 #bloccoJSON select:focus {
-    outline: none; /* Rimuove il bordo blu predefinito */
-    border-color: #777; /* Cambia il colore del bordo */
-    box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5); /* Glow bianco */
+    outline: none; /* Removes the default blue outline */
+    border-color: #777; /* Changes the border color */
+    box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5); /* White glow */
 }
 
-/* Stile per il pulsante opzionale */
+/* Style for the optional button */
 #bloccoJSON button {
-    margin-top: 10px; /* Spaziatura sopra il pulsante */
-    width: 100%; /* Larghezza del pulsante */
-    padding: 6px; /* Spaziatura interna ridotta */
-    background-color: #555; /* Sfondo scuro */
-    color: #fff; /* Testo bianco */
-    border: none; /* Nessun bordo */
-    border-radius: 5px; /* Bordi arrotondati */
-    cursor: pointer; /* Cambia il cursore a mano */
-    font-family: inherit; /* Font coerente */
-    font-size: 14px; /* Dimensione testo */
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); /* Ombra leggera */
-    transition: background-color 0.3s, transform 0.1s; /* Transizione per interazioni */
+    margin-top: 10px; /* Spacing above the button */
+    width: 100%; /* Full width of the button */
+    padding: 6px; /* Reduced internal spacing */
+    background-color: #555; /* Dark background */
+    color: #fff; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Changes cursor to pointer */
+    font-family: inherit; /* Consistent font */
+    font-size: 14px; /* Text size */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); /* Light shadow */
+    transition: background-color 0.3s, transform 0.1s; /* Transition for interactions */
 }
 
-/* Stile pulsante al passaggio del mouse */
+/* Style for the button on hover */
 #bloccoJSON button:hover {
-    background-color: #666; /* Sfondo leggermente più chiaro */
+    background-color: #666; /* Slightly lighter background */
 }
 
-/* Stile pulsante cliccato */
+/* Style for the button when clicked */
 #bloccoJSON button:active {
-    background-color: #777; /* Sfondo più chiaro quando cliccato */
-    transform: scale(0.98); /* Leggera compressione */
+    background-color: #777; /* Lighter background when clicked */
+    transform: scale(0.98); /* Slight compression effect */
 }
 
 
 
 
 
-
-/*ZOOM*/
+/*--------------------------- ZOOM -------------------------------*/
 #zoomButton {
-    margin-left: 20px; /* Regola il valore per spostarlo a destra */
+    margin-left: 20px; /* Adjust the value to move it to the right */
 }
 
 
 
-
-/*MULTI-TRACKS RECORDER*/
-
-
+/* ------------------------------------------------MULTI-TRACKS RECORDER ---------------------------------------------------*/
 #multitrack-recorder-wrapper {
     position: absolute;
-    left: 1vw; /* Posizione orizzontale */
-    top: 43.5vh; /* Posizione verticale */
-    width: 60%; /* Larghezza del contenitore */
-    max-width: 460px; /* Larghezza massima */
-    z-index: 10; /* Assicurati che il contenitore sia sopra altri elementi */
-    background: #222; /* Sfondo nero */
-    border-radius: 10px; /* Arrotonda gli angoli */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Aggiunge un'ombra leggera */
-    padding: 10px; /* Spazio interno */
+    left: 1vw; /* Horizontal positioning */
+    top: 43.5vh; /* Vertical positioning */
+    width: 60%; /* Width of the container */
+    max-width: 460px; /* Maximum width */
+    z-index: 10; /* Ensure the container is above other elements */
+    background: #222; /* Black background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Adds a light shadow */
+    padding: 10px; /* Internal spacing */
 }
 
-
-
-
-/*SFONDO NERO*/
-/* Contenitore scrollabile delle tracce */
+/* BLACK BACKGROUND */
+/* Scrollable container for tracks */
 #tracks-container {
-    height: 350px; /* Altezza per visualizzare solo due tracce */
-    overflow-y: auto; /* Scrolling verticale */
-    scroll-behavior: smooth; /* Scrolling fluido */
+    height: 350px; /* Height to display only two tracks */
+    overflow-y: auto; /* Vertical scrolling */
+    scroll-behavior: smooth; /* Smooth scrolling */
     padding: 10px;
 }
 
-/* Stile per ogni traccia */
+/* Style for each track */
 .track {
     display: flex;
     flex-direction: column;
@@ -637,55 +617,55 @@ label[for="timeSignature"] {
     margin-bottom: 10px;
 }
 
-/* Titolo della traccia */
+/* Track title */
 .track span {
-    font-family: inherit; /* Forza l'uso del font del body */
+    font-family: inherit; /* Enforces the use of the body's font */
     font-size: 14px;
     font-weight: bold;
     color: #333;
-    margin-bottom: 3px; /* Ridotto lo spazio sotto il titolo */
+    margin-bottom: 3px; /* Reduced space below the title */
 }
 
-/* Canvas della traccia */
+/* Track canvas */
 .track-canvas {
-    width: 100%; /* Occupa tutta la larghezza disponibile */
-    height: 110px; /* Altezza ancora più compatta */
+    width: 100%; /* Occupies the full available width */
+    height: 110px; /* Even more compact height */
     border: 1px solid #555;
     border-radius: 4px;
     background-color: #f8f7f7;
     margin-bottom: 5px;
 }
 
-/* Contenitore dei controlli */
+/* Controls container */
 .track .controls {
     display: flex;
-    flex-direction: row; /* Disposizione in riga */
+    flex-direction: row; /* Row layout */
     align-items: center;
-    gap: 5px; /* Spazio tra i controlli */
-    flex-wrap: nowrap; /* Impedisce il wrapping su più righe */
-    width: 100%; /* Adatta alla larghezza del contenitore */
-    overflow-x: auto; /* Consente lo scrolling orizzontale se lo spazio è troppo stretto */
+    gap: 5px; /* Space between controls */
+    flex-wrap: nowrap; /* Prevents wrapping onto multiple rows */
+    width: 100%; /* Adjusts to the width of the container */
+    overflow-x: auto; /* Allows horizontal scrolling if space is too tight */
 }
 
-/* Stile per i pulsanti */
+/* Style for buttons */
 .track .controls button {
-    padding: 3px 6px; /* Ridotto padding */
+    padding: 3px 6px; /* Reduced padding */
     font-size: 12px;
-    font-family: inherit; /* Forza l'uso del font del body */
+    font-family: inherit; /* Enforces the use of the body's font */
     background-color: #007bff;
     color: #fff;
     border: none;
     border-radius: 3px;
     cursor: pointer;
     transition: background-color 0.2s;
-    white-space: nowrap; /* Impedisce che il testo venga spezzato */
+    white-space: nowrap; /* Prevents text from breaking */
 }
 
 .track .controls button:hover {
     background-color: #0056b3;
 }
 
-/* Pulsante attivo per registrazione */
+/* Active button for recording */
 .track .controls .record-btn {
     background-color: #dc3545;
 }
@@ -694,37 +674,37 @@ label[for="timeSignature"] {
     background-color: #a71d2a;
 }
 
-/* Stile per gli slider di volume */
+/* Style for volume sliders */
 .track .controls .volume-slider {
-    width: 100px; /* Slider compatto */
+    width: 100px; /* Compact slider */
     margin: 0 2px;
 }
 
-/* Contenitore dei pulsanti globali */
+/* Global controls container */
 #global-controls {
     display: flex;
-    flex-direction: row; /* Disposizione in riga */
-    gap: 10px; /* Spazio tra i pulsanti */
+    flex-direction: row; /* Row layout */
+    gap: 10px; /* Space between buttons */
     justify-content: center;
     margin-top: 10px;
-    width: 100%; /* Occupa tutta la larghezza */
-    max-width: 900px; /* Limita la larghezza */
+    width: 100%; /* Occupies full width */
+    max-width: 900px; /* Limits the width */
 }
 
-/* Pulsanti globali */
+/* Global buttons */
 #global-rec,
 #global-play,
 #download-audio {
     padding: 6px 12px;
     font-size: 14px;
-    font-family: inherit; /* Forza l'uso del font del body */
+    font-family: inherit; /* Enforces the use of the body's font */
     background-color: #28a745;
     color: white;
     border: none;
     border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.3s;
-    white-space: nowrap; /* Impedisce che il testo venga spezzato */
+    white-space: nowrap; /* Prevents text from breaking */
 }
 
 #global-rec:hover,
@@ -736,96 +716,92 @@ label[for="timeSignature"] {
 /* Responsive Design */
 @media (max-width: 900px) {
     .track .controls {
-        overflow-x: auto; /* Lo scrolling orizzontale permette di vedere tutti i controlli */
+        overflow-x: auto; /* Horizontal scrolling ensures all controls are visible */
     }
 
     .track-canvas {
-        height: 25px; /* Altezza minima per leggibilità */
+        height: 25px; /* Minimum height for readability */
     }
 
     #global-controls {
-        flex-wrap: wrap; /* Permette il wrapping su schermi stretti */
+        flex-wrap: wrap; /* Allows wrapping on narrow screens */
     }
 }
 
 
-/* Stili per il visualizzatore audio */
+
+
+/*------------------------------ Styles for the audio visualizer------------------------------------- */
 #canvas1 {
     display: block;
     margin: auto;
     background-color: black;
-    width: 24%; /* Rendi il canvas più stretto */
-    height: 200px; /* Altezza ridotta */
-    position: absolute; /* Posizione assoluta per spostarlo */
-    top: 2%; /* Sposta verso l'alto */
-    right: 27.8%; /* Sposta leggermente a destra */
+    width: 24%; /* Make the canvas narrower */
+    height: 200px; /* Reduced height */
+    position: absolute; /* Absolute positioning to move it */
+    top: 2%; /* Move upward */
+    right: 27.8%; /* Slightly shift to the right */
 }
 
-/* Stili per il pulsante */
+/* Styles for the button */
 #toggleVisualizer {
-    position: absolute; /* Posiziona il pulsante in relazione al canvas */
-    top: calc(200px + 11px); /* 200px è l'altezza del canvas, 10px è lo spazio aggiuntivo */
-    right: 27.88%; /* Allinea il pulsante con il canvas */
-    z-index: 1000; /* Assicura che il pulsante sia sopra altri elementi */
+    position: absolute; /* Position the button relative to the canvas */
+    top: calc(200px + 11px); /* 200px is the canvas height, 10px is the additional space */
+    right: 27.88%; /* Align the button with the canvas */
+    z-index: 1000; /* Ensure the button is above other elements */
     padding: 10px 20px;
     background-color: hwb(0 3% 97%);
-    width: 24.15%; /* Rendi il canvas più stretto */
+    width: 24.15%; /* Make the button match the canvas width */
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
-/* Stile del pulsante al passaggio del mouse */
+/* Button hover style */
 #toggleVisualizer:hover {
     background-color: hsl(211, 14%, 29%);
 }
 
 #timbre-select {
-    display: none; /* Nasconde completamente l'elemento */
+    display: none; /* Completely hide the element */
 }
-
 
 #environmentContainer {
     display: flex;
-    align-items: center; /* Allinea l'icona e il pulsante verticalmente */
-    gap: 8px; /* Spazio tra l'icona "i" e il pulsante */
-    width: 100%; /* Occupa tutta la larghezza disponibile */
-    justify-content: space-between; /* Spaziatura uniforme tra elementi */
+    align-items: center; /* Vertically align the icon and the button */
+    gap: 8px; /* Space between the "i" icon and the button */
+    width: 100%; /* Occupy the full available width */
+    justify-content: space-between; /* Distribute space evenly between elements */
 }
 
-
-/* Stile per l'icona "i" cerchiata */
+/* ----------------Style for the circled "i" icon ------------------*/
+/* Ensure a perfect circle for the "i" icon */
 .info-icon {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 24px; /* Larghezza */
-    height: 24px; /* Altezza identica per mantenere il cerchio */
-    border: 2px solid hsl(210, 7%, 11%); /* Colore del bordo */
-    border-radius: 50%; /* Forma circolare */
-    font-size: 14px; /* Dimensione del testo */
-    color: hsl(210, 7%, 11%); /* Colore del testo */
-    font-weight: bold; /* Testo in grassetto */
-    cursor: pointer; /* Cambia il cursore al passaggio del mouse */
-    background-color: white; /* Sfondo bianco */
+    width: 24px; /* Width of the circle */
+    height: 24px; /* Height must match width for a perfect circle */
+    aspect-ratio: 1 / 1; /* Enforces a square shape */
+    border: 2px solid hsl(210, 7%, 11%); /* Border color */
+    border-radius: 50%; /* Makes it circular */
+    font-size: 12px; /* Reduce text size if it's too large */
+    color: hsl(210, 7%, 11%); /* Text color */
+    font-weight: bold; /* Bold text */
+    cursor: pointer; /* Pointer cursor on hover */
+    background-color: white; /* White background */
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Effetto hover per l'icona */
+
+/* Hover effect for the icon */
 .info-icon:hover {
     background-color: hsl(212, 15%, 33%);
     color: white;
 }
 
-
-/* Effetto hover per l'icona */
-.info-icon:hover {
-    background-color: hsl(212, 15%, 33%);
-    color: white;
-}
-
-/* Stile per il menu a tendina */
+/* Style for the dropdown menu */
 #ambienteSelect {
     padding: 10px 20px;
     font-size: 16px;
