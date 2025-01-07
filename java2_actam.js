@@ -163,8 +163,7 @@ document.getElementById('timbre-select').value = currentSet;
 
 
 
-//----------------------- EFFECTS: Flanger, Delay, Distortion, Chorus -----------------------//
-
+//-------------------------------- EFFECTS: Flanger, Delay, Distortion, Chorus -----------------------//
 
 // To store the effect nodes for active audio processing effects (initialized as null)
 let effectNodes = {
@@ -352,7 +351,7 @@ function toggleEffect(effect) {
 }
 
 
-// Funzione per creare un nodo per l'effetto
+// Function to create a node for the effect
 function createEffectNode(effect) {
     switch (effect) {
         case 'flanger':
@@ -367,6 +366,7 @@ function createEffectNode(effect) {
             return null;
     }
 }
+
 
 // Function to update the LEDs
 function updateLEDs() {
@@ -386,6 +386,7 @@ function updateLEDs() {
     distortionLed.classList.toggle('active', activeEffects.distortion);
     chorusLed.classList.toggle('active', activeEffects.chorus); 
 }
+
 
 
 //--------------------------- Functions to create effects using knobs-----------------------------------
@@ -512,7 +513,6 @@ function updateKeyLabels() {
 }
 
 
-
 // Stops the sound of a specific note, managing multiple active instances if necessary
 function stopNote(note) {
     if (activeNotes[note] && activeNotes[note].length > 0) {
@@ -560,17 +560,20 @@ function activateNote(note, source, startTime = performance.now()) {
     }
 
     // If a track is actively recording, save the note event
+    // Save note data in the active track
     if (activeTrackIndex !== -1 && tracks[activeTrackIndex].isRecording) {
-        const noteData = {
-            note: note,
-            startTime: startTime,
-            duration: null // Duration will be calculated when the note is released
-        };
+    const noteData = {
+        note: note, // Note name or identifier
+        startTime: startTime, // Note start time
+        duration: null, // Duration will be calculated when the note is released
+        ambiente: ambienteCorrente?.nome || 'default-environment', // Current environment
+        timbro: setCorrente?.nome || 'default-timbre' // Current timbre
+    };
 
-         // Append the note data to the audio data of the active track
-        tracks[activeTrackIndex].audioData.push(noteData);
-        console.log(`Recorded note ${note} on track ${activeTrackIndex + 1}`, noteData);
-    }
+    // Add the note data to the audio data of the active track
+    tracks[activeTrackIndex].audioData.push(noteData);
+    console.log(`Note ${note} recorded on track ${activeTrackIndex + 1}`, noteData);
+}
 
     // Start updating the rectangle's visual representation
     requestAnimationFrame(() => updateRectangle(note));
@@ -585,6 +588,7 @@ document.addEventListener('keydown', function(event) {
         activateNote(note, "keyboard"); // Activate the note if it exists in the keyMap
     }
 });
+
 
 // Handle key release events from the keyboard
 document.addEventListener('keyup', function(event) {
@@ -764,7 +768,7 @@ function unhighlightKey(note) {
 
 
 
-// TIMBRE SELECTOR
+//-------------------------------- TIMBRE SELECTOR---------------------------------------------------
 document.getElementById('timbre-select').addEventListener('change', function() {
     currentSet = parseInt(this.value);  // Update the current sound set
 
@@ -778,7 +782,7 @@ document.getElementById('timbre-select').addEventListener('change', function() {
 
 
 
-// ----------------------  PAD: premible with keys 1 to 9 or with the mouse in the GUI   ----------------------
+// -------------------------------  PAD: premible with keys 1 to 9 or with the mouse in the GUI   ----------------------
 
 // Map to track the state of pressed pad keys
 let pressedPads = {};
@@ -908,7 +912,6 @@ document.addEventListener('keyup', (e) => {
 
 
 
-
 // Function to play pad sounds
 function playPadSound(pad) {
     const key = pad.getAttribute('data-sound'); // Get the sound identifier from the pad
@@ -924,7 +927,7 @@ function playPadSound(pad) {
 
 
 
-// --------------------  Pentagram and Time Bar:
+// --------------------  Pentagram and Time Bar:------------------------------------------------------------------------
 // The Time Bar moves across the canvas at the speed chosen by the user-modifiable bpm and time signature. 
 // It changes colour if it is in the vicinity of an accent. 
 //The Pentagram as if it were a piano roll, not with traditional notes so that even those who don't know them can play by understanding. -------------------- // 
@@ -1104,7 +1107,6 @@ function updateRectangle(dataKey) {
     // Continue updating as long as the key is pressed
     requestAnimationFrame(() => updateRectangle(dataKey));
 }
-
 
 
 
@@ -1569,9 +1571,9 @@ function playTrack(trackIndex) {
 
                 // Determine the audio file path based on the note type
                 const audioPath = Number.isInteger(Number(noteData.note)) && Number(noteData.note) >= 1 && Number(noteData.note) <= 9
-                    ? `sounds/sounds/${ambienteCorrente.nome}/Pad/suono${noteData.note}.mp3` // Path for pad sounds
-                    : `sounds/sounds/${ambienteCorrente.nome}/Timbre${setCorrente?.nome.split(' ')[1] || 1}/${noteData.note}.mp3`; // Path for timbre sounds
-
+                ? `sounds/sounds/${noteData.ambiente}/Pad/suono${noteData.note}.mp3` 
+                : `sounds/sounds/${noteData.ambiente}/Timbre${noteData.timbro.split(' ')[1] || 1}/${noteData.note}.mp3`;
+            
 
                 const audio = new Audio(audioPath); // Create an audio object for the sound
                 const trackSource = audioContext.createMediaElementSource(audio); // Create a media element source
@@ -1631,7 +1633,6 @@ function copyCanvasToTrack(trackIndex) {
 
 
 
-
 // Function to delete a track (audio and visual content from the canvas)
 function deleteTrack(trackIndex) {
      // Clear the audio data for the specified track
@@ -1648,7 +1649,6 @@ function deleteTrack(trackIndex) {
         console.warn(`Canvas per la traccia ${trackIndex + 1} non trovato.`);
     }
 }
-
 
 
 
@@ -1784,7 +1784,6 @@ activeNumbersWithPositions.push({
     x,
     color: numberColors[number] || defaultColor // Initial color for the number
 });
-
 
 
 
