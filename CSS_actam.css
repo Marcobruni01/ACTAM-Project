@@ -1,13 +1,16 @@
 body {
     font-family: Arial, sans-serif;
-    /*font-style: italic;*/ 
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;  /* Full-page height */
     margin: 0;
-    background: linear-gradient(rgb(47, 0, 255), rgb(0, 89, 255), rgb(0, 208, 255)); /* Gradient background */
+    background-image: url('background.jpg'); /* Sostituisci con il percorso della tua immagine */
+    background-size: cover; /* L'immagine riempirà tutta l'area */
+    background-position: center; /* Centra l'immagine */
+    background-repeat: no-repeat; /* Evita la ripetizione dell'immagine */
 }
+
 
 /* Main central container */
 .pianola {
