@@ -154,8 +154,6 @@ The core functionality of **Ambient Machine** is powered by a JavaScript archite
 ### **Canvas and Visual Feedback**
 1. **Dynamic Visuals**:
    - **`drawActiveRectangle`** creates live visual feedback by drawing rectangles that grow as notes are played and held. The choice of the colour of the rectangles is not random, but follows the chromatic code of Luigi Veronesi, a Milanese artist from the second half of the 20th century, who studied the sound/colour relationship for years in order to create a powerful visual tool for people with total or partial hearing loss. The colour fuchsia is associated with C, blue with D, light blue with E, green with F, while G, A and B are associated with yellow, orange and red respectively. The sharps and flats have intermediate tones and increasing the octave decreases the colour saturation, which is maximum for the middle octaves.  
-
-Translated with DeepL.com (free version)
    - **`redrawNotes`** ensures previously played notes remain visible even after new notes are added.
 
 2. **Time Bar Animation**:
