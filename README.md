@@ -153,7 +153,7 @@ The core functionality of **Ambient Machine** is powered by a JavaScript archite
 
 ### **Canvas and Visual Feedback**
 1. **Dynamic Visuals**:
-   - **`drawActiveRectangle`** creates live visual feedback by drawing rectangles that grow as notes are played and held.
+   - **`drawActiveRectangle`** creates live visual feedback by drawing rectangles that grow as notes are played and held. 
    - **`redrawNotes`** ensures previously played notes remain visible even after new notes are added.
 
 2. **Time Bar Animation**:

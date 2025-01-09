@@ -999,15 +999,15 @@ let canvasReset = false;  // New variable to track whether the canvas has been r
 
 
 
-// Map of colors assigned to each note
-const noteColors = {
-    "C3": "#FF5733", "Csharp3": "#C70039", "D3": "#900C3F", "Dsharp3": "#581845", "E3": "#FF33FF",
-    "F3": "#33FF57", "Fsharp3": "#33FFF3", "G3": "#33AFFF", "Gsharp3": "#5733FF", "A3": "#FF335E",
-    "Asharp3": "#FF9133", "B3": "#33FF8E", "C4": "#A633FF", "Csharp4": "#D433FF", "D4": "#FF33D4",
-    "Dsharp4": "#FF33A6", "E4": "#FF3384", "F4": "#FF3367", "Fsharp4": "#FF3350", "G4": "#FF5733",
-    "Gsharp4": "#FF6F33", "A4": "#FF8C33", "Asharp4": "#FFB833", "B4": "#FFDA33", "C5": "#FFE733",
-    "Csharp5": "#D4FF33", "D5": "#A6FF33", "Dsharp5": "#84FF33", "E5": "#67FF33", "F5": "#50FF33"
-};
+// Map of colors assigned to each note (adjusted colors and saturation by octave)
+const noteColors = { "C3": "#FF00FF", "Csharp3": "#E600E6", "D3": "#0000FF", "Dsharp3": "#0000E6",
+    "E3": "#00FFFF", "F3": "#00FF00", "Fsharp3": "#00E600", "G3": "#FFFF00", "Gsharp3": "#E6E600",
+    "A3": "#FFA500", "Asharp3": "#E69500", "B3": "#FF0000", "C4": "#FF33FF", "Csharp4": "#E633E6",
+    "D4": "#3333FF", "Dsharp4": "#3333E6", "E4": "#33FFFF", "F4": "#33FF33", "Fsharp4": "#33E633",
+    "G4": "#FFFF33", "Gsharp4": "#E6E633", "A4": "#FFA533", "Asharp4": "#E69533", "B4": "#FF3333",
+    "C5": "#FF66FF", "Csharp5": "#E666E6", "D5": "#6666FF", "Dsharp5": "#6666E6", "E5": "#66FFFF",
+    "F5": "#66FF66" };
+
 
 
 // Function to get the vertical position of a note (updated for two octaves)
