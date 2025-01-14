@@ -4,7 +4,7 @@
 
 **Ambient Machine** is an interactive web-based synthesizer simulator, complete with a keyboard, pad, recorder, effects, and a visual interface for monitoring your music in real-time. The platform is designed to be intuitive and engaging for users of all skill levels, making it easy to explore, create, and record music inspired by various ambient environments.
 
-**Browser Recommendation**: For optimal performance, it is strongly recommended to use Mozilla Firefox. While the site may work on other browsers, Firefox ensures full compatibility and smooth operation of all features.
+**Browser Recommendation**: For optimal performance, it is strongly recommended to use Mozilla Firefox or Google Chrome. While the site may work on other browsers, Firefox or Google Chrome ensure full compatibility and smooth operation of all features.
 
 ---
 
@@ -14,8 +14,8 @@
 Ambient Machine includes **four pre-defined environments**:
 
 - **City**
-- **Home**
-- **Nature**
+- **House**
+- **Country**
 - **Sea**
 
 Each environment comes with unique soundscapes:
@@ -23,7 +23,7 @@ Each environment comes with unique soundscapes:
 - **Keyboard**: Offers melodic sounds with up to 4 selectable timbres per environment.
 
 #### Custom Environments
-Users can add their own custom environment by:
+User can add their own custom environment by:
 1. Uploading a folder containing audio files.
 2. Modifying the accompanying JSON file to define the new environment.
 3. Alternatively, the folder can be added to Dropbox, and the link to the folder can be referenced in the JSON file.
@@ -77,7 +77,7 @@ All audio files were processed with **Reaper** to adjust their length and qualit
 - Features for each track include:
   - Adjust volume.
   - Delete the track.
-  - Replay the track (requires prior recording using "Copy on Track").
+  - Replay graphically the track (requires prior recording using "Copy on Track").
 - **Final Export**: Combine all recorded tracks into a single audio file to create a complete song, which can be downloaded only in .WAV format.
 - **Metronome Requirement**: Recording does not start unless the metronome is active, ensuring proper synchronization.
 - **Pre-Roll**: The recording starts after 2 measures to give users time to prepare.
@@ -90,7 +90,7 @@ All audio files were processed with **Reaper** to adjust their length and qualit
 
 2. **Explore Sounds**:
    - Use the pad for percussive sounds.
-   - Play the keyboard for melodic tones and experiment with timbres and octaves.
+   - After selecting a timbre, play the keyboard for melodic tones and experiment with timbres and octaves.
 
 3. **Add Effects**:
    - Apply effects to keyboard sounds and adjust their levels for unique soundscapes.
