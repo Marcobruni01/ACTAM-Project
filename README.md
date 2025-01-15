@@ -107,6 +107,7 @@ All audio files were processed with **Reaper** to adjust their length and qualit
    - Record up to 4 tracks.
    - Edit, replay, and combine them into a single downloadable song.
 
+**Note**: It is recommended to disable the visualizer if your computer is not high-performance, as it may cause the site to lag.
 ---
 ## How It Works
 
