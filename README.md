@@ -85,21 +85,25 @@ All audio files were processed with **Reaper** to adjust their length and qualit
 
 ## How to Use
 
-1. **Select an Environment**:
+1. **Launch the Application**:
+   - Open the project in Visual Studio Code.
+   - Use the "Live Server" extension to launch the application, starting from the `home.html` file.
+
+2. **Select an Environment**:
    - Choose one of the default environments or load a custom environment.
 
-2. **Explore Sounds**:
+3. **Explore Sounds**:
    - Use the pad for percussive sounds.
    - After selecting a timbre, play the keyboard for melodic tones and experiment with timbres and octaves.
 
-3. **Add Effects**:
+4. **Add Effects**:
    - Apply effects to keyboard sounds and adjust their levels for unique soundscapes.
 
-4. **Visualize and Adjust**:
+5. **Visualize and Adjust**:
    - Monitor your music on the canvas and Fourier transform display.
    - Set BPM, measures, and time signature as needed.
 
-5. **Record and Create**:
+6. **Record and Create**:
    - Record up to 4 tracks.
    - Edit, replay, and combine them into a single downloadable song.
 
