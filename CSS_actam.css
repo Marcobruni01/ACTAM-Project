@@ -1,15 +1,16 @@
 body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;  /* Full-page height */
-    margin: 0;
-    background-image: url('background.jpg'); /* Sostituisci con il percorso della tua immagine */
-    background-size: cover; /* L'immagine riempirà tutta l'area */
-    background-position: center; /* Centra l'immagine */
-    background-repeat: no-repeat; /* Evita la ripetizione dell'immagine */
+    font-family: Arial, sans-serif; /* Sets the font for the body to Arial, with sans-serif as a fallback */
+    display: flex; /* Enables flexbox layout for the body */
+    justify-content: center; /* Centers the content horizontally */
+    align-items: center; /* Centers the content vertically */
+    min-height: 100vh;  /* Ensures the body takes up the full height of the viewport */
+    margin: 0; /* Removes default margin around the body */
+    background-image: url('background.jpg'); /* Replace with the path to your image */
+    background-size: cover; /* Makes the image cover the entire area */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
 }
+
 
 
 /* Main central container */

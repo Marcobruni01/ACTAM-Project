@@ -20,14 +20,14 @@ h1 {
     font-size: 3.8em;
     color: #4169e1;
     text-align: center;
-    color: #1ea0e1; /* Colore del testo */
+    color: #1ea0e1; 
 }
 
 
 .image-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto auto; /* Aggiunge una riga per il pulsante */
+    grid-template-rows: auto auto; 
     row-gap: 10px;
     column-gap: 10px;
     padding: 20px;
@@ -36,8 +36,8 @@ h1 {
     margin-right: 25px;
     margin-bottom: 30px;
     align-items: center;
-    justify-items: center; /* Centra gli elementi nella griglia */
-    position: relative; /* Necessario per il posizionamento assoluto del pulsante */
+    justify-items: center; 
+    position: relative; 
 }
 
 .image-item {
@@ -55,11 +55,11 @@ h1 {
 }
 
 .play-button-container {
-    grid-column: 1 / -1; /* Fa occupare al pulsante l'intera larghezza della griglia */
+    grid-column: 1 / -1; 
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Centra esattamente il pulsante */
+    transform: translate(-50%, -50%); 
     display: flex;
     justify-content: center;
     align-items: center;
